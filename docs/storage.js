@@ -3,10 +3,11 @@
   const learning = typeof module === 'object' && module.exports ? require('./learning-engine.js') : root && root.StudyLearningEngine;
   const scaffold = typeof module === 'object' && module.exports ? require('./scaffold-engine.js') : root && root.StudyScaffoldEngine;
   const mixed = typeof module === 'object' && module.exports ? require('./mixed-engine.js') : root && root.StudyMixedEngine;
-  const api = factory(learning, scaffold, mixed);
+  const reviews = typeof module === 'object' && module.exports ? require('./review-engine.js') : root && root.StudyReviewEngine;
+  const api = factory(learning, scaffold, mixed, reviews);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root && root.document) root.StudyStorage = api.createStorage(root, root.STUDY_CONFIG || {});
-})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold, mixed) {
+})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold, mixed, reviews) {
   'use strict';
   const MAX_BYTES = 1024 * 1024;
   const START = '2026-09-21', END = '2026-10-08';
@@ -158,6 +159,10 @@
     if (own(settings, 'mixedPractice')) {
       if (!mixed) invalid('אימות התרגול המעורב אינו זמין. יש לרענן את האתר ולנסות שוב.');
       try {mixed.validatePractice(settings.mixedPractice);} catch (error) {invalid(error.message);}
+    }
+    if (own(settings, 'questionReviews')) {
+      if (!reviews) invalid('אימות החזרות על שאלות אינו זמין. יש לרענן את האתר ולנסות שוב.');
+      try {reviews.validateReviews(settings.questionReviews);} catch (error) {invalid(error.message);}
     }
     if (own(settings, 'flashcards')) flashcards(settings.flashcards);
     if (own(settings, 'customSessions')) {

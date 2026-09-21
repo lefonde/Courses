@@ -1,10 +1,12 @@
 'use strict';
 window.StudyTasks = (() => {
   const relatedCards = id => (flashcards?.cards||[]).filter(c=>c.unlockAfter.includes(id));
-  function recallBudget(s){
+  function recallBudget(s,snapshot){
     if(s.kind==='setup'||s.kind==='mock'||s.date==='2026-10-08')return 0;
-    const candidates=sessionsOn(s.date).filter(x=>isCommitted(x)&&!['setup','mock'].includes(x.kind));
-    return candidates.at(-1)?.id===s.id?Math.min(s.minutes,dayOf(s.date).kind==='deep'?10:5):0;
+    const day=snapshot?{...schedule.days.find(d=>d.date===s.date),...(snapshot.dayOverrides[s.date]||{})}:dayOf(s.date);
+    const sessions=snapshot?[...schedule.sessions,...(snapshot.settings.customSessions||[])].map(x=>({...x,...(snapshot.sessionUpdates[x.id]||{})})).filter(x=>x.date===s.date&&!x.disabled).sort((a,b)=>(a.start||'23:59').localeCompare(b.start||'23:59')):sessionsOn(s.date);
+    const candidates=sessions.filter(x=>(snapshot?(!x.conditional||day.confirmedOptional):isCommitted(x))&&!['setup','mock'].includes(x.kind));
+    return candidates.at(-1)?.id===s.id?Math.min(s.minutes,day.kind==='deep'?10:5):0;
   }
   function open(id){
     const s=sessionOf(id);if(!s)return;
@@ -18,6 +20,7 @@ window.StudyTasks = (() => {
       <div class="task-main-actions">${primary}</div>
       ${!setup?'<p class="hint">מדביקים את הבקשה בשיחה עם AI שיש לו גישה לקובצי הקורס. היא כוללת את הנושא, המקורות והוראות הלימוד.</p>':''}
       ${deps.length?`<details class="task-details"><summary>לפני המשימה: ${deps.length} משימות קודמות עדיין פתוחות</summary><div class="source-links">${deps.map(x=>`<button class="source-link" data-action="session" data-id="${x.id}">${esc(x.title)}<span>פתיחה ←</span></button>`).join('')}</div></details>`:''}
+      ${window.StudyReviews?.taskEntry(id)||''}
       ${window.StudyScaffold?.enabled(id)?StudyScaffold.entry(id):`<h3>מה לעשות</h3><ol class="task-steps">${arr(s.steps).map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`}
       <div class="finish-target"><strong>בסיום:</strong> ${window.StudyScaffold?.enabled(id)?'עברת על הדוגמה, ניסית את ההשלמה ואת התרגיל העצמאי, ובדקת את העבודה מול ההסבר. אם נשאר קושי, שמור מה צריך להשלים. חמש הדקות האחרונות מיועדות לכרטיסיות וכבר כלולות בשעה.':arr(s.doneWhen).map(esc).join(' ')}</div>
       ${budget?`<div class="recall-budget"><span aria-hidden="true">▧</span><p>השאר את ${budget} הדקות האחרונות לכרטיסיות מחומר שכבר למדת. הן כלולות ב־${s.minutes} דקות המשימה, ולא מתווספות אליהן.</p><button class="text-link" data-task-action="cards">לכרטיסיות ←</button></div>`:''}

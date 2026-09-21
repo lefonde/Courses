@@ -47,7 +47,7 @@
     exact(value, ['version', 'rounds'], 'תרגול מעורב');
     if (value.version !== 1) invalid('גרסת התרגול המעורב אינה נתמכת.');
     if (!Array.isArray(value.rounds) || value.rounds.length > 100) invalid('אפשר לשמור עד 100 סבבי תרגול.');
-    const roundIds = new Set(), eventIds = new Set(), exposure = new Map();
+    const roundIds = new Set(), eventIds = new Set();
     let previousClosed = null;
     for (let index = 0; index < value.rounds.length; index++) {
       const round = value.rounds[index];
@@ -61,6 +61,7 @@
       round.itemIds.forEach(id => identifier(id, 'שאלה בסבב'));
       if (!Array.isArray(round.events) || round.events.length > 25) invalid('אפשר לשמור עד 25 פעולות בכל סבב.');
       let preceding = started;
+      const preparationHelp = new Map(), attempted = new Set();
       for (const event of round.events) {
         validateEvent(event);
         if (eventIds.has(event.id)) invalid('מזהה ניסיון מופיע יותר מפעם אחת.');
@@ -69,9 +70,15 @@
         const at = instant(event.at);
         if (at < preceding || closed !== null && at > closed) invalid('מועד הניסיון אינו נמצא במקומו בסבב.');
         preceding = at;
-        const priorHelp = exposure.get(event.itemId) || 'none';
-        if (HELP.indexOf(event.help) < HELP.indexOf(priorHelp)) invalid('אי אפשר למחוק רמז או פתרון שכבר נחשפו בשאלה הזאת, גם מסבב קודם.');
-        exposure.set(event.itemId, event.help);
+        // Assistance belongs to the work before this round's first saved attempt.
+        // Later review is retained as exposure, without rewriting that attempt.
+        if (!attempted.has(event.itemId)) {
+          const priorHelp = preparationHelp.get(event.itemId) || 'none';
+          if (event.action === 'attempt') {
+            if (HELP.indexOf(event.help) < HELP.indexOf(priorHelp)) invalid('אי אפשר למחוק עזרה שתועדה לפני שמירת הניסיון בסבב הזה.');
+            attempted.add(event.itemId);
+          } else preparationHelp.set(event.itemId, strongerHelp(priorHelp, event.help));
+        }
       }
       const unfinished = round.itemIds.filter(id => !covered(round, id)).length;
       if (round.events.length + unfinished > 25) invalid('נשמר מקום לניסיון או לדילוג בכל שאלה שנותרה. לפני שמירה נוספת, תעד ניסיון או דלג על שאלה.');
@@ -187,7 +194,20 @@
     identifier(itemId, 'שאלה');
     return practiceOf(state).rounds.flatMap(round => round.events).filter(event => event.itemId === itemId).slice().reverse().map(copy);
   }
-  function exposureFor(state, itemId) {return historyFor(state, itemId).reduce((help, event) => HELP.indexOf(event.help) > HELP.indexOf(help) ? event.help : help, 'none');}
+  function strongerHelp(a, b) {return HELP.indexOf(b) > HELP.indexOf(a) ? b : a;}
+  function exposureFor(state, itemId) {return historyFor(state, itemId).reduce((help, event) => strongerHelp(help, event.help), 'none');}
+  function attemptHelpFor(state, roundId, itemId) {
+    identifier(roundId, 'סבב'); identifier(itemId, 'שאלה');
+    const round = practiceOf(state).rounds.find(round => round.id === roundId);
+    if (!round) invalid('סבב התרגול לא נמצא.');
+    if (!round.itemIds.includes(itemId)) invalid('השאלה אינה חלק מהסבב הזה.');
+    let help = 'none';
+    for (const event of round.events) if (event.itemId === itemId) {
+      if (event.action === 'attempt') return event.help;
+      help = strongerHelp(help, event.help);
+    }
+    return help;
+  }
   function allocatedMinutes(state, sessionId) {identifier(sessionId, 'משימת תרגול'); return practiceOf(state).rounds.filter(round => round.budgetSessionId === sessionId).length * 10;}
-  return {eligibleItems, planRound, startRound, record, closeRound, activeRound, validatePractice, exposureFor, historyFor, allocatedMinutes};
+  return {eligibleItems, planRound, startRound, record, closeRound, activeRound, validatePractice, exposureFor, attemptHelpFor, historyFor, allocatedMinutes};
 });
