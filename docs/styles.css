@@ -28,3 +28,29 @@
 .mixed-entry{display:flex;gap:28px;align-items:center;justify-content:space-between}.mixed-entry h2{margin:9px 0}.mixed-entry p{max-width:760px;line-height:1.8}.mixed-entry-actions{display:flex;flex-direction:column;gap:10px;min-width:210px}.mixed-demo-note{border:1px solid var(--gold);border-radius:10px;padding:12px 16px;background:var(--panel-2);color:var(--gold);font-size:14px;line-height:1.8}.mixed-round-list{display:grid;gap:12px;margin:24px 0}.mixed-timing{color:var(--muted);font-size:14px}.mixed-question{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:24px}.mixed-written{white-space:pre-wrap;overflow-wrap:anywhere;unicode-bidi:plaintext;background:var(--bg);padding:16px;border-radius:10px;line-height:1.9}.mixed-answer-saved{border-right:3px solid var(--accent);padding-right:17px;margin:22px 0}.mixed-history+.mixed-history{border-top:1px solid var(--line);padding-top:18px;margin-top:25px}.mixed-actions .button{min-height:44px}#mixed-error:empty{display:none}@media(max-width:700px){.mixed-entry{display:block}.mixed-entry-actions{margin-top:18px;min-width:0}.mixed-actions{gap:8px}.mixed-actions .button{flex:1 1 42%;font-size:13px}#mixed-answer-form .field-input,#mixed-start-form .field-input{font-size:16px;width:100%;min-width:0}.mixed-demo-note{font-size:13px}}
 
 .review-entry h2{margin:9px 0}.review-entry>p{line-height:1.85;margin:16px 0}.review-list{display:grid;gap:10px;margin:18px 0}.review-list small{display:block;color:var(--muted);line-height:1.8;margin-top:5px}.review-in-task{border:1px solid var(--line);border-radius:12px;padding:18px;margin:20px 0;background:var(--panel-2)}.review-in-task .source-link{margin-top:10px}.review-target{font-size:18px;line-height:1.9;border-right:3px solid var(--accent);padding:14px 18px;background:var(--panel-2)}#review-plan-form,#review-result-form{display:grid;gap:18px}#review-error:empty{display:none}.review-actions .button{min-height:44px}@media(max-width:700px){.review-entry .row-between{display:block}.review-entry .row-between>.button{margin-top:14px}.review-actions{gap:8px}.review-actions .button{flex:1 1 42%;font-size:13px}#review-plan-form .field-input,#review-result-form .field-input{font-size:16px;width:100%;min-width:0}.review-list .source-link{align-items:flex-start;gap:12px}.review-list .source-link>span:last-child{white-space:normal;min-width:75px}}
+:root { --recommend-line: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+.recommendation-card { border-color: var(--recommend-line); }
+.recommendation-card .hero-bottom { flex-wrap: wrap; gap: 10px; }
+.recommend-date { font-weight: 600; color: var(--accent); }
+.recommend-demo-note { border: 1px solid var(--gold); border-radius: 12px; padding: 12px 14px; color: var(--gold); font-size: .86rem; line-height: 1.8; }
+.recommend-facts { margin: 22px 0; display: grid; gap: 14px; }
+.recommend-facts > div { border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.recommend-facts dt { color: var(--muted); font-size: .86rem; margin-bottom: 5px; }
+.recommend-facts dd { margin: 0; line-height: 1.8; }
+.recommend-evidence { padding-inline-start: 24px; line-height: 1.9; }
+.recommend-evidence li + li { margin-top: 8px; }
+.recommend-context-choice { border: 1px solid var(--line); border-radius: 12px; margin: 0 0 22px; padding: 15px; }
+.recommend-context-choice legend { padding: 0 6px; font-weight: 600; }
+.recommend-context-choice label { display: flex; align-items: start; gap: 10px; padding: 10px 0; line-height: 1.7; cursor: pointer; }
+.recommend-context-choice input { flex: none; margin-top: 7px; accent-color: var(--accent); }
+#recommend-context-form .form-field + .form-field { margin-top: 18px; }
+.recommend-demo-list { display: grid; gap: 12px; }
+.recommend-demo-list .source-link { text-align: start; }
+.recommend-demo-list small { display: block; margin-top: 6px; color: var(--muted); line-height: 1.7; font-weight: 400; }
+.recommendation-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 620px) {
+  .recommendation-card .hero-bottom > .button { width: 100%; }
+  .recommendation-actions > .button { flex: 1 1 140px; white-space: normal; }
+  .recommendation-actions > .primary { flex-basis: 100%; }
+  .recommendation-card h2 { overflow-wrap: anywhere; }
+}
