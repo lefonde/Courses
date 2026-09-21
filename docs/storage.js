@@ -1,9 +1,10 @@
 /* Persistence adapter. Public hosting uses only this browser's private storage. */
 (function (root, factory) {
-  const api = factory();
+  const learning = typeof module === 'object' && module.exports ? require('./learning-engine.js') : root && root.StudyLearningEngine;
+  const api = factory(learning);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root && root.document) root.StudyStorage = api.createStorage(root, root.STUDY_CONFIG || {});
-})(typeof window === 'undefined' ? globalThis : window, function () {
+})(typeof window === 'undefined' ? globalThis : window, function (learning) {
   'use strict';
   const MAX_BYTES = 1024 * 1024;
   const START = '2026-09-21', END = '2026-10-08';
@@ -113,6 +114,10 @@
       }
     }
     visit(value);
+    if (own(value, 'learning')) {
+      if (!learning) invalid('אימות רישומי הלימוד אינו זמין. יש לרענן את האתר ולנסות שוב.');
+      try {learning.validateLearning(value.learning);} catch (error) {invalid(error.message);}
+    }
     for (const key of ['sessionUpdates', 'problemProgress', 'dayOverrides', 'settings']) record(value[key], key);
     if (!Array.isArray(value.journal)) invalid('יומן ההתקדמות חייב להיות רשימה.');
     for (const [id, update] of Object.entries(value.sessionUpdates)) {
