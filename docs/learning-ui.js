@@ -120,7 +120,7 @@ window.StudyMeetings = (() => {
   function onReady(){
     if(!enabled()||!window.STUDY_CONFIG.preview)return;
     const banner=document.createElement('aside');banner.className='meeting-preview-banner';banner.setAttribute('aria-label','גרסת ניסיון');
-    banner.innerHTML='<div><strong>גרסת ניסיון · דוח מה־AI</strong><p>בדיקה קצרה: פתח את משימת השונות, בחר „עדכון מהמפגש” ופתח „יש לי דוח מה־AI”. אפשר לטעון שם דוגמה עם טעות מכוונת ולתקן אותה. הנתונים כאן נפרדים מהאתר הרגיל.</p></div><button class="button primary" data-action="session" data-id="foundations-variance">פתיחת משימת השונות לבדיקה</button><a class="text-link" href="./index.html">לאתר הלימוד הרגיל</a>';
+    banner.innerHTML='<div><strong>גרסת ניסיון · לימוד בשלבים</strong><p>פתח את משימת השונות ובחר „פתיחת מסלול הלימוד”. אפשר לעיין בשלבים ולבדוק שמירת נקודת המשך, בלי להתחיל שיעור עכשיו. הנתונים כאן נפרדים מהאתר הרגיל.</p></div><button class="button primary" data-action="session" data-id="foundations-variance">פתיחת משימת השונות לבדיקה</button><a class="text-link" href="./index.html">לאתר הלימוד הרגיל</a>';
     main.before(banner);$('.local-tag').textContent='גרסת ניסיון';
   }
   document.addEventListener('input',event=>{if(enabled()&&event.target.form?.id==='meeting-form')capture(event.target.form);});

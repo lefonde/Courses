@@ -18,8 +18,8 @@ window.StudyTasks = (() => {
       <div class="task-main-actions">${primary}</div>
       ${!setup?'<p class="hint">מדביקים את הבקשה בשיחה עם AI שיש לו גישה לקובצי הקורס. היא כוללת את הנושא, המקורות והוראות הלימוד.</p>':''}
       ${deps.length?`<details class="task-details"><summary>לפני המשימה: ${deps.length} משימות קודמות עדיין פתוחות</summary><div class="source-links">${deps.map(x=>`<button class="source-link" data-action="session" data-id="${x.id}">${esc(x.title)}<span>פתיחה ←</span></button>`).join('')}</div></details>`:''}
-      <h3>מה לעשות</h3><ol class="task-steps">${arr(s.steps).map(x=>`<li>${esc(x)}</li>`).join('')}</ol>
-      <div class="finish-target"><strong>בסיום:</strong> ${arr(s.doneWhen).map(esc).join(' ')}</div>
+      ${window.StudyScaffold?.enabled(id)?StudyScaffold.entry(id):`<h3>מה לעשות</h3><ol class="task-steps">${arr(s.steps).map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`}
+      <div class="finish-target"><strong>בסיום:</strong> ${window.StudyScaffold?.enabled(id)?'עברת על הדוגמה, ניסית את ההשלמה ואת התרגיל העצמאי, ובדקת את העבודה מול ההסבר. אם נשאר קושי, שמור מה צריך להשלים. חמש הדקות האחרונות מיועדות לכרטיסיות וכבר כלולות בשעה.':arr(s.doneWhen).map(esc).join(' ')}</div>
       ${budget?`<div class="recall-budget"><span aria-hidden="true">▧</span><p>השאר את ${budget} הדקות האחרונות לכרטיסיות מחומר שכבר למדת. הן כלולות ב־${s.minutes} דקות המשימה, ולא מתווספות אליהן.</p><button class="text-link" data-task-action="cards">לכרטיסיות ←</button></div>`:''}
       ${sources?`<h3>הקבצים שצריך למשימה</h3><div class="source-links">${sources}</div>`:''}
       ${cards.length&&!setup?`<div class="notice neutral">בסיום אפשר לסמן שלמדת את החומר כדי לפתוח את הכרטיסיות המתאימות. כרטיסיות שדורשות נושאים נוספים ייפתחו אחרי שגם אותם תלמד.</div>`:''}

@@ -1,10 +1,11 @@
 /* Persistence adapter. Public hosting uses only this browser's private storage. */
 (function (root, factory) {
   const learning = typeof module === 'object' && module.exports ? require('./learning-engine.js') : root && root.StudyLearningEngine;
-  const api = factory(learning);
+  const scaffold = typeof module === 'object' && module.exports ? require('./scaffold-engine.js') : root && root.StudyScaffoldEngine;
+  const api = factory(learning, scaffold);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root && root.document) root.StudyStorage = api.createStorage(root, root.STUDY_CONFIG || {});
-})(typeof window === 'undefined' ? globalThis : window, function (learning) {
+})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold) {
   'use strict';
   const MAX_BYTES = 1024 * 1024;
   const START = '2026-09-21', END = '2026-10-08';
@@ -149,6 +150,10 @@
     if (own(settings, 'activeDate')) date(settings.activeDate, 'תאריך העבודה', true);
     if (own(settings, 'theme') && !['dark', 'light'].includes(settings.theme)) invalid('ערכת הנושא אינה נתמכת.');
     fields(settings, ['fallbackApplied']);
+    if (own(settings, 'scaffoldTracks')) {
+      if (!scaffold) invalid('אימות מסלול הלימוד אינו זמין. יש לרענן את האתר ולנסות שוב.');
+      try {scaffold.validateTracks(settings.scaffoldTracks);} catch (error) {invalid(error.message);}
+    }
     if (own(settings, 'flashcards')) flashcards(settings.flashcards);
     if (own(settings, 'customSessions')) {
       if (!Array.isArray(settings.customSessions)) invalid('יחידות נוספות חייבות להיות רשימה.');
