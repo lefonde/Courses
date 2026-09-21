@@ -73,7 +73,7 @@ window.StudyCards = (() => {
       if(root.localName!=='math'||doc.querySelector('parsererror'))return '';
       for(const el of [root,...root.querySelectorAll('*')]){
         if(!allowed.has(el.localName))return '';
-        for(const attr of [...el.attributes])if(!['xmlns','display','mathvariant','stretchy','accent','accentunder','columnalign','rowspacing','columnspacing','width','height','depth','dir'].includes(attr.name))el.removeAttribute(attr.name);
+        for(const attr of [...el.attributes])if(!['xmlns','display','mathvariant','stretchy','accent','accentunder','linethickness','columnalign','rowspacing','columnspacing','width','height','depth','dir'].includes(attr.name))el.removeAttribute(attr.name);
       }
       root.setAttribute('display','block');root.setAttribute('dir','ltr');return new XMLSerializer().serializeToString(root);
     }catch{return '';}
