@@ -9,7 +9,7 @@ window.StudyTasks = (() => {
   function open(id){
     const s=sessionOf(id);if(!s)return;
     const setup=s.kind==='setup',cards=relatedCards(id),budget=recallBudget(s),deps=dependencyIssues(s);
-    const primary=setup?'<button class="button primary" data-task-action="calendar">פתיחת לוח הזמנים</button>':`<button class="button primary" data-task-action="copy" data-id="${id}">העתקת בקשה למורה AI</button><button class="text-link" data-action="brief" data-id="${id}">מה יועתק?</button>`;
+    const primary=setup?'<button class="button primary" data-task-action="calendar">פתיחת לוח הזמנים</button>':`<button class="button primary" data-task-action="copy" data-id="${id}">העתקת בקשה ל־AI</button><button class="text-link" data-action="brief" data-id="${id}">הצגת הבקשה</button>`;
     const sources=setup?'':sessionSources(s);
     openDialog('session',id,s.title,`
       <div class="status-line">${tag(fmtDate(s.date))}${tag(timeLabel(s.minutes))}${isDone(s)?tag('המשימה הושלמה','green'):''}${s.learned?tag('החומר סומן כנלמד','green'):''}</div>
@@ -25,7 +25,7 @@ window.StudyTasks = (() => {
       ${arr(s.problemIds).length?`<details class="task-details"><summary>עדכון מצב הפתרון בשאלות של המשימה</summary><p class="hint">כאן אפשר לרשום אם פתרת בעזרה או לבד. אין צורך למלא זאת כדי לסמן שהמשימה הסתיימה.</p><div class="source-links">${s.problemIds.map(problemOf).filter(Boolean).map(p=>`<button class="source-link" data-action="problem" data-id="${p.id}">${esc(p.title)}<span>${STATUS[problemStatus(p.id)]} ←</span></button>`).join('')}</div></details>`:''}
     `,setup?'בדיקת התוכנית':'משימת לימוד');
     const footer=document.createElement('div');footer.className='task-fixed-actions';
-    footer.innerHTML=`<button class="button primary" data-task-action="${isDone(s)?'reopen':'finish'}" data-id="${id}">${isDone(s)?'סמן כלא הושלם':'סיימתי את המשימה'}</button><button class="button" data-task-action="edit" data-id="${id}">${s.kind==='mock'?'שעה ותוצאות הסימולציה':'שינוי שעה או הוספת הערה'}</button>${isDone(s)&&cards.length?`<button class="text-link" data-task-action="learned" data-id="${id}">עדכון החומר שלמדתי</button>`:''}`;
+    footer.innerHTML=`${!setup?`<button class="button primary task-copy-button" data-task-action="copy" data-id="${id}">העתקת בקשה ל־AI</button>`:''}<button class="button ${setup?'primary':''}" data-task-action="${isDone(s)?'reopen':'finish'}" data-id="${id}">${isDone(s)?'סמן כלא הושלם':'סיימתי את המשימה'}</button><button class="button" data-task-action="edit" data-id="${id}">${s.kind==='mock'?'שעה ותוצאות הסימולציה':'שינוי שעה או הוספת הערה'}</button>${isDone(s)&&cards.length?`<button class="text-link" data-task-action="learned" data-id="${id}">עדכון החומר שלמדתי</button>`:''}`;
     $('#dialog-content').append(footer);
   }
   function edit(id){
@@ -43,16 +43,16 @@ window.StudyTasks = (() => {
     const cards=relatedCards(s.id);
     openDialog('task-complete',s.id,learningOnly?'עדכון החומר שלמדתי':'סיום המשימה',`<p>${esc(s.title)}</p><form id="task-complete-form" data-id="${s.id}" data-learning-only="${learningOnly}">${cards.length?`<label class="learned-choice"><input type="checkbox" name="learned" ${s.learned?'checked':''}><span><strong>למדתי את החומר — אפשר לפתוח כרטיסיות חזרה</strong><small>גם אם עדיין דרושה לך עזרה בפתרון. כרטיסיות שתלויות בנושאים נוספים ייפתחו לאחר שגם הם יסומנו כנלמדו.</small></span></label>`:'<p class="hint">הסימון מתעד את סיום המשימה. הוא אינו משנה את מצב הפתרון בשאלות.</p>'}${s.kind==='mock'?mockFields(s):''}${!learningOnly?`<details class="task-details" ${s.kind==='mock'?'open':''}><summary>רישום זמן והערה (לא חובה)</summary><div class="form-grid"><div class="form-field"><label for="finish-minutes">דקות בפועל</label><input class="field-input" id="finish-minutes" name="actualMinutes" type="number" min="0" max="600" value="${s.actualMinutes??''}"></div><div class="form-field full"><label for="finish-note">הערה לעצמך</label><textarea class="field-input" id="finish-note" name="note">${esc(s.note||'')}</textarea></div></div></details>`:''}<div class="dialog-actions"><button class="button primary" type="submit">${learningOnly?'שמירת הסימון':'שמירה וסיום'}</button><button class="button" type="button" data-action="session" data-id="${s.id}">חזרה למשימה</button></div></form>`,'עדכון קצר');
   }
-  async function copy(id){
+  async function copy(id,button){
     const s=sessionOf(id);if(!s)return;
-    try{await navigator.clipboard.writeText(promptForSession(s));notify('הבקשה הועתקה. עכשיו אפשר להדביק אותה בשיחה עם המורה.');}
+    try{await navigator.clipboard.writeText(promptForSession(s));markPromptCopied(button);notify('הבקשה הועתקה. עכשיו אפשר להדביק אותה בשיחה עם המורה.');}
     catch{showBrief(id);notify('ההעתקה לא הותרה בדפדפן. אפשר לסמן את הבקשה ולהעתיק ידנית.');}
   }
   document.addEventListener('click',async event=>{
     const b=event.target.closest('[data-task-action]');if(!b)return;
     const {taskAction:action,id}=b.dataset;b.disabled=true;
     try{
-      if(action==='copy')await copy(id);
+      if(action==='copy')await copy(id,b);
       if(action==='finish')await finish(id);
       if(action==='edit')edit(id);
       if(action==='learned')completionForm(sessionOf(id),true);
