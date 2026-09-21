@@ -54,3 +54,26 @@
   .recommendation-actions > .primary { flex-basis: 100%; }
   .recommendation-card h2 { overflow-wrap: anywhere; }
 }
+.recommend-next-action { margin-top: 22px; }
+.recommend-next-action .hint { margin-top: 10px; line-height: 1.8; }
+.recommend-secondary { border-top: 1px solid var(--line); padding-top: 16px; align-items: center; }
+.recommend-records { margin: 18px 0; border: 1px solid var(--line); border-radius: 12px; padding: 12px 15px; }
+.recommend-records summary { cursor: pointer; font-weight: 600; }
+.recommend-destination { margin-top: 18px; color: var(--muted); }
+.example-intro { line-height: 1.85; }
+.example-situation { margin: 22px 0; padding: 17px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 14px; }
+.example-situation h3, .example-recommendation h3 { margin-bottom: 9px; }
+.example-situation p, .example-recommendation p { line-height: 1.85; }
+.example-recommendation { margin: 20px 0; padding-inline-start: 17px; border-inline-start: 3px solid var(--accent); }
+.example-recommendation .eyebrow { display: block; margin-bottom: 8px; }
+.example-recommendation .hint { margin-top: 12px; }
+.example-click-explanation { color: var(--muted); font-size: .88rem; line-height: 1.8; }
+.example-steps { padding-inline-start: 24px; line-height: 1.85; }
+.example-steps li + li { margin-top: 10px; }
+#recommend-context-form { margin-top: 20px; }
+#dialog-title:focus { outline: none; }
+@media (max-width:620px) {
+  .recommend-next-action .button { width: 100%; white-space: normal; }
+  .recommend-secondary .text-link { min-height: 42px; text-align: start; }
+  .example-situation { padding: 14px; }
+}

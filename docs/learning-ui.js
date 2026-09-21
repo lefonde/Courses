@@ -120,7 +120,7 @@ window.StudyMeetings = (() => {
   function onReady(){
     if(!enabled()||!window.STUDY_CONFIG.preview)return;
     const banner=document.createElement('aside');banner.className='meeting-preview-banner';banner.setAttribute('aria-label','גרסת ניסיון');
-    banner.innerHTML='<div><strong>גרסת ניסיון · הצעד הבא</strong><p>המלצה אחת לפי הזמן, החומר והניסיונות שתיעדת. אפשר לבדוק מצבים שונים בנתוני דמה; ההמלצות אינן משנות את היומן.</p></div><button class="button primary" data-recommend-action="demos">בדיקת ההמלצות בנתוני דמה</button><a class="text-link" href="./index.html">לאתר הלימוד הרגיל</a>';
+    banner.innerHTML='<div><strong>חדש בניסיון: עזרה בבחירת מה ללמוד</strong><p>בעמוד הבית מוצעת משימה אחת, עם הסבר למה כדאי להתמקד בה. אפשר לראות דוגמה קצרה לפני השימוש.</p></div><button class="button primary" data-recommend-action="example">איך זה עובד? הצג דוגמה</button><a class="text-link" href="./index.html">לאתר הלימוד הרגיל</a>';
     main.before(banner);$('.local-tag').textContent='גרסת ניסיון';
   }
   document.addEventListener('input',event=>{if(enabled()&&event.target.form?.id==='meeting-form')capture(event.target.form);});

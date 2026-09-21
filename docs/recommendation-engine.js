@@ -131,7 +131,7 @@
       if (budget >= 10) return result('review', `חזרה על ${problem.title}`, 'הגיעה חזרה שכבר בחרת ואישרת, על חלק משאלה שכבר ניסית.', [`מה לשחזר: ${review.target}`, `מועד החזרה שאישרת: ${displayDate(stamp(review.dueAt))}.`, 'עשר הדקות כבר מוקצות בתוך המשימה; אין כאן תוספת לזמן המתוכנן.'], {sessionId: review.sessionId, problemId: review.problemId, reviewId: review.id, minutes: 10, actionLabel: 'פתיחת החזרה'});
     }
     // Do not replace a meeting already in progress with an unrelated priority.
-    if (underway) return fit(underway) && allowedTask(underway) ? taskResult('baseline', underway, 'המשימה כבר התחילה; כדאי להמשיך מנקודת העצירה שתיעדת לפני בחירת משימה אחרת.') : result('no-fit', 'המפגש שהתחיל דורש בחירת המשך', 'הזמן או רמת הריכוז שבחרת אינם מתאימים לתקציב המשימה המלא. אפשר לפתוח את נקודת ההמשך ולבחור מה לעשות; לא נרשמה השלמה ולא קוצרה המשימה.', contextEvidence(underway), {sessionId: underway.id, actionLabel: 'פתיחת נקודת ההמשך'});
+    if (underway) return fit(underway) && allowedTask(underway) ? taskResult('baseline', underway, 'המשימה כבר התחילה; כדאי להמשיך מנקודת העצירה שתיעדת לפני בחירת משימה אחרת.') : result('no-fit', 'המשימה שהתחלת אינה מתאימה לזמן הפנוי שבחרת', 'למשימה שהתחלת דרושים יותר זמן או ריכוז מאלה שבחרת כעת. אפשר לפתוח את פרטיה, לראות היכן עצרת ולהחליט אם להמשיך עכשיו או להזיז אותה למועד אחר.', contextEvidence(underway), {sessionId: underway.id, actionLabel: 'פתיחת נקודת ההמשך'});
     const relevant = context === 'planned' ? pending.filter(s => startOf(s) <= effectiveAt || s.id === host.id) : pending;
     const important = relevant.filter(s => list(s.problemIds).some(id => problems.some(p => p.id === id))).sort(compare);
     for (const dependent of important) {
