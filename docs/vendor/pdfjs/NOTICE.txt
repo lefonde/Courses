@@ -1,0 +1,12 @@
+PDF.js / pdfjs-dist version 5.6.205
+Mozilla Foundation and contributors
+Official project: https://github.com/mozilla/pdf.js
+Usage documentation: https://mozilla.github.io/pdf.js/examples/
+Vendored from the installed official pdfjs-dist package.
+
+Core and worker: Apache-2.0; see LICENSE.
+Fonts, character maps and image decoders have their respective license files
+in standard_fonts/, cmaps/ and wasm/.
+
+This viewer supplies PDF bytes from browser-local IndexedDB. The library's
+worker, fonts, character maps and decoder assets are served from this directory.
