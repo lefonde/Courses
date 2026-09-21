@@ -2,6 +2,7 @@
 window.StudyMeetings = (() => {
   const enabled = () => window.STUDY_CONFIG?.learningPilot === true;
   const drafts = new Map();
+  const imported = new Map();
   const outcomes = {'not-attempted':'לימוד ללא ניסיון בשאלה',stuck:'ניסיתי ולא הצלחתי להתחיל',partial:'הצלחתי בחלק מהשאלה',solved:'השלמתי פתרון'};
   const helps = {unknown:'לא ציינתי',none:'ללא עזרה',hint:'קיבלתי רמז',guided:'פתרתי עם הכוונה',solution:'נעזרתי בפתרון כתוב'};
   const obstacles = {unknown:'עוד לא ברור לי',knowledge:'חסר לי ידע בנושא',memory:'למדתי, אבל לא זכרתי',notation:'הסימון או הניסוח לא היו ברורים',method:'לא ידעתי לבחור או לבצע את השיטה',calculation:'טעות בחישוב',time:'נגמר הזמן או שהייתה הפרעה',none:'לא נשאר קושי'};
@@ -29,6 +30,8 @@ window.StudyMeetings = (() => {
     openDialog('meeting',id,'עדכון מהמפגש',`
       <p class="meeting-session-title">${esc(session.title)}</p>
       <p>שמור מה עשית ומאיפה להמשיך. אפשר לתעד גם מפגש שנפסק באמצע.</p>
+      ${window.StudyReports?.entry(id,imported.has(id))||''}
+      ${importNotice(id)}
       <form id="meeting-form" data-session="${id}" class="meeting-form">
         <fieldset class="meeting-choice"><legend>מה מצב המשימה?</legend>
           <label><input type="radio" name="disposition" value="continue" ${d.disposition==='continue'?'checked':''}>עצרתי, אמשיך בהמשך</label>
@@ -48,8 +51,22 @@ window.StudyMeetings = (() => {
       </form><p class="hint">הטיוטה נשמרת כל עוד הלשונית פתוחה. רק אישור העדכון במסך הבא שומר אותו בהתקדמות.</p>
     `,'תוצאות ונקודת המשך');
     footer(`<button class="button primary" type="submit" form="meeting-form">בדיקת העדכון</button><button class="button" data-meeting-action="back" data-id="${id}">חזרה למשימה</button>`);
+    window.StudyReports?.syncSubmit?.(id);
   }
   function footer(html){const node=document.createElement('div');node.className='task-fixed-actions meeting-fixed-actions';node.innerHTML=html;$('#dialog-content').append(node);}
+  function importNotice(id){const item=imported.get(id);return item?`<aside class="report-notice"><strong>הטופס מולא מהדוח. עדיין לא נשמר דבר.</strong><p>בדוק את השאלה, התוצאה והעזרה שניתנה. רק אתה יכול לאשר פתרון עצמאי או לסמן שסיימת.</p>${item.warnings.map(w=>`<p>${esc(w)}</p>`).join('')}<button class="text-link" data-meeting-action="undo-import" data-id="${id}">ביטול המילוי וחזרה לטיוטה הקודמת</button></aside>`:'';}
+  function proposeReport(id,parsed){
+    if(!enabled()||!window.StudyReports?.enabled())return;
+    const previous=drafts.get(id)||initial(id),eventId='import-'+parsed.reportId;
+    if((state.learning?.attempts||[]).some(a=>a.id===eventId))throw new Error('הדוח הזה כבר נשמר. לא נוסף מפגש נוסף. אפשר לראות אותו בהיסטוריית המפגשים.');
+    if(previous.id===eventId)throw new Error('הדוח הזה כבר מולא בטופס. אפשר לערוך את השדות למטה, או לבטל את המילוי לפני הדבקת גרסה מתוקנת.');
+    const proposed={...previous,...parsed.proposal,id:eventId,independentConfirmed:false};
+    // Validate the complete candidate before changing the editable draft.
+    StudyLearningEngine.recordMeeting(clone(state),proposed,{sessionIds:allSessions().map(s=>s.id),problemIds:curriculum.problems.map(p=>p.id)});
+    imported.set(id,{warnings:parsed.warnings,previous:clone(previous),previousImport:imported.get(id)});
+    drafts.set(id,proposed);open(id);
+  }
+  function undoImport(id){const item=imported.get(id);if(!item)return;drafts.set(id,item.previous);if(item.previousImport)imported.set(id,item.previousImport);else imported.delete(id);open(id);}
   function syncFields(form){
     const d=capture(form);$('#meeting-attempt-fields').hidden=!d.problemId;
     $('#meeting-independent').hidden=!(d.problemId&&d.outcome==='solved'&&d.help==='none');
@@ -66,6 +83,7 @@ window.StudyMeetings = (() => {
     const p=problemOf(d.problemId),previous=history(id),existingIndependent=d.problemId&&isIndependent(d.problemId);
     openDialog('meeting-review',id,'זה העדכון שיישמר',`
       <p>${esc(sessionOf(id).title)}</p>
+      ${imported.has(id)?'<p class="notice neutral">זהו דוח מה־AI עם התיקונים שעשית. אישור השמירה מתעד את הדיווח שלך; האתר אינו בודק את נכונות הפתרון.</p>':''}
       <dl class="meeting-review"><div><dt>מצב המשימה</dt><dd>${d.disposition==='complete'?'המשימה תסומן כסיימתי':'המשימה תישאר בתהליך'}</dd></div><div><dt>נקודת ההמשך</dt><dd>${esc(d.continuation||'לא צוינה נקודת המשך')}</dd></div>${d.note?`<div><dt>סיכום המפגש</dt><dd>${esc(d.note)}</dd></div>`:''}${p?`<div><dt>השאלה</dt><dd>${esc(p.title)}</dd></div><div><dt>תוצאת הניסיון</dt><dd>${esc(outcomes[d.outcome])} · ${esc(helps[d.help])}${d.independentConfirmed?' · פתרון עצמאי לפי אישורך':''}</dd></div>`:''}${d.obstacle!=='unknown'?`<div><dt>הקושי העיקרי</dt><dd>${esc(obstacles[d.obstacle])}</dd></div>`:''}${d.evidence?`<div><dt>בדיקת הפתרון</dt><dd>${esc(d.evidence)}</dd></div>`:''}${d.minutes!==null?`<div><dt>זמן במפגש</dt><dd>${d.minutes} דקות</dd></div>`:''}</dl>
       <p class="hint">נוסף רישום חדש${previous.length?` לצד ${previous.length} רישומים קודמים`:''}. סימון החומר כנלמד ומועדי המשימות נשארים כפי שהיו.</p>
       ${existingIndependent&&!d.independentConfirmed?'<p class="notice neutral">הניסיון הזה יתווסף להיסטוריה. ההצלחה העצמאית שתיעדת בעבר תישאר מתועדת בנפרד.</p>':''}
@@ -76,10 +94,13 @@ window.StudyMeetings = (() => {
   async function confirm(id){
     const d=clone(drafts.get(id));validate(d);
     await save(next=>{
+      if(d.id.startsWith('import-')&&(next.learning?.attempts||[]).some(a=>a.id===d.id))throw new Error('הדוח הזה כבר נשמר. לא נוסף מפגש נוסף.');
       StudyLearningEngine.recordMeeting(next,d,{sessionIds:allSessions().map(s=>s.id),problemIds:curriculum.problems.map(p=>p.id)});
       next.sessionUpdates[id]={...(next.sessionUpdates[id]||{}),status:d.disposition==='complete'?'completed':'in-progress',updatedAt:d.at};
     },'המפגש נשמר');
     drafts.delete(id);
+    imported.delete(id);
+    window.StudyReports?.clear(id);
     openDialog('meeting-saved',id,'המפגש נשמר',`<p>${d.disposition==='complete'?'המשימה סומנה כהושלמה.':'אפשר לחזור למשימה ולהמשיך מאותה נקודה.'}</p>${d.continuation?`<div class="finish-target"><strong>בפעם הבאה:</strong> ${esc(d.continuation)}</div>`:''}<p>הבקשה למורה כוללת עכשיו את העדכון הזה.</p><p class="hint">${d.minutes!==null?'הזמן שתיעדת נשמר במפגש הזה. ':''}ההקצאה ביומן וסימון החומר כנלמד לא השתנו.</p>`,'תוצאות ונקודת המשך');
     const canMarkLearned=d.disposition==='complete'&&(flashcards?.cards||[]).some(c=>c.unlockAfter.includes(id));
     footer(`<button class="button primary task-copy-button" data-task-action="copy" data-id="${id}">העתקת בקשה להמשך</button><button class="button" data-action="session" data-id="${id}">חזרה למשימה</button>${canMarkLearned?`<button class="button" data-task-action="learned" data-id="${id}">סימון החומר שלמדתי</button>`:''}<button class="text-link" data-meeting-action="history" data-id="${id}">היסטוריית המפגשים</button>`);
@@ -93,17 +114,18 @@ window.StudyMeetings = (() => {
   function decorateProblem(id){
     if(!enabled())return;
     const form=$('#problem-form'),associated=allSessions().filter(s=>arr(s.problemIds).includes(id));if(!form||!associated.length)return;
-    const container=document.createElement('div');container.innerHTML=`<h3>ניסיונות מתועדים</h3>${historyHtml((state.learning?.attempts||[]).filter(a=>a.problemId===id).slice().reverse())}<div class="dialog-actions"><button class="button primary" data-meeting-action="problem" data-id="${associated[0].id}" data-problem="${id}">תיעוד ניסיון חדש</button><button class="button" data-action="problem-prompt" data-id="${id}">העתקת בקשה לתרגול</button></div>`;form.replaceWith(container);
+    const previous=state.problemProgress[id],legacy=previous&&previous.status!=='unseen'?`<details class="task-details"><summary>סיכום הפתרון ששמור באתר: ${esc(STATUS[previous.status]||previous.status)}</summary><p>${esc(previous.evidence||'לא נוסף פירוט בסימון הזה.')}</p></details>`:'';
+    const container=document.createElement('div');container.innerHTML=`${legacy}<h3>ניסיונות מתועדים</h3>${historyHtml((state.learning?.attempts||[]).filter(a=>a.problemId===id).slice().reverse())}<div class="dialog-actions"><button class="button primary" data-meeting-action="problem" data-id="${associated[0].id}" data-problem="${id}">תיעוד ניסיון חדש</button><button class="button" data-action="problem-prompt" data-id="${id}">העתקת בקשה לתרגול</button></div>`;form.replaceWith(container);
   }
   function onReady(){
     if(!enabled()||!window.STUDY_CONFIG.preview)return;
     const banner=document.createElement('aside');banner.className='meeting-preview-banner';banner.setAttribute('aria-label','גרסת ניסיון');
-    banner.innerHTML='<div><strong>גרסת ניסיון · נתונים נפרדים</strong><p>אפשר לנסות שמירת מפגש וחזרה למשימה. שום סימון כאן לא משנה את אתר הלימוד הרגיל.</p></div><button class="button primary" data-action="session" data-id="foundations-variance">פתיחת משימת השונות לבדיקה</button><a class="text-link" href="./index.html">לאתר הלימוד הרגיל</a>';
+    banner.innerHTML='<div><strong>גרסת ניסיון · דוח מה־AI</strong><p>בדיקה קצרה: פתח את משימת השונות, בחר „עדכון מהמפגש” ופתח „יש לי דוח מה־AI”. אפשר לטעון שם דוגמה עם טעות מכוונת ולתקן אותה. הנתונים כאן נפרדים מהאתר הרגיל.</p></div><button class="button primary" data-action="session" data-id="foundations-variance">פתיחת משימת השונות לבדיקה</button><a class="text-link" href="./index.html">לאתר הלימוד הרגיל</a>';
     main.before(banner);$('.local-tag').textContent='גרסת ניסיון';
   }
   document.addEventListener('input',event=>{if(enabled()&&event.target.form?.id==='meeting-form')capture(event.target.form);});
   document.addEventListener('change',event=>{if(enabled()&&event.target.form?.id==='meeting-form')syncFields(event.target.form);});
-  document.addEventListener('submit',event=>{if(!enabled()||event.target.id!=='meeting-form')return;event.preventDefault();capture(event.target);review(event.target.dataset.session);});
+  document.addEventListener('submit',event=>{if(!enabled()||event.target.id!=='meeting-form')return;event.preventDefault();capture(event.target);const id=event.target.dataset.session;if(window.StudyReports?.pending?.(id)){StudyReports.apply(id);return;}review(id);});
   document.addEventListener('click',async event=>{
     const b=event.target.closest('[data-meeting-action]');if(!b||!enabled())return;b.disabled=true;
     const id=b.dataset.id;
@@ -112,8 +134,9 @@ window.StudyMeetings = (() => {
       if(b.dataset.meetingAction==='problem')open(id,b.dataset.problem);
       if(b.dataset.meetingAction==='back'){const form=$('#meeting-form');if(form)capture(form);StudyTasks.open(id);}
       if(b.dataset.meetingAction==='history')showHistory(id);
+      if(b.dataset.meetingAction==='undo-import')undoImport(id);
       if(b.dataset.meetingAction==='confirm')await confirm(id);
     }catch(error){const target=$('#meeting-save-error')||$('#meeting-error');if(target)target.textContent=error.message;else notify(error.message);}finally{b.disabled=false;}
   });
-  return {enabled,open,taskSummary,decorateProblem,onReady,problemLabel,latestProblemAttempt,problemContext};
+  return {enabled,open,taskSummary,decorateProblem,onReady,problemLabel,latestProblemAttempt,problemContext,proposeReport};
 })();
