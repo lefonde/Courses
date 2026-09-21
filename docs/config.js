@@ -1,1 +1,1 @@
-window.STUDY_CONFIG = Object.freeze({mode: "static", storageKey: "matzpen:22902:2026-s3:progress:v1", learningPilot: true, reportImport: true, scaffoldPilot: false});
+window.STUDY_CONFIG = Object.freeze({mode: "static", storageKey: "matzpen:22902:2026-s3:progress:v1", learningPilot: true, reportImport: true, scaffoldPilot: true, mixedPilot: false});

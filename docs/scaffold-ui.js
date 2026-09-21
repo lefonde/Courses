@@ -39,7 +39,7 @@ window.StudyScaffold = (() => {
       <details class="task-details"><summary>המקורות והקשר לבחינה</summary><p>הכלים נלקחו משיעורים 1–2: אינדיקטורים, לינאריות תוחלת ושונות של סכום. הדוגמאות כאן נכתבו לאימון; אחריהן ממשיכים לשאלות המקור בתוכנית.</p><div class="source-links">${lesson.sourceRefs.map(ref=>sourceLink(ref.sourceId,ref.pages)).join('')}</div></details>
       <details class="task-details"><summary>נקודות המשך שכבר שמרתי (${saved.events.filter(e=>!['hint','solution'].includes(e.action)).length})</summary>${saved.events.filter(e=>!['hint','solution'].includes(e.action)).slice().reverse().map(e=>`<p><strong>${esc(stageOf(e.stageId).title)}</strong> → ${esc(stageOf(e.nextStageId).title)}<br>${esc(resultLabel(e.result))} · ${esc(helpLabels[e.help])}${e.note?'<br>'+esc(e.note):''}</p>`).join('')||'<p>עדיין לא נשמרה נקודת המשך במסלול.</p>'}</details>
       <p id="scaffold-error" class="error" role="alert"></p>
-    `,'מסלול לימוד · גרסת ניסיון');
+    `,window.STUDY_CONFIG.preview?'מסלול לימוד · גרסת ניסיון':'מסלול לימוד');
     footer(`<button class="button primary task-copy-button" data-scaffold-action="copy" data-id="${id}">העתקת השלב למורה</button><button class="button" data-scaffold-action="checkpoint" data-id="${id}">שמירת נקודת המשך</button><button class="text-link" data-action="session" data-id="${id}">חזרה למשימה</button>`);
   }
   const resultLabel=value=>({'not-checked':'טרם בדקתי יכולת עצמאית','needs-explanation':'נדרש עוד הסבר','with-help':'עבדתי בעזרה','attempted-alone':'כתבתי ניסיון לבד; נכונותו טרם נבדקה'})[value];
