@@ -1,0 +1,1786 @@
+{
+  "meta": {
+    "version": 1,
+    "language": "he",
+    "examDate": "2026-10-08",
+    "title": "כרטיסיות חזרה לפי החומר שכבר למדת",
+    "selection": "הכרטיסיות נבחרו מתוך שיטות הכיתה, שאלות החובה בממ״נים ושלוש שאלות הדוגמה. הן מכסות הגדרות, תנאים, שלדי הוכחה ובחירת שיטה. נושאי ההעשרה של שיעור 6 אינם כלולים.",
+    "sourceNotice": "מספרי העמודים הם עמודי PDF. הכרטיסיות נוסחו לצורך חזרה; הן אינן ציטוט מקור או תחזית להופעת שאלה במבחן.",
+    "unlockPolicy": "כל יחידה המופיעה ב־unlockAfter דורשת אישור מפורש שהחומר שלה נלמד. תאריך ביומן או השלמה טכנית של משימה אינם פותחים כרטיסיות.",
+    "use": "מנסים לשלוף לפני הצגת התשובה, ואז בודקים את עצמנו. כרטיסיות מחזקות זכירה והבנת תנאים; הן אינן מחליפות פתרון עצמאי של שאלה מלאה.",
+    "reviewHorizon": "החזרות נקבעות עד 7 באוקטובר בשעה 20:00. חזרה שכבר נקבעה נשארת זמינה פעם אחרונה, ואינה מקבלת מועד נוסף אחרי מועד זה."
+  },
+  "cards": [
+    {
+      "id": "f-indicator",
+      "topicId": "foundations",
+      "unlockAfter": [
+        "foundations-variance"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מהו אינדיקטור של מאורע, ומדוע התוחלת שלו שווה להסתברות המאורע?",
+      "answer": [
+        "אינדיקטור הוא משתנה מקרי שערכו 1 כאשר המאורע מתרחש ו־0 כאשר הוא אינו מתרחש.",
+        "בחישוב התוחלת, הערך 1 מוכפל בהסתברות המאורע והערך 0 מוכפל בהסתברות המשלים. לכן נשארת בדיוק הסתברות המאורע."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>E</mi><mo>[</mo><msub><mi>I</mi><mi>A</mi></msub><mo>]</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow></math>",
+          "meaning": "A הוא מאורע; I עם אינדקס A הוא האינדיקטור שלו; E מסמן תוחלת ו־P מסמן הסתברות."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            6
+          ]
+        }
+      ],
+      "order": 1
+    },
+    {
+      "id": "f-linearity",
+      "topicId": "foundations",
+      "unlockAfter": [
+        "foundations-variance"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "איזו הנחת אי־תלות דרושה כדי לחבר תוחלות של מספר סופי של משתנים מקריים?",
+      "answer": [
+        "לא דרושה אי־תלות. אם התוחלות קיימות וסופיות, תוחלת הסכום היא סכום התוחלות, גם כשהמשתנים תלויים זה בזה.",
+        "בבעיית ספירה מגדירים אינדיקטור לכל פריט ומחברים את הסתברויותיו. אי־תלות עשויה להיות נחוצה בחישוב ההסתברות המקומית של פריט, אך אינה נחוצה לעצם חיבור התוחלות."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            6,
+            7
+          ]
+        }
+      ],
+      "order": 2
+    },
+    {
+      "id": "f-variance-meaning",
+      "topicId": "foundations",
+      "unlockAfter": [
+        "foundations-variance"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מה מודדת שונות, ומדוע מספר הערכים האפשריים של משתנה אינו מדד לפיזור שלו?",
+      "answer": [
+        "שונות היא התוחלת של ריבוע המרחק מהתוחלת. היא מביאה בחשבון גם את המרחק של כל ערך וגם את ההסתברות שלו.",
+        "מספר רב יותר של ערכים אפשריים אינו מבטיח שונות גדולה יותר. לדוגמה, מספר ההצלחות בשתי הטלות מטבע הוגן עצמאיות הוא בעל שונות חצי; אם שתי התוצאות תמיד זהות, השונות היא 1. בשני המקרים התוחלת היא 1."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>Var</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>=</mo><mi>E</mi><mo>[</mo><msup><mrow><mo>(</mo><mi>X</mi><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><msup><mi>X</mi><mn>2</mn></msup><mo>]</mo><mo>−</mo><msup><mi>μ</mi><mn>2</mn></msup></mrow></math>",
+          "meaning": "X הוא המשתנה המקרי; μ היא התוחלת שלו; Var מסמן שונות."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "order": 3
+    },
+    {
+      "id": "f-bernoulli-variance",
+      "topicId": "foundations",
+      "unlockAfter": [
+        "foundations-variance"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "אינדיקטור שווה 1 בהסתברות p. איך מחשבים את השונות שלו מתוך ההגדרה?",
+      "answer": [
+        "ריבוע של אינדיקטור שווה לאינדיקטור עצמו, מפני שהערכים האפשריים הם רק 0 ו־1. לכן גם תוחלת הריבוע היא p.",
+        "מציבים בנוסחה: תוחלת הריבוע פחות ריבוע התוחלת, ומקבלים p כפול אחד פחות p."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>Var</mi><mo>(</mo><mi>I</mi><mo>)</mo><mo>=</mo><mi>p</mi><mo>−</mo><msup><mi>p</mi><mn>2</mn></msup><mo>=</mo><mi>p</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo></mrow></math>",
+          "meaning": "I הוא האינדיקטור; p היא ההסתברות שערכו 1."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "order": 4
+    },
+    {
+      "id": "f-sum-variance",
+      "topicId": "foundations",
+      "unlockAfter": [
+        "foundations-variance"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "מתי מותר לחשב שונות של סכום על ידי חיבור השונויות?",
+      "answer": [
+        "כאשר סכום תרומות השונות המשותפת הוא אפס. תנאי מספיק ונוח הוא שלכל זוג שונה יש שונות משותפת אפס.",
+        "אי־תלות בזוגות מבטיחה זאת, בהנחת מומנטים שניים סופיים. אי־תלות מלאה אינה דרושה. בלי הצדקה חייבים לכלול את איברי השונות המשותפת."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>Var</mi><mo>(</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>X</mi><mi>i</mi></msub><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><mi>Var</mi><mo>(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>)</mo><mo>+</mo><mn>2</mn><munder><mo>∑</mo><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi></mrow></munder><mi>Cov</mi><mo>(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>,</mo><msub><mi>X</mi><mi>j</mi></msub><mo>)</mo></mrow></math>",
+          "meaning": "X עם אינדקס i הם המשתנים שמחברים; Cov מסמן שונות משותפת. הסכום השני עובר על כל זוג שונה פעם אחת, ולכן מופיע המקדם 2."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "order": 5
+    },
+    {
+      "id": "f-indicator-covariance",
+      "topicId": "foundations",
+      "unlockAfter": [
+        "foundations-variance"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "איך מחשבים שונות משותפת של שני אינדיקטורים מתוך המאורעות שהם מציינים?",
+      "answer": [
+        "מכפלת האינדיקטורים שווה 1 בדיוק כששני המאורעות מתרחשים יחד, ולכן תוחלת המכפלה היא הסתברות החיתוך.",
+        "מחסרים מהסתברות החיתוך את מכפלת ההסתברויות של שני המאורעות. באי־תלות שני הביטויים שווים והשונות המשותפת היא אפס."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>Cov</mi><mo>(</mo><msub><mi>I</mi><mi>A</mi></msub><mo>,</mo><msub><mi>I</mi><mi>B</mi></msub><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo>)</mo><mo>−</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mi>P</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow></math>",
+          "meaning": "A ו־B הם המאורעות, ו־I הם האינדיקטורים שלהם. הסימן ∩ מציין ששני המאורעות מתרחשים."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "order": 6
+    },
+    {
+      "id": "f-independence",
+      "topicId": "foundations",
+      "unlockAfter": [
+        "foundations-variance"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מה פירוש הטענה ששני מאורעות בלתי־תלויים?",
+      "answer": [
+        "ההסתברות ששניהם יתרחשו שווה למכפלת ההסתברויות שלהם.",
+        "אם למאורע השני יש הסתברות חיובית, אפשר לנסח זאת גם כך: כשמתבוננים רק בניסויים שבהם המאורע השני התרחש, הסתברות הראשון אינה משתנה. זו טענה על הסתברויות, ולא על קשר סיבתי."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mi>P</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow></math>",
+          "meaning": "A ו־B הם המאורעות. השוויון הוא הגדרת אי־התלות ביניהם."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "order": 7
+    },
+    {
+      "id": "f-binomial",
+      "topicId": "foundations",
+      "unlockAfter": [
+        "foundations-variance",
+        "permutation-indicators"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "מתי מספר הצלחות מתפלג בינומית, ומה אי אפשר להסיק מאי־תלות בזוגות בלבד?",
+      "answer": [
+        "התפלגות בינומית מתקבלת מסכום של מספר קבוע של ניסויי ברנולי בלתי־תלויים במשותף, שלכולם אותה הסתברות הצלחה.",
+        "אי־תלות בזוגות מספיקה לחיבור שונויות, אך אינה מספיקה כדי לקבוע שהסכום בינומי. לכן גם אין להפעיל על סמך אי־תלות בזוגות בלבד את חסם צ׳רנוף הבסיסי שנלמד."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "sourceId": "maman-12",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 8
+    },
+    {
+      "id": "t-union-bound",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "מה מאפשר חסם האיחוד, והאם המאורעות צריכים להיות בלתי־תלויים?",
+      "answer": [
+        "ההסתברות שלפחות מאורע אחד יתרחש אינה עולה על סכום הסתברויות המאורעות. לא נדרשת אי־תלות.",
+        "בפתרון מגדירים מהו כל מאורע רע, כמה מאורעות יש ומהו החסם לכל אחד. חפיפה יכולה לגרום לחסם להיות רופף, אבל אינה פוגעת בתקפותו."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><munder><mo>⋃</mo><mi>i</mi></munder><msub><mi>A</mi><mi>i</mi></msub><mo>)</mo><mo>≤</mo><munder><mo>∑</mo><mi>i</mi></munder><mi>P</mi><mo>(</mo><msub><mi>A</mi><mi>i</mi></msub><mo>)</mo></mrow></math>",
+          "meaning": "A עם אינדקס i הוא המאורע הרע ה־i. הסימן ⋃ מציין שלפחות אחד מהמאורעות מתקיים."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "sourceId": "maman-11",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 9
+    },
+    {
+      "id": "t-coupon-template",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "בדגימות אחידות ועצמאיות מתוך n סוגים, מהו המאורע המקומי שמגדירים כדי לחסום את הסיכוי שחסר סוג אחרי t דגימות?",
+      "answer": [
+        "לכל סוג מגדירים את המאורע שהוא לא נבחר באף דגימה. לסוג קבוע, הסתברות ההחמצה היא מכפלת הסתברויות ההחמצה בדגימות העצמאיות.",
+        "אחר כך מפעילים חסם איחוד על כל הסוגים. המאורעות 'סוג מסוים חסר' אינם חייבים להיות בלתי־תלויים."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>≤</mo><mi>n</mi><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>)</mo></mrow><mi>t</mi></msup><mo>≤</mo><mi>n</mi><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi><mo>/</mo><mi>n</mi></mrow></msup></mrow></math>",
+          "meaning": "A הוא המאורע קיים לפחות סוג חסר; n הוא מספר הסוגים, t מספר הדגימות ו־e בסיס הלוגריתם הטבעי."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-11",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "order": 10
+    },
+    {
+      "id": "t-markov",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "מהם התנאים לאי־שוויון מרקוב, ואיזה מידע על המשתנה הוא דורש?",
+      "answer": [
+        "המשתנה חייב להיות אי־שלילי, הסף חייב להיות חיובי והתוחלת צריכה להיות סופית.",
+        "מרקוב משתמש רק בתוחלת. הוא אינו דורש שונות, אי־תלות או התפלגות מסוימת. לעיתים הוא תקף אבל נותן חסם חלש."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mi>a</mi><mo>)</mo><mo>≤</mo><mfrac><mrow><mi>E</mi><mo>[</mo><mi>X</mi><mo>]</mo></mrow><mi>a</mi></mfrac></mrow></math>",
+          "meaning": "X אי־שלילי ו־a חיובי. ההסתברות לקבל ערך של לפחות a חסומה בתוחלת חלקי a."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "order": 11
+    },
+    {
+      "id": "t-chebyshev",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "מה חסם צ׳בישב אומר, ומה צריך לדעת כדי להשתמש בו?",
+      "answer": [
+        "צריך תוחלת ושונות סופית. החסם מתייחס למרחק מהתוחלת בשני הכיוונים יחד.",
+        "לא נדרשת אי־תלות של המשתנה עצמו. אם הוא סכום, צריך להצדיק את חישוב השונות; שם אי־תלות או שונות משותפת עשויות להיות חשובות."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mo>|</mo><mi>X</mi><mo>−</mo><mi>μ</mi><mo>|</mo><mo>≥</mo><mi>a</mi><mo>)</mo><mo>≤</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><msup><mi>a</mi><mn>2</mn></msup></mfrac></mrow></math>",
+          "meaning": "μ היא תוחלת X, σ² היא השונות שלו ו־a הוא מרחק חיובי. החסם תקף גם לזנב חד־צדדי, שהוא חלק מהמאורע הדו־צדדי."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "order": 12
+    },
+    {
+      "id": "t-chebyshev-proof",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "כיצד מוכיחים את צ׳בישב מתוך מרקוב?",
+      "answer": [
+        "מגדירים משתנה חדש: ריבוע הסטייה של המשתנה המקורי מהתוחלת שלו. המשתנה החדש אי־שלילי, ותוחלתו היא השונות.",
+        "סטייה מוחלטת של לפחות a שקולה לריבוע סטייה של לפחות a בריבוע. מפעילים מרקוב על המשתנה החדש עם הסף הזה, ומקבלים שונות חלקי ריבוע הסף."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "order": 13
+    },
+    {
+      "id": "t-chernoff-conditions",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise",
+        "official-balls"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "לפני הפעלת חסם צ׳רנוף הבסיסי על מספר הצלחות, אילו תנאים צריך לבדוק?",
+      "answer": [
+        "מגדירים את הסכום ומוודאים שהמחוברים הם משתני ברנולי בלתי־תלויים במשותף. הסתברויות ההצלחה יכולות להיות שונות.",
+        "מחשבים את התוחלת, מתרגמים את הסף לסטייה יחסית ובודקים את טווח הסטייה של גרסת החסם שבוחרים. אי־תלות בזוגות בלבד אינה מספיקה לגרסה הזאת."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "sourceId": "sample-solution-1",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 14
+    },
+    {
+      "id": "t-relative-deviation",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise",
+        "official-balls"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "איך מתרגמים סף לסטייה יחסית לפני שימוש בצ׳רנוף?",
+      "answer": [
+        "משווים את הסף לתוחלת. בזנב עליון הסף הוא התוחלת כפול אחד ועוד הסטייה היחסית; בזנב תחתון הוא התוחלת כפול אחד פחות הסטייה היחסית.",
+        "אם התוחלת 50 והסף 75, הסטייה היחסית העליונה היא חצי. אם התוחלת 50 והסף 25, הסטייה היחסית התחתונה היא חצי. אין להציב את ההפרש המוחלט 25 בתור הסטייה היחסית."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><msub><mi>δ</mi><mo>+</mo></msub><mo>=</mo><mfrac><mi>b</mi><mi>μ</mi></mfrac><mo>−</mo><mn>1</mn><mo>,</mo><mspace width=\"1em\"/><msub><mi>δ</mi><mo>−</mo></msub><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mi>b</mi><mi>μ</mi></mfrac></mrow></math>",
+          "meaning": "μ היא תוחלת חיובית ו־b הוא הסף. δ עם אינדקס פלוס היא הסטייה היחסית בזנב העליון; עם אינדקס מינוס — בזנב התחתון."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "sourceId": "sample-solution-1",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 15
+    },
+    {
+      "id": "t-chernoff-upper",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise",
+        "official-balls"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "מהי גרסה פשוטה של צ׳רנוף לזנב העליון, ומהו טווח הסטייה שלה?",
+      "answer": [
+        "לסכום משתני ברנולי בלתי־תלויים במשותף, עם תוחלת חיובית, ההסתברות לחריגה יחסית כלפי מעלה חסומה בביטוי המעריכי שלהלן.",
+        "גרסה זו מיועדת לסטייה יחסית גדולה מאפס ולכל היותר 1. לסף גדול מכפליים התוחלת בוחרים גרסה כללית מתאימה, ולא ממשיכים להציב באותה נוסחה ללא הצדקה."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mo>(</mo><mn>1</mn><mo>+</mo><mi>δ</mi><mo>)</mo><mi>μ</mi><mo>)</mo><mo>≤</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>μ</mi><msup><mi>δ</mi><mn>2</mn></msup><mo>/</mo><mn>3</mn></mrow></msup><mo>,</mo><mspace width=\"1em\"/><mn>0</mn><mo>&lt;</mo><mi>δ</mi><mo>≤</mo><mn>1</mn></mrow></math>",
+          "meaning": "X הוא הסכום, μ התוחלת שלו ו־δ שיעור החריגה מעל לתוחלת."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "sourceId": "book-4",
+          "pages": []
+        }
+      ],
+      "order": 16
+    },
+    {
+      "id": "t-chernoff-lower",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise",
+        "official-balls"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "מהי גרסה פשוטה של צ׳רנוף לזנב התחתון?",
+      "answer": [
+        "לסכום משתני ברנולי בלתי־תלויים במשותף, עם תוחלת חיובית, אפשר לחסום ירידה יחסית מהתוחלת באמצעות הביטוי שלהלן.",
+        "שמים לב לסימן המינוס בסף ולמקדם 2 במכנה של המעריך. אלה אינם זהים לגרסת הזנב העליון הפשוטה."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>≤</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>δ</mi><mo>)</mo><mi>μ</mi><mo>)</mo><mo>≤</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>μ</mi><msup><mi>δ</mi><mn>2</mn></msup><mo>/</mo><mn>2</mn></mrow></msup><mo>,</mo><mspace width=\"1em\"/><mn>0</mn><mo>&lt;</mo><mi>δ</mi><mo>&lt;</mo><mn>1</mn></mrow></math>",
+          "meaning": "X הוא הסכום, μ התוחלת שלו ו־δ שיעור הירידה ביחס לתוחלת."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "sourceId": "sample-solution-1",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 17
+    },
+    {
+      "id": "t-local-global",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise",
+        "official-balls"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "איך עוברים מחסם עומס בתא אחד לטענה שכל התאים מאוזנים?",
+      "answer": [
+        "מגדירים לכל תא שני מאורעות רעים: עומס קטן מדי ועומס גדול מדי. מחשבים לכל אחד חסם זנב תקף, ואז מסכמים על כל התאים ועל שני הכיוונים.",
+        "אם יש n תאים וכל אחד משני הזנבות חסום ב־ε, הסתברות הכישלון הכוללת חסומה ב־2nε. כדי לקבל הסתברות הצלחה השואפת ל־1 צריך שהחסם הכולל ישאף לאפס. לא נדרשת אי־תלות בין העומסים בתאים לצורך האיחוד."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "sample",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "sample-solution-1",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 18
+    },
+    {
+      "id": "t-windows",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise",
+        "official-balls",
+        "tails-windows"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "חלונות עוקבים של ניסויי מטבע חופפים זה לזה. האם החפיפה מונעת שימוש בצ׳רנוף ובחסם האיחוד?",
+      "answer": [
+        "לא. בחלון קבוע, צ׳רנוף נשען על אי־התלות בין ניסויי המטבע שבתוך החלון.",
+        "אחרי חישוב חסם לחלון קבוע, מפעילים חסם איחוד על כל נקודות ההתחלה. חסם האיחוד אינו דורש אי־תלות בין החלונות עצמם. צריך לספור את החלונות ולבחור פרמטרים שעבורם סכום החסמים מספיק קטן."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-12",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "sourceId": "maman-11",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 19
+    },
+    {
+      "id": "t-amplification",
+      "topicId": "tails",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "permutation-indicators",
+        "tails-pairwise",
+        "official-balls",
+        "amplification"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "מהו שלד ההוכחה שהכרעת רוב בהרצות עצמאיות מגבירה נכונות של אלגוריתם עם שגיאה דו־צדדית?",
+      "answer": [
+        "מניחים שלכל קלט הסתברות ההצלחה בהרצה אחת היא לפחות חצי ועוד יתרון חיובי קבוע. מריצים מספר אי־זוגי של פעמים עם אקראיות עצמאית ומחזירים את תשובת הרוב.",
+        "מגדירים אינדיקטור הצלחה לכל הרצה. טעות של הרוב מחייבת שמספר ההצלחות ירד אל מתחת למחצית ממספר ההרצות; חוסמים זאת בצ׳רנוף.",
+        "ליתרון קבוע, מספר הרצות בסדר גודל לוגריתם של הופכי השגיאה המבוקשת מספיק. זמן הריצה מוכפל במספר ההרצות. אם היתרון אינו קבוע, מספר ההרצות תלוי גם בהופכי ריבוע היתרון."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-12",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "sourceId": "book-4",
+          "pages": []
+        }
+      ],
+      "order": 20
+    },
+    {
+      "id": "d-expectation-existence",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "מדוע תוחלת של מספר אילוצים מסופקים נותנת גם הבטחת קיום להשמה טובה?",
+      "answer": [
+        "במרחב השמות סופי, לפחות השמה אחת משיגה ערך שאינו קטן מהתוחלת. אחרת כל ההשמות היו מתחת לתוחלת, וגם הממוצע שלהן היה מתחתיה.",
+        "מגדירים אינדיקטור לכל אילוץ ומחברים את הסתברויות הסיפוק. אין צורך שאינדיקטורי האילוצים יהיו בלתי־תלויים. טענת הקיום לבדה עדיין אינה אומרת כיצד למצוא השמה טובה בזמן יעיל."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            4,
+            5
+          ]
+        }
+      ],
+      "order": 21
+    },
+    {
+      "id": "d-conditional-invariant",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "מדוע תמיד אפשר לקבע את המשתנה הבא בלי להקטין את התוחלת המותנית?",
+      "answer": [
+        "התוחלת לפני הקיבוע היא ממוצע משוקלל של התוחלות המתקבלות מכל ערך אפשרי של המשתנה הבא. לכן לפחות ערך אחד בעל הסתברות חיובית נותן תוחלת שאינה קטנה מהממוצע.",
+        "בוחרים ערך כזה וממשיכים. אין הבטחה לשיפור ממש בכל צעד; ייתכן שוויון. אחרי שכל המשתנים קובעו, אין אקראיות שנותרה ולכן התוחלת המותנית היא ערך ההשמה שנבחרה."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "order": 22
+    },
+    {
+      "id": "d-efficient-conditional",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "מה צריך להראות כדי ששיטת התוחלת המותנית תהיה אלגוריתם יעיל, מעבר להוכחת קיום של ענף טוב?",
+      "answer": [
+        "צריך להסביר כיצד מחשבים את התוחלת המותנית לכל ערך אפשרי של המשתנה הבא בזמן פולינומי.",
+        "בבעיות אילוצים מפרקים לסכום תרומות מקומיות ומחשבים כל תרומה לפי המשתנים שכבר קובעו. מפרטים את מספר צעדי הקיבוע ואת עלות כל צעד. המשפט 'נבחר את האפשרות הטובה' אינו מספיק בלי דרך לחשב אותה."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            5,
+            6
+          ]
+        }
+      ],
+      "order": 23
+    },
+    {
+      "id": "d-clause-conditional",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation",
+        "limited-independence",
+        "official-sat"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "בפסוקית של משתנים שונים, איך מחשבים את סיכוי הסיפוק לאחר שחלק מהמשתנים קובעו?",
+      "answer": [
+        "אם כבר קובע ליטרל לאמת, הפסוקית מסופקת והתרומה לתוחלת היא 1. אם כל הליטרלים קובעו לשקר, התרומה היא 0.",
+        "אחרת, נניח שנותרו r ליטרלים על משתנים שונים שטרם קובעו, והביטים הנותרים הוגנים ובלתי־תלויים. הפסוקית נכשלת רק אם כל r הליטרלים שקריים, ולכן משתמשים בנוסחה שלהלן."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>r</mi></mrow></msup></mrow></math>",
+          "meaning": "A הוא המאורע שהפסוקית מסופקת. הנוסחה חלה כאשר עדיין אין ליטרל שקובע לאמת, ו־r הוא מספר הליטרלים החופשיים על משתנים שונים."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "order": 24
+    },
+    {
+      "id": "d-sat-seven-eighths",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation",
+        "limited-independence",
+        "official-sat"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "כיצד מוכיחים שקיימת השמה המספקת לפחות שבע שמיניות מפסוקיות בנות שלושה ליטרלים על שלושה משתנים שונים?",
+      "answer": [
+        "מגרילים לכל משתנה ביט הוגן, באופן בלתי־תלוי בשאר המשתנים. בכל פסוקית, רק אחת משמונה ההשמות לשלושת המשתנים משאירה את כל הליטרלים שקריים. לכן הסתברות הסיפוק היא שבע שמיניות.",
+        "מחברים את אינדיקטורי הסיפוק ומקבלים תוחלת של שבע שמיניות ממספר הפסוקיות, ולכן קיימת השמה שמשיגה לפחות זאת. די באי־תלות בשלשות של ביטי ההשמה לחישוב המקומי; אינדיקטורי הפסוקיות יכולים להיות תלויים."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            4,
+            5
+          ]
+        },
+        {
+          "sourceId": "sample",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "sample-solution-2",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 25
+    },
+    {
+      "id": "d-kwise-definition",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation",
+        "limited-independence"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מה פירוש אי־תלות ב־k־יות, ובמה היא שונה מאי־תלות מלאה?",
+      "answer": [
+        "כל בחירה של לכל היותר k משתנים שונים מתפלגת כמכפלה של ההתפלגויות השוליות שלהם. אי־תלות מלאה דורשת זאת לכל מספר משתנים במשפחה.",
+        "הבדיקה היא על קבוצות של משתנים שונים ועל כל צירוף ערכים אפשרי. אם המשתנים אחידים על שדה בגודל q, כל צירוף ערכים של k משתנים שונים מתקבל בהסתברות אחת חלקי q בחזקת k."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ],
+      "order": 26
+    },
+    {
+      "id": "d-pairwise-counterexample",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation",
+        "limited-independence"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "תן דוגמה לשלושה ביטים הוגנים שהם בלתי־תלויים בזוגות אבל אינם בלתי־תלויים במשותף.",
+      "answer": [
+        "בוחרים שני ביטים הוגנים ועצמאיים, ומגדירים את השלישי כסכומם מודולו 2, כלומר פעולת XOR.",
+        "כל זוג מקבל את ארבעת צירופי הביטים באותה הסתברות. אבל ידיעת שני הביטים הראשונים קובעת את השלישי: למשל, שלישיית הערכים 0,0,1 אינה אפשרית. לכן שלושת הביטים אינם בלתי־תלויים במשותף."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "order": 27
+    },
+    {
+      "id": "d-polynomial-construction",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation",
+        "limited-independence"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "מדוע הערכות של פולינום אקראי מדרגה לכל היותר k פחות 1 נותנות אי־תלות ב־k־יות?",
+      "answer": [
+        "עובדים מעל שדה סופי בגודל q, כאשר k אינו גדול מגודל השדה. בוחרים k מקדמים באחידות ובעצמאות ומעריכים בנקודות שונות בשדה. מספר נקודות ההערכה אינו עולה על גודל השדה.",
+        "לכל k נקודות שונות ולכל k ערכי יעד יש בדיוק וקטור מקדמים אחד שמפיק אותם: מטריצת ונדרמונדה הפיכה מפני שהנקודות שונות. כל וקטור מקדמים נבחר באותה הסתברות, ולכן גם כל צירוף של k ערכים נבחר בהסתברות אחת חלקי q בחזקת k."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            3,
+            4
+          ]
+        },
+        {
+          "sourceId": "maman-13",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 28
+    },
+    {
+      "id": "d-smallspace-enumeration",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation",
+        "limited-independence"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "איך הופכים מרחב מדגם קטן לאלגוריתם דטרמיניסטי, ומה קובע אם זמן הריצה פולינומי?",
+      "answer": [
+        "מוכיחים שההבטחה על התוחלת נשמרת גם כשבוחרים רק מהמרחב הקטן. סורקים את כל הדגימות ומחזירים את בעלת הערך הטוב ביותר; המקסימום אינו קטן מהממוצע.",
+        "מחשבים את גודל המרחב ואת הזמן להערכת דגימה אחת. בבניית פולינום עם k מקדמים יש q בחזקת k אפשרויות. אם q פולינומי בגודל הקלט, k קבוע והערכת כל דגימה נעשית בזמן פולינומי, הסריקה פולינומית. אם k גדל עם הקלט אין להסיק זאת אוטומטית."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "sourceId": "maman-13",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 29
+    },
+    {
+      "id": "d-multicut",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation",
+        "limited-independence",
+        "multicut-conditional",
+        "multicut-smallspace"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "בחלוקה אקראית ל־r קבוצות, מהי ההסתברות שצלע חוצה קבוצות, ואיזו אי־תלות מקומית מספיקה?",
+      "answer": [
+        "אם כל קודקוד מקבל תווית אחידה מבין r תוויות ותוויות שני קצות הצלע בלתי־תלויות, הסיכוי שהם באותה קבוצה הוא אחת חלקי r. לכן הסתברות החצייה היא אחד פחות אחת חלקי r.",
+        "די באי־תלות בזוגות של התוויות לחישוב תוחלת מספר הצלעות החוצות. אם דורשים שכל הקבוצות יהיו לא ריקות, זו דרישה נוספת שיש לטפל בה; ההגרלה אינה מבטיחה אותה כשלעצמה."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-14",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            4,
+            5
+          ]
+        }
+      ],
+      "order": 30
+    },
+    {
+      "id": "d-linear-equation",
+      "topicId": "derandomization",
+      "unlockAfter": [
+        "foundations-variance",
+        "conditional-expectation",
+        "limited-independence",
+        "multicut-conditional",
+        "multicut-smallspace",
+        "linear-constraints"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "מדוע משוואה לינארית לא־טריוויאלית מעל שדה סופי מתקיימת בהסתברות אחת חלקי גודל השדה בהשמה אחידה ועצמאית?",
+      "answer": [
+        "בוחרים משתנה שמקדמו אינו אפס. לאחר קיבוע האחרים במשוואה, יש בדיוק ערך אחד של המשתנה הנבחר שמקיים אותה, כי למקדם יש הופכי בשדה.",
+        "אם המשתנה הנבחר אחיד ובלתי־תלוי באחרים, הסתברות הסיפוק היא אחת חלקי גודל השדה. משוואה שכל מקדמיה אפס היא תמיד נכונה או תמיד שגויה, לפי אגף ימין; הטיעון אינו חל עליה.",
+        "כשכל משוואה תלויה לכל היותר ב־k משתנים, אי־תלות ב־k־יות מספיקה לחישוב המקומי."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-14",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "order": 31
+    },
+    {
+      "id": "m-transition",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מה מייצג איבר במטריצת מעבר, וכיצד מחשבים התפלגות אחרי צעד אחד?",
+      "answer": [
+        "האיבר בשורה i ובעמודה j הוא ההסתברות לעבור ממצב i למצב j בצעד הבא. כל האיברים אי־שליליים וסכום כל שורה הוא 1.",
+        "כשמייצגים התפלגות כווקטור שורה, מכפילים אותה במטריצת המעבר מימין. כל רכיב חדש מסכם את ההסתברויות להגיע אליו מכל מצבי המוצא."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><msub><mi>μ</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>μ</mi><mi>t</mi></msub><mi>P</mi></mrow></math>",
+          "meaning": "P היא מטריצת המעבר; μ עם אינדקס t הוא וקטור השורה של ההתפלגות בזמן t. כאן P היא מטריצה, לא סימון של הסתברות מאורע."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 32
+    },
+    {
+      "id": "m-stationary",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מהי התפלגות סטציונרית, ואילו תנאים צריך לבדוק כשמוצאים אותה?",
+      "answer": [
+        "זו התפלגות שאינה משתנה לאחר צעד אחד של השרשרת: אם מתחילים בה, נשארים בה בכל זמן.",
+        "פותרים את משוואת הסטציונריות יחד עם סכום רכיבים השווה ל־1, ובודקים שכל הרכיבים אי־שליליים. פתרון המשוואה הלינארית בלבד אינו בהכרח התפלגות."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>π</mi><mi>P</mi><mo>=</mo><mi>π</mi><mo>,</mo><mspace width=\"1em\"/><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>,</mo><mspace width=\"1em\"/><msub><mi>π</mi><mi>i</mi></msub><mo>≥</mo><mn>0</mn></mrow></math>",
+          "meaning": "π הוא וקטור השורה הסטציונרי ו־P מטריצת המעבר. אי־השליליות נדרשת לכל רכיב i."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            1,
+            2
+          ]
+        }
+      ],
+      "order": 33
+    },
+    {
+      "id": "m-stationary-not-limit",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "האם מציאת התפלגות סטציונרית מוכיחה שהשרשרת מתכנסת אליה מכל מצב התחלתי?",
+      "answer": [
+        "לא. בשרשרת שעוברת בוודאות בין שני מצבים לסירוגין, ההתפלגות האחידה על שני המצבים היא סטציונרית.",
+        "אבל אם מתחילים בוודאות באחד המצבים, ההתפלגות מתחלפת בכל צעד ואינה מתכנסת. סטציונריות אינה אומרת שמגיעים אליה לאחר מספר סופי של צעדים, וגם אינה מבטיחה התכנסות אליה."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "order": 34
+    },
+    {
+      "id": "m-convergence",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer"
+      ],
+      "kind": "conditions",
+      "priority": "core",
+      "question": "אילו תנאים מבטיחים התכנסות להתפלגות סטציונרית יחידה בשרשרת מרקוב סופית?",
+      "answer": [
+        "השרשרת סופית, אי־פריקה ואי־מחזורית. אי־פריקה פירושה שכל מצב נגיש מכל מצב אחר בהסתברות חיובית לאחר מספר צעדים. אי־מחזוריות שוללת מחזור כפוי באורכי החזרה.",
+        "בתנאים אלה קיימת התפלגות סטציונרית יחידה, וההתפלגות בזמן t מתכנסת אליה מכל התפלגות התחלתית. זו התכנסות בגבול, ולא הבטחת שוויון בזמן סופי.",
+        "סופיות ואי־פריקות כבר מבטיחות יחידות של ההתפלגות הסטציונרית. אי־מחזוריות נדרשת להבטחת ההתכנסות מכל התחלה."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "order": 35
+    },
+    {
+      "id": "m-hitting-equations",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer",
+        "markov-reset"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "איך בונים משוואות לתוחלת זמן הפגיעה במצב יעד בעזרת הצעד הראשון?",
+      "answer": [
+        "מסמנים לכל מצב את תוחלת מספר הצעדים עד ההגעה הראשונה ליעד. ביעד התוחלת היא אפס, כי מתירים פגיעה בזמן אפס.",
+        "ממצב אחר סופרים צעד אחד, ואז מחברים את תוחלות ההמשך לפי הסתברויות המעבר. צריך להצדיק שתוחלת הפגיעה סופית, או לטפל באפשרות שהיא אינסופית; למשל, בשרשרת סופית אי־פריקה היא סופית."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><msub><mi>h</mi><mi>b</mi></msub><mo>=</mo><mn>0</mn><mo>,</mo><mspace width=\"1em\"/><msub><mi>h</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>+</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>P</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mi>h</mi><mi>j</mi></msub><mspace width=\"1em\"/><mo>(</mo><mi>i</mi><mo>≠</mo><mi>b</mi><mo>)</mo></mrow></math>",
+          "meaning": "b הוא היעד; h עם אינדקס i היא תוחלת זמן הפגיעה כשמתחילים ב־i; P עם אינדקס ij היא הסתברות המעבר מ־i ל־j."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "sourceId": "maman-15",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 36
+    },
+    {
+      "id": "m-hitting-return",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer",
+        "markov-reset"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מה ההבדל בין זמן פגיעה במצב לבין זמן חזרה אליו?",
+      "answer": [
+        "זמן פגיעה הוא הזמן הראשון שבו נמצאים במצב, כאשר בדרך כלל מתירים זמן אפס. אם מתחילים במצב היעד, זמן הפגיעה הוא אפס.",
+        "זמן חזרה למצב שבו התחלנו מחפש ביקור נוסף אחרי לפחות צעד אחד. לכן הוא אינו אפס אוטומטית. ההבחנה משנה את תנאי השפה במשוואות ואת השימוש בקשר בין זמן חזרה למשקל סטציונרי."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            2,
+            4
+          ]
+        }
+      ],
+      "order": 37
+    },
+    {
+      "id": "m-powers",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer",
+        "markov-matrix"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "מה מייצג איבר בחזקה ה־t של מטריצת המעבר?",
+      "answer": [
+        "זהו הסיכוי לעבור ממצב השורה למצב העמודה אחרי t צעדים, כשמתחילים בוודאות במצב השורה.",
+        "אם ידועה התפלגות התחלתית, מכפילים אותה בחזקה הזאת. חזקה מפורשת אפשר לחשב ברקורסיה או בלכסון, לפי השאלה. תחילה מגדירים את מוסכמת השורות ובודקים את מקרי האפס והצעד האחד."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><msub><mi>μ</mi><mi>t</mi></msub><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><msup><mi>P</mi><mi>t</mi></msup></mrow></math>",
+          "meaning": "μ עם אינדקס 0 היא ההתפלגות ההתחלתית, P מטריצת המעבר ו־t מספר הצעדים."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "maman-15",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 38
+    },
+    {
+      "id": "m-recurrent-definition",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer",
+        "official-recurrence"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מתי מצב בשרשרת מרקוב נקרא נשנה?",
+      "answer": [
+        "מצב נקרא נשנה אם, כאשר מתחילים בו, ההסתברות לחזור אליו לאחר זמן חיובי היא 1.",
+        "ההגדרה עוסקת בהסתברות לחזרה בסופו של דבר, ולא בהגעה לאותו וקטור התפלגות. מצב שאינו נשנה נקרא חולף. בשרשרת סופית, מצב נשנה הוא גם בעל תוחלת זמן חזרה סופית; אין להניח זאת בשרשרת אינסופית ללא תנאים."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "sample-solution-3",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "guide",
+          "pages": [
+            147,
+            148
+          ]
+        }
+      ],
+      "order": 39
+    },
+    {
+      "id": "m-finite-recurrence-proof",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer",
+        "official-recurrence"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "מהו שלד הוכחה לכך שבכל שרשרת מרקוב סופית יש לפחות מצב נשנה?",
+      "answer": [
+        "מניחים בשלילה שכל המצבים חולפים. לכל מצב, ההסתברות לחזרה נוספת אליו אחרי ביקור בו קטנה מ־1. מתכונת מרקוב, הסיכוי למספר הולך וגדל של חזרות דועך, ולכן ההסתברות לבקר במצב הזה אינסוף פעמים היא אפס.",
+        "יש מספר סופי של מצבים. לפי חסם האיחוד, גם ההסתברות שאחד מהם יבוקר אינסוף פעמים היא אפס.",
+        "מצד שני, בכל מסלול אינסופי על קבוצה סופית של מצבים, לפחות מצב אחד מופיע אינסוף פעמים. זו סתירה. לכן לפחות מצב אחד נשנה."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "sample",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "sample-solution-3",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "order": 40
+    },
+    {
+      "id": "m-undirected-stationary",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer",
+        "markov-reset",
+        "markov-walks"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "מהי ההתפלגות הסטציונרית של הילוך אקראי פשוט על גרף לא־מכוון קשיר, ומדוע היא תקפה?",
+      "answer": [
+        "כשבכל צעד בוחרים שכן באחידות, המשקל הסטציונרי של קודקוד יחסי לדרגתו. בגרף פשוט עם לפחות צלע אחת, סכום הדרגות הוא פעמיים מספר הצלעות, וזה נותן את הנרמול.",
+        "על כל צלע, מסת ההסתברות שעוברת בכיוון אחד שווה לזו שבכיוון ההפוך; סכימה נותנת את משוואת הסטציונריות. הנוסחה אינה תקפה אוטומטית לגרף מכוון, ואינה מבטיחה התכנסות אם ההילוך מחזורי."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><msub><mi>π</mi><mi>v</mi></msub><mo>=</mo><mfrac><mrow><mi>deg</mi><mo>(</mo><mi>v</mi><mo>)</mo></mrow><mrow><mn>2</mn><mi>m</mi></mrow></mfrac></mrow></math>",
+          "meaning": "v הוא קודקוד, deg(v) היא דרגתו, m מספר הצלעות ו־π עם אינדקס v המשקל הסטציונרי שלו."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            2,
+            4
+          ]
+        }
+      ],
+      "order": 41
+    },
+    {
+      "id": "m-connectivity",
+      "topicId": "markov",
+      "unlockAfter": [
+        "foundations-variance",
+        "markov-primer",
+        "markov-reset",
+        "markov-walks"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "מדוע אלגוריתם קישוריות המבוסס על הילוך אקראי בגרף לא־מכוון הוא בעל שגיאה חד־צדדית?",
+      "answer": [
+        "מתחילים במקור ומדמים מספר מוגבל של צעדי הילוך. אם מגיעים ליעד, מחזירים שקיים מסלול; אחרת מחזירים שלא נמצא מסלול.",
+        "אם המקור והיעד אינם קשורים, ההילוך לעולם לא יגיע ליעד, ולכן אין תשובה חיובית שגויה. אם הם קשורים, ייתכן שהזמן לא יספיק; חוסמים את הכישלון בעזרת תוחלת זמן פגיעה או כיסוי ומרקוב.",
+        "צריך לנתח גם את הזיכרון: שמירת הקודקוד הנוכחי ומונה צעדים בטווח פולינומי דורשת מספר ביטים לוגריתמי בגודל הגרף."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "order": 42
+    },
+    {
+      "id": "g-model",
+      "topicId": "random-graphs",
+      "unlockAfter": [
+        "foundations-variance",
+        "graphs-entry"
+      ],
+      "kind": "definition",
+      "priority": "core",
+      "question": "מה פירוש מודל הגרף האקראי שבו כל צלע נבחרת בהסתברות p?",
+      "answer": [
+        "קבוצת הקודקודים קבועה. לכל זוג קודקודים שונים בוחרים, באופן בלתי־תלוי בשאר הזוגות, אם הצלע ביניהם קיימת; הסתברות הקיום היא p.",
+        "האקראיות היא בצלעות. לכן הסתברות לקיומן של כמה צלעות שונות מחושבת באמצעות מכפלת הסתברויות. במודל עם מספר צלעות קבוע, לעומת זאת, בחירות הצלעות אינן עצמאיות."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "maman-11",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "order": 43
+    },
+    {
+      "id": "g-isolated",
+      "topicId": "random-graphs",
+      "unlockAfter": [
+        "foundations-variance",
+        "graphs-entry"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "איך מחשבים את תוחלת מספר הקודקודים המבודדים בגרף אקראי עם בחירת צלעות עצמאית?",
+      "answer": [
+        "מגדירים אינדיקטור לכל קודקוד. קודקוד מבודד אם כל הצלעות האפשריות היוצאות ממנו חסרות.",
+        "יש n פחות 1 צלעות כאלה, והיעדרותן בלתי־תלויה. מכפילים כדי לחשב הסתברות בידוד לקודקוד אחד, ואז מחברים על כל הקודקודים באמצעות לינאריות התוחלת."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>E</mi><mo>[</mo><mi>X</mi><mo>]</mo><mo>=</mo><mi>n</mi><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow></math>",
+          "meaning": "X הוא מספר הקודקודים המבודדים, n מספר הקודקודים ו־p הסתברות צלע."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-11",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            6,
+            7
+          ]
+        }
+      ],
+      "order": 44
+    },
+    {
+      "id": "g-triangle-expectation",
+      "topicId": "random-graphs",
+      "unlockAfter": [
+        "foundations-variance",
+        "graphs-entry",
+        "triangle-threshold"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "איך מחשבים את תוחלת מספר המשולשים, ומדוע ההסתברות המקומית היא p בשלישית?",
+      "answer": [
+        "לכל קבוצה של שלושה קודקודים מגדירים אינדיקטור לכך ששלוש הצלעות ביניהם קיימות. הקבוצה מזהה משולש אפשרי, ולא טוענת שכבר יש צלעות ביניהם.",
+        "משולש קיים רק אם כל שלוש הצלעות קיימות. מאי־תלות הצלעות הסתברותו היא p בשלישית. מכפילים במספר קבוצות שלושת הקודקודים; אין צורך באי־תלות בין אינדיקטורי המשולשים לצורך התוחלת."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>E</mi><mo>[</mo><mi>X</mi><mo>]</mo><mo>=</mo><mrow><mo>(</mo><mfrac linethickness=\"0\"><mi>n</mi><mn>3</mn></mfrac><mo>)</mo></mrow><msup><mi>p</mi><mn>3</mn></msup></mrow></math>",
+          "meaning": "X הוא מספר המשולשים, n מספר הקודקודים ו־p הסתברות צלע. המקדם הבינומי הוא מספר הדרכים לבחור שלושה קודקודים מתוך n."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            7
+          ]
+        }
+      ],
+      "order": 45
+    },
+    {
+      "id": "g-triangle-overlap",
+      "topicId": "random-graphs",
+      "unlockAfter": [
+        "foundations-variance",
+        "graphs-entry",
+        "triangle-threshold"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "מדוע שני משולשים אפשריים החולקים רק קודקוד אחד בלתי־תלויים בקיומם, ואילו שיתוף צלע יוצר תלות?",
+      "answer": [
+        "כשיש רק קודקוד משותף, קבוצות הצלעות הדרושות למשולשים נפרדות. מאחר שהצלעות נבחרות בעצמאות, קיום משולש אחד אינו משנה את הסתברות קיום האחר.",
+        "כשיש צלע משותפת, שני המשולשים יחד דורשים חמש צלעות שונות. לכן הסתברות הקיום המשותף היא p בחזקת 5, בעוד שמכפלת הסתברויות הקיום בנפרד היא p בחזקת 6. ההפרש הוא השונות המשותפת."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>Cov</mi><mo>(</mo><msub><mi>I</mi><mi>A</mi></msub><mo>,</mo><msub><mi>I</mi><mi>B</mi></msub><mo>)</mo><mo>=</mo><msup><mi>p</mi><mn>5</mn></msup><mo>−</mo><msup><mi>p</mi><mn>6</mn></msup></mrow></math>",
+          "meaning": "הנוסחה מתייחסת לשני משולשים שונים החולקים צלע. A ו־B הם מאורעות קיומם, I הם האינדיקטורים ו־p הסתברות צלע. ההפרש חיובי כאשר p גדול מאפס וקטן מאחד."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "order": 46
+    },
+    {
+      "id": "g-first-moment",
+      "topicId": "random-graphs",
+      "unlockAfter": [
+        "foundations-variance",
+        "graphs-entry",
+        "triangle-threshold"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "כיצד תוחלת השואפת לאפס מוכיחה שבהסתברות השואפת ל־1 אין עותק של תת־גרף?",
+      "answer": [
+        "מגדירים משתנה שסופר את מספר העותקים. הוא אי־שלילי ושלם, ולכן המאורע 'קיים עותק' הוא המאורע שהספירה לפחות 1.",
+        "מרקוב חוסם את הסתברות המאורע הזה בתוחלת הספירה. אם התוחלת שואפת לאפס כשמספר הקודקודים גדל, כך גם הסתברות הקיום."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mn>1</mn><mo>)</mo><mo>≤</mo><mi>E</mi><mo>[</mo><mi>X</mi><mo>]</mo></mrow></math>",
+          "meaning": "X הוא מספר העותקים. אי־השליליות והשלמות מאפשרות לזהות קיום עותק עם הסף 1."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "order": 47
+    },
+    {
+      "id": "g-second-moment",
+      "topicId": "random-graphs",
+      "unlockAfter": [
+        "foundations-variance",
+        "graphs-entry",
+        "triangle-threshold"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "מה צריך להראות, מעבר לתוחלת גדולה, כדי להוכיח קיום בסבירות השואפת ל־1 באמצעות צ׳בישב?",
+      "answer": [
+        "תוחלת גדולה לבדה אינה מספיקה. מראים שהשונות חלקי ריבוע התוחלת שואפת לאפס.",
+        "אם התוחלת חיובית והספירה שווה לאפס, המרחק מהתוחלת הוא לפחות התוחלת עצמה. צ׳בישב חוסם את ההסתברות לכך ביחס שלהלן. בחישוב השונות ממיינים זוגות עותקים לפי החפיפה בצלעות."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>0</mn><mo>)</mo><mo>≤</mo><mfrac><mrow><mi>Var</mi><mo>(</mo><mi>X</mi><mo>)</mo></mrow><msup><mrow><mi>E</mi><mo>[</mo><mi>X</mi><mo>]</mo></mrow><mn>2</mn></msup></mfrac></mrow></math>",
+          "meaning": "X הוא מספר העותקים, עם תוחלת חיובית ושונות סופית. היעד הוא שהאגף הימני ישאף לאפס."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "order": 48
+    },
+    {
+      "id": "g-k4-transfer",
+      "topicId": "random-graphs",
+      "unlockAfter": [
+        "foundations-variance",
+        "graphs-entry",
+        "triangle-threshold",
+        "clique-transfer"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "במעבר ממשולשים לקליקה על ארבעה קודקודים, מה משתנה בחישוב התוחלת והחפיפות?",
+      "answer": [
+        "קליקה על ארבעה קודקודים דורשת שש צלעות, ולכן הסתברות הקיום של עותק קבוע היא p בחזקת 6.",
+        "שני עותקים שונים החולקים שני קודקודים חולקים צלע אחת: יחד נדרשות 11 צלעות. בחפיפה של שלושה קודקודים יש שלוש צלעות משותפות: יחד נדרשות 9. בחפיפה של אפס או קודקוד אחד אין צלעות משותפות, ולכן האינדיקטורים בלתי־תלויים.",
+        "צריך לספור גם כמה זוגות מכל סוג יש ולבדוק את תרומתם לשונות ביחס לריבוע התוחלת."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            5
+          ]
+        }
+      ],
+      "order": 49
+    },
+    {
+      "id": "a-alteration-pattern",
+      "topicId": "alteration",
+      "unlockAfter": [
+        "foundations-variance",
+        "alteration"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "מהם שלושת שלבי שיטת התיקונים בהוכחת קיום?",
+      "answer": [
+        "מגרילים מבנה שקל לנתח, גם אם הוא עדיין מפר חלק מהדרישות. מגדירים תיקון שהופך כל פלט למבנה חוקי.",
+        "חוסמים את עלות התיקון בעזרת מספר ההפרות, ומחשבים תוחלת של האיכות אחרי התיקון או חסם מתאים עליה.",
+        "מסיקים שקיים פלט מתוקן באיכות של לפחות ההבטחה. צריך להראות שהתיקון מסלק את כל ההפרות ולבדוק שאינו יוצר חדשות."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-13",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "sourceId": "guide",
+          "pages": [
+            128,
+            129
+          ]
+        }
+      ],
+      "order": 50
+    },
+    {
+      "id": "a-hypergraph-cover",
+      "topicId": "alteration",
+      "unlockAfter": [
+        "foundations-variance",
+        "alteration"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "איך מגרילים ומתקנים כיסוי קודקודים בהיפרגרף שבו בכל קשת יש k קודקודים?",
+      "answer": [
+        "בוחרים כל קודקוד באופן עצמאי בהסתברות p. קשת שלא נבחר ממנה שום קודקוד אינה מכוסה.",
+        "מוסיפים קודקוד אחד מכל קשת לא מכוסה. כל הקשתות מכוסות כעת, והוספת קודקודים אינה פוגעת בכיסוי קיים. הגודל הסופי אינו עולה על מספר הקודקודים שנבחרו ועוד מספר הקשתות שלא כוסו.",
+        "הביטוי שלהלן חוסם את תוחלת העלות. גם אם אותו קודקוד מתקן כמה קשתות, זה עדיין חסם עליון תקף."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>E</mi><mo>[</mo><mo>|</mo><mi>C</mi><mo>|</mo><mo>]</mo><mo>≤</mo><mi>n</mi><mi>p</mi><mo>+</mo><mi>m</mi><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo></mrow><mi>k</mi></msup></mrow></math>",
+          "meaning": "C הוא הכיסוי המתוקן, n מספר הקודקודים, m מספר הקשתות, k גודל כל קשת ו־p הסתברות בחירת קודקוד."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-13",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "order": 51
+    },
+    {
+      "id": "a-choose-probability",
+      "topicId": "alteration",
+      "unlockAfter": [
+        "foundations-variance",
+        "alteration"
+      ],
+      "kind": "method",
+      "priority": "support",
+      "question": "אחרי שקיבלת חסם על תוחלת העלות בשיטת התיקונים, כיצד בוחרים את הסתברות ההגרלה?",
+      "answer": [
+        "בוחרים הסתברות בין 0 ל־1 שממזערת את החסם הכולל, ולא רק את עלות ההגרלה הראשונית.",
+        "אפשר להשוות גדלים או לגזור, לפי הביטוי. בודקים גם את קצות התחום ומוודאים שהפתרון הוא הסתברות חוקית. הקטנת מספר הבחירות הראשוניות עלולה להגדיל את עלות התיקון; צריך לאזן בין האיברים."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "maman-13",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "order": 52
+    },
+    {
+      "id": "p-fingerprint-algorithm",
+      "topicId": "fingerprints",
+      "unlockAfter": [
+        "fingerprints-coverage"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "בבדיקת שוויון מספרים באמצעות שאריות מודולו ראשוני אקראי, מתי יכולה להתרחש טעות?",
+      "answer": [
+        "אם המספרים שווים, השאריות שוות לכל ראשוני, ולכן לא דוחים שוויון אמיתי.",
+        "אם הם שונים, ייתכן שנבחר ראשוני המחלק את ההפרש שלהם. אז השאריות שוות אף שהמספרים שונים, ומתקבלת תשובת שוויון שגויה. לכן השגיאה חד־צדדית, בכיוון של הכרזה שגויה על שוויון."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            1,
+            2
+          ]
+        }
+      ],
+      "order": 53
+    },
+    {
+      "id": "p-fingerprint-bound",
+      "topicId": "fingerprints",
+      "unlockAfter": [
+        "fingerprints-coverage"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "איך חוסמים את שגיאת בדיקת השוויון באמצעות ראשוני אקראי?",
+      "answer": [
+        "לקלטים שונים מסתכלים על ההפרש הלא־אפס. רק ראשוניים המחלקים אותו עלולים לגרום לשוויון שגוי של השאריות.",
+        "חוסמים כמה מחלקים ראשוניים שונים יכולים להיות להפרש לפי אורך הייצוג. בבחירה אחידה מקבוצה סופית, הסיכוי לטעות הוא מספר הראשוניים הרעים בקבוצה חלקי גודל הקבוצה.",
+        "בוחרים קבוצה גדולה מספיק לשגיאה המבוקשת, ומחשבים גם כמה ביטים נדרשים כדי להעביר את הראשוני והשארית. מספר המועמדים וגודלם המספרי אינם אותו דבר."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            1,
+            2
+          ]
+        }
+      ],
+      "order": 54
+    },
+    {
+      "id": "r-ramsey-bad-event",
+      "topicId": "ramsey",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "ramsey-coverage"
+      ],
+      "kind": "method",
+      "priority": "core",
+      "question": "בהוכחת רמזי ההסתברותית, מהו המאורע הרע לקבוצה קבועה של k קודקודים?",
+      "answer": [
+        "המאורע הרע הוא שהקבוצה יוצרת קליקה או קבוצה בלתי־תלויה. כשכל צלע נבחרת בעצמאות בהסתברות חצי, קליקה דורשת שכל הצלעות יהיו נוכחות; קבוצה בלתי־תלויה דורשת שכולן יהיו חסרות.",
+        "עבור לפחות שני קודקודים אלה מאורעות זרים עם אותה הסתברות. מספר הצלעות האפשריות הוא המקדם הבינומי k מעל 2."
+      ],
+      "formulas": [
+        {
+          "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" dir=\"ltr\"><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mn>2</mn><mo>·</mo><msup><mn>2</mn><mrow><mo>−</mo><mo>(</mo><mfrac linethickness=\"0\"><mi>k</mi><mn>2</mn></mfrac><mo>)</mo></mrow></msup></mrow></math>",
+          "meaning": "A הוא המאורע שקבוצה קבועה בגודל k היא קליקה או קבוצה בלתי־תלויה; k לפחות 2."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ],
+      "order": 55
+    },
+    {
+      "id": "r-probabilistic-existence",
+      "topicId": "ramsey",
+      "unlockAfter": [
+        "foundations-variance",
+        "union-coupons-windows",
+        "ramsey-coverage"
+      ],
+      "kind": "proof",
+      "priority": "core",
+      "question": "מדוע חסם קטן מ־1 על הסתברות הכישלון מספיק להוכיח שקיים גרף עם התכונה הרצויה?",
+      "answer": [
+        "אם הסתברות הכישלון קטנה מ־1, הסתברות ההצלחה חיובית. לכן לפחות גרף אחד במרחב ההגרלה מצליח.",
+        "בדוגמת רמזי מפעילים חסם איחוד על כל קבוצות k הקודקודים ודורשים שסכום הסתברויותיהן להיות רעות יהיה קטן מ־1. אין צורך באי־תלות בין המאורעות, וגם לא בהצלחה בסבירות גבוהה.",
+        "זו הוכחת קיום. היא אינה כשלעצמה אלגוריתם יעיל למציאת הגרף."
+      ],
+      "formulas": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ],
+      "order": 56
+    }
+  ]
+}

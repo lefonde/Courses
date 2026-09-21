@@ -1,0 +1,10 @@
+# Keep local study records and source material out of the public repository.
+**/progress.json
+**/backups/
+**/__pycache__/
+*.pdf
+*.ics
+*.docx
+*.log
+.env
+.env.*

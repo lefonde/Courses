@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#111915">
+  <title>מצפן • ההכנה שלך לבחינה</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js" defer></script>
+  <script src="./storage.js" defer></script>
+  <script src="./source-library.js" defer></script>
+  <script src="./flashcards-engine.js" defer></script>
+  <script src="./flashcards-ui.js" defer></script>
+  <script src="./task-ui.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">דילוג לתוכן</a>
+  <aside class="sidebar" aria-label="ניווט ראשי">
+    <a class="brand" href="#overview"><span class="brand-mark" aria-hidden="true">✳</span><span>מצפן<small>אלגוריתמים אקראיים · 22902</small></span></a>
+    <div class="sidebar-label">ההכנה שלך</div>
+    <nav id="nav"></nav>
+    <div class="exam-card"><span class="eyebrow">נקודת היעד</span><strong>8 באוקטובר</strong><span>יום חמישי · <bdi>16:00–18:30</bdi></span><div class="exam-line"></div><p>3 שאלות חובה<br>משקל התשובות: <bdi>40 / 40 / 20</bdi></p><a href="#library">הנחיות ודף נוסחאות <span aria-hidden="true">↗</span></a></div>
+    <div class="sidebar-bottom"><button id="theme-button" class="quiet-button">☼ מעבר לתצוגה בהירה</button><span id="save-status" role="status" aria-live="polite">טוען את התוכנית…</span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">הכנה לבחינה <span>/</span> <strong id="page-label">מבט על</strong></div><div class="topbar-actions"><span class="local-tag"><i></i> מרחב אישי · מקומי</span><button class="icon-button" id="settings-button" aria-label="גיבוי והגדרות" title="גיבוי והגדרות">⚙</button></div></header>
+    <main id="main" tabindex="-1"><div class="loading"><span class="brand-mark">✳</span><p>מסדרים את המפה…</p></div></main>
+    <footer>התוכנית היא כלי לקבלת החלטות. מוכנות נמדדת בפתרון עצמאי, לא בכמות עמודים שנקראו.</footer>
+  </div>
+  <dialog id="detail-dialog" aria-labelledby="dialog-title"><div id="dialog-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
