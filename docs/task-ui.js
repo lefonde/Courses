@@ -17,8 +17,9 @@ window.StudyTasks = (() => {
       <div class="status-line">${tag(fmtDate(s.date))}${tag(timeLabel(s.minutes))}${isDone(s)?tag('המשימה הושלמה','green'):''}${s.learned?tag('החומר סומן כנלמד','green'):''}</div>
       <p class="task-goal">${esc(s.objective)}</p>
       ${!setup&&s.kind!=='mock'?StudyMeetings.taskSummary(id):''}
+      ${sessionModeSelector(s)}
       <div class="task-main-actions">${primary}</div>
-      ${!setup?'<p class="hint">מדביקים את הבקשה בשיחה עם AI שיש לו גישה לקובצי הקורס, ומתחילים ללמוד שם. הבקשה כוללת את הנושא, המקורות והנחיות למורה. כשעוצרים, חוזרים לכאן ובוחרים „עדכון מהמפגש” כדי לשמור מאיפה להמשיך.</p>':''}
+      ${!setup?'<p class="hint">מדביקים את הבקשה בשיחה עם מחברת NotebookLM שמכילה את חומרי הקורס. המורה ישתמש במקורות המחברת ובאופן העזרה שבחרת. כשעוצרים, חוזרים לכאן ובוחרים „עדכון מהמפגש” כדי לשמור מאיפה להמשיך.</p>':''}
       ${deps.length?`<details class="task-details"><summary>לפני המשימה: ${deps.length} משימות קודמות עדיין פתוחות</summary><div class="source-links">${deps.map(x=>`<button class="source-link" data-action="session" data-id="${x.id}">${esc(x.title)}<span>פתיחה ←</span></button>`).join('')}</div></details>`:''}
       ${window.StudyReviews?.taskEntry(id)||''}
       ${window.StudyScaffold?.enabled(id)?StudyScaffold.entry(id):`<h3>מה לעשות</h3><ol class="task-steps">${arr(s.steps).map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`}

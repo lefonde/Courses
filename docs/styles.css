@@ -72,6 +72,16 @@
 .example-steps li + li { margin-top: 10px; }
 #recommend-context-form { margin-top: 20px; }
 #dialog-title:focus { outline: none; }
+.teaching-modes { border: 1px solid var(--line); border-radius: 12px; margin: 18px 0; padding: 14px; min-width: 0; }
+.teaching-modes legend { font-weight: 650; padding: 0 6px; font-size: 1rem; }
+.teaching-mode { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; padding: 10px; border: 1px solid transparent; border-radius: 8px; }
+.teaching-mode + .teaching-mode { margin-top: 6px; }
+.teaching-mode:has(input:checked) { border-color: var(--accent); background: var(--panel-2); }
+.teaching-mode:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.teaching-mode input { flex: 0 0 auto; margin-top: 5px; accent-color: var(--accent); }
+.teaching-mode strong, .teaching-mode small { display: block; line-height: 1.65; }
+.teaching-mode strong { font-size: 1rem; }
+.teaching-mode small { color: var(--muted); font-size: .9rem; margin-top: 3px; }
 @media (max-width:620px) {
   .recommend-next-action .button { width: 100%; white-space: normal; }
   .recommend-secondary .text-link { min-height: 42px; text-align: start; }
