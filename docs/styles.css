@@ -73,6 +73,22 @@
 #recommend-context-form { margin-top: 20px; }
 #dialog-title:focus { outline: none; }
 .teaching-modes { border: 1px solid var(--line); border-radius: 12px; margin: 18px 0; padding: 14px; min-width: 0; }
+.plan-intro { max-width: 880px; line-height: 1.85; }
+/* Only the dialog body scrolls; its border must not create a second scrollbar. */
+#detail-dialog { overflow: hidden; }
+#dialog-content { max-height: calc(90dvh - 2px); }
+.plan-intro .step-list li + li { margin-top: 8px; }
+.plan-changes { display: grid; gap: 16px; margin: 20px 0; }
+.plan-change { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel-2); }
+.plan-change h3 { line-height: 1.6; margin-bottom: 8px; }
+.plan-change label { display: block; margin: 12px 0 6px; }
+.plan-before { color: var(--muted); padding-block: 8px; }
+.bank-math { line-height: 1.95; overflow-wrap: anywhere; }
+.bank-math li + li { margin-top: 14px; }
+.bank-math math { direction: ltr; unicode-bidi: isolate; font-size: 1.12em; }
+.bank-math .formula { direction: ltr; unicode-bidi: isolate; display: inline-block; max-width: 100%; overflow-x: auto; vertical-align: middle; }
+.bank-math math[display="block"] { display: block; max-width: 100%; overflow-x: auto; padding: 12px 0; text-align: center; }
+.source-link small { display: block; margin-top: 5px; color: var(--muted); }
 .teaching-modes legend { font-weight: 650; padding: 0 6px; font-size: 1rem; }
 .teaching-mode { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; padding: 10px; border: 1px solid transparent; border-radius: 8px; }
 .teaching-mode + .teaching-mode { margin-top: 6px; }

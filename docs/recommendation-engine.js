@@ -1,10 +1,11 @@
 /* One explainable next action. No clock reads, DOM, persistence, or schedule mutation. */
 (function (root, factory) {
   const content = typeof module === 'object' && module.exports ? require('./review-content.js') : root.StudyReviewContent;
-  const api = factory(content);
+  const calendar = typeof module === 'object' && module.exports ? require('./plan-calendar.js') : root.StudyPlanCalendar;
+  const api = factory(content, calendar);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root) root.StudyRecommendationEngine = api;
-})(typeof window === 'undefined' ? globalThis : window, function (content) {
+})(typeof window === 'undefined' ? globalThis : window, function (content, calendar) {
   'use strict';
   const list = value => Array.isArray(value) ? value : [];
   const stamp = value => typeof value === 'string' ? Date.parse(value) : NaN;
@@ -12,7 +13,9 @@
   const sessions = (schedule, state) => [...list(schedule.sessions), ...list(state.settings?.customSessions)].map(s => ({...s, ...(state.sessionUpdates?.[s.id] || {})}));
   const dayOf = (date, schedule, state) => ({...list(schedule.days).find(d => d.date === date), ...(state.dayOverrides?.[date] || {}), date});
   const committed = (s, schedule, state) => !s.conditional || dayOf(s.date, schedule, state).confirmedOptional === true;
-  const startOf = s => Number.isFinite(clock(s?.start)) && /^\d{4}-\d{2}-\d{2}$/.test(s?.date || '') ? stamp(`${s.date}T${s.start}:00+03:00`) : NaN;
+  const startOf = s => Number.isFinite(clock(s?.start)) && calendar.dateValid(s?.date) ? stamp(calendar.localStamp(s.date, s.start)) : NaN;
+  const dateOnly = s => !s?.start && calendar.dateValid(s?.date);
+  const workLeft = s => Number.isInteger(s?.remainingMinutes) && s.remainingMinutes >= 0 ? s.remainingMinutes : s.minutes;
   const compare = (a, b) => String(a.date).localeCompare(String(b.date)) || String(a.start || '23:59').localeCompare(String(b.start || '23:59')) || String(a.id).localeCompare(String(b.id));
   const displayDate = value => new Intl.DateTimeFormat('he-IL', {timeZone: 'Asia/Jerusalem', day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'}).format(new Date(value));
   const israelDay = value => new Intl.DateTimeFormat('sv-SE', {timeZone: 'Asia/Jerusalem', year: 'numeric', month: '2-digit', day: '2-digit'}).format(new Date(value));
@@ -35,12 +38,12 @@
     if (s.status === 'completed') reasons.push('המשימה שאליה הוקצה הזמן כבר סומנה כבוצעה.');
     if (!committed(s, schedule, state)) reasons.push('חלון הלימוד של המשימה עדיין לא אושר.');
     const begin = clock(s.start), end = begin + s.minutes, day = dayOf(s.date, schedule, state);
-    if (!Number.isFinite(startOf(s)) || !Number.isInteger(s.minutes) || s.minutes <= 0) reasons.push('למשימה חסרים מועד או משך תקינים.');
+    if ((!Number.isFinite(startOf(s)) && !dateOnly(s)) || !Number.isInteger(s.minutes) || s.minutes <= 0) reasons.push('למשימה חסרים מועד או משך תקינים.');
     else {
       const windows = list(day.windows).filter(w => !w.conditional || day.confirmedOptional === true);
-      if (!windows.some(w => begin >= clock(w.start) && end <= clock(w.end))) reasons.push('המשימה אינה נכנסת בחלון לימוד מאושר ביום הזה.');
+      if (windows.length && !windows.some(w => begin >= clock(w.start) && end <= clock(w.end))) reasons.push('המשימה אינה נכנסת בחלון לימוד מאושר ביום הזה.');
       const sameDay = sessions(schedule, state).filter(x => x.date === s.date && !x.disabled && committed(x, schedule, state));
-      if (sameDay.some(x => x.id !== s.id && Number.isFinite(clock(x.start)) && begin < clock(x.start) + x.minutes && end > clock(x.start))) reasons.push('המשימה חופפת למשימה אחרת בתוכנית.');
+      if (Number.isFinite(begin) && sameDay.some(x => x.id !== s.id && Number.isFinite(clock(x.start)) && begin < clock(x.start) + x.minutes && end > clock(x.start))) reasons.push('המשימה חופפת למשימה אחרת בתוכנית.');
       const capacity = Number(day.capacityMinutes || 0) + (day.confirmedOptional === true ? Number(day.optionalMinutes || 0) + Number(day.conditionalMinutes || 0) : 0);
       if (sameDay.reduce((n, x) => n + Number(x.minutes || 0), 0) > capacity) reasons.push('סך המשימות ביום הזה חורג מהזמן הזמין שנקבע.');
     }
@@ -49,7 +52,7 @@
   }
   function reviewIssues(review, schedule, state) {
     const s = sessions(schedule, state).find(s => s.id === review.sessionId), reasons = sessionIssues(s, schedule, state);
-    if (s && Number.isFinite(startOf(s)) && stamp(review.dueAt) !== startOf(s)) reasons.push('מועד המשימה השתנה מאז שיבוץ החזרה; צריך לבחור מחדש את מועד החזרה.');
+    if (s && (Number.isFinite(startOf(s)) ? stamp(review.dueAt) !== startOf(s) : dateOnly(s) && (!Number.isFinite(stamp(review.dueAt)) || calendar.dayKey(review.dueAt) !== s.date))) reasons.push('מועד המשימה השתנה מאז שיבוץ החזרה; צריך לבחור מחדש את מועד החזרה.');
     if (!['practice', 'review'].includes(s?.kind)) reasons.push('החזרה צריכה להיות משובצת בתוך משימת תרגול או חזרה.');
     return reasons;
   }
@@ -89,12 +92,12 @@
     const time = stamp(now), today = israelDay(time), all = sessions(schedule, state).sort(compare);
     const pending = all.filter(s => !s.disabled && s.status !== 'completed' && committed(s, schedule, state));
     const problems = list(curriculum.problems).filter(official);
-    let host = context === 'planned' ? pending.find(s => Number.isFinite(startOf(s)) && startOf(s) + s.minutes * 60000 > time) : null;
-    const effectiveAt = context === 'planned' && host ? Math.max(time, startOf(host)) : time;
-    const budget = context === 'planned' && host ? Math.min(availableMinutes, Math.floor((startOf(host) + host.minutes * 60000 - effectiveAt) / 60000)) : availableMinutes;
-    const base = {context, plannedAt: context === 'planned' && host ? new Date(effectiveAt).toISOString() : null, budgetSessionId: host?.id || null, availableMinutes: budget, notices: []};
+    let host = context === 'planned' ? pending.find(s => dateOnly(s) ? s.date >= today : Number.isFinite(startOf(s)) && startOf(s) + s.minutes * 60000 > time) : null;
+    const effectiveAt = context === 'planned' && host ? Math.max(time, dateOnly(host) ? stamp(calendar.localStamp(host.date)) : startOf(host)) : time;
+    const budget = context === 'planned' && host ? Math.min(availableMinutes, dateOnly(host) ? workLeft(host) : Math.floor((startOf(host) + host.minutes * 60000 - effectiveAt) / 60000)) : availableMinutes;
+    const base = {context, plannedAt: context === 'planned' && host && !dateOnly(host) ? new Date(effectiveAt).toISOString() : null, plannedDate: context === 'planned' ? host?.date || null : null, budgetSessionId: host?.id || null, availableMinutes: budget, notices: []};
     const result = (kind, title, reason, evidence = [], extra = {}) => ({...base, kind, title, reason, evidence, sessionId: null, problemId: null, reviewId: null, minutes: null, actionLabel: 'צפייה בתוכנית', ...extra});
-    if (time >= stamp(`${schedule.exam?.date || '2026-10-08'}T${schedule.exam?.start || '16:00'}:00+03:00`)) return result('finished', 'תקופת ההכנה לבחינה הסתיימה', 'אין המלצה למשימת הכנה אחרי תחילת הבחינה. סימון זה אינו הערכה של שליטה בחומר.');
+    if (time >= stamp(calendar.localStamp(schedule.exam?.date || calendar.EXAM, schedule.exam?.start || '00:00'))) return result('finished', 'תקופת ההכנה לבחינה הסתיימה', 'אין המלצה למשימת הכנה אחרי תחילת הבחינה. סימון זה אינו הערכה של שליטה בחומר.');
     const underway = host?.status === 'in-progress' ? host : context === 'now' ? pending.find(s => s.status === 'in-progress') : null;
     const due = list(state.settings?.questionReviews?.entries).filter(r => r.status === 'planned' && stamp(r.dueAt) <= effectiveAt).sort((a, b) => stamp(a.dueAt) - stamp(b.dueAt) || a.id.localeCompare(b.id));
     // A due reservation can need repair even when every task was marked done.
@@ -116,10 +119,10 @@
       const hostReserved = replacing ? reservedMinutes(host.id, schedule, state).total : 0;
       // Keep one card period while preserving all mixed and approved review time.
       const ownCards = replacing ? Math.min(reservedMinutes(s.id, schedule, state).cards, reservedMinutes(host.id, schedule, state).cards) : 0;
-      return Number.isInteger(s.minutes) && s.minutes > 0 && s.minutes - ownCards <= budget - hostReserved;
+      return Number.isInteger(workLeft(s)) && workLeft(s) > 0 && workLeft(s) - ownCards <= budget - hostReserved;
     };
-    const contextEvidence = s => [context === 'planned' ? `חלון ההצעה: ${displayDate(effectiveAt)}, עד ${budget} דקות מתוך ״${host.title}״.` : `ציינת שיש לך עכשיו ${availableMinutes} דקות. הזמינות הנוספת לא נשמרה ביומן.`, ...(host && host.id !== s.id ? [...(reservedMinutes(host.id, schedule, state).total ? [`לפני הבחירה נשמרות ${reservedMinutes(host.id, schedule, state).total} דקות שכבר הוקצו לכרטיסיות, לתרגול מעורב ולחזרות.`] : []), 'זו הצעת עבודה בחלון הקיים; שום משימה אינה מועברת או מתקצרת ביומן.'] : [])];
-    const taskResult = (kind, s, reason, evidence = [], problemId = null) => result(kind, s.title, reason, [...evidence, ...contextEvidence(s)], {sessionId: s.id, problemId, minutes: s.minutes, actionLabel: 'פתיחת המשימה'});
+    const contextEvidence = s => [context === 'planned' ? dateOnly(host) ? `המפגש מתוכנן ל־${host.date}, ללא שעת התחלה קבועה. להצעה יש עד ${budget} דקות מתוך ״${host.title}״.` : `חלון ההצעה: ${displayDate(effectiveAt)}, עד ${budget} דקות מתוך ״${host.title}״.` : `ציינת שיש לך עכשיו ${availableMinutes} דקות. הזמינות הנוספת לא נשמרה ביומן.`, ...(host && host.id !== s.id ? [...(reservedMinutes(host.id, schedule, state).total ? [`לפני הבחירה נשמרות ${reservedMinutes(host.id, schedule, state).total} דקות שכבר הוקצו לכרטיסיות, לתרגול מעורב ולחזרות.`] : []), 'זו הצעת עבודה בחלון הקיים; שום משימה אינה מועברת או מתקצרת ביומן.'] : [])];
+    const taskResult = (kind, s, reason, evidence = [], problemId = null) => result(kind, s.title, reason, [...evidence, ...contextEvidence(s)], {sessionId: s.id, problemId, minutes: workLeft(s), actionLabel: 'פתיחת המשימה'});
     for (const review of due) {
       if (underway && review.sessionId !== underway.id) {base.notices.push('יש חזרה שהגיעה זמנה במשימה אחרת; כדאי לבדוק אותה אחרי המפגש שכבר התחיל.'); continue;}
       const problem = problems.find(p => p.id === review.problemId);
@@ -132,7 +135,7 @@
     }
     // Do not replace a meeting already in progress with an unrelated priority.
     if (underway) return fit(underway) && allowedTask(underway) ? taskResult('baseline', underway, 'המשימה כבר התחילה; כדאי להמשיך מנקודת העצירה שתיעדת לפני בחירת משימה אחרת.') : result('no-fit', 'המשימה שהתחלת אינה מתאימה לזמן הפנוי שבחרת', 'למשימה שהתחלת דרושים יותר זמן או ריכוז מאלה שבחרת כעת. אפשר לפתוח את פרטיה, לראות היכן עצרת ולהחליט אם להמשיך עכשיו או להזיז אותה למועד אחר.', contextEvidence(underway), {sessionId: underway.id, actionLabel: 'פתיחת נקודת ההמשך'});
-    const relevant = context === 'planned' ? pending.filter(s => startOf(s) <= effectiveAt || s.id === host.id) : pending;
+    const relevant = context === 'planned' ? pending.filter(s => dateOnly(s) ? s.date <= host.date : startOf(s) <= effectiveAt || s.id === host.id) : pending;
     const important = relevant.filter(s => list(s.problemIds).some(id => problems.some(p => p.id === id))).sort(compare);
     for (const dependent of important) {
       const found = missingPrerequisite(dependent, all, state);

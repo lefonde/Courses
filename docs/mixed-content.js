@@ -28,8 +28,8 @@
     math: plain,
     mml: `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" dir="ltr">${markup}</math>`
   });
-  const foundations = ['foundations-variance'];
-  const tails = ['foundations-variance', 'tails-pairwise'];
+  const foundations = ['nov26-2026-10-05'];
+  const tails = ['nov26-2026-10-05', 'nov26-2026-10-07'];
   const shortAttempt = text('בחר דרך, ציין את התנאים שאתה משתמש בהם וכתוב הצבה או חישוב ראשון. אפשר לעצור אחרי צעד ראשון תקין; אין צורך להשלים את הפתרון. אם המידע אינו מספיק, ציין מה חסר.');
 
   return {

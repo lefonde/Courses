@@ -156,6 +156,8 @@
     if (event.note.trim()) lines.push(`מה קרה במפגש: ${event.note}`);
     if (event.continuation.trim()) lines.push(`נקודת ההמשך שהלומד שמר: ${event.continuation}`);
     else lines.push('לא נשמרה נקודת המשך מפורטת; ברר בקצרה עם הלומד מאיפה מתאים להמשיך.');
+    const remaining = state.sessionUpdates && state.sessionUpdates[sessionId] && state.sessionUpdates[sessionId].remainingMinutes;
+    if (Number.isInteger(remaining) && remaining > 0) lines.push(`הערכת הלומד לעבודה שנותרה במשימה: ${remaining} דקות. זו הערכה מפורשת, ולא תוצאה של חיסור הזמן שכבר עבר.`);
     lines.push('השתמש בעדכון הזה לצד האבחון המקורי. אל תסיק שסימון סיום משימה מוכיח שליטה, ואל תניח שפרט שלא צוין כבר נבדק.');
     return lines.join('\n');
   }

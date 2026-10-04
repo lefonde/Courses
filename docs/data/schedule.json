@@ -1,11 +1,13 @@
 {
-  "version": 1,
+  "version": 2,
+  "id": "november-2026",
+  "planId": "november-2026",
   "timezone": "Asia/Jerusalem",
-  "anchorAt": "2026-09-21T19:40:00+03:00",
+  "anchorAt": "2026-10-04T00:00:00+03:00",
   "exam": {
-    "date": "2026-10-08",
-    "start": "16:00",
-    "end": "18:30",
+    "date": "2026-11-23",
+    "start": null,
+    "end": null,
     "minutes": 150,
     "title": "בחינה באלגוריתמים אקראיים",
     "questions": 3,
@@ -14,1495 +16,2226 @@
       40,
       20
     ],
-    "materials": "חומר סגור; דף הנוסחאות המצורף לשאלון בלבד. אין להביא דף פרטי."
+    "materials": "חומר סגור; דף הנוסחאות המצורף לשאלון בלבד. אין להביא דף פרטי.",
+    "confirmedOn": "2026-10-04"
   },
   "days": [
     {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "light",
-      "date": "2026-09-21",
-      "label": "מעמידים את התוכנית",
-      "kind": "setup",
-      "capacityMinutes": 30,
-      "windows": [
-        {
-          "start": "19:40",
-          "end": "21:00"
-        }
-      ],
-      "notes": "נותרו 80 דקות ברוטו. מוקצות 30 דקות להתארגנות בלבד, והיתרה אינה משויכת ללימוד; הזמן שכבר חלף אינו נספר. אם האתר נפתח מאוחר יותר, מעבירים רק את ההתארגנות לחלון הבא."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "light",
-      "date": "2026-09-22",
-      "label": "מבססים את השונות",
-      "kind": "workday",
-      "capacityMinutes": 60,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "חלון קצר לפני יום עבודה. שעה ממוקדת היא תקרת התכנון, לא התחייבות לשעתיים נטו."
-    },
-    {
-      "optionalMinutes": 90,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "light",
-      "date": "2026-09-23",
-      "label": "תלות ובחירת כלי",
-      "kind": "workday",
-      "capacityMinutes": 60,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "ייתכן חלון נוסף מעבר לזמן המתוכנן; הוא אינו חלק מתקציב הליבה ולא שויך לשעה שלא אושרה."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "light",
-      "date": "2026-09-24",
-      "label": "מבעיה מקומית לאיחוד",
-      "kind": "workday",
-      "capacityMinutes": 60,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "משימות קצרות על חומר שנפגשת בו. אם חסרה התשתית, מעבירים את התיקון לבלוק הראשון של יום העומק."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "deep",
-      "date": "2026-09-25",
-      "label": "יום עומק · חסמי זנב",
-      "kind": "deep",
-      "capacityMinutes": 300,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        },
-        {
-          "start": "10:00",
-          "end": "16:00"
-        }
-      ],
-      "notes": "חמש שעות ריכוז מתוך שמונה שעות ביומן. ההפסקות והמרווחים מחוץ לזמן נטו."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "deep",
-      "date": "2026-09-26",
-      "label": "יום עומק · ביטול אקראיות",
-      "kind": "deep",
-      "capacityMinutes": 300,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        },
-        {
-          "start": "10:00",
-          "end": "16:00"
-        }
-      ],
-      "notes": "תקציב פתיחה לשתי השיטות ולמבוא מרקוב. מעבר על דוגמה אינו מעיד עדיין על פתרון עצמאי."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "light",
-      "date": "2026-09-27",
-      "label": "מחברים את שתי השיטות",
-      "kind": "workday",
-      "capacityMinutes": 60,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "משלימים את אותה בעיית חתך בשיטה השנייה; אין לפתוח כאן נושא כבד נוסף."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 150,
-      "reserveMinutes": 0,
-      "energy": "light",
-      "date": "2026-09-28",
-      "label": "סימולציית ביניים · מותנית",
-      "kind": "workday",
-      "capacityMinutes": 45,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        },
-        {
-          "start": "16:00",
-          "end": "18:30",
-          "conditional": true
-        }
-      ],
-      "notes": "הסימולציה דורשת אישור של חלון פנוי רצוף. היא תקפה למדידת זמן רק אם אפשר לעבוד 150 דקות ברצף ללא הפרעות."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "deep",
-      "date": "2026-09-29",
-      "label": "יום עומק · מרקוב",
-      "kind": "deep",
-      "capacityMinutes": 300,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        },
-        {
-          "start": "10:00",
-          "end": "16:00"
-        }
-      ],
-      "notes": "תחקור הביניים, משוואות, זמני פגיעה ונשנות; בסוף פתיחה מדודה לגרפים. קיימת תוכנית חלופית אם סימולציית הביניים נדחית."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "light",
-      "date": "2026-09-30",
-      "label": "מרקוב מחוץ למטריצה",
-      "kind": "workday",
-      "capacityMinutes": 60,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "סקירת דוגמאות ההילוך והקישוריות מהכיתה, עם גבול זמן ברור."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "deep",
-      "date": "2026-10-01",
-      "label": "יום עומק · גרפים וקיום",
-      "kind": "deep",
-      "capacityMinutes": 300,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        },
-        {
-          "start": "10:00",
-          "end": "16:00"
-        }
-      ],
-      "notes": "מגינים על גרפים, תיקונים וחומר כיתה גם כשאינם מופיעים בדוגמה הרשמית."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "light",
-      "date": "2026-10-02",
-      "label": "סוגרים כיסוי ממ״נים",
-      "kind": "light",
-      "capacityMinutes": 90,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "ביומן קיים חלון הבוקר בלבד. אין להניח שזה יום עומק פנוי."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "deep",
-      "date": "2026-10-03",
-      "label": "יום עומק · בחינה מלאה",
-      "kind": "deep",
-      "capacityMinutes": 300,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        },
-        {
-          "start": "10:00",
-          "end": "16:00"
-        }
-      ],
-      "notes": "סימולציה רצופה על שאלות שלא נלמדו מראש, ואחריה תחקור ותיקון. זו העדות המרכזית לקצב ולמוכנות."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 0,
-      "energy": "light",
       "date": "2026-10-04",
-      "label": "חזרה מרווחת · זנבות",
-      "kind": "workday",
-      "capacityMinutes": 45,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "עדיפות לטעות שנצפתה בסימולציה. שאלה שכבר נפתרה משמשת שליפה, לא עדות לווריאציה חדשה."
-    },
-    {
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
       "optionalMinutes": 0,
       "conditionalMinutes": 0,
       "reserveMinutes": 0,
       "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
       "date": "2026-10-05",
-      "label": "חזרה מרווחת · ביטול אקראיות",
+      "label": "מפגש של שעה וחצי",
       "kind": "workday",
-      "capacityMinutes": 45,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "שליפה קצרה של הוכחה וסיבוכיות, בהתאם לתוצאות הסימולציה."
-    },
-    {
+      "capacityMinutes": 90,
       "optionalMinutes": 0,
       "conditionalMinutes": 0,
       "reserveMinutes": 0,
-      "energy": "light",
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
       "date": "2026-10-06",
-      "label": "חזרה מרווחת · מרקוב וגרפים",
-      "kind": "workday",
-      "capacityMinutes": 45,
-      "windows": [
-        {
-          "start": "07:00",
-          "end": "09:00"
-        }
-      ],
-      "notes": "בוחרים את הפער המתועד הדחוף מבין שתי המשפחות; לא מנסים לדחוס שני פרקים."
-    },
-    {
-      "optionalMinutes": 0,
-      "conditionalMinutes": 0,
-      "reserveMinutes": 210,
-      "energy": "flexible",
-      "date": "2026-10-07",
-      "label": "עתודה מוגנת",
-      "kind": "reserve",
-      "capacityMinutes": 210,
-      "windows": [
-        {
-          "start": "10:00",
-          "end": "14:00"
-        },
-        {
-          "start": "16:00",
-          "end": "18:00"
-        }
-      ],
-      "notes": "210 דקות אינן מלאות מראש. הן מיועדות לתקלות ולפערי ליבה שהתגלו בפועל, ולא לפרקי העשרה חדשים."
-    },
-    {
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
       "optionalMinutes": 0,
       "conditionalMinutes": 0,
       "reserveMinutes": 0,
       "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-07",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
       "date": "2026-10-08",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-09",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-10",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-11",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-12",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-13",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-14",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-15",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-16",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-17",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-18",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-19",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-20",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-21",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-22",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-23",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-24",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-25",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-26",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-27",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-28",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-29",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-10-30",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-10-31",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-01",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-02",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-03",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-04",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-05",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-06",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-07",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-08",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-09",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-10",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-11",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-12",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-13",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-14",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-15",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-16",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-17",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-18",
+      "label": "מפגש של שעה וחצי",
+      "kind": "workday",
+      "capacityMinutes": 90,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "medium",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-19",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-20",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-21",
+      "label": "מפגש סוף שבוע",
+      "kind": "depth",
+      "capacityMinutes": 180,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 30,
+      "energy": "deep",
+      "windows": [],
+      "notes": "השעה לבחירתך. התקציב כולל הפסקות ועתודה כשסומנה; אין שעה מומצאת ביומן."
+    },
+    {
+      "date": "2026-11-22",
+      "label": "ללא זמן חובה",
+      "kind": "rest",
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
+    },
+    {
+      "date": "2026-11-23",
       "label": "יום הבחינה",
       "kind": "exam",
-      "capacityMinutes": 30,
-      "windows": [
-        {
-          "start": "10:00",
-          "end": "12:00"
-        }
-      ],
-      "notes": "חזרה קלה בלבד לפי הצורך. הבחינה 16:00–18:30; שאר החלון אינו תקציב להשלמות כבדות."
+      "capacityMinutes": 0,
+      "optionalMinutes": 0,
+      "conditionalMinutes": 0,
+      "reserveMinutes": 0,
+      "energy": "light",
+      "windows": [],
+      "notes": "זמן נוסף של 30–60 דקות אינו נדרש להשלמת התוכנית. אם התפנה, אפשר לחזור על חומר שכבר נלמד; תדירותו עדיין לא נקבעה."
     }
   ],
   "sessions": [
     {
-      "id": "setup-map",
-      "date": "2026-09-21",
-      "start": "19:40",
-      "minutes": 30,
-      "title": "בדיקת ימי הלימוד",
-      "kind": "setup",
-      "topicId": null,
-      "problemIds": [],
-      "priority": "core",
-      "objective": "לוודא שהשעות בתוכנית מתאימות לזמן שבאמת עומד לרשותך.",
-      "steps": [
-        "לפתוח את לוח הזמנים ולבדוק את ימי הלימוד עד הבחינה ב־8 באוקטובר.",
-        "לבחור יום שהשעות שלו אינן מתאימות ולעדכן את הזמן הפנוי בו. כדאי לבדוק במיוחד את ימי הלימוד הארוכים ואת הסימולציה ב־28 בספטמבר, שחופפת לעבודה.",
-        "לחזור לכאן ולסמן שסיימת את המשימה. אם כל השעות מתאימות, אין צורך לשנות דבר."
-      ],
-      "doneWhen": "עברתי על ימי הלימוד ועדכנתי שעות שאינן מתאימות לי.",
-      "dependsOn": [],
-      "conditional": false,
-      "stage": "planning"
-    },
-    {
-      "id": "foundations-variance",
-      "date": "2026-09-22",
-      "start": "07:00",
-      "minutes": 60,
-      "title": "להבין שונות ואיך מחשבים אותה",
-      "kind": "study",
-      "topicId": "foundations",
-      "problemIds": [],
-      "priority": "core",
-      "objective": "להבין מה השונות מודדת ומה צריך לדעת כדי לחשב שונות של סכום.",
-      "steps": [
-        "לפתוח את עמודי השונות בשיעור 2. לקרוא את הגדרת השונות ואת נוסחת השונות של סכום; לבקש הסבר לכל סימון שאינו מוכר.",
-        "לעבור עם הסבר על דוגמה קטנה של סכום אינדיקטורים: תחילה כשהם בלתי תלויים ואחר כך כשהם תלויים.",
-        "לסגור את ההסבר ולכתוב במילים שלך מה השתנה בחישוב, ומתי מותר לחבר את השונויות. לבדוק את הכתיבה ולרשום מה עדיין לא ברור."
-      ],
-      "doneWhen": "עברתי על שתי הדוגמאות, ניסיתי להסביר את ההבדל ביניהן ובדקתי את ההסבר שלי.",
-      "dependsOn": [],
-      "conditional": false,
-      "stage": "foundation"
-    },
-    {
-      "id": "permutation-indicators",
-      "date": "2026-09-23",
-      "start": "07:00",
-      "minutes": 60,
-      "title": "ממ״ן 12, שאלה 1: אינדיקטורים ושונות בתמורה",
-      "kind": "study",
-      "topicId": "foundations",
-      "problemIds": [
-        "m12-q1"
-      ],
-      "priority": "core",
-      "objective": "לתרגל הגדרת אינדיקטורים, חישוב שונות ובחירת חסם בשאלה על תמורה אקראית.",
-      "steps": [
-        "לקרוא את שאלה 1 ולוודא שהמושגים תמורה, נקודת שבת והצלבה ברורים לפני החישוב.",
-        "לנסות את סעיפי החובה לפי הסדר: תוחלת ושונות של נקודות שבת, תוחלת ההצלבות, חסמי מרקוב וצ׳בישב והשאלה על צ׳רנוף. במקרה של תקיעה, לבקש הסבר לשלב שבו נעצרת.",
-        "לבדוק את מה שנכתב ולציין אילו סעיפים נשארו להשלמה. אם השעה הסתיימה, ממשיכים אותם במשימת התיקון של 25 בספטמבר."
-      ],
-      "doneWhen": "ניסיתי את סעיפי החובה, בדקתי את העבודה ורשמתי בדיוק אילו סעיפים לא הספקתי או לא הבנתי.",
-      "dependsOn": [
-        "foundations-variance"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "optional-wfh-repair",
-      "date": "2026-09-23",
+      "id": "nov26-2026-10-05",
+      "date": "2026-10-05",
       "start": null,
-      "minutes": 75,
-      "title": "אם מתפנה זמן בעבודה: השלמת ממ״ן 12, שאלה 1",
-      "kind": "practice",
+      "minutes": 90,
+      "title": "לבנות מחדש את בסיס השונות",
+      "kind": "study",
       "topicId": "foundations",
-      "problemIds": [
-        "m12-q1"
+      "topicIds": [
+        "foundations"
       ],
-      "priority": "optional",
-      "objective": "להשתמש בחלון נוסף, אם יתפנה, להשלמת סעיף שנשאר פתוח.",
-      "steps": [
-        "לפתוח את העבודה על ממ״ן 12, שאלה 1, ולבחור את הסעיף הראשון שעוד לא הושלם.",
-        "לחזור להסבר הדרוש, לנסות את הסעיף ולבדוק את התשובה.",
-        "לרשום מה הושלם ומה נשאר. אם לא התפנה זמן, אפשר לדלג על המשימה הזאת."
+      "problemIds": [],
+      "bankIds": [
+        "bank-C09",
+        "bank-C10"
       ],
-      "doneWhen": "עבדתי על סעיף שנשאר פתוח ורשמתי מה הצלחתי להשלים בזמן שהיה לי.",
-      "dependsOn": [
-        "foundations-variance"
-      ],
-      "conditional": true,
-      "stage": "independent",
-      "optional": true
-    },
-    {
-      "id": "union-coupons-windows",
-      "date": "2026-09-24",
-      "start": "07:00",
-      "minutes": 60,
-      "title": "ממ״ן 11, שאלות 1–2: שימוש בחסם האיחוד",
-      "kind": "practice",
-      "topicId": "foundations",
-      "problemIds": [
-        "m11-q1",
-        "m11-q2"
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3
+          ]
+        }
       ],
       "priority": "core",
-      "objective": "לפתח הוכחות לשתי השאלות תוך שימוש בשיטה שהמטלה דורשת, ולהצדיק את בחירות המידול והחישוב.",
+      "objective": "לבנות מן הבסיס את מושגי המשתנה המקרי, התוחלת והשונות, ובהמשך לחשב שונות של סכום.",
       "steps": [
-        "להקדיש כ־25 דקות לשאלה 1: לקרוא את הנוסח ואת דרישת השיטה ולנסות לפתח הוכחה שלמה.",
-        "להקדיש כ־25 דקות לשאלה 2: לנסות פתרון מנומק לפי הנוסח, ולבקש עזרה בנקודה שבה נדרשת.",
-        "להקדיש זמן לבדיקת שני הניסיונות: ההנחות, המעברים והחישובים. לרשום מה נבנה עצמאית ומה הושלם בעזרת המורה."
+        "מתחילים מן הבסיס: להגדיר משתנה מקרי ואינדיקטור, להסביר תוחלת במילים ולחשב דוגמה פשוטה. אין הנחה שזכורים המושגים מהמחזור הקודם.",
+        "לעבור להסבר השונות, דוגמה של סכום בלתי־תלוי ודוגמה תלויה. לתת שם ופירוש לכל סימון, ואז לנסות חישוב קצר ולבדוק אותו.",
+        "בסיום: לכתוב חישוב שונות של סכום ולהסביר מתי איברי השונות המשותפת נעלמים. אם הבסיס כבר יציב, עוברים מיד למקרה תלוי. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "ניסיתי את שתי השאלות לפי דרישות המטלה, בדקתי את העבודה ורשמתי מה נשאר להשלמה ואיזו עזרה נדרשה.",
-      "dependsOn": [
-        "foundations-variance"
-      ],
+      "doneWhen": "עברתי על ההגדרות ועל דוגמה בלתי־תלויה ותלויה, ניסיתי חישוב בעצמי ובדקתי מה עוד דורש הסבר.",
+      "dependsOn": [],
       "conditional": false,
-      "stage": "independent"
+      "stage": "foundation",
+      "role": "study",
+      "week": 1,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי.",
+      "bankScopeNote": "במפגש הראשון לומדים רק את היסודות. C09 ו־C10 מציינים משפחות שנחזור אליהן; אין לפתור כעת את כל חבילת ההוכחות או את בניית האי־תלות החלקית."
     },
     {
-      "id": "tails-pairwise",
-      "date": "2026-09-25",
-      "start": "07:00",
-      "minutes": 75,
-      "title": "ממ״ן 12, שאלה 2: בחירת חסם כשיש אי־תלות בזוגות",
+      "id": "nov26-2026-10-07",
+      "date": "2026-10-07",
+      "start": null,
+      "minutes": 90,
+      "title": "ממ״ן 12, שאלה 2 — כדורים ותאים",
       "kind": "study",
       "topicId": "tails",
+      "topicIds": [
+        "tails",
+        "foundations"
+      ],
       "problemIds": [
         "m12-q2",
         "lecture-tail-choice"
       ],
-      "priority": "core",
-      "objective": "לבחור חסם שמתאים להנחות השאלה על העומס בתאים.",
-      "steps": [
-        "אם נדרש רענון, לחזור לתנאים של חסמי הזנב בשיעור 2; להפריד בין ידע שיש לרענן לבין בחירת הכלי בשאלה.",
-        "לקרוא את שאלה 2 ולנסות לפתח הוכחה תוך בחירת המשתנים והכלים והצדקת ההנחות. המטלה אוסרת הוכחה המבוססת על ספירת זוגות מתנגשים.",
-        "לבדוק את הניסיון, את תקפות הכלים ואת החישובים. לפי הצורך לקבל רמז, הסבר נקודתי או פתרון מלא ולתעד מה נדרש."
+      "bankIds": [
+        "bank-A02"
       ],
-      "doneWhen": "ניסיתי הוכחה לפי מגבלות המטלה, בדקתי את ההנחות ואת החישובים ותיעדתי מה השלמתי ואיזו עזרה נדרשה.",
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "להבחין בין ההנחות שהשאלה נותנת לבין ההנחות שכל משפט דורש. להשלים כאן רקע קצר על חסם האיחוד לפני הניסיון בשאלת המקור; הרחבות הבנק יחכו.",
+      "steps": [
+        "בתחילת המפגש: אינדיקטורים, שונות, ומה מותר להסיק מאי־תלות בזוגות.",
+        "לימוד וניסיון: להבחין בין ההנחות שהשאלה נותנת לבין ההנחות שכל משפט דורש. להשלים כאן רקע קצר על חסם האיחוד לפני הניסיון בשאלת המקור; הרחבות הבנק יחכו.",
+        "בסיום: להוכיח את חסם העומס המרבי המבוקש בשאלת המקור, בהסתברות הנדרשת ובלי ספירת זוגות כדורים מתנגשים. להסביר מדוע ההנחות מספיקות. דוגמה על אי־תלות היא תרגול הכנה בלבד, ואינה מחליפה את ההוכחה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "להוכיח את חסם העומס המרבי המבוקש בשאלת המקור, בהסתברות הנדרשת ובלי ספירת זוגות כדורים מתנגשים. להסביר מדוע ההנחות מספיקות. דוגמה על אי־תלות היא תרגול הכנה בלבד, ואינה מחליפה את ההוכחה.",
       "dependsOn": [
-        "permutation-indicators",
-        "union-coupons-windows"
+        "nov26-2026-10-05"
       ],
       "conditional": false,
-      "stage": "guided"
+      "stage": "guided",
+      "role": "study",
+      "week": 1,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "official-balls",
-      "date": "2026-09-25",
-      "start": "10:00",
-      "minutes": 75,
-      "title": "דוגמה 1 של המרצה: כדורים ותאים",
+      "id": "nov26-2026-10-09",
+      "date": "2026-10-09",
+      "start": null,
+      "minutes": 180,
+      "title": "ממ״ן 12, שאלה 1 — תמורות ושונות",
+      "kind": "study",
+      "topicId": "foundations",
+      "topicIds": [
+        "foundations",
+        "tails"
+      ],
+      "problemIds": [
+        "m12-q1"
+      ],
+      "bankIds": [
+        "bank-A03",
+        "bank-C09"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לתרגל הסתברות משותפת וספירה בתמורה, ואז להשוות חסמים. הוכחת נתון הרשות על הצלבות אינה תנאי לסיום.",
+      "steps": [
+        "בתחילת המפגש: חישוב שונות של סכום וההבדל בין מרקוב לצ׳בישב.",
+        "לימוד וניסיון: לתרגל הסתברות משותפת וספירה בתמורה, ואז להשוות חסמים. הוכחת נתון הרשות על הצלבות אינה תנאי לסיום.",
+        "בסיום: פתרון או ניסיון בדוק בכל סעיפי החובה, עם סימון של הצעד שבו נדרשה עזרה. שחזור הוכחה קצרה אחת מהכיתה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "פתרון או ניסיון בדוק בכל סעיפי החובה, עם סימון של הצעד שבו נדרשה עזרה. שחזור הוכחה קצרה אחת מהכיתה.",
+      "dependsOn": [
+        "nov26-2026-10-05",
+        "nov26-2026-10-07"
+      ],
+      "conditional": false,
+      "stage": "guided",
+      "role": "study",
+      "week": 1,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-10-10",
+      "date": "2026-10-10",
+      "start": null,
+      "minutes": 180,
+      "title": "ממ״ן 11, שאלות 1–2 — קופונים ורצפים",
       "kind": "practice",
       "topicId": "tails",
+      "topicIds": [
+        "tails"
+      ],
       "problemIds": [
-        "sample-q1"
+        "m11-q1",
+        "m11-q2"
+      ],
+      "bankIds": [
+        "bank-A06",
+        "bank-A05"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            2
+          ]
+        }
       ],
       "priority": "core",
-      "objective": "לבנות ולהצדיק פתרון מלא לשאלת איזון העומסים בדוגמה הרשמית.",
+      "objective": "לעבוד על שני נוסחי החובה המקוריים. לחלק את זמן הניסיון ביניהם; אם אחד נתקע, לתעד ולהשתמש בעתודה לפני הרחבות.",
       "steps": [
-        "לקרוא את שאלה 1 בשאלון הדוגמה ולוודא שהדרישה וכל הנתונים ברורים.",
-        "לנסות לפתח פתרון מלא: לבחור דרך, להצדיק את ההנחות ולבצע את החישובים. לבקש עזרה לפי הצורך ואופן הלמידה שנבחר.",
-        "לבדוק מול פתרון המרצה או המורה את הניסיון ואת הטענות המילוליות. לתקן ולתעד מה נפתר עצמאית, מה נעשה בעזרה ומה נשאר פתוח."
+        "בתחילת המפגש: מאורעות, איחוד, מכפלה ולינאריות. את הרחבות המומנט השני בבנק אפשר לדחות עד לימוד הספים.",
+        "לימוד וניסיון: לעבוד על שני נוסחי החובה המקוריים. לחלק את זמן הניסיון ביניהם; אם אחד נתקע, לתעד ולהשתמש בעתודה לפני הרחבות.",
+        "בסיום: הגדרה ברורה של המאורעות, ניסיון בדוק בשתי שאלות המקור והסבר מדוע המעבר מטענה מקומית לטענה כללית תקף. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "עבדתי על השאלה, השוויתי לפתרון המרצה ותיקנתי או רשמתי את השלבים שנותרו לא ברורים.",
+      "doneWhen": "הגדרה ברורה של המאורעות, ניסיון בדוק בשתי שאלות המקור והסבר מדוע המעבר מטענה מקומית לטענה כללית תקף.",
       "dependsOn": [
-        "tails-pairwise"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07"
       ],
       "conditional": false,
-      "stage": "independent"
+      "stage": "independent",
+      "role": "study",
+      "week": 1,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "tails-windows",
-      "date": "2026-09-25",
-      "start": "11:30",
-      "minutes": 60,
-      "title": "ממ״ן 12, שאלה 4: רצפים של הטלות",
-      "kind": "practice",
-      "topicId": "tails",
-      "problemIds": [
-        "m12-q4"
-      ],
-      "priority": "core",
-      "objective": "לבנות ולהצדיק הוכחה לשאלה, לבצע את החישובים ולבדוק את ההנחות ואת המסקנה.",
-      "steps": [
-        "לקרוא את נוסח שאלה 4 ולהבהיר את הנתונים ואת הטענה שצריך להוכיח.",
-        "לנסות לפתח הוכחה ולנמק את בחירת הדרך ואת המעברים. אפשר לכתוב כמה צעדים או פתרון מלא ברצף ולבקש עזרה לפי הצורך.",
-        "לבדוק את הניסיון, את החישובים ואת המסקנה. לתעד מה נבנה עצמאית, מה הושלם בעזרה ומה נותר להמשך."
-      ],
-      "doneWhen": "ניסיתי לבנות הוכחה, בדקתי את ההנחות ואת החישובים ותיעדתי מה השלמתי, איזו עזרה נדרשה ומה עדיין פתוח.",
-      "dependsOn": [
-        "official-balls"
-      ],
-      "conditional": false,
-      "stage": "independent"
-    },
-    {
-      "id": "amplification",
-      "date": "2026-09-25",
-      "start": "13:00",
-      "minutes": 60,
-      "title": "ממ״ן 12, שאלה 3: הפחתת שגיאה בעזרת חזרות",
+      "id": "nov26-2026-10-12",
+      "date": "2026-10-12",
+      "start": null,
+      "minutes": 90,
+      "title": "ממ״ן 12, שאלה 3 — הגברת נכונות",
       "kind": "study",
       "topicId": "tails",
+      "topicIds": [
+        "tails"
+      ],
       "problemIds": [
         "m12-q3"
       ],
-      "priority": "core",
-      "objective": "ללמוד איך חזרות עצמאיות והכרעת רוב משפרות את סיכויי ההצלחה של אלגוריתם.",
-      "steps": [
-        "לקרוא את שאלה 3 ולברר את דרישות האלגוריתם ואת הבטחת ההצלחה המבוקשת.",
-        "לנסות לבנות את האלגוריתם ולנתח את שגיאתו ואת זמן הריצה; לבחור כלים ולנמק מדוע תנאיהם מתקיימים.",
-        "לבדוק את ההוכחה ואת החישובים ולתעד היכן נדרשו רמז, ידע חסר או פתרון מוסבר."
+      "bankIds": [
+        "bank-A04"
       ],
-      "doneWhen": "ניסיתי לכתוב אלגוריתם וניתוח של השגיאה וזמן הריצה, ובדקתי את התשובה.",
-      "dependsOn": [
-        "tails-pairwise"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "tails-repair",
-      "date": "2026-09-25",
-      "start": "14:15",
-      "minutes": 30,
-      "title": "לפתור מחדש סעיף שהתקשית בו בחסמי זנב",
-      "kind": "review",
-      "topicId": "tails",
-      "problemIds": [
-        "m12-q1",
-        "m12-q2",
-        "m12-q3",
-        "m12-q4",
-        "sample-q1"
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "sourceId": "formula-sheet",
+          "pages": [
+            4
+          ]
+        }
       ],
       "priority": "core",
-      "objective": "לחזור על קושי אחד מהתרגול של היום ולבדוק אם אפשר להתקדם בו לבד.",
+      "objective": "ללמוד את תנאי החסם הנחוץ דרך דוגמה קצרה ואז לנסות את שאלת ההגברה, בלי להניח שנוסחה מוכרת מבטיחה יישום נכון.",
       "steps": [
-        "לבחור סעיף אחד מממ״ן 12 או מדוגמת הכדורים והתאים שבו נדרשה עזרה.",
-        "לחזור רק להסבר של אותו שלב, לסגור אותו ולנסות לכתוב את הסעיף מחדש.",
-        "לבדוק את הניסיון ולרשום אם צריך לחזור אליו שוב ביום החזרה של 4 באוקטובר."
+        "בתחילת המפגש: חזרה לאחר שבוע על תוחלת, שונות ובחירת חסם.",
+        "לימוד וניסיון: ללמוד את תנאי החסם הנחוץ דרך דוגמה קצרה ואז לנסות את שאלת ההגברה, בלי להניח שנוסחה מוכרת מבטיחה יישום נכון.",
+        "בסיום: ניסיון הכולל מידול של השגיאה, תנאי ההפעלה ותלות מספר החזרות ברמת השגיאה המבוקשת. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "ניסיתי שוב סעיף אחד, בדקתי אותו ורשמתי אם עדיין נדרשת בו עזרה.",
+      "doneWhen": "ניסיון הכולל מידול של השגיאה, תנאי ההפעלה ותלות מספר החזרות ברמת השגיאה המבוקשת.",
       "dependsOn": [
-        "tails-pairwise",
-        "official-balls",
-        "tails-windows",
-        "amplification"
+        "nov26-2026-10-07"
       ],
       "conditional": false,
-      "stage": "independent"
+      "stage": "guided",
+      "role": "study",
+      "week": 2,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "conditional-expectation",
-      "date": "2026-09-26",
-      "start": "07:00",
-      "minutes": 75,
-      "title": "תוחלת מותנית: ללמוד איך בוחרים את הצעד הבא",
-      "kind": "study",
-      "topicId": "derandomization",
-      "problemIds": [
-        "lecture-conditional"
-      ],
-      "priority": "core",
-      "objective": "להבין איך הופכים הוכחת קיום הסתברותית לאלגוריתם שבוחר את המשתנים בזה אחר זה.",
-      "steps": [
-        "לפתוח את דוגמת התוחלת המותנית בשיעור 4 ולברר מהו המשתנה שסופר הצלחות ומהי התוחלת לפני כל בחירה.",
-        "לעבור עם הסבר על דוגמה קטנה: לקבע משתנה אחד, לחשב את התוחלת בכל אפשרות ולהשוות ביניהן.",
-        "לכתוב את האלגוריתם במילים ולנסות להסביר מדוע התוצאה הסופית מקיימת את ההבטחה ומה דרוש כדי לחשב כל צעד. לבדוק את ההסבר."
-      ],
-      "doneWhen": "עברתי על חישוב מפורש של צעד אחד, כתבתי את האלגוריתם וניסיתי להסביר את הנכונות ואת זמן הריצה.",
-      "dependsOn": [
-        "foundations-variance"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "multicut-conditional",
-      "date": "2026-09-26",
-      "start": "10:00",
-      "minutes": 60,
-      "title": "ממ״ן 14, שאלה 2: רב־חתך בעזרת תוחלת מותנית",
+      "id": "nov26-2026-10-14",
+      "date": "2026-10-14",
+      "start": null,
+      "minutes": 90,
+      "title": "ממ״ן 12, שאלה 4 — רצפים של הטלות",
       "kind": "practice",
-      "topicId": "derandomization",
+      "topicId": "tails",
+      "topicIds": [
+        "tails"
+      ],
       "problemIds": [
-        "m14-q2"
+        "m12-q4"
+      ],
+      "bankIds": [
+        "bank-A05"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            5
+          ]
+        }
       ],
       "priority": "core",
-      "objective": "ליישם את שיטת התוחלת המותנית על חלוקת קודקודי גרף לקבוצות.",
+      "objective": "לתת לך לבחור ולנמק את דרך הפתרון. לשמור את ההבחנה בין הצלחה בחישוב לבין בחירת הכלי בעצמך.",
       "steps": [
-        "לקרוא את שאלה 2 ולנסות את הוכחת הקיום. לבחור מודל ולנמק את הבחירה ואת החישובים.",
-        "לנסות לבנות את אלגוריתם התוחלת המותנית שנבחר ללימוד כאן, ולכתוב הוכחת נכונות וניתוח זמן ריצה.",
-        "לבדוק שהחלוקה עונה לכל דרישות השאלה. את האלגוריתם השני נשלים במשימה נפרדת. לתעד מה נבנה לבד ומה נדרש להסביר."
+        "בתחילת המפגש: הגברת נכונות מהמפגש הקודם, ורצפים מממ״ן 11.",
+        "לימוד וניסיון: לתת לך לבחור ולנמק את דרך הפתרון. לשמור את ההבחנה בין הצלחה בחישוב לבין בחירת הכלי בעצמך.",
+        "בסיום: ניסיון כתוב בשאלת המקור, בדיקת ההנחות והחסם הסופי. אם חסר זמן — נקודת המשך מדויקת בעתודה הקרובה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "ניסיתי את הוכחת הקיום ואת אלגוריתם התוחלת המותנית ובדקתי אותם; האלגוריתם השני עוד לא נדרש במשימה הזאת.",
+      "doneWhen": "ניסיון כתוב בשאלת המקור, בדיקת ההנחות והחסם הסופי. אם חסר זמן — נקודת המשך מדויקת בעתודה הקרובה.",
       "dependsOn": [
-        "conditional-expectation"
+        "nov26-2026-10-10",
+        "nov26-2026-10-12"
       ],
       "conditional": false,
-      "stage": "independent"
+      "stage": "independent",
+      "role": "study",
+      "week": 2,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "limited-independence",
-      "date": "2026-09-26",
-      "start": "11:15",
-      "minutes": 60,
-      "title": "ממ״ן 13, שאלות 1–2: אי־תלות חלקית ומרחב מדגם קטן",
+      "id": "nov26-2026-10-16",
+      "date": "2026-10-16",
+      "start": null,
+      "minutes": 180,
+      "title": "דוגמת המרצה 1 וטביעות אצבע",
+      "kind": "study",
+      "topicId": "tails",
+      "topicIds": [
+        "tails",
+        "fingerprints"
+      ],
+      "problemIds": [
+        "sample-q1",
+        "lecture-fingerprint"
+      ],
+      "bankIds": [
+        "bank-A01",
+        "bank-A10"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "formula-sheet",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "כ־40 דקות ניסיון לדוגמת המרצה ועוד כ־40 ליישום טביעות אצבע אחרי קריאה ממוקדת בדוגמת הכיתה. זה מחזור לימוד ופתרון, לא סקירת הגדרה בלבד.",
+      "steps": [
+        "בתחילת המפגש: השוואה לשאלת הכדורים והתאים מ־7.10: לבדוק מה השתנה בהנחות, בלי להעתיק את אותה דרך אוטומטית.",
+        "לימוד וניסיון: כ־40 דקות ניסיון לדוגמת המרצה ועוד כ־40 ליישום טביעות אצבע אחרי קריאה ממוקדת בדוגמת הכיתה. זה מחזור לימוד ופתרון, לא סקירת הגדרה בלבד.",
+        "בסיום: בדיקה של דוגמת המרצה, ובטביעות אצבע: תיאור האלגוריתם, מתי הוא טועה, חסם שגיאה ומספר הביטים. חזרה עצמאית נוספת נקבעה ל־11.11. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "בדיקה של דוגמת המרצה, ובטביעות אצבע: תיאור האלגוריתם, מתי הוא טועה, חסם שגיאה ומספר הביטים. חזרה עצמאית נוספת נקבעה ל־11.11.",
+      "dependsOn": [
+        "nov26-2026-10-07",
+        "nov26-2026-10-12"
+      ],
+      "conditional": false,
+      "stage": "guided",
+      "role": "study",
+      "week": 2,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-10-17",
+      "date": "2026-10-17",
+      "start": null,
+      "minutes": 180,
+      "title": "ממ״ן 11, שאלה 3 — קודקודים מבודדים",
+      "kind": "study",
+      "topicId": "random-graphs",
+      "topicIds": [
+        "random-graphs"
+      ],
+      "problemIds": [
+        "m11-q3"
+      ],
+      "bankIds": [
+        "bank-A09"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לתת זמן מלא לשאלת המקור ולהבנת סף. הרחבות הבנק על שני צדי הסף והמלכודת של תוחלת גדולה ייבחרו לפי הזמן שנשאר.",
+      "steps": [
+        "בתחילת המפגש: הסתברות משותפת מממ״ן 12, שאלה 1, לאחר כשבוע.",
+        "לימוד וניסיון: לתת זמן מלא לשאלת המקור ולהבנת סף. הרחבות הבנק על שני צדי הסף והמלכודת של תוחלת גדולה ייבחרו לפי הזמן שנשאר.",
+        "בסיום: ניסיון בדוק בשאלת החובה, כולל פירוש של ההסתברות המשותפת. להבחין בין תוחלת גדולה לבין הוכחת קיום בהסתברות גבוהה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "ניסיון בדוק בשאלת החובה, כולל פירוש של ההסתברות המשותפת. להבחין בין תוחלת גדולה לבין הוכחת קיום בהסתברות גבוהה.",
+      "dependsOn": [
+        "nov26-2026-10-09"
+      ],
+      "conditional": false,
+      "stage": "guided",
+      "role": "study",
+      "week": 2,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-10-19",
+      "date": "2026-10-19",
+      "start": null,
+      "minutes": 90,
+      "title": "הוכחת הסף למשולש",
+      "kind": "study",
+      "topicId": "random-graphs",
+      "topicIds": [
+        "random-graphs"
+      ],
+      "problemIds": [
+        "lecture-triangle"
+      ],
+      "bankIds": [
+        "bank-A07"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לעבור מדוגמת הכיתה לפירוק עצמאי של זוגות משולשים לפי החפיפה ביניהם. להגדיר במילים כל סימון לפני השימוש בו.",
+      "steps": [
+        "בתחילת המפגש: קודקודים מבודדים: מה נדרש מעבר לחישוב תוחלת?",
+        "לימוד וניסיון: לעבור מדוגמת הכיתה לפירוק עצמאי של זוגות משולשים לפי החפיפה ביניהם. להגדיר במילים כל סימון לפני השימוש בו.",
+        "בסיום: שחזור שני כיווני טענת הסף, עם ספירה מסודרת והסבר איזה סוג חפיפה יוצר תלות. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "שחזור שני כיווני טענת הסף, עם ספירה מסודרת והסבר איזה סוג חפיפה יוצר תלות.",
+      "dependsOn": [
+        "nov26-2026-10-17"
+      ],
+      "conditional": false,
+      "stage": "guided",
+      "role": "study",
+      "week": 3,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-10-21",
+      "date": "2026-10-21",
+      "start": null,
+      "minutes": 90,
+      "title": "העברת הוכחת הסף ורמזי",
+      "kind": "practice",
+      "topicId": "random-graphs",
+      "topicIds": [
+        "random-graphs",
+        "ramsey"
+      ],
+      "problemIds": [
+        "lecture-clique4",
+        "lecture-ramsey"
+      ],
+      "bankIds": [
+        "bank-A08",
+        "bank-B10"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-3",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "sourceId": "lecture-1",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לנסות העברה של הוכחת הכיתה לקליקה על ארבעה קודקודים, ולשחזר הוכחת קיום קצרה בסגנון רמזי. לא להוסיף הרחבות מחקריות.",
+      "steps": [
+        "בתחילת המפגש: רצפים וקופונים: זיהוי מאורע כישלון והיקף האיחוד.",
+        "לימוד וניסיון: לנסות העברה של הוכחת הכיתה לקליקה על ארבעה קודקודים, ולשחזר הוכחת קיום קצרה בסגנון רמזי. לא להוסיף הרחבות מחקריות.",
+        "בסיום: טבלת מקרי חפיפה ונימוק לסף; לצד זה שלד הוכחת רמזי עם תנאי שמבטיח קיום. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "טבלת מקרי חפיפה ונימוק לסף; לצד זה שלד הוכחת רמזי עם תנאי שמבטיח קיום.",
+      "dependsOn": [
+        "nov26-2026-10-10",
+        "nov26-2026-10-19"
+      ],
+      "conditional": false,
+      "stage": "independent",
+      "role": "study",
+      "week": 3,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-10-23",
+      "date": "2026-10-23",
+      "start": null,
+      "minutes": 180,
+      "title": "ממ״ן 13, שאלות 1–2 — מעט אקראיות",
       "kind": "study",
       "topicId": "derandomization",
+      "topicIds": [
+        "derandomization"
+      ],
       "problemIds": [
         "m13-q1",
         "m13-q2",
         "lecture-small-space"
       ],
-      "priority": "core",
-      "objective": "להבין את הבנייה של משתנים בעלי אי־תלות חלקית שמשמשת באלגוריתמים הבאים.",
-      "steps": [
-        "לקרוא בשיעור 4 את ההגדרה של אי־תלות חלקית ואת הבנייה בעזרת פולינום מעל שדה סופי. לבקש הסבר לרקע האלגברי אם הוא אינו זכור.",
-        "לנסות את החסם על גודל מרחב המדגם בשאלה 1 ואת מקרי הדטרמיננטה הנדרשים בשאלה 2; אפשר להיעזר בפתרון מודרך לאחר ניסיון.",
-        "לבדוק את העבודה ולכתוב איך הבנייה מאפשרת לסרוק מרחב קטן. לרשום אילו חישובים נשארו להשלמה."
+      "bankIds": [
+        "bank-B05",
+        "bank-C10"
       ],
-      "doneWhen": "עברתי על הבנייה ועל סעיפי החובה בשתי השאלות, ניסיתי את החישובים ורשמתי מה עוד צריך להשלים.",
-      "dependsOn": [
-        "conditional-expectation"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "official-sat",
-      "date": "2026-09-26",
-      "start": "12:45",
-      "minutes": 45,
-      "title": "דוגמה 2 של המרצה: סיפוק פסוקיות באמצעות מרחב קטן",
-      "kind": "study",
-      "topicId": "derandomization",
-      "problemIds": [
-        "sample-q2"
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            2
+          ]
+        }
       ],
       "priority": "core",
-      "objective": "ללמוד את פתרון המרצה שמבטל אקראיות באמצעות אי־תלות חלקית.",
+      "objective": "להפריד בין חסם על גודל מרחב לבין בנייה שמקיימת את האי־תלות הדרושה. לקרוא רק את הרקע האלגברי שחסר לפתרון.",
       "steps": [
-        "לקרוא את שאלה 2 בדוגמה ולנסות לחשב את תוחלת מספר הפסוקיות המסופקות ואת דרגת אי־התלות הדרושה.",
-        "לקרוא את הפתרון הרשמי שלב אחר שלב: בניית ההשמות, מעבר על כל ההשמות ובחירת הטובה ביותר.",
-        "לסגור את הפתרון ולכתוב את שלושת השלבים ואת זמן הריצה במילים שלך. לפתוח שוב ולבדוק מה נשמט."
+        "בתחילת המפגש: טביעות אצבע מ־16.10: לשחזר את ניתוח השגיאה בלי פתרון פתוח.",
+        "לימוד וניסיון: להפריד בין חסם על גודל מרחב לבין בנייה שמקיימת את האי־תלות הדרושה. לקרוא רק את הרקע האלגברי שחסר לפתרון.",
+        "בסיום: ניסיון בדוק בשתי שאלות החובה; להסביר מה נבחר באקראי, כמה אפשרויות יש ומדוע מתקבלת האי־תלות הנדרשת. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "עברתי על הפתרון הרשמי, ניסיתי לכתוב אותו במילים שלי ובדקתי את הכתיבה.",
+      "doneWhen": "ניסיון בדוק בשתי שאלות החובה; להסביר מה נבחר באקראי, כמה אפשרויות יש ומדוע מתקבלת האי־תלות הנדרשת.",
       "dependsOn": [
-        "limited-independence"
+        "nov26-2026-10-07"
       ],
       "conditional": false,
-      "stage": "guided"
+      "stage": "guided",
+      "role": "study",
+      "week": 3,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "markov-primer",
-      "date": "2026-09-26",
-      "start": "14:00",
-      "minutes": 60,
-      "title": "שרשראות מרקוב: מצבים, מעברים והתפלגות סטציונרית",
-      "kind": "study",
-      "topicId": "markov",
-      "problemIds": [],
-      "priority": "core",
-      "objective": "להכיר את המושגים והסימונים הדרושים כדי להתחיל את תרגילי מרקוב.",
-      "steps": [
-        "לפתוח את תחילת שיעור 5 ולברר מה מתארים מצב, הסתברות מעבר, מטריצת מעבר ווקטור התפלגות.",
-        "לעבור עם הסבר על שרשרת קטנה: לחשב התפלגות אחרי צעד אחד ולכתוב משוואות למציאת התפלגות סטציונרית.",
-        "לנסות להסביר את ההבדל בין התפלגות סטציונרית לבין התכנסות אליה, ולבדוק את ההסבר בעזרת דוגמת המחזור מהכיתה."
-      ],
-      "doneWhen": "עברתי על דוגמה, ניסיתי לחשב מעבר אחד ומשוואות סטציונריות ובדקתי את ההבחנה בין סטציונריות להתכנסות.",
-      "dependsOn": [
-        "foundations-variance"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "multicut-smallspace",
-      "date": "2026-09-27",
-      "start": "07:00",
-      "minutes": 60,
-      "title": "ממ״ן 14, שאלה 2: האלגוריתם השני לרב־חתך",
-      "kind": "practice",
-      "topicId": "derandomization",
-      "problemIds": [
-        "m14-q2"
-      ],
-      "priority": "core",
-      "objective": "להשלים את השאלה בעזרת סריקה של מרחב השמות קטן.",
-      "steps": [
-        "לחזור לנוסח שאלה 2 ולמה שכבר הוכח, ולהבהיר מה נותר להשלמת האלגוריתם השני.",
-        "לנסות אלגוריתם המבוסס על מרחב השמות קטן, בהתאם למטרת היחידה. לבחור את הבנייה ולנמק את התאמתה, נכונותה וזמן הריצה.",
-        "לבדוק את האלגוריתם ולהשוות אותו לאלגוריתם התוחלת המותנית. לרשום אם חסר עדיין סעיף באחת משתי השיטות."
-      ],
-      "doneWhen": "ניסיתי את האלגוריתם השני, בדקתי אותו והשוויתי בין שתי השיטות.",
-      "dependsOn": [
-        "multicut-conditional",
-        "limited-independence"
-      ],
-      "conditional": false,
-      "stage": "independent"
-    },
-    {
-      "id": "mock1-prepare",
-      "date": "2026-09-28",
-      "start": "07:00",
-      "minutes": 45,
-      "title": "להכין את השאלות ואת הזמן לסימולציה הראשונה",
-      "kind": "review",
-      "topicId": null,
-      "problemIds": [],
-      "priority": "support",
-      "objective": "להכין מראש מבחן תרגול שאפשר לפתור בלי לעצור לצורך התארגנות.",
-      "steps": [
-        "להעתיק לשיחת הלימוד את הבקשה להכנת סימולציה: שלוש שאלות חדשות על החומר שכבר נלמד, עם פתרונות בקובץ נפרד. לא לעיין בשאלות או בפתרונות לפני תחילת הסימולציה.",
-        "להכין עותק של דף הנוסחאות הרשמי, דפים לכתיבה ושעון.",
-        "לבדוק אם 16:00–18:30 פנויות באמת מעבודה. אם לא, להשתמש באפשרות להעברת הסימולציה למועד החלופי בלוח הזמנים."
-      ],
-      "doneWhen": "יש לי שאלון ופתרונות נפרדים, דף נוסחאות וזמן מוגדר לסימולציה.",
-      "dependsOn": [
-        "official-balls",
-        "official-sat",
-        "markov-primer"
-      ],
-      "conditional": false,
-      "stage": "review"
-    },
-    {
-      "id": "mock1",
-      "date": "2026-09-28",
-      "start": "16:00",
-      "minutes": 150,
-      "title": "סימולציה ראשונה: שלוש שאלות ב־150 דקות",
-      "kind": "mock",
-      "topicId": null,
-      "problemIds": [],
-      "priority": "core",
-      "objective": "לבדוק איך אתה מתחיל ופותר שאלות בעצמך בזמן מוגבל.",
-      "steps": [
-        "לפתוח את השאלון שהוכן, להפעיל שעון ל־150 דקות ולעבוד עם דף הנוסחאות הרשמי בלבד.",
-        "לנסות את שלוש השאלות ולרשום מתי התחלת וסיימת כל אחת. לא לפתוח פתרונות או לקבל עזרה בזמן הסימולציה.",
-        "לשמור את התשובות ולרשום אם היו הפרעות עבודה. אם הרצף נקטע, העבודה עדיין שימושית לתרגול, אך אי אפשר להסיק ממנה את קצב הבחינה."
-      ],
-      "doneWhen": "סיימתי את חלון הסימולציה ושמרתי את התשובות, הזמנים וכל הפרעה שהייתה; הבדיקה תיעשה במשימה הבאה.",
-      "dependsOn": [
-        "mock1-prepare"
-      ],
-      "conditional": true,
-      "stage": "timed"
-    },
-    {
-      "id": "mock1-review",
-      "date": "2026-09-29",
-      "start": "07:00",
-      "minutes": 45,
-      "title": "לבדוק את הסימולציה הראשונה ולבחור מה לתקן",
-      "kind": "review",
-      "topicId": null,
-      "problemIds": [],
-      "priority": "support",
-      "objective": "לגלות אילו שני קשיים כדאי לתקן קודם בעקבות הסימולציה.",
-      "steps": [
-        "להשוות כל סעיף לפתרון שנבדק או לבדוק אותו עם מורה. לסמן תשובות נכונות, חלקיות ושגויות.",
-        "בכל סעיף שלא הושלם, לברר מה עצר אותך: חומר לא מוכר, סימון לא ברור, בחירת שיטה, חישוב או זמן.",
-        "לבחור שני קשיים ולרשום לכל אחד מה צריך לעשות ומתי. אם הסימולציה לא התקיימה, לבדוק באותו אופן את תרגילי הממ״ן האחרונים."
-      ],
-      "doneWhen": "בדקתי את התשובות ובחרתי שני דברים מוגדרים לחזור עליהם, עם זמן מתוכנן לכל אחד.",
-      "dependsOn": [],
-      "conditional": false,
-      "stage": "review"
-    },
-    {
-      "id": "markov-reset",
-      "date": "2026-09-29",
-      "start": "10:00",
-      "minutes": 105,
-      "title": "ממ״ן 15, שאלה 2: התפלגות סטציונרית וזמן פגיעה",
-      "kind": "study",
-      "topicId": "markov",
-      "problemIds": [
-        "m15-q2"
-      ],
-      "priority": "core",
-      "objective": "לבנות פתרון מנומק לשני סעיפי השאלה על שרשרת מרקוב.",
-      "steps": [
-        "לקרוא את שאלה 2 ולוודא שתיאור השרשרת והגדלים המבוקשים ברורים.",
-        "לנסות את סעיף א: לבחור דרך ולפתח חישוב מנומק עד לתוצאה, או לנקודה שבה נדרשת עזרה.",
-        "לנסות את סעיף ב באותו אופן ולנמק את ההגדרות, ההנחות והמעברים.",
-        "לבדוק את שני הניסיונות ולתעד מה נכתב עצמאית, מה הוסבר ומה עוד דורש תרגול. אפשר לבחור לשחזר סעיף לאחר הבדיקה, אך אין חובה."
-      ],
-      "doneWhen": "עבדתי על שני הסעיפים, בדקתי את הניסיונות ותיעדתי מה השלמתי ואיזו עזרה נדרשה.",
-      "dependsOn": [
-        "markov-primer"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "markov-matrix",
-      "date": "2026-09-29",
-      "start": "12:00",
-      "minutes": 45,
-      "title": "ממ״ן 15, שאלה 1: מטריצת המעבר אחרי כמה צעדים",
-      "kind": "practice",
-      "topicId": "markov",
-      "problemIds": [
-        "m15-q1"
-      ],
-      "priority": "core",
-      "objective": "לחשב נוסחה מפורשת להסתברויות המעבר בשרשרת עם שני מצבים.",
-      "steps": [
-        "לקרוא את שאלה 1 ולהבהיר מה נדרש בביטוי המבוקש.",
-        "לנסות למצוא ביטוי מפורש לחזקה המבוקשת בדרך שתבחר, עם נימוק תקף לכל מספר צעדים הנדרש בשאלה.",
-        "לבדוק את הנוסחה ואת החישובים. אם נתקעת, לתעד היכן ולבקש את סוג העזרה הרצוי."
-      ],
-      "doneWhen": "ניסיתי להגיע לביטוי מפורש ובדקתי אותו במקרים פשוטים, או רשמתי מה מנע ממני להשלים את החישוב.",
-      "dependsOn": [
-        "markov-primer"
-      ],
-      "conditional": false,
-      "stage": "independent"
-    },
-    {
-      "id": "official-recurrence",
-      "date": "2026-09-29",
-      "start": "13:00",
-      "minutes": 45,
-      "title": "דוגמה 3 של המרצה: הוכחה שקיים מצב נשנה",
-      "kind": "study",
-      "topicId": "markov",
-      "problemIds": [
-        "sample-q3"
-      ],
-      "priority": "core",
-      "objective": "לעבוד על שאלת הוכחה במרקוב וללמוד את ההגדרות שהיא דורשת.",
-      "steps": [
-        "לקרוא את שאלה 3 בדוגמה ולחזור להגדרה של מצב נשנה ושל מצב חולף.",
-        "לנסות להוכיח את הטענה בשרשרת סופית. לכתוב גם התחלה חלקית לפני העיון בפתרון.",
-        "לפתוח את פתרון המרצה, להשוות לניסיון ולכתוב מחדש את שלבי ההוכחה. לציין היכן משתמשים בכך שהשרשרת סופית."
-      ],
-      "doneWhen": "ניסיתי את ההוכחה, עברתי על פתרון המרצה וכתבתי את שלבי ההוכחה ואת התפקיד של הסופיות.",
-      "dependsOn": [
-        "markov-primer"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "graphs-entry",
-      "date": "2026-09-29",
-      "start": "14:00",
-      "minutes": 60,
-      "title": "ממ״ן 11, שאלה 3: תוחלת מספר הקודקודים המבודדים",
-      "kind": "study",
-      "topicId": "random-graphs",
-      "problemIds": [
-        "m11-q3"
-      ],
-      "priority": "core",
-      "objective": "לבנות פתרון לשאלת התוחלת בגרף אקראי ולהכיר את הניסוי של היחידה הבאה.",
-      "steps": [
-        "לקרוא את שאלה 3 ולברר מה מוגרל בגרף ומה המשמעות של קודקוד מבודד.",
-        "לנסות לחשב את התוחלת ואת הגבול המבוקשים בשאלה, תוך בחירה והצדקה של המודל ושל דרך החישוב.",
-        "לבדוק את הפתרון. לקראת היחידה הבאה, לקרוא את תיאור הגרף והמשולשים בשיעור 3 ולהבהיר סימון לא מוכר לפני ניתוחו."
-      ],
-      "doneWhen": "ניסיתי ובדקתי את שאלת הקודקודים המבודדים, וקראתי את הגדרת משתנה ספירת המשולשים לקראת השיעור הבא.",
-      "dependsOn": [
-        "foundations-variance"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "markov-walks",
-      "date": "2026-09-30",
-      "start": "07:00",
-      "minutes": 60,
-      "title": "דוגמאות הכיתה: הילוך אקראי, קישוריות וזמן כיסוי",
-      "kind": "study",
-      "topicId": "markov",
-      "problemIds": [
-        "lecture-walks"
-      ],
-      "priority": "support",
-      "objective": "להבין איך משתמשים בהילוך אקראי כדי לבנות ולנתח אלגוריתם.",
-      "steps": [
-        "לקרוא את דוגמאות ההילוך והקישוריות בשיעור 5, כולל הגדרת זמן פגיעה וזמן כיסוי.",
-        "לכתוב מה האלגוריתם עושה, כמה זיכרון הוא צריך ומתי הוא עלול להחזיר תשובה שגויה.",
-        "לעקוב אחרי חסם זמן הכיסוי וחסם הסתברות השגיאה. לסגור את ההסבר ולנסות לכתוב את שלבי הניתוח, ואז לבדוק."
-      ],
-      "doneWhen": "עברתי על דוגמאות הכיתה, כתבתי את האלגוריתם ואת שלבי ניתוח השגיאה ורשמתי מה עדיין לא מובן.",
-      "dependsOn": [
-        "markov-reset"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "triangle-threshold",
-      "date": "2026-10-01",
-      "start": "07:00",
-      "minutes": 90,
-      "title": "משולשים בגרף אקראי: תוחלת, שונות וסף הופעה",
-      "kind": "study",
-      "topicId": "random-graphs",
-      "problemIds": [
-        "lecture-triangle"
-      ],
-      "priority": "core",
-      "objective": "לבנות את ניתוח המשולשים שנעשה בכיתה, החל מהגדרת המשתנה המקרי.",
-      "steps": [
-        "לפתוח את דוגמת המשולשים בשיעור 3, להגדיר אינדיקטור לכל שלישיית קודקודים ולחשב את תוחלת מספר המשולשים.",
-        "לצייר זוגות משולשים לפי סוג החפיפה: בלי קודקוד משותף, עם קודקוד אחד ועם צלע משותפת. בכל מקרה לחשב אילו צלעות נדרשות כדי ששניהם יתקיימו.",
-        "להשתמש בסוגי החפיפה לחישוב השונות. אם הסימון אינו ברור, לפרש את המכפלה כהסתברות ששני המשולשים קיימים.",
-        "לכתוב בנפרד את ההוכחה מתחת לסף ומעל לסף ולהשוות לשלבי הכיתה."
-      ],
-      "doneWhen": "עברתי על חישובי התוחלת והחפיפות וניסיתי את שני חלקי הוכחת הסף; בדקתי אותם ורשמתי מה נשאר להשלמה.",
-      "dependsOn": [
-        "graphs-entry",
-        "foundations-variance"
-      ],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "clique-transfer",
-      "date": "2026-10-01",
-      "start": "10:00",
-      "minutes": 60,
-      "title": "קליקה של ארבעה קודקודים: ניסיון לפתרון",
-      "kind": "practice",
-      "topicId": "random-graphs",
-      "problemIds": [
-        "lecture-clique4"
-      ],
-      "priority": "core",
-      "objective": "לבנות הוכחת סף למבנה נוסף בגרף אקראי ולבחור כיצד להשתמש בידע שנלמד.",
-      "steps": [
-        "לקרוא את ניסוח שאלת הקליקות בלי לפתוח את פתרון הכיתה.",
-        "לנסות לבנות הוכחת סף מלאה ולנמק את בחירת הדרך, ההנחות והחישובים. לבקש עזרה לפי הצורך.",
-        "לבדוק את הניסיון מול דוגמת הכיתה או המורה, לתקן ולתעד מה נבנה עצמאית ומה הוסבר."
-      ],
-      "doneWhen": "ניסיתי הוכחה לשאלת הקליקה, בדקתי את העבודה ותיעדתי מה הצלחתי ומה דרש עזרה.",
-      "dependsOn": [
-        "triangle-threshold"
-      ],
-      "conditional": false,
-      "stage": "independent"
-    },
-    {
-      "id": "alteration",
-      "date": "2026-10-01",
-      "start": "11:15",
-      "minutes": 75,
-      "title": "ממ״ן 13, שאלה 3: לבחור באקראי ואז לתקן",
+      "id": "nov26-2026-10-24",
+      "date": "2026-10-24",
+      "start": null,
+      "minutes": 180,
+      "title": "ממ״ן 13, שאלה 3 — שיטת התיקונים",
       "kind": "study",
       "topicId": "alteration",
+      "topicIds": [
+        "alteration"
+      ],
       "problemIds": [
         "m13-q3"
       ],
+      "bankIds": [
+        "bank-B04"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "guide",
+          "pages": [
+            128
+          ]
+        }
+      ],
       "priority": "core",
-      "objective": "ללמוד איך מתקנים בחירה אקראית כדי להוכיח שקיים כיסוי קטן.",
+      "objective": "לתת לשיטת התיקונים מחזור נפרד: בניית אובייקט אקראי, מחיר התיקון ובחירת הפרמטר. הספר והמדריך משמשים להשלמת פער מוגדר.",
       "steps": [
-        "לקרוא את שאלה 3 ואת הקטע על שיטת התיקונים במדריך. לברר מהו כיסוי קודקודים בהיפרגרף.",
-        "לכתוב מה בוחרים באקראי ומה מוסיפים כדי לכסות קשת שנשארה ללא כיסוי. לחשב את תוחלת גודל הבחירה ואת תוחלת תוספת התיקון.",
-        "לנסות לבחור את ההסתברות שנותנת את החסם הטוב ביותר ולסיים את הוכחת הקיום. לבדוק את החישוב ואת הטיעון."
+        "בתחילת המפגש: בחירת חסם מרצפי המטבע, ואי־תלות חלקית מהמפגש הקודם.",
+        "לימוד וניסיון: לתת לשיטת התיקונים מחזור נפרד: בניית אובייקט אקראי, מחיר התיקון ובחירת הפרמטר. הספר והמדריך משמשים להשלמת פער מוגדר.",
+        "בסיום: ניסיון מלא בשאלת המקור והסבר מדוע התיקון משאיר אובייקט חוקי ומה מחירו. לא להחליף את השאלה בתרגיל ספיקות. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "ניסיתי את הבחירה האקראית, חישוב עלות התיקון ובחירת ההסתברות, ובדקתי את הוכחת הקיום.",
+      "doneWhen": "ניסיון מלא בשאלת המקור והסבר מדוע התיקון משאיר אובייקט חוקי ומה מחירו. לא להחליף את השאלה בתרגיל ספיקות.",
       "dependsOn": [
-        "foundations-variance"
+        "nov26-2026-10-10"
       ],
       "conditional": false,
-      "stage": "guided"
+      "stage": "guided",
+      "role": "study",
+      "week": 3,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "ramsey-coverage",
-      "date": "2026-10-01",
-      "start": "13:00",
-      "minutes": 45,
-      "title": "דוגמת רמזי: הוכחת קיום בעזרת חסם האיחוד",
+      "id": "nov26-2026-10-26",
+      "date": "2026-10-26",
+      "start": null,
+      "minutes": 90,
+      "title": "דוגמת המרצה 2 — מסיפוק מקרי לאלגוריתם",
       "kind": "study",
-      "topicId": "ramsey",
+      "topicId": "derandomization",
+      "topicIds": [
+        "derandomization"
+      ],
       "problemIds": [
-        "lecture-ramsey"
+        "sample-q2",
+        "lecture-conditional"
       ],
-      "priority": "support",
-      "objective": "להבין כיצד הסתברות כישלון קטנה מ־1 מוכיחה שקיים גרף עם התכונה הרצויה.",
+      "bankIds": [
+        "bank-B01"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לחבר את התוחלת ההתחלתית לשתי דרכי ביטול האקראיות שנלמדו. לפני אלגוריתם, להסביר בדיוק מהי ההבטחה שצריך לשמר.",
       "steps": [
-        "לפתוח את דוגמת רמזי בשיעור 1 ולברר אילו קליקות ואילו קבוצות בלתי תלויות רוצים למנוע.",
-        "לנסות לחשב את הסתברות המאורע האסור עבור קבוצת קודקודים אחת, ואז להשתמש בחסם האיחוד על כל הקבוצות.",
-        "לבדוק מתי החסם קטן מ־1 ולכתוב את מסקנת הקיום. להשוות לפתרון הכיתה."
+        "בתחילת המפגש: שחזור קצר של סף המשולש אחרי שבוע.",
+        "לימוד וניסיון: לחבר את התוחלת ההתחלתית לשתי דרכי ביטול האקראיות שנלמדו. לפני אלגוריתם, להסביר בדיוק מהי ההבטחה שצריך לשמר.",
+        "בסיום: ניסיון בדוגמת המקור; להבחין בין הוכחת קיום, חיפוש במרחב קטן ובחירה לפי תוחלת מותנית. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "ניסיתי את חישוב ההסתברות ואת הוכחת הקיום ובדקתי אותם מול דוגמת הכיתה.",
+      "doneWhen": "ניסיון בדוגמת המקור; להבחין בין הוכחת קיום, חיפוש במרחב קטן ובחירה לפי תוחלת מותנית.",
       "dependsOn": [
-        "union-coupons-windows"
+        "nov26-2026-10-23"
       ],
       "conditional": false,
-      "stage": "guided"
+      "stage": "guided",
+      "role": "study",
+      "week": 4,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "fingerprints-coverage",
-      "date": "2026-10-01",
-      "start": "14:00",
-      "minutes": 30,
-      "title": "טביעות אצבע: השוואת מחרוזות וניתוח שגיאה",
-      "kind": "study",
-      "topicId": "fingerprints",
-      "problemIds": [
-        "lecture-fingerprint"
-      ],
-      "priority": "support",
-      "objective": "להבין את האלגוריתם שנלמד בכיתה ואת הסיבה ששגיאה בו נדירה.",
-      "steps": [
-        "לפתוח את עמודי טביעות האצבע בשיעור 2 ולקרוא איך נבחר המספר הראשוני ומה הצדדים שולחים ומשווים.",
-        "לכתוב מתי שתי מחרוזות שונות עלולות לתת אותה תוצאה, ולעקוב אחרי החסם על הסתברות השגיאה.",
-        "לרשום את עלות התקשורת ואת העובדה המספרית שעליה נשען החסם. אם שלב אינו מובן, לציין אותו כדי לחזור אליו."
-      ],
-      "doneWhen": "כתבתי מה האלגוריתם עושה, מתי הוא טועה ומה עלות התקשורת, ורשמתי את שלב הניתוח אם נדרש לו הסבר נוסף.",
-      "dependsOn": [],
-      "conditional": false,
-      "stage": "guided"
-    },
-    {
-      "id": "linear-constraints",
-      "date": "2026-10-02",
-      "start": "07:00",
-      "minutes": 60,
-      "title": "ממ״ן 14, שאלה 1: שתי שיטות לפתרון אילוצים ליניאריים",
+      "id": "nov26-2026-10-28",
+      "date": "2026-10-28",
+      "start": null,
+      "minutes": 90,
+      "title": "ממ״ן 14, שאלה 1 — משוואות",
       "kind": "practice",
       "topicId": "derandomization",
+      "topicIds": [
+        "derandomization"
+      ],
       "problemIds": [
         "m14-q1"
       ],
-      "priority": "core",
-      "objective": "להעביר את שתי שיטות ביטול האקראיות מבעיית החתך למערכת אילוצים.",
-      "steps": [
-        "לקרוא את שאלה 1 ולנסות הוכחת קיום לפי הנוסח.",
-        "לנסות את שני האלגוריתמים הנדרשים: תוחלת מותנית וסריקת מרחב קטן. בכל אחד לבחור את הבנייה, לנמק את הבטחת התוצאה ולנתח זמן ריצה.",
-        "לבדוק את שני הניסיונות. אם חסר שלב, לבקש את סוג העזרה הרצוי ולרשום מה נשאר להשלמה."
+      "bankIds": [
+        "bank-B02"
       ],
-      "doneWhen": "ניסיתי את הוכחת הקיום ואת שני האלגוריתמים, בדקתי את העבודה ורשמתי אילו חלקים עוד לא הושלמו.",
-      "dependsOn": [
-        "multicut-smallspace"
-      ],
-      "conditional": false,
-      "stage": "independent"
-    },
-    {
-      "id": "coverage-audit",
-      "date": "2026-10-02",
-      "start": "08:15",
-      "minutes": 30,
-      "title": "לבדוק מה נשאר ולהכין את הסימולציה המלאה",
-      "kind": "review",
-      "topicId": null,
-      "problemIds": [],
-      "priority": "support",
-      "objective": "לזהות שאלות שעוד לא עבדת עליהן ולהכין את מבחן התרגול של מחר.",
-      "steps": [
-        "לפתוח את רשימת השאלות ולבדוק שעברת על כל 14 שאלות החובה בממ״נים ועל שלוש דוגמאות המרצה. לעדכן פריטים שטרם נגעת בהם או שדורשים חזרה.",
-        "לרשום את השאלות שנותרו ולהוסיף זמן להשלמה, לפי השעות שעוד פנויות בלוח הזמנים.",
-        "להעתיק לשיחת הלימוד בקשה להכנת שלוש שאלות חדשות משלושה נושאי ליבה, עם פתרונות בקובץ נפרד. לשמור את השאלון למחר בלי לקרוא אותו מראש."
-      ],
-      "doneWhen": "רשמתי מה עדיין חסר בתרגול ויש לי שאלון חדש ופתרונות נפרדים לסימולציה של מחר.",
-      "dependsOn": [
-        "linear-constraints",
-        "official-recurrence",
-        "clique-transfer"
-      ],
-      "conditional": false,
-      "stage": "review"
-    },
-    {
-      "id": "mock2",
-      "date": "2026-10-03",
-      "start": "10:00",
-      "minutes": 150,
-      "title": "סימולציה מלאה: שלוש שאלות חדשות ב־150 דקות",
-      "kind": "mock",
-      "topicId": null,
-      "problemIds": [],
-      "priority": "core",
-      "objective": "לבדוק פתרון עצמאי וניהול זמן לאחר הלימוד והתרגול של נושאי הליבה.",
-      "steps": [
-        "לפתוח את השאלון החדש, להפעיל שעון ל־150 דקות ולעבוד עם דף הנוסחאות הרשמי בלבד.",
-        "לנסות את כל שלוש השאלות ולרשום את הזמנים לכל שאלה. לא לפתוח פתרונות או לקבל עזרה.",
-        "בתום הזמן לשמור את התשובות כפי שהן, גם אם חלקן לא הושלמו, ולרשום אם היו הפרעות."
-      ],
-      "doneWhen": "סיימתי את 150 הדקות ושמרתי את התשובות ואת הזמנים; את הציון קובעים רק אחרי בדיקת התשובות.",
-      "dependsOn": [
-        "coverage-audit"
-      ],
-      "conditional": false,
-      "stage": "timed"
-    },
-    {
-      "id": "mock2-review",
-      "date": "2026-10-03",
-      "start": "13:00",
-      "minutes": 90,
-      "title": "לבדוק את הסימולציה המלאה ולתכנן את התיקונים",
-      "kind": "review",
-      "topicId": null,
-      "problemIds": [],
-      "priority": "core",
-      "objective": "למצוא היכן אבדו נקודות ומה אפשר לשפר בימים שנשארו.",
-      "steps": [
-        "לבדוק כל סעיף מול פתרון שנבדק או עם מורה, ולרשום מה נכון, מה חסר ומה שגוי. אם ניתן ציון, לחשב לפי משקלי 40, 40 ו־20 שבהנחיות הבחינה.",
-        "בכל טעות לברר את הסיבה: חומר לא מוכר, שאלה או סימון שלא הובנו, בחירת שיטה, הוכחה חסרה, חישוב או זמן.",
-        "לבחור עד שלושה קשיים שהכי חשוב לתקן ולשבץ אותם במשימות החזרה של 4–6 באוקטובר ובזמן הפנוי של 7 באוקטובר."
-      ],
-      "doneWhen": "בדקתי את כל התשובות ורשמתי עד שלושה קשיים, מה אעשה כדי לתקן כל אחד ומתי אעבוד עליו.",
-      "dependsOn": [
-        "mock2"
-      ],
-      "conditional": false,
-      "stage": "review"
-    },
-    {
-      "id": "mock2-repair",
-      "date": "2026-10-03",
-      "start": "14:45",
-      "minutes": 60,
-      "title": "לחזור על הקושי הראשון מהסימולציה",
-      "kind": "practice",
-      "topicId": null,
-      "problemIds": [],
-      "priority": "core",
-      "objective": "לטפל בקושי אחד שנמצא בבדיקה לפני שממשיכים לחזרות של הימים הבאים.",
-      "steps": [
-        "לבחור מתוך הבדיקה סעיף אחד חשוב שלא הצלחת לפתור.",
-        "לחזור להסבר הדרוש, לסגור אותו ולנסות שוב את הסעיף או תרגיל דומה עם נתונים אחרים.",
-        "לבדוק את הניסיון ולרשום אם אפשר להמשיך או שצריך להקדיש לקושי עוד זמן."
-      ],
-      "doneWhen": "למדתי מחדש את השלב שהיה חסר, ניסיתי לפתור ובדקתי את הניסיון.",
-      "dependsOn": [
-        "mock2-review"
-      ],
-      "conditional": false,
-      "stage": "independent"
-    },
-    {
-      "id": "spaced-tails",
-      "date": "2026-10-04",
-      "start": "07:00",
-      "minutes": 45,
-      "title": "חזרה בחסמי זנב: לפתור בלי חומר פתוח",
-      "kind": "practice",
-      "topicId": "tails",
-      "problemIds": [
-        "m12-q2",
-        "m12-q4",
-        "sample-q1"
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            3
+          ]
+        }
       ],
       "priority": "core",
-      "objective": "לבדוק אם אתה זוכר לבחור חסם ולנמק את התנאים גם כמה ימים אחרי הלימוד.",
+      "objective": "ליישם את שיטות הכיתה במערכת משוואות. לתת לך לבחור את המודל והצעדים, ולעצור להסבר רק במקום שבו חסר ידע.",
       "steps": [
-        "לבחור סעיף בחסמי זנב שבו התקשית בסימולציה. אם לא היה כזה, לבחור סעיף מממ״ן 12, שאלה 2 או 4.",
-        "לנסות לפתור במשך עד 30 דקות בלי חומר פתוח, ולנמק את הבחירות ואת ההנחות. אם נדרשת עזרה, לבקש אותה ולתעד את החשיפה.",
-        "לבדוק את התשובה ולרשום אם הטעות הקודמת חזרה או אם צריך חזרה נוספת."
+        "בתחילת המפגש: בניית מרחב קטן מממ״ן 13 והמשמעות של סדר אי־התלות.",
+        "לימוד וניסיון: ליישם את שיטות הכיתה במערכת משוואות. לתת לך לבחור את המודל והצעדים, ולעצור להסבר רק במקום שבו חסר ידע.",
+        "בסיום: שני אלגוריתמים דטרמיניסטיים כנדרש במקור: תוחלת מותנית ומרחב קטן. לכל אחד — ההבטחה, נימוק הנכונות וזמן הריצה. לסמן חלקים שנכתבו בעזרה; אם אחת השיטות לא הושלמה, היא נשארת להמשך ולא נחשבת מכוסה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "ניסיתי סעיף בלי חומר פתוח, בדקתי אותו ורשמתי מה כדאי לחזור עליו לפני הבחינה.",
+      "doneWhen": "שני אלגוריתמים דטרמיניסטיים כנדרש במקור: תוחלת מותנית ומרחב קטן. לכל אחד — ההבטחה, נימוק הנכונות וזמן הריצה. לסמן חלקים שנכתבו בעזרה; אם אחת השיטות לא הושלמה, היא נשארת להמשך ולא נחשבת מכוסה.",
       "dependsOn": [
-        "mock2-review"
+        "nov26-2026-10-26"
       ],
       "conditional": false,
-      "stage": "independent"
+      "stage": "independent",
+      "role": "study",
+      "week": 4,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "spaced-derand",
-      "date": "2026-10-05",
-      "start": "07:00",
-      "minutes": 45,
-      "title": "חזרה בביטול אקראיות: לכתוב אלגוריתם והוכחה",
+      "id": "nov26-2026-10-30",
+      "date": "2026-10-30",
+      "start": null,
+      "minutes": 180,
+      "title": "ממ״ן 14, שאלה 2 — רב־חתך",
       "kind": "practice",
       "topicId": "derandomization",
+      "topicIds": [
+        "derandomization"
+      ],
       "problemIds": [
-        "m14-q1",
-        "m14-q2",
-        "sample-q2"
+        "m14-q2"
+      ],
+      "bankIds": [
+        "bank-B03"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            3
+          ]
+        }
       ],
       "priority": "core",
-      "objective": "לבדוק אם אפשר לשחזר את השיטה ואת הנימוקים ללא פתרון מול העיניים.",
+      "objective": "להתמודד עם כל דרישות נוסח המקור, כולל תנאי הקבוצות. אחרי בדיקה, לשחזר את ההחלטה האלגוריתמית בלי הפתרון.",
       "steps": [
-        "לבחור סעיף בביטול אקראיות שבו התקשית בסימולציה. אם לא היה כזה, לבחור אלגוריתם אחד מממ״ן 14.",
-        "במשך עד 30 דקות לכתוב את האלגוריתם, את הוכחת הנכונות ואת זמן הריצה בלי חומר פתוח.",
-        "לבדוק את הכתיבה בזמן שנותר ולרשום איזה חלק עדיין דורש חזרה."
+        "בתחילת המפגש: דוגמת הספיקות וטביעות אצבע — שתי משפחות שנלמדו בזמנים שונים.",
+        "לימוד וניסיון: להתמודד עם כל דרישות נוסח המקור, כולל תנאי הקבוצות. אחרי בדיקה, לשחזר את ההחלטה האלגוריתמית בלי הפתרון.",
+        "בסיום: פתרון בדוק או פער מוגדר בכל סעיפי החובה; הוכחת נכונות וזמן ריצה שאינם נשענים רק על אינטואיציה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "ניסיתי לכתוב אלגוריתם וניתוח בלי חומר פתוח, בדקתי אותם ורשמתי מה עוד צריך חזרה.",
+      "doneWhen": "פתרון בדוק או פער מוגדר בכל סעיפי החובה; הוכחת נכונות וזמן ריצה שאינם נשענים רק על אינטואיציה.",
       "dependsOn": [
-        "mock2-review"
+        "nov26-2026-10-23",
+        "nov26-2026-10-26"
       ],
       "conditional": false,
-      "stage": "independent"
+      "stage": "independent",
+      "role": "study",
+      "week": 4,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     },
     {
-      "id": "spaced-markov-graphs",
-      "date": "2026-10-06",
-      "start": "07:00",
-      "minutes": 45,
-      "title": "חזרה במרקוב או בגרפים: לתקן את הקושי שנותר",
-      "kind": "practice",
-      "topicId": null,
+      "id": "nov26-2026-10-31",
+      "date": "2026-10-31",
+      "start": null,
+      "minutes": 180,
+      "title": "בדיקת מעבר ופתיחה לשרשראות מרקוב",
+      "kind": "study",
+      "topicId": "derandomization",
+      "topicIds": [
+        "derandomization",
+        "markov"
+      ],
       "problemIds": [],
-      "priority": "core",
-      "objective": "להקדיש את החזרה האחרונה לקושי החשוב ביותר באחד משני הנושאים.",
-      "steps": [
-        "לבחור סעיף במרקוב או בגרפים שהיה קשה בסימולציה או בתרגול האחרון. לבחור נושא אחד כדי להספיק גם לבדוק את העבודה.",
-        "לנסות את הסעיף במשך עד 30 דקות בלי חומר פתוח.",
-        "לבדוק את התשובה בזמן שנותר. אם עדיין חסר הסבר או תרגול, לשבץ אותו בזמן הפנוי של 7 באוקטובר."
+      "bankIds": [
+        "bank-B06",
+        "bank-B07",
+        "bank-C03"
       ],
-      "doneWhen": "ניסיתי סעיף אחד ובדקתי אותו, ורשמתי אם צריך להשלים בו משהו ביום שלפני הבחינה.",
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-4",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לבחור וריאציה אחת בלבד מתוך B06 או B07 לפתרון בלי רמזי דרך. אחריה להקדיש כ־30 דקות להיכרות עם מצבים, מעברים וחזקות מטריצה.",
+      "steps": [
+        "בתחילת המפגש: שיטת התיקונים לאחר שבוע, ואלגוריתם רב־חתך מהמפגש הקודם.",
+        "לימוד וניסיון: לבחור וריאציה אחת בלבד מתוך B06 או B07 לפתרון בלי רמזי דרך. אחריה להקדיש כ־30 דקות להיכרות עם מצבים, מעברים וחזקות מטריצה.",
+        "בסיום: ניסיון עצמאי בווריאציה אחת, בדיקה של סדר הכמתים, ודוגמה קטנה של מעבר בין התפלגויות. השנייה נשארת הרחבה אם יש זמן. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "ניסיון עצמאי בווריאציה אחת, בדיקה של סדר הכמתים, ודוגמה קטנה של מעבר בין התפלגויות. השנייה נשארת הרחבה אם יש זמן.",
       "dependsOn": [
-        "mock2-review"
+        "nov26-2026-10-26",
+        "nov26-2026-10-30"
       ],
       "conditional": false,
-      "stage": "independent"
+      "stage": "guided",
+      "role": "study",
+      "week": 4,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי.",
+      "bankScopeNote": "לבחור וריאציה אחת מתוך B06 או B07. C03 כאן היא הפניה לרקע של מעברים; השאלה המלאה תתורגל ב־2 בנובמבר."
     },
     {
-      "id": "exam-light-review",
-      "date": "2026-10-08",
-      "start": "10:00",
-      "minutes": 30,
-      "title": "בוקר הבחינה: חזרה קצרה והתארגנות",
+      "id": "nov26-2026-11-02",
+      "date": "2026-11-02",
+      "start": null,
+      "minutes": 90,
+      "title": "ממ״ן 15, שאלה 1 — מטריצת מעבר",
+      "kind": "practice",
+      "topicId": "markov",
+      "topicIds": [
+        "markov"
+      ],
+      "problemIds": [
+        "m15-q1"
+      ],
+      "bankIds": [
+        "bank-C03"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "להמשיך מההיכרות בשבת ולפתור את שאלת החזקה. לבדוק מה הנוסחה אומרת על ההסתברויות ועל הגבול.",
+      "steps": [
+        "בתחילת המפגש: מטריצת מעבר מהמפגש הקודם ושונות אינדיקטורים שנלמדה בתחילת התוכנית.",
+        "לימוד וניסיון: להמשיך מההיכרות בשבת ולפתור את שאלת החזקה. לבדוק מה הנוסחה אומרת על ההסתברויות ועל הגבול.",
+        "בסיום: ניסיון בדוק בנוסחה ובנימוקה, כולל הבחנה בין מספר צעדים סופי לבין התנהגות גבולית. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "ניסיון בדוק בנוסחה ובנימוקה, כולל הבחנה בין מספר צעדים סופי לבין התנהגות גבולית.",
+      "dependsOn": [
+        "nov26-2026-10-31"
+      ],
+      "conditional": false,
+      "stage": "independent",
+      "role": "study",
+      "week": 5,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-04",
+      "date": "2026-11-04",
+      "start": null,
+      "minutes": 90,
+      "title": "סטציונריות, מחזוריות והתכנסות",
+      "kind": "study",
+      "topicId": "markov",
+      "topicIds": [
+        "markov"
+      ],
+      "problemIds": [],
+      "bankIds": [
+        "bank-C05",
+        "bank-C07"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            2
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לפתור דוגמאות קטנות שמפרידות בין התפלגות סטציונרית לבין התכנסות אליה. להימנע מהנחה שהשרשרת חייבת להגיע בדיוק לגבול אחרי מספר צעדים.",
+      "steps": [
+        "בתחילת המפגש: ממ״ן 14, שאלה 1: שחזור ההבטחה והנימוק לאחר שבוע.",
+        "לימוד וניסיון: לפתור דוגמאות קטנות שמפרידות בין התפלגות סטציונרית לבין התכנסות אליה. להימנע מהנחה שהשרשרת חייבת להגיע בדיוק לגבול אחרי מספר צעדים.",
+        "בסיום: חישוב סטציונריות ודוגמה נגדית לטענת התכנסות ללא תנאים. לציין אילו תנאים דרושים בכל טענה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "חישוב סטציונריות ודוגמה נגדית לטענת התכנסות ללא תנאים. לציין אילו תנאים דרושים בכל טענה.",
+      "dependsOn": [
+        "nov26-2026-11-02"
+      ],
+      "conditional": false,
+      "stage": "guided",
+      "role": "study",
+      "week": 5,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-06",
+      "date": "2026-11-06",
+      "start": null,
+      "minutes": 180,
+      "title": "ממ״ן 15, שאלה 2 — הילוך עם איפוס",
+      "kind": "study",
+      "topicId": "markov",
+      "topicIds": [
+        "markov"
+      ],
+      "problemIds": [
+        "m15-q2"
+      ],
+      "bankIds": [
+        "bank-C01"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            4
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לעבוד על השרשרת שבמקור, ולא להעתיק פרמטרים משרשרת דומה בבחינת עבר. לקשור בין משוואות המעבר לזמן הפגיעה.",
+      "steps": [
+        "בתחילת המפגש: חזקות מטריצה וסטציונריות מתחילת השבוע.",
+        "לימוד וניסיון: לעבוד על השרשרת שבמקור, ולא להעתיק פרמטרים משרשרת דומה בבחינת עבר. לקשור בין משוואות המעבר לזמן הפגיעה.",
+        "בסיום: ניסיון בדוק בשאלת המקור, עם פירוש של משוואות הצעד הראשון ובדיקת סדר הגודל. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "ניסיון בדוק בשאלת המקור, עם פירוש של משוואות הצעד הראשון ובדיקת סדר הגודל.",
+      "dependsOn": [
+        "nov26-2026-11-04"
+      ],
+      "conditional": false,
+      "stage": "guided",
+      "role": "study",
+      "week": 5,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-07",
+      "date": "2026-11-07",
+      "start": null,
+      "minutes": 180,
+      "title": "דוגמת המרצה 3, כיסוי וקישוריות",
+      "kind": "study",
+      "topicId": "markov",
+      "topicIds": [
+        "markov"
+      ],
+      "problemIds": [
+        "sample-q3",
+        "lecture-walks"
+      ],
+      "bankIds": [
+        "bank-C02",
+        "bank-C04",
+        "bank-C06"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-5",
+          "pages": [
+            3
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לתרגל בנפרד את הוכחת קיום המצב הנשנה. בהמשך ללמוד את הוכחת הכיסוי ואת השימוש בה לאלגוריתם הקישוריות; לבחור קטע הוכחה לשחזור עצמאי.",
+      "steps": [
+        "בתחילת המפגש: זמני פגיעה מהמפגש הקודם, והשיטה ההסתברותית משבועות קודמים.",
+        "לימוד וניסיון: לתרגל בנפרד את הוכחת קיום המצב הנשנה. בהמשך ללמוד את הוכחת הכיסוי ואת השימוש בה לאלגוריתם הקישוריות; לבחור קטע הוכחה לשחזור עצמאי.",
+        "בסיום: הוכחה בדוקה לדוגמת המרצה; שלד הוכחת הכיסוי והסבר של זמן, זיכרון ושגיאה באלגוריתם. חוסר שנותר עובר לעתודה, לא מסומן כנלמד. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "הוכחה בדוקה לדוגמת המרצה; שלד הוכחת הכיסוי והסבר של זמן, זיכרון ושגיאה באלגוריתם. חוסר שנותר עובר לעתודה, לא מסומן כנלמד.",
+      "dependsOn": [
+        "nov26-2026-11-04"
+      ],
+      "conditional": false,
+      "stage": "guided",
+      "role": "study",
+      "week": 5,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-09",
+      "date": "2026-11-09",
+      "start": null,
+      "minutes": 90,
+      "title": "תרגול מעורב — לבחור דרך בלי כותרת",
+      "kind": "practice",
+      "topicId": "random-graphs",
+      "topicIds": [
+        "random-graphs",
+        "derandomization",
+        "markov"
+      ],
+      "problemIds": [],
+      "bankIds": [
+        "bank-A07",
+        "bank-B01",
+        "bank-C01"
+      ],
+      "sourceRefs": [],
+      "priority": "core",
+      "objective": "לבחור שתי שאלות או סעיפים ממשפחות שכבר נלמדו, בלי כותרת שמגלה את הכלי. לבחור לפי ראיות הקושי, לא לפי תחושת נוחות.",
+      "steps": [
+        "בתחילת המפגש: ספים, ביטול אקראיות ומרקוב; לא נדרשת חזרה על כל התוכן במפגש אחד.",
+        "לימוד וניסיון: לבחור שתי שאלות או סעיפים ממשפחות שכבר נלמדו, בלי כותרת שמגלה את הכלי. לבחור לפי ראיות הקושי, לא לפי תחושת נוחות.",
+        "בסיום: שני ניסיונות מתועדים: מה בחרת לבד, היכן ההוכחה נשברה ומה צריך לתקן לפני הסימולציה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "שני ניסיונות מתועדים: מה בחרת לבד, היכן ההוכחה נשברה ומה צריך לתקן לפני הסימולציה.",
+      "dependsOn": [
+        "nov26-2026-10-19",
+        "nov26-2026-10-26",
+        "nov26-2026-11-06"
+      ],
+      "conditional": false,
+      "stage": "independent",
+      "role": "study",
+      "week": 6,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-11",
+      "date": "2026-11-11",
+      "start": null,
+      "minutes": 90,
+      "title": "טביעות אצבע ותיקונים — ניסיון לאחר הפסקה",
+      "kind": "practice",
+      "topicId": "fingerprints",
+      "topicIds": [
+        "fingerprints",
+        "alteration"
+      ],
+      "problemIds": [
+        "lecture-fingerprint"
+      ],
+      "bankIds": [
+        "bank-A10",
+        "bank-B04"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lecture-2",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לנסות וריאציה קצרה בטביעות אצבע ומקטע הוכחה בשיטת התיקונים בלי חומר פתוח. לשמור את השאלות המדויקות של הסימולציה מחוץ לתרגול.",
+      "steps": [
+        "בתחילת המפגש: חזרה מאוחרת על טביעות אצבע ועל מחיר התיקון.",
+        "לימוד וניסיון: לנסות וריאציה קצרה בטביעות אצבע ומקטע הוכחה בשיטת התיקונים בלי חומר פתוח. לשמור את השאלות המדויקות של הסימולציה מחוץ לתרגול.",
+        "בסיום: בדיקה של נימוק ושל חישוב בכל אחד משני הניסיונות, ורשימה קצרה של תיקונים להמשך. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "בדיקה של נימוק ושל חישוב בכל אחד משני הניסיונות, ורשימה קצרה של תיקונים להמשך.",
+      "dependsOn": [
+        "nov26-2026-10-16",
+        "nov26-2026-10-24"
+      ],
+      "conditional": false,
+      "stage": "independent",
+      "role": "study",
+      "week": 6,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-13",
+      "date": "2026-11-13",
+      "start": null,
+      "minutes": 180,
+      "title": "סימולציה 1 — בחינת עבר בתנאי זמן",
+      "kind": "mock",
+      "topicId": null,
+      "topicIds": [],
+      "problemIds": [],
+      "bankIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "exam5",
+          "pages": [
+            4,
+            6,
+            8,
+            10
+          ],
+          "label": "רק אם השאלות אינן מוכרות; אחרת מסמנים תרגול קצב"
+        }
+      ],
+      "priority": "core",
+      "objective": "150 דקות רצופות ללא עזרה, כפי שאושר לבחינת נובמבר; אחריהן 10 דקות מנוחה ו־20 דקות לרישום קשיים. בחירת השאלון מותנית במה שכבר ראית.",
+      "steps": [
+        "לפני שמתחילים: לוודא שהשאלות והפתרונות נבדקו מתמטית. אם כבר נחשפת לשאלות או שאין סט חדש מוכן, להשתמש בשאלון המקור ולתעד אותו כתרגול קצב, בלי לטעון למדידת מוכנות על שאלות חדשות.",
+        "לעבוד ברצף במשך 150 דקות על שלוש שאלות, עם דף הנוסחאות המותר וללא עזרה. לשמור את התשובות ולרשום זמני עבודה והפרעות.",
+        "להקדיש 10 דקות להפסקה ו־20 דקות לבדיקה ראשונית. בדיקה ותיקון מלאים מתוכננים במפגש הבא; אין להסיק ציון מסימון המשימה כבוצעה."
+      ],
+      "doneWhen": "דף תשובות וזמני עבודה לכל שאלה; לסמן שאלות מוכרות. זו בדיקת קצב וכתיבה, ולא מדד נקי ליכולת על חומר לא מוכר.",
+      "dependsOn": [
+        "nov26-2026-11-07",
+        "nov26-2026-11-09",
+        "nov26-2026-11-11"
+      ],
+      "conditional": false,
+      "stage": "timed",
+      "role": "study",
+      "week": 6,
+      "budget": {
+        "exam": 150,
+        "break": 10,
+        "initial_review": 20
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 10,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-14",
+      "date": "2026-11-14",
+      "start": null,
+      "minutes": 180,
+      "title": "לתקן את הסימולציה ולבחור מה לשנות",
       "kind": "review",
       "topicId": null,
+      "topicIds": [],
       "problemIds": [],
-      "priority": "support",
-      "objective": "לרענן את התנאים והטעויות שכבר פגשת, ולסיים את ההכנה בזמן.",
+      "bankIds": [],
+      "sourceRefs": [],
+      "priority": "core",
+      "objective": "לבדוק את התשובות מול פתרון בדוק ולתקן קודם שתי טעויות שמשפיעות על משפחות רחבות. אין להעתיק מחדש את כל הפתרונות.",
       "steps": [
-        "לקרוא את רשימת הטעויות האישית ולהזכיר לעצמך מה לבדוק בכל סוג שאלה.",
-        "לעבור על דף הנוסחאות ועל כמה שלבי פתרון שכבר למדת. להשאיר שאלות חדשות מחוץ לחזרה הזאת.",
-        "לוודא שהמקום ושעת הבחינה ידועים ושהציוד הדרוש מוכן. לסיים את החזרה אחרי כחצי שעה."
+        "בתחילת המפגש: הגדרות ותנאים שהכשילו את הסימולציה. 30 הדקות האחרונות נשמרות לעתודה.",
+        "לימוד וניסיון: לבדוק את התשובות מול פתרון בדוק ולתקן קודם שתי טעויות שמשפיעות על משפחות רחבות. אין להעתיק מחדש את כל הפתרונות.",
+        "בסיום: לכל טעות: מה חסר, ניסיון מתוקן, ושאלת בדיקה שתחזור ב־16 או ב־18 בנובמבר. שינוי בשבוע האחרון מוצג כהצעה. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
       ],
-      "doneWhen": "עברתי על התזכורות ועל דף הנוסחאות וסיימתי את ההתארגנות לבחינה.",
-      "dependsOn": [],
+      "doneWhen": "לכל טעות: מה חסר, ניסיון מתוקן, ושאלת בדיקה שתחזור ב־16 או ב־18 בנובמבר. שינוי בשבוע האחרון מוצג כהצעה.",
+      "dependsOn": [
+        "nov26-2026-11-13"
+      ],
       "conditional": false,
-      "stage": "review"
+      "stage": "review",
+      "role": "mock-review",
+      "week": 6,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-16",
+      "date": "2026-11-16",
+      "start": null,
+      "minutes": 90,
+      "title": "ניסיון חוזר במשפחה החלשה ביותר",
+      "kind": "review",
+      "topicId": null,
+      "topicIds": [],
+      "problemIds": [],
+      "bankIds": [],
+      "sourceRefs": [],
+      "priority": "core",
+      "objective": "לבחור את המשפחה לפי הסימולציה ולנסות שאלה דומה אך לא זהה. להשתמש בעזרה רק אחרי שניתן ניסיון אמיתי; אם חסר ידע, להשלים אותו במפורש.",
+      "steps": [
+        "בתחילת המפגש: סבב סיום: תוחלת ושונות, חסמי זנב ותנאי אי־תלות.",
+        "לימוד וניסיון: לבחור את המשפחה לפי הסימולציה ולנסות שאלה דומה אך לא זהה. להשתמש בעזרה רק אחרי שניתן ניסיון אמיתי; אם חסר ידע, להשלים אותו במפורש.",
+        "בסיום: לבדוק אם התיקון מסוף השבוע עבר לשאלה חדשה. תשובה נכונה אחרי צפייה בפתרון אינה מחליפה את הבדיקה הזו. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "לבדוק אם התיקון מסוף השבוע עבר לשאלה חדשה. תשובה נכונה אחרי צפייה בפתרון אינה מחליפה את הבדיקה הזו.",
+      "dependsOn": [
+        "nov26-2026-11-14"
+      ],
+      "conditional": false,
+      "stage": "review",
+      "role": "study",
+      "week": 7,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-18",
+      "date": "2026-11-18",
+      "start": null,
+      "minutes": 90,
+      "title": "בדיקה מעורבת אחרונה לפני הסימולציה",
+      "kind": "practice",
+      "topicId": null,
+      "topicIds": [],
+      "problemIds": [],
+      "bankIds": [],
+      "sourceRefs": [],
+      "priority": "core",
+      "objective": "שני סעיפים ממשפחות שונות שבהן נדרש עדיין חיזוק. לא לפתוח הרחבה חדשה מהבנק אם נשאר פער בחומר החובה.",
+      "steps": [
+        "בתחילת המפגש: סבב סיום: ספים, שיטת התיקונים וביטול אקראיות.",
+        "לימוד וניסיון: שני סעיפים ממשפחות שונות שבהן נדרש עדיין חיזוק. לא לפתוח הרחבה חדשה מהבנק אם נשאר פער בחומר החובה.",
+        "בסיום: בחירת כלי ונימוק בתנאי זמן, ושיפור בהוכחה או בחישוב שהיו חלשים בבדיקה הקודמת. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "בחירת כלי ונימוק בתנאי זמן, ושיפור בהוכחה או בחישוב שהיו חלשים בבדיקה הקודמת.",
+      "dependsOn": [
+        "nov26-2026-11-16"
+      ],
+      "conditional": false,
+      "stage": "independent",
+      "role": "study",
+      "week": 7,
+      "budget": {
+        "retrieval": 10,
+        "explanation_or_extra_practice": 20,
+        "practice": 40,
+        "feedback": 10,
+        "break": 5,
+        "continuation": 5
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 5,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
+    },
+    {
+      "id": "nov26-2026-11-20",
+      "date": "2026-11-20",
+      "start": null,
+      "minutes": 180,
+      "title": "סימולציה 2 — סט חדש שנבדק, או תרגול קצב",
+      "kind": "mock",
+      "topicId": null,
+      "topicIds": [],
+      "problemIds": [],
+      "bankIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "exam3",
+          "pages": [
+            4,
+            6,
+            8
+          ],
+          "label": "חלופה מוכנה: תרגול קצב בשאלון מוכר"
+        }
+      ],
+      "priority": "core",
+      "objective": "שאלון בן שלוש שאלות חדשות שנבדקו מראש מבחינת נכונות וקושי, ובו גם מרקוב. 150 דקות מבחן, 10 מנוחה ו־20 לרישום קשיים; משך הבחינה והיקפה אושרו ללא שינוי.",
+      "steps": [
+        "לפני שמתחילים: לוודא שהשאלות והפתרונות נבדקו מתמטית. אם כבר נחשפת לשאלות או שאין סט חדש מוכן, להשתמש בשאלון המקור ולתעד אותו כתרגול קצב, בלי לטעון למדידת מוכנות על שאלות חדשות.",
+        "לעבוד ברצף במשך 150 דקות על שלוש שאלות, עם דף הנוסחאות המותר וללא עזרה. לשמור את התשובות ולרשום זמני עבודה והפרעות.",
+        "להקדיש 10 דקות להפסקה ו־20 דקות לבדיקה ראשונית. בדיקה ותיקון מלאים מתוכננים במפגש הבא; אין להסיק ציון מסימון המשימה כבוצעה."
+      ],
+      "doneWhen": "ניסיון בתנאי הבחינה בלי רמזים ובלי פתרונות. לתעד חשיפה אם שאלה התבררה כמוכרת. השאלון עצמו טרם נכתב.",
+      "dependsOn": [
+        "nov26-2026-11-18"
+      ],
+      "conditional": false,
+      "stage": "timed",
+      "role": "study",
+      "week": 7,
+      "budget": {
+        "exam": 150,
+        "break": 10,
+        "initial_review": 20
+      },
+      "reserveMinutes": 0,
+      "breakMinutes": 10,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי.",
+      "mockPreparation": {
+        "status": "not-authored",
+        "dueDate": "2026-11-08",
+        "fallbackSourceId": "exam3",
+        "fallbackIsUnseen": false
+      }
+    },
+    {
+      "id": "nov26-2026-11-21",
+      "date": "2026-11-21",
+      "start": null,
+      "minutes": 180,
+      "title": "תיקון ממוקד וסגירת ההכנה",
+      "kind": "review",
+      "topicId": null,
+      "topicIds": [],
+      "problemIds": [],
+      "bankIds": [],
+      "sourceRefs": [
+        {
+          "sourceId": "formula-sheet",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "sourceId": "exam-notes",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "priority": "core",
+      "objective": "לתקן טעויות מהסימולציה, לבדוק שימוש בדף הנוסחאות ולתרגל כתיבה קצרה וברורה. לשמור זמן פנוי לקושי אחרון במקום למלא את היום בעוד חומר.",
+      "steps": [
+        "בתחילת המפגש: סבב סיום: מרקוב, טביעות אצבע והוכחות קצרות; להשלים חזרות ליבה עד היום הזה.",
+        "לימוד וניסיון: לתקן טעויות מהסימולציה, לבדוק שימוש בדף הנוסחאות ולתרגל כתיבה קצרה וברורה. לשמור זמן פנוי לקושי אחרון במקום למלא את היום בעוד חומר.",
+        "בסיום: רשימת דגשים קצרה לבחינה, תיקון של הטעויות העיקריות והכרת הוראות המענה. אין הבטחה שכל המשפחות יושלמו ללא צורך בהתאמות. לשמור מה ניסית, איזו עזרה נדרשה ומה הצעד הבא. תום הזמן אינו הוכחה שהחומר כבר נלמד."
+      ],
+      "doneWhen": "רשימת דגשים קצרה לבחינה, תיקון של הטעויות העיקריות והכרת הוראות המענה. אין הבטחה שכל המשפחות יושלמו ללא צורך בהתאמות.",
+      "dependsOn": [
+        "nov26-2026-11-20"
+      ],
+      "conditional": false,
+      "stage": "review",
+      "role": "mock-review",
+      "week": 7,
+      "budget": {
+        "retrieval": 15,
+        "explanation_or_extra_practice": 25,
+        "practice": 80,
+        "feedback_and_continuation": 15,
+        "break": 15,
+        "reserve": 30
+      },
+      "reserveMinutes": 30,
+      "breakMinutes": 15,
+      "learnedScope": "האישור שהחומר נלמד מתייחס לכל נושאי המפגש. אם למדת רק חלק, שמור נקודת המשך והשאר את האישור כבוי."
     }
   ],
   "contingencies": [
     {
-      "id": "mock-unavailable",
-      "title": "אם חלון 28 בספטמבר אינו זמין",
-      "description": "מפעילים רק אם סימולציית הביניים לא התחילה ואפשר לפנות 150 דקות רצופות ביום 29 בספטמבר. הסימולציה, התחקור ושאלת מרקוב המרכזית ממלאים 300 דקות באותו יום. שאר יחידות מרקוב והכניסה לגרפים עוברות ל־1 באוקטובר; תיקונים, רמזי וטביעות אצבע עוברים ל־7 באוקטובר וצורכים 150 מתוך 210 דקות העתודה. נותרות 60 דקות עתודה. הכיסוי של שלוש היחידות שנדחו מסתיים אחרי הסימולציה המלאה ולכן אין להסיק ממנה מוכנות בהן.",
-      "trigger": "לא ניתן לקיים סימולציה רצופה ב־28 בספטמבר בזמן העבודה.",
-      "moves": [
-        {
-          "sessionId": "mock1",
-          "date": "2026-09-29",
-          "start": "10:00",
-          "conditional": false,
-          "title": "סימולציית ביניים — מועד חלופי"
-        },
-        {
-          "sessionId": "mock1-review",
-          "date": "2026-09-29",
-          "start": "12:45"
-        },
-        {
-          "sessionId": "markov-reset",
-          "date": "2026-09-29",
-          "start": "13:45"
-        },
-        {
-          "sessionId": "graphs-entry",
-          "date": "2026-10-01",
-          "start": "07:00"
-        },
-        {
-          "sessionId": "markov-matrix",
-          "date": "2026-10-01",
-          "start": "08:15"
-        },
-        {
-          "sessionId": "triangle-threshold",
-          "date": "2026-10-01",
-          "start": "10:00"
-        },
-        {
-          "sessionId": "clique-transfer",
-          "date": "2026-10-01",
-          "start": "12:00"
-        },
-        {
-          "sessionId": "official-recurrence",
-          "date": "2026-10-01",
-          "start": "13:15"
-        },
-        {
-          "sessionId": "alteration",
-          "date": "2026-10-07",
-          "start": "10:00"
-        },
-        {
-          "sessionId": "ramsey-coverage",
-          "date": "2026-10-07",
-          "start": "11:30"
-        },
-        {
-          "sessionId": "fingerprints-coverage",
-          "date": "2026-10-07",
-          "start": "12:30"
-        }
-      ],
-      "dayOverrides": [
-        {
-          "date": "2026-09-28",
-          "conditionalMinutes": 0,
-          "confirmedOptional": false,
-          "notes": [
-            "הסימולציה הועברה ל־29 בספטמבר. הבוקר נשאר להכנת השאלות בלבד."
-          ]
-        },
-        {
-          "date": "2026-09-29",
-          "notes": [
-            "מועד חלופי: סימולציה, תחקור ושאלת מרקוב המרכזית. שאר יחידות מרקוב ופתיחת הגרפים הועברו ל־1 באוקטובר."
-          ]
-        },
-        {
-          "date": "2026-10-01",
-          "notes": [
-            "מועד חלופי: יחידות מרקוב שנדחו והתקדמות בגרפים אקראיים. תיקונים, רמזי וטביעות אצבע עברו לעתודה."
-          ]
-        },
-        {
-          "date": "2026-10-07",
-          "reserveMinutes": 60,
-          "notes": [
-            "150 דקות עתודה הוקצו לכיסוי שנדחה: תיקונים, רמזי וטביעות אצבע. נותרות 60 דקות לתיקונים נוספים."
-          ]
-        }
-      ],
-      "effects": [
-        "29 בספטמבר: 300 דקות, ללא חריגה.",
-        "1 באוקטובר: 300 דקות, ללא חריגה.",
-        "7 באוקטובר: 150 דקות משובצות ו־60 דקות עתודה נשארות.",
-        "דוגמאות רשמיות 1–3 וכל שאלות הממ״ן מלבד 13/3 מקבלות כיסוי לפני הסימולציה המלאה; 13/3 והשלמות הכיתה נדחות לעתודה."
-      ],
-      "mustCheck": "אם כבר בוצע חלק מהסימולציה, לא חוזרים על אותו סט כדי למדוד מוכנות. מתעדים אותו כתרגול ובוחרים סט חדש רק אם מחליטים לקיים סימולציה נוספת."
-    },
-    {
-      "id": "mock-interrupted",
-      "title": "אם הסימולציה הופרעה",
-      "description": "שומרים את התשובות ומתעדים זמן פעיל והפרעות. הביצוע נחשב תרגול אבחוני; לא משתמשים בו כעדות למהירות בבחינה. אין חובה להוסיף מיד עוד 150 דקות, והסימולציה הרצופה של 3 באוקטובר נשארת מוגנת.",
+      "id": "lost-block",
+      "title": "אם מפגש התפספס או לא הספיק",
+      "description": "שומרים נקודת המשך ומעבירים את העבודה לעתודה הקרובה רק לאחר בחירה מפורשת. קודם מצמצמים הרחבות של הבנק ותרגול כפול; לא מורידים שאלת חובה או דוגמת מרצה בשקט.",
       "moves": [],
       "effects": [
-        "אין הזזה אוטומטית של התוכנית.",
-        "בתחקור מפרידים פערי חומר מהפרעות עבודה.",
-        "אם בוחרים בכל זאת סימולציה נוספת, צריך סט חדש ושיבוץ מפורש על חשבון קיבולת קיימת."
+        "העתודה כבר כלולה ב־63 השעות.",
+        "אם הזמן שנותר אינו מספיק, הפער מוצג ודורש בחירת סדר עדיפויות.",
+        "אין שינוי אוטומטי של ההתקדמות או של שעות הלימוד."
       ]
     },
     {
-      "id": "lost-block",
-      "title": "אם אובד בלוק או יום",
-      "description": "לא מעבירים יום עומק שלם לבוקר עבודה. מסירים תחילה הרחבות רשות ותרגול כפול, אחר כך בוחרים אילו משימות ליבה להעביר לעתודה. מגינים על ייצוג לכל נושא כיתה ועל סימולציה רצופה אחת לפחות. אם המשימות והעתודה אינן נכנסות בזמן שנותר, מוצג פער קיבולת שיש לפתור בבחירת סדר עדיפויות.",
+      "id": "mock-known",
+      "title": "אם כבר ראית את שאלות הסימולציה",
+      "description": "אפשר להשתמש בשאלון לתרגול קצב וכתיבה ולציין את החשיפה. למדידת העברה צריך סט חדש שנבדק; אין להסיק מוכנות משאלה שנלמדה מראש.",
       "moves": [],
       "effects": [
-        "למשימה שלא בוצעה נשאר סטטוס פתוח, ולא כישלון אישי.",
-        "שיבוץ מחדש צריך לשמור על הקיבולת של יום היעד ועל תנאי הקדם.",
-        "אין להגדיל בשקט את שעות הריכוז."
+        "לא מאפסים היסטוריית חשיפה כדי להציג שאלות כחדשות.",
+        "הסימולציה עדיין מועילה לתרגול ניהול זמן."
       ]
     }
   ],
   "milestones": [
     {
-      "id": "foundation-gate",
-      "date": "2026-09-25",
-      "title": "אפשר לבנות על היסודות",
+      "id": "nov-foundations",
+      "date": "2026-10-14",
+      "title": "בסיס הסתברות וחסמי זנב",
       "sessionIds": [
-        "foundations-variance",
-        "permutation-indicators",
-        "union-coupons-windows"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07",
+        "nov26-2026-10-09",
+        "nov26-2026-10-10",
+        "nov26-2026-10-12",
+        "nov26-2026-10-14"
       ],
-      "criterion": "אפשר להגדיר אינדיקטור, לחשב תוחלת, לזהות איזו אי־תלות נתונה ולהסביר מתי מותר לחבר שונויות. הבדיקה היא בניסיון כתוב, לא בתחושת היכרות.",
-      "ifNotMet": "30 הדקות הראשונות של יום הזנבות מוקצות לתשתית; מקטינים תרגול כפול ומשאירים דוגמה רשמית ושאלה מייצגת."
+      "criterion": "יש ניסיונות בדוקים בשאלות היסוד והזנבות, ורשימה מפורשת של ההנחות או ההוכחות שעדיין דורשות עזרה.",
+      "ifNotMet": "משתמשים בעתודה לחלק שחוסם את ההמשך לפני הרחבות הבנק."
     },
     {
-      "id": "first-core-exposure",
-      "date": "2026-09-27",
-      "title": "זנבות ושתי שיטות ביטול אקראיות קיבלו ניסיון",
+      "id": "nov-methods",
+      "date": "2026-10-31",
+      "title": "גרפים ושתי דרכי ביטול אקראיות",
       "sessionIds": [
-        "official-balls",
-        "tails-pairwise",
-        "multicut-conditional",
-        "limited-independence",
-        "official-sat",
-        "multicut-smallspace"
+        "nov26-2026-10-17",
+        "nov26-2026-10-19",
+        "nov26-2026-10-21",
+        "nov26-2026-10-23",
+        "nov26-2026-10-24",
+        "nov26-2026-10-26",
+        "nov26-2026-10-28",
+        "nov26-2026-10-30"
       ],
-      "criterion": "יש ניסיון מתועד בשאלות המרכזיות, כולל רמת הסיוע. עדיין מותר שיהיו פערים; הם צריכים להיות גלויים ומוקצים בזמן.",
-      "ifNotMet": "סימולציית הביניים מפורשת ביחס לחומר שכוסה בפועל; החלקים החסרים מקבלים קדימות בתקציב התיקון."
+      "criterion": "נוסו משפחות הכיתה וכל שאלות הממ״ן שנלמדו עד כאן; נבדקת העברה לשאלה בלי כותרת שמגלה את דרך הפתרון.",
+      "ifNotMet": "רושמים איזה חלק לא נלמד ומשתמשים בעתודה. אין לסמן שהמפגש כולו נלמד אם נשאר בו נושא חדש."
     },
     {
-      "id": "coverage-gate",
-      "date": "2026-10-02",
-      "title": "מפת הכיסוי של הליבה מלאה וגלויה",
+      "id": "nov-coverage",
+      "date": "2026-11-07",
+      "title": "כל שאלות החובה והדוגמה קיבלו ניסיון",
       "sessionIds": [
-        "coverage-audit"
+        "nov26-2026-10-07",
+        "nov26-2026-10-09",
+        "nov26-2026-10-10",
+        "nov26-2026-10-12",
+        "nov26-2026-10-14",
+        "nov26-2026-10-16",
+        "nov26-2026-10-17",
+        "nov26-2026-10-19",
+        "nov26-2026-10-21",
+        "nov26-2026-10-23",
+        "nov26-2026-10-24",
+        "nov26-2026-10-26",
+        "nov26-2026-10-28",
+        "nov26-2026-10-30",
+        "nov26-2026-11-02",
+        "nov26-2026-11-06",
+        "nov26-2026-11-07"
       ],
-      "criterion": "לכל שאלת חובה, דוגמה רשמית ומשפחת כיתה יש מצב מפורש. היעד הוא כיסוי של כולן; תווית ״לא נבדק״ עדיפה על סימון השלמה שאינו מבוסס.",
-      "ifNotMet": "מקצים את העתודה לפערי הליבה. אם הופעלה חלופת הסימולציה, מציינים במפורש את הכיסוי שנדחה ל־7 באוקטובר."
+      "criterion": "לכל אחת מ־17 השאלות יש תיעוד אמיתי של ניסיון ורמת העזרה. אי־הצלחה נשארת גלויה ומקבלת זמן תיקון.",
+      "ifNotMet": "החסר מקבל קדימות בעתודה ובמפגשי התיקון על פני וריאציות נוספות."
     },
     {
-      "id": "independence-gate",
-      "date": "2026-10-03",
-      "title": "קיימת עדות לפתרון עצמאי ובזמן",
+      "id": "nov-mocks",
+      "date": "2026-11-21",
+      "title": "ביצוע בתנאי זמן ותיקון הטעויות",
       "sessionIds": [
-        "mock2",
-        "mock2-review"
+        "nov26-2026-11-13",
+        "nov26-2026-11-14",
+        "nov26-2026-11-20",
+        "nov26-2026-11-21"
       ],
-      "criterion": "שלוש שאלות חדשות ב־150 דקות, תשובות שמורות ובדיקה אמיתית. מוכנות נבחנת לפי משפחות וסוגי טעויות, לא לפי אחוז משימות שסומנו.",
-      "ifNotMet": "בוחרים עד שלושה תיקונים אפשריים בזמן שנותר; לא חוזרים לקריאה רחבה של כל הספר."
-    },
-    {
-      "id": "final-map",
-      "date": "2026-10-07",
-      "title": "הפערים שנותרו ותוכנית הבחינה ידועים",
-      "sessionIds": [
-        "spaced-tails",
-        "spaced-derand",
-        "spaced-markov-graphs"
-      ],
-      "criterion": "יש תמונה מעודכנת של חוזקות, פערים, תנאי כלים וטעויות חוזרות. העתודה הופעלה לפי צורך בלבד.",
-      "ifNotMet": "מתמקדים בתבניות בעלות תרומה צפויה גבוהה ובכתיבה מלאה של מה שכבר ניתן לפתור; לא פותחים פרקי העשרה."
+      "criterion": "שתי סימולציות בזמן ותשובות בדוקות, עם הפרדה בין שאלות מוכרות לחדשות; רשימת תיקונים קצרה ומעשית לפני הבחינה.",
+      "ifNotMet": "מתמקדים בפערים שאפשר לתקן ובכתיבה מלאה של פתרונות שכבר נלמדו; לא פותחים פרקי העשרה."
     }
   ],
   "summary": {
-    "baselineTaskMinutes": 2130,
-    "baselineStudyMinutes": 2100,
-    "setupMinutes": 30,
-    "conditionalMockMinutes": 150,
-    "optionalWorkFromHomeTaskMinutes": 75,
-    "reserveMinutes": 210,
-    "fullDepthDays": 5,
+    "baselineTaskMinutes": 3780,
+    "baselineStudyMinutes": 3150,
+    "setupMinutes": 0,
+    "conditionalMockMinutes": 0,
+    "optionalWorkFromHomeTaskMinutes": 0,
+    "reserveMinutes": 360,
+    "breakMinutes": 270,
+    "fullDepthDays": 14,
+    "shortStudyDays": 14,
     "mandatoryMamanQuestions": 14,
     "officialSampleQuestions": 3,
     "readinessNote": "מוכנות נבחנת לפי פתרון עצמאי מתועד. תכנון זמן וכיסוי קריאה אינם תחזית לציון."
   },
   "calendarEvents": [],
   "assumptions": [
-    "זו תוכנית הכנה מוצעת עד הבחינה ב־8 באוקטובר 2026. יש להתאים את הזמינות והמשימות למצב האישי.",
+    "תוכנית הכנה לבחינה ב־23 בנובמבר 2026. מחזור הלימוד מתחיל מן הבסיס, וההיסטוריה נשמרת בנפרד.",
+    "שני ורביעי: 90 דקות; שישי ושבת: 180 דקות. 28 מפגשים ו־63 שעות עד הבחינה, כולל הפסקות ועתודה.",
     "משכי המשימות הם תקציב פתיחה. סיום הזמן או סימון משימה אינם מוכיחים שליטה בחומר.",
     "הרצאות הליבה הן מקור העדיפות הראשון; כל 14 שאלות החובה בממ״נים וכל שלוש שאלות הדוגמה מקבלות כיסוי מתוכנן.",
     "האתר הציבורי אינו כולל תוצאות אבחון, פתרונות אישיים או אירועים מהיומן הפרטי. אפשר לייבא התקדמות מקובץ גיבוי.",
-    "הסימולציה המותנית דורשת 150 דקות רצופות. אם הזמן אינו זמין, אפשר להעביר אותה באמצעות החלופה שבתוכנית.",
-    "210 דקות ב־7 באוקטובר נשמרות כעתודה. הפעלת חלופה או הוספת משימת תיקון צורכת מהזמן הפנוי.",
+    "שתי הסימולציות כוללות 150 דקות עבודה רצופות. חשיפה קודמת לשאלות תתועד, ואין להסיק ממנה מדידת העברה לשאלות חדשות.",
+    "360 דקות עתודה ו־270 דקות הפסקות כלולות בתקציב, ואינן שעות לימוד נוספות. זמן נוסף של 30–60 דקות אינו נדרש לתוכנית כי תדירותו לא נקבעה.",
+    "לא נקבעו שעות התחלה. בוחרים שעה אישית בלי להגדיל את תקציב המפגש. הצעות לשינוי שיבוץ מוצגות לפני האישור.",
     "נושאי ההעשרה של שיעור 6 אינם כלולים בתקציב הליבה של תבנית זו."
   ]
 }

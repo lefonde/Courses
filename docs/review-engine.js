@@ -2,13 +2,14 @@
    Intervals are a planning heuristic for this exam horizon, not a mastery measure. */
 (function (root, factory) {
   const content = typeof module === 'object' && module.exports ? require('./review-content.js') : root.StudyReviewContent;
-  const api = factory(content);
+  const calendar = typeof module === 'object' && module.exports ? require('./plan-calendar.js') : root.StudyPlanCalendar;
+  const api = factory(content, calendar);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root) root.StudyReviewEngine = api;
-})(typeof window === 'undefined' ? globalThis : window, function (content) {
+})(typeof window === 'undefined' ? globalThis : window, function (content, calendar) {
   'use strict';
   const DAY = 86400000;
-  const DEADLINE = '2026-10-07T20:00:00+03:00';
+  const DEADLINE = calendar.DEADLINE;
   const MINUTES = 10;
   const ENTRY_KEYS = ['id', 'problemId', 'target', 'createdAt', 'dueAt', 'sessionId', 'status', 'outcome', 'help', 'note', 'updatedAt', 'history'];
   const INPUT_KEYS = ['id', 'problemId', 'target', 'createdAt', 'dueAt', 'sessionId'];
@@ -40,7 +41,7 @@
   }
   function due(value, earliest) {
     const at = instant(value);
-    if (at > instant(DEADLINE)) invalid('יש לקבוע את החזרה עד 7 באוקטובר ב־20:00, לפני הבחינה.');
+    if (at > instant(DEADLINE)) invalid('יש לקבוע את החזרה עד 22 בנובמבר ב־20:00, לפני הבחינה.');
     if (at < earliest) invalid('מועד החזרה אינו יכול להיות לפני מועד אישור התכנון.');
     return at;
   }
@@ -118,14 +119,11 @@
       return {...copy(question), ...copy(item), priorAttemptAt: attemptEvidence(item.problemId, state).latest?.at || null};
     }).filter(Boolean);
   }
-  function cutoff(examDate = '2026-10-08') {
-    if (typeof examDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(examDate)) invalid('תאריך הבחינה אינו תקין.');
-    const midnight = instant(examDate + 'T00:00:00Z');
-    const previousDay = new Date(midnight - DAY).toISOString().slice(0, 10);
-    // This course's September–October preparation window is UTC+03:00.
-    return Math.min(instant(DEADLINE), instant(previousDay + 'T20:00:00+03:00'));
+  function cutoff(examDate = calendar.EXAM) {
+    try {return Math.min(instant(DEADLINE), instant(calendar.deadlineAt(examDate)));}
+    catch {invalid('תאריך הבחינה אינו תקין.');}
   }
-  function proposeNextDate(problemId, state, now, examDate = '2026-10-08') {
+  function proposeNextDate(problemId, state, now, examDate = calendar.EXAM) {
     const current = instant(now), deadline = cutoff(examDate), reviews = reviewsOf(state);
     if (!eligible(problemId, state) || current >= deadline || reviews.entries.some(entry => entry.problemId === problemId && entry.status === 'planned')) return null;
     const completed = reviews.entries.filter(entry => entry.problemId === problemId && entry.status === 'done').sort((a, b) => instant(b.updatedAt) - instant(a.updatedAt));

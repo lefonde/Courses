@@ -73,8 +73,8 @@
   };
 
   return {
-    id: 'variance-v1',
-    sessionId: 'foundations-variance',
+    id: 'variance-nov26-v1',
+    sessionId: 'nov26-2026-10-05',
     title: 'שונות ואי־תלות: מדוגמה לפתרון עצמאי',
     sourceRefs: [
       {sourceId: 'lecture-1', pages: [6]},

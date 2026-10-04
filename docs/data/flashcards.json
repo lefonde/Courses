@@ -1,21 +1,22 @@
 {
   "meta": {
-    "version": 1,
+    "version": 2,
     "language": "he",
-    "examDate": "2026-10-08",
+    "examDate": "2026-11-23",
     "title": "כרטיסיות חזרה לפי החומר שכבר למדת",
     "selection": "הכרטיסיות נבחרו מתוך שיטות הכיתה, שאלות החובה בממ״נים ושלוש שאלות הדוגמה. הן מכסות הגדרות, תנאים, שלדי הוכחה ובחירת שיטה. נושאי ההעשרה של שיעור 6 אינם כלולים.",
     "sourceNotice": "מספרי העמודים הם עמודי PDF. הכרטיסיות נוסחו לצורך חזרה; הן אינן ציטוט מקור או תחזית להופעת שאלה במבחן.",
     "unlockPolicy": "כל יחידה המופיעה ב־unlockAfter דורשת אישור מפורש שהחומר שלה נלמד. תאריך ביומן או השלמה טכנית של משימה אינם פותחים כרטיסיות.",
     "use": "מנסים לשלוף לפני הצגת התשובה, ואז בודקים את עצמנו. כרטיסיות מחזקות זכירה והבנת תנאים; הן אינן מחליפות פתרון עצמאי של שאלה מלאה.",
-    "reviewHorizon": "החזרות נקבעות עד 7 באוקטובר בשעה 20:00. חזרה שכבר נקבעה נשארת זמינה פעם אחרונה, ואינה מקבלת מועד נוסף אחרי מועד זה."
+    "reviewHorizon": "החזרות נקבעות עד 22 בנובמבר בשעה 20:00 בישראל. המרווחים מותאמים לזמן שנותר; חזרה אינה נקבעת לאחר ערב הבחינה.",
+    "planId": "november-2026"
   },
   "cards": [
     {
       "id": "f-indicator",
       "topicId": "foundations",
       "unlockAfter": [
-        "foundations-variance"
+        "nov26-2026-10-05"
       ],
       "kind": "definition",
       "priority": "core",
@@ -44,7 +45,7 @@
       "id": "f-linearity",
       "topicId": "foundations",
       "unlockAfter": [
-        "foundations-variance"
+        "nov26-2026-10-05"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -69,7 +70,7 @@
       "id": "f-variance-meaning",
       "topicId": "foundations",
       "unlockAfter": [
-        "foundations-variance"
+        "nov26-2026-10-05"
       ],
       "kind": "definition",
       "priority": "core",
@@ -99,7 +100,7 @@
       "id": "f-bernoulli-variance",
       "topicId": "foundations",
       "unlockAfter": [
-        "foundations-variance"
+        "nov26-2026-10-05"
       ],
       "kind": "method",
       "priority": "core",
@@ -129,7 +130,7 @@
       "id": "f-sum-variance",
       "topicId": "foundations",
       "unlockAfter": [
-        "foundations-variance"
+        "nov26-2026-10-05"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -159,7 +160,7 @@
       "id": "f-indicator-covariance",
       "topicId": "foundations",
       "unlockAfter": [
-        "foundations-variance"
+        "nov26-2026-10-05"
       ],
       "kind": "method",
       "priority": "core",
@@ -189,7 +190,7 @@
       "id": "f-independence",
       "topicId": "foundations",
       "unlockAfter": [
-        "foundations-variance"
+        "nov26-2026-10-05"
       ],
       "kind": "definition",
       "priority": "core",
@@ -224,8 +225,8 @@
       "id": "f-binomial",
       "topicId": "foundations",
       "unlockAfter": [
-        "foundations-variance",
-        "permutation-indicators"
+        "nov26-2026-10-05",
+        "nov26-2026-10-09"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -255,8 +256,8 @@
       "id": "t-union-bound",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -291,8 +292,8 @@
       "id": "t-coupon-template",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows"
+        "nov26-2026-10-05",
+        "nov26-2026-10-10"
       ],
       "kind": "method",
       "priority": "core",
@@ -327,10 +328,8 @@
       "id": "t-markov",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -365,10 +364,8 @@
       "id": "t-chebyshev",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -397,10 +394,8 @@
       "id": "t-chebyshev-proof",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07"
       ],
       "kind": "proof",
       "priority": "core",
@@ -424,11 +419,9 @@
       "id": "t-chernoff-conditions",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise",
-        "official-balls"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07",
+        "nov26-2026-10-12"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -458,11 +451,9 @@
       "id": "t-relative-deviation",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise",
-        "official-balls"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07",
+        "nov26-2026-10-12"
       ],
       "kind": "method",
       "priority": "core",
@@ -497,11 +488,9 @@
       "id": "t-chernoff-upper",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise",
-        "official-balls"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07",
+        "nov26-2026-10-12"
       ],
       "kind": "method",
       "priority": "core",
@@ -534,11 +523,9 @@
       "id": "t-chernoff-lower",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise",
-        "official-balls"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07",
+        "nov26-2026-10-12"
       ],
       "kind": "method",
       "priority": "core",
@@ -573,11 +560,10 @@
       "id": "t-local-global",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise",
-        "official-balls"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07",
+        "nov26-2026-10-12",
+        "nov26-2026-10-16"
       ],
       "kind": "method",
       "priority": "core",
@@ -607,12 +593,10 @@
       "id": "t-windows",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise",
-        "official-balls",
-        "tails-windows"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07",
+        "nov26-2026-10-12",
+        "nov26-2026-10-14"
       ],
       "kind": "method",
       "priority": "core",
@@ -642,12 +626,9 @@
       "id": "t-amplification",
       "topicId": "tails",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "permutation-indicators",
-        "tails-pairwise",
-        "official-balls",
-        "amplification"
+        "nov26-2026-10-05",
+        "nov26-2026-10-07",
+        "nov26-2026-10-12"
       ],
       "kind": "proof",
       "priority": "core",
@@ -676,8 +657,8 @@
       "id": "d-expectation-existence",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation"
+        "nov26-2026-10-05",
+        "nov26-2026-10-26"
       ],
       "kind": "proof",
       "priority": "core",
@@ -702,8 +683,8 @@
       "id": "d-conditional-invariant",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation"
+        "nov26-2026-10-05",
+        "nov26-2026-10-26"
       ],
       "kind": "proof",
       "priority": "core",
@@ -727,8 +708,8 @@
       "id": "d-efficient-conditional",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation"
+        "nov26-2026-10-05",
+        "nov26-2026-10-26"
       ],
       "kind": "method",
       "priority": "core",
@@ -753,10 +734,9 @@
       "id": "d-clause-conditional",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation",
-        "limited-independence",
-        "official-sat"
+        "nov26-2026-10-05",
+        "nov26-2026-10-26",
+        "nov26-2026-10-23"
       ],
       "kind": "method",
       "priority": "core",
@@ -785,10 +765,9 @@
       "id": "d-sat-seven-eighths",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation",
-        "limited-independence",
-        "official-sat"
+        "nov26-2026-10-05",
+        "nov26-2026-10-26",
+        "nov26-2026-10-23"
       ],
       "kind": "proof",
       "priority": "core",
@@ -825,9 +804,8 @@
       "id": "d-kwise-definition",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation",
-        "limited-independence"
+        "nov26-2026-10-05",
+        "nov26-2026-10-23"
       ],
       "kind": "definition",
       "priority": "core",
@@ -852,9 +830,8 @@
       "id": "d-pairwise-counterexample",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation",
-        "limited-independence"
+        "nov26-2026-10-05",
+        "nov26-2026-10-23"
       ],
       "kind": "method",
       "priority": "core",
@@ -878,9 +855,8 @@
       "id": "d-polynomial-construction",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation",
-        "limited-independence"
+        "nov26-2026-10-05",
+        "nov26-2026-10-23"
       ],
       "kind": "proof",
       "priority": "core",
@@ -911,9 +887,8 @@
       "id": "d-smallspace-enumeration",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation",
-        "limited-independence"
+        "nov26-2026-10-05",
+        "nov26-2026-10-23"
       ],
       "kind": "method",
       "priority": "core",
@@ -945,11 +920,10 @@
       "id": "d-multicut",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation",
-        "limited-independence",
-        "multicut-conditional",
-        "multicut-smallspace"
+        "nov26-2026-10-05",
+        "nov26-2026-10-26",
+        "nov26-2026-10-23",
+        "nov26-2026-10-30"
       ],
       "kind": "method",
       "priority": "core",
@@ -980,12 +954,10 @@
       "id": "d-linear-equation",
       "topicId": "derandomization",
       "unlockAfter": [
-        "foundations-variance",
-        "conditional-expectation",
-        "limited-independence",
-        "multicut-conditional",
-        "multicut-smallspace",
-        "linear-constraints"
+        "nov26-2026-10-05",
+        "nov26-2026-10-23",
+        "nov26-2026-10-26",
+        "nov26-2026-10-28"
       ],
       "kind": "method",
       "priority": "core",
@@ -1017,8 +989,8 @@
       "id": "m-transition",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31"
       ],
       "kind": "definition",
       "priority": "core",
@@ -1047,8 +1019,10 @@
       "id": "m-stationary",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-02",
+        "nov26-2026-11-04"
       ],
       "kind": "definition",
       "priority": "core",
@@ -1078,8 +1052,10 @@
       "id": "m-stationary-not-limit",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-02",
+        "nov26-2026-11-04"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -1103,8 +1079,10 @@
       "id": "m-convergence",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-02",
+        "nov26-2026-11-04"
       ],
       "kind": "conditions",
       "priority": "core",
@@ -1129,9 +1107,9 @@
       "id": "m-hitting-equations",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer",
-        "markov-reset"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-06"
       ],
       "kind": "method",
       "priority": "core",
@@ -1166,9 +1144,9 @@
       "id": "m-hitting-return",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer",
-        "markov-reset"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-06"
       ],
       "kind": "definition",
       "priority": "core",
@@ -1193,9 +1171,9 @@
       "id": "m-powers",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer",
-        "markov-matrix"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-02"
       ],
       "kind": "method",
       "priority": "core",
@@ -1230,9 +1208,9 @@
       "id": "m-recurrent-definition",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer",
-        "official-recurrence"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-07"
       ],
       "kind": "definition",
       "priority": "core",
@@ -1263,9 +1241,9 @@
       "id": "m-finite-recurrence-proof",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer",
-        "official-recurrence"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-07"
       ],
       "kind": "proof",
       "priority": "core",
@@ -1296,10 +1274,10 @@
       "id": "m-undirected-stationary",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer",
-        "markov-reset",
-        "markov-walks"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-02",
+        "nov26-2026-11-04"
       ],
       "kind": "method",
       "priority": "core",
@@ -1329,10 +1307,10 @@
       "id": "m-connectivity",
       "topicId": "markov",
       "unlockAfter": [
-        "foundations-variance",
-        "markov-primer",
-        "markov-reset",
-        "markov-walks"
+        "nov26-2026-10-05",
+        "nov26-2026-10-31",
+        "nov26-2026-11-06",
+        "nov26-2026-11-07"
       ],
       "kind": "proof",
       "priority": "core",
@@ -1358,8 +1336,8 @@
       "id": "g-model",
       "topicId": "random-graphs",
       "unlockAfter": [
-        "foundations-variance",
-        "graphs-entry"
+        "nov26-2026-10-05",
+        "nov26-2026-10-17"
       ],
       "kind": "definition",
       "priority": "core",
@@ -1389,8 +1367,8 @@
       "id": "g-isolated",
       "topicId": "random-graphs",
       "unlockAfter": [
-        "foundations-variance",
-        "graphs-entry"
+        "nov26-2026-10-05",
+        "nov26-2026-10-17"
       ],
       "kind": "method",
       "priority": "core",
@@ -1426,9 +1404,9 @@
       "id": "g-triangle-expectation",
       "topicId": "random-graphs",
       "unlockAfter": [
-        "foundations-variance",
-        "graphs-entry",
-        "triangle-threshold"
+        "nov26-2026-10-05",
+        "nov26-2026-10-17",
+        "nov26-2026-10-19"
       ],
       "kind": "method",
       "priority": "core",
@@ -1463,9 +1441,9 @@
       "id": "g-triangle-overlap",
       "topicId": "random-graphs",
       "unlockAfter": [
-        "foundations-variance",
-        "graphs-entry",
-        "triangle-threshold"
+        "nov26-2026-10-05",
+        "nov26-2026-10-17",
+        "nov26-2026-10-19"
       ],
       "kind": "method",
       "priority": "core",
@@ -1495,9 +1473,9 @@
       "id": "g-first-moment",
       "topicId": "random-graphs",
       "unlockAfter": [
-        "foundations-variance",
-        "graphs-entry",
-        "triangle-threshold"
+        "nov26-2026-10-05",
+        "nov26-2026-10-17",
+        "nov26-2026-10-19"
       ],
       "kind": "proof",
       "priority": "core",
@@ -1526,9 +1504,9 @@
       "id": "g-second-moment",
       "topicId": "random-graphs",
       "unlockAfter": [
-        "foundations-variance",
-        "graphs-entry",
-        "triangle-threshold"
+        "nov26-2026-10-05",
+        "nov26-2026-10-17",
+        "nov26-2026-10-19"
       ],
       "kind": "proof",
       "priority": "core",
@@ -1558,10 +1536,10 @@
       "id": "g-k4-transfer",
       "topicId": "random-graphs",
       "unlockAfter": [
-        "foundations-variance",
-        "graphs-entry",
-        "triangle-threshold",
-        "clique-transfer"
+        "nov26-2026-10-05",
+        "nov26-2026-10-17",
+        "nov26-2026-10-19",
+        "nov26-2026-10-21"
       ],
       "kind": "method",
       "priority": "core",
@@ -1586,8 +1564,8 @@
       "id": "a-alteration-pattern",
       "topicId": "alteration",
       "unlockAfter": [
-        "foundations-variance",
-        "alteration"
+        "nov26-2026-10-05",
+        "nov26-2026-10-24"
       ],
       "kind": "method",
       "priority": "core",
@@ -1619,8 +1597,8 @@
       "id": "a-hypergraph-cover",
       "topicId": "alteration",
       "unlockAfter": [
-        "foundations-variance",
-        "alteration"
+        "nov26-2026-10-05",
+        "nov26-2026-10-24"
       ],
       "kind": "proof",
       "priority": "core",
@@ -1650,8 +1628,8 @@
       "id": "a-choose-probability",
       "topicId": "alteration",
       "unlockAfter": [
-        "foundations-variance",
-        "alteration"
+        "nov26-2026-10-05",
+        "nov26-2026-10-24"
       ],
       "kind": "method",
       "priority": "support",
@@ -1675,7 +1653,7 @@
       "id": "p-fingerprint-algorithm",
       "topicId": "fingerprints",
       "unlockAfter": [
-        "fingerprints-coverage"
+        "nov26-2026-10-16"
       ],
       "kind": "method",
       "priority": "core",
@@ -1700,7 +1678,7 @@
       "id": "p-fingerprint-bound",
       "topicId": "fingerprints",
       "unlockAfter": [
-        "fingerprints-coverage"
+        "nov26-2026-10-16"
       ],
       "kind": "proof",
       "priority": "core",
@@ -1726,9 +1704,9 @@
       "id": "r-ramsey-bad-event",
       "topicId": "ramsey",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "ramsey-coverage"
+        "nov26-2026-10-05",
+        "nov26-2026-10-10",
+        "nov26-2026-10-21"
       ],
       "kind": "method",
       "priority": "core",
@@ -1758,9 +1736,9 @@
       "id": "r-probabilistic-existence",
       "topicId": "ramsey",
       "unlockAfter": [
-        "foundations-variance",
-        "union-coupons-windows",
-        "ramsey-coverage"
+        "nov26-2026-10-05",
+        "nov26-2026-10-10",
+        "nov26-2026-10-21"
       ],
       "kind": "proof",
       "priority": "core",

@@ -11,22 +11,38 @@ window.StudyMeetings = (() => {
   const history = id => StudyLearningEngine.attemptsFor(state,id);
   const when = at => new Date(at).toLocaleString('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'});
   const options = (items,value) => Object.entries(items).map(([key,label])=>`<option value="${key}" ${key===value?'selected':''}>${esc(label)}</option>`).join('');
+  const lessonFor = id => window.StudyScaffold?.enabled(id) ? window.StudyScaffoldContent : null;
+  const canLearn = id => !['setup','mock'].includes(sessionOf(id)?.kind);
+  const learnedScope = id => {
+    const session=sessionOf(id),ids=session.topicIds?.length?session.topicIds:[session.topicId].filter(Boolean);
+    const labels=ids.map(topicId=>curriculum.topics?.find(topic=>topic.id===topicId)?.title||topicId);
+    return labels.length?`חומר המשימה בנושאים: ${labels.join(' · ')}.`:'';
+  };
+  const meetingEvent = ({remainingMinutes,learned,nextStageId,...event}) => event;
+  function continuationFields(id,d){
+    const lesson=lessonFor(id),current=lesson&&StudyScaffoldEngine.trackFor(state,lesson).currentStage;
+    return `${lesson?`<div class="form-field"><label for="meeting-next-stage">באיזה שלב לפתוח בפעם הבאה?</label><select class="field-input" id="meeting-next-stage" name="nextStageId">${lesson.stages.map(step=>`<option value="${step.id}" ${d.nextStageId===step.id?'selected':''}>${esc(step.title)}${step.id===current?' — השלב השמור כרגע':''}</option>`).join('')}</select><span class="hint">בחר את השלב שבו תרצה להמשיך. הבקשה למורה ומסלול הלימוד ייפתחו באותו שלב.</span></div>`:''}
+      <div class="form-field" id="meeting-remaining-field" ${d.disposition==='complete'?'hidden':''}><label for="meeting-remaining">כמה דקות להערכתך דרושות להשלמת המשימה?</label><input class="field-input" id="meeting-remaining" name="remainingMinutes" type="number" min="1" max="600" step="1" value="${d.remainingMinutes??''}" placeholder="אפשר להשאיר ריק" ${d.disposition==='complete'?'disabled':''}><span class="hint">הערכה שלך לגבי העבודה שנותרה. הזמן שכבר למדת אינו מופחת אוטומטית. ללא הערכה, התכנון ישמור מקום למשימה באורכה המקורי.</span></div>
+      ${canLearn(id)?`<label class="learned-choice"><input type="checkbox" name="learned" ${d.learned?'checked':''}><span><strong>עברתי על כל החומר שתוכנן למשימה הזאת</strong><small>${esc(learnedScope(id))} גם אם עדיין דרוש תרגול. הסימון מאפשר חזרות על החומר ופותח כרטיסיות שתלויות בו; הוא אינו אישור לפתרון עצמאי.</small></span></label>`:''}`;
+  }
   function initial(id,problemId){
-    return {id:newId(),sessionId:id,problemId:problemId||null,at:new Date().toISOString(),disposition:'continue',outcome:'not-attempted',help:'unknown',obstacle:'unknown',continuation:latest(id)?.disposition==='continue'?latest(id).continuation:'',note:'',evidence:'',minutes:null,independentConfirmed:false};
+    const lesson=lessonFor(id),session=sessionOf(id);
+    return {id:newId(),sessionId:id,problemId:problemId||null,at:new Date().toISOString(),disposition:'continue',outcome:'not-attempted',help:'unknown',obstacle:'unknown',continuation:latest(id)?.disposition==='continue'?latest(id).continuation:'',note:'',evidence:'',minutes:null,independentConfirmed:false,remainingMinutes:session.remainingMinutes>0?session.remainingMinutes:null,learned:!!session.learned,nextStageId:lesson?StudyScaffoldEngine.trackFor(state,lesson).currentStage:null};
   }
   function capture(form){
     const old=drafts.get(form.dataset.session);
     if((form.elements.problemId.value||null)!==old.problemId){form.elements.outcome.value='not-attempted';form.elements.help.value='unknown';form.elements.evidence.value='';form.elements.independentConfirmed.checked=false;}
     const fields=Object.fromEntries(new FormData(form)),problemId=fields.problemId||null;
-    const draft={...old,problemId,disposition:fields.disposition,continuation:fields.continuation.trim(),note:fields.note.trim(),minutes:fields.minutes===''?null:Number(fields.minutes),outcome:problemId?fields.outcome:'not-attempted',help:problemId?fields.help:'unknown',obstacle:fields.obstacle,evidence:problemId?fields.evidence.trim():'',independentConfirmed:!!problemId&&fields.outcome==='solved'&&fields.help==='none'&&!!fields.independentConfirmed};
+    const draft={...old,problemId,disposition:fields.disposition,continuation:fields.continuation.trim(),note:fields.note.trim(),minutes:fields.minutes===''?null:Number(fields.minutes),outcome:problemId?fields.outcome:'not-attempted',help:problemId?fields.help:'unknown',obstacle:fields.obstacle,evidence:problemId?fields.evidence.trim():'',independentConfirmed:!!problemId&&fields.outcome==='solved'&&fields.help==='none'&&!!fields.independentConfirmed,remainingMinutes:fields.remainingMinutes==null?old.remainingMinutes:fields.remainingMinutes===''?null:Number(fields.remainingMinutes),learned:form.elements.learned?!!fields.learned:old.learned,nextStageId:fields.nextStageId??old.nextStageId};
     drafts.set(form.dataset.session,draft);return draft;
   }
-  function open(id,problemId){
+  function open(id,problemId,continuationOptions){
     if(!enabled())return;
     const session=sessionOf(id);if(!session)return;
     if(!drafts.has(id))drafts.set(id,initial(id,problemId));
     else if(problemId&&drafts.get(id).problemId!==problemId){Object.assign(drafts.get(id),{problemId,outcome:'not-attempted',help:'unknown',evidence:'',independentConfirmed:false});}
     const d=drafts.get(id);
+    if(continuationOptions?.nextStageId&&lessonFor(id)?.stages.some(step=>step.id===continuationOptions.nextStageId))d.nextStageId=continuationOptions.nextStageId;
     openDialog('meeting',id,'עדכון מהמפגש',`
       <p class="meeting-session-title">${esc(session.title)}</p>
       <p>שמור מה עשית ומאיפה להמשיך. אפשר לתעד גם מפגש שנפסק באמצע.</p>
@@ -38,6 +54,7 @@ window.StudyMeetings = (() => {
           <label><input type="radio" name="disposition" value="complete" ${d.disposition==='complete'?'checked':''}>סיימתי את המשימה</label>
         </fieldset>
         <div class="form-field"><label for="meeting-continuation">מאיפה להמשיך בפעם הבאה?</label><textarea class="field-input" id="meeting-continuation" name="continuation" maxlength="1200" rows="2" placeholder="למשל: להמשיך מסעיף ב׳; לבקש הסבר על הזוגות התלויים.">${esc(d.continuation)}</textarea><span class="hint">אפשר להשאיר ריק אם סיימת או שעדיין לא ברור לך מה הצעד הבא.</span></div>
+        ${continuationFields(id,d)}
         <div class="form-field"><label for="meeting-note">מה עשית ומה עדיין לא ברור? (לא חובה)</label><textarea class="field-input" id="meeting-note" name="note" maxlength="3000" rows="2" placeholder="למשל: עברתי על הדוגמה, אבל עדיין קשה לי לזהות מתי המשתנים תלויים.">${esc(d.note)}</textarea></div>
         <details class="task-details" ${d.problemId?'open':''}><summary>תיעוד ניסיון בשאלת מקור (לא חובה)</summary>
           <div class="form-field"><label for="meeting-problem">איזו שאלה ניסית?</label><select class="field-input" id="meeting-problem" name="problemId"><option value="">ללא שיוך לשאלה</option>${curriculum.problems.map(p=>`<option value="${esc(p.id)}" ${d.problemId===p.id?'selected':''}>${esc(p.title)} · ${esc(sourceOf(p.sourceId)?.label||p.id)}</option>`).join('')}</select></div>
@@ -62,7 +79,7 @@ window.StudyMeetings = (() => {
     if(previous.id===eventId)throw new Error('הדוח הזה כבר מולא בטופס. אפשר לערוך את השדות למטה, או לבטל את המילוי לפני הדבקת גרסה מתוקנת.');
     const proposed={...previous,...parsed.proposal,id:eventId,independentConfirmed:false};
     // Validate the complete candidate before changing the editable draft.
-    StudyLearningEngine.recordMeeting(clone(state),proposed,{sessionIds:allSessions().map(s=>s.id),problemIds:curriculum.problems.map(p=>p.id)});
+    StudyLearningEngine.recordMeeting(clone(state),meetingEvent(proposed),{sessionIds:allSessions().map(s=>s.id),problemIds:curriculum.problems.map(p=>p.id)});
     imported.set(id,{warnings:parsed.warnings,previous:clone(previous),previousImport:imported.get(id)});
     drafts.set(id,proposed);open(id);
   }
@@ -70,11 +87,32 @@ window.StudyMeetings = (() => {
   function syncFields(form){
     const d=capture(form);$('#meeting-attempt-fields').hidden=!d.problemId;
     $('#meeting-independent').hidden=!(d.problemId&&d.outcome==='solved'&&d.help==='none');
+    $('#meeting-remaining-field').hidden=d.disposition==='complete';
+    if(form.elements.remainingMinutes)form.elements.remainingMinutes.disabled=d.disposition==='complete';
     if($('#meeting-independent').hidden)form.elements.independentConfirmed.checked=false;
   }
   function validate(d){
     if(d.problemId&&d.outcome==='solved'&&d.help==='none'&&(!d.independentConfirmed||d.evidence.length<8))throw new Error('כדי לתעד פתרון עצמאי, אשר שפתרת ללא עזרה וכתוב בקצרה כיצד בדקת את הפתרון.');
-    const copy=clone(state);StudyLearningEngine.recordMeeting(copy,d,{sessionIds:allSessions().map(s=>s.id),problemIds:curriculum.problems.map(p=>p.id)});
+    if(d.disposition!=='complete'&&d.remainingMinutes!==null&&(!Number.isInteger(d.remainingMinutes)||d.remainingMinutes<1||d.remainingMinutes>600))throw new Error('הזמן שנותר צריך להיות בין 1 ל־600 דקות. אפשר להשאיר את ההערכה ריקה.');
+    if(typeof d.learned!=='boolean')throw new Error('יש לבחור אם עברת על חומר המשימה.');
+    const lesson=lessonFor(d.sessionId);
+    if(lesson&&!lesson.stages.some(step=>step.id===d.nextStageId))throw new Error('בחר את השלב שבו תרצה להמשיך.');
+    const copy=clone(state);applyUpdate(copy,d);
+  }
+  function applyUpdate(next,d){
+    StudyLearningEngine.recordMeeting(next,meetingEvent(d),{sessionIds:allSessions().map(s=>s.id),problemIds:curriculum.problems.map(p=>p.id)});
+    const update={...(next.sessionUpdates[d.sessionId]||{}),status:d.disposition==='complete'?'completed':'in-progress',remainingMinutes:d.disposition==='complete'?0:d.remainingMinutes,updatedAt:d.at};
+    if(canLearn(d.sessionId)){
+      update.learned=d.learned;
+      if(d.learned)update.learnedAt=update.learnedAt||d.at;
+      else delete update.learnedAt;
+    }
+    const lesson=lessonFor(d.sessionId);
+    if(lesson){
+      const saved=StudyScaffoldEngine.trackFor(next,lesson),stageId=saved.currentStage;
+      StudyScaffoldEngine.record(next,{id:'resume-'+d.id,stageId,at:d.at,action:stageId===d.nextStageId?'pause':'continue',nextStageId:d.nextStageId,help:StudyScaffoldEngine.exposureFor(next,lesson,stageId),result:'not-checked',note:d.continuation},lesson);
+    }
+    next.sessionUpdates[d.sessionId]=update;
   }
   function review(id){
     const d=drafts.get(id);if(!d)return;
@@ -85,7 +123,8 @@ window.StudyMeetings = (() => {
       <p>${esc(sessionOf(id).title)}</p>
       ${imported.has(id)?'<p class="notice neutral">זהו דוח מה־AI עם התיקונים שעשית. אישור השמירה מתעד את הדיווח שלך; האתר אינו בודק את נכונות הפתרון.</p>':''}
       <dl class="meeting-review"><div><dt>מצב המשימה</dt><dd>${d.disposition==='complete'?'המשימה תסומן כסיימתי':'המשימה תישאר בתהליך'}</dd></div><div><dt>נקודת ההמשך</dt><dd>${esc(d.continuation||'לא צוינה נקודת המשך')}</dd></div>${d.note?`<div><dt>סיכום המפגש</dt><dd>${esc(d.note)}</dd></div>`:''}${p?`<div><dt>השאלה</dt><dd>${esc(p.title)}</dd></div><div><dt>תוצאת הניסיון</dt><dd>${esc(outcomes[d.outcome])} · ${esc(helps[d.help])}${d.independentConfirmed?' · פתרון עצמאי לפי אישורך':''}</dd></div>`:''}${d.obstacle!=='unknown'?`<div><dt>הקושי העיקרי</dt><dd>${esc(obstacles[d.obstacle])}</dd></div>`:''}${d.evidence?`<div><dt>בדיקת הפתרון</dt><dd>${esc(d.evidence)}</dd></div>`:''}${d.minutes!==null?`<div><dt>זמן במפגש</dt><dd>${d.minutes} דקות</dd></div>`:''}</dl>
-      <p class="hint">נוסף רישום חדש${previous.length?` לצד ${previous.length} רישומים קודמים`:''}. סימון החומר כנלמד ומועדי המשימות נשארים כפי שהיו.</p>
+      <dl class="meeting-review">${lessonFor(id)?`<div><dt>השלב שייפתח במסלול ובבקשה למורה</dt><dd>${esc(lessonFor(id).stages.find(step=>step.id===d.nextStageId).title)}</dd></div>`:''}<div><dt>זמן שנותר למשימה</dt><dd>${d.disposition==='complete'?'המשימה הושלמה — לא נותר לה זמן מתוכנן':d.remainingMinutes===null?'לא הוערך; נשמר מקום למשימה באורכה המקורי':d.remainingMinutes+' דקות, לפי הערכתך'}</dd></div>${canLearn(id)?`<div><dt>החומר שלמדת</dt><dd>${d.learned?'החומר יסומן כנלמד ויאפשר חזרה על הכרטיסיות המתאימות':'החומר לא יסומן כנלמד; הכרטיסיות שתלויות בו יישארו סגורות'}</dd></div>`:''}</dl>
+      <p class="hint">נוסף רישום חדש${previous.length?` לצד ${previous.length} רישומים קודמים`:''}. תאריך המשימה אינו משתנה. אפשר לתקן את נקודת ההמשך, הערכת הזמן וסימון החומר בכל עדכון נוסף.</p>
       ${existingIndependent&&!d.independentConfirmed?'<p class="notice neutral">הניסיון הזה יתווסף להיסטוריה. ההצלחה העצמאית שתיעדת בעבר תישאר מתועדת בנפרד.</p>':''}
       <p id="meeting-save-error" class="error" role="alert"></p>
     `,'לפני שמירה');
@@ -95,15 +134,13 @@ window.StudyMeetings = (() => {
     const d=clone(drafts.get(id));validate(d);
     await save(next=>{
       if(d.id.startsWith('import-')&&(next.learning?.attempts||[]).some(a=>a.id===d.id))throw new Error('הדוח הזה כבר נשמר. לא נוסף מפגש נוסף.');
-      StudyLearningEngine.recordMeeting(next,d,{sessionIds:allSessions().map(s=>s.id),problemIds:curriculum.problems.map(p=>p.id)});
-      next.sessionUpdates[id]={...(next.sessionUpdates[id]||{}),status:d.disposition==='complete'?'completed':'in-progress',updatedAt:d.at};
+      applyUpdate(next,d);
     },'המפגש נשמר');
     drafts.delete(id);
     imported.delete(id);
     window.StudyReports?.clear(id);
-    openDialog('meeting-saved',id,'המפגש נשמר',`<p>${d.disposition==='complete'?'המשימה סומנה כהושלמה.':'אפשר לחזור למשימה ולהמשיך מאותה נקודה.'}</p>${d.continuation?`<div class="finish-target"><strong>בפעם הבאה:</strong> ${esc(d.continuation)}</div>`:''}<p>הבקשה למורה כוללת עכשיו את העדכון הזה.</p><p class="hint">${d.minutes!==null?'הזמן שתיעדת נשמר במפגש הזה. ':''}ההקצאה ביומן וסימון החומר כנלמד לא השתנו.</p>`,'תוצאות ונקודת המשך');
-    const canMarkLearned=d.disposition==='complete'&&(flashcards?.cards||[]).some(c=>c.unlockAfter.includes(id));
-    footer(`<button class="button primary task-copy-button" data-task-action="copy" data-id="${id}">העתקת בקשה להמשך</button><button class="button" data-action="session" data-id="${id}">חזרה למשימה</button>${canMarkLearned?`<button class="button" data-task-action="learned" data-id="${id}">סימון החומר שלמדתי</button>`:''}<button class="text-link" data-meeting-action="history" data-id="${id}">היסטוריית המפגשים</button>`);
+    openDialog('meeting-saved',id,'המפגש נשמר',`<p>${d.disposition==='complete'?'המשימה סומנה כהושלמה.':'אפשר לחזור למשימה ולהמשיך מאותה נקודה.'}</p>${d.continuation?`<div class="finish-target"><strong>בפעם הבאה:</strong> ${esc(d.continuation)}</div>`:''}${lessonFor(id)?`<p><strong>השלב שייפתח:</strong> ${esc(lessonFor(id).stages.find(step=>step.id===d.nextStageId).title)}.</p>`:''}<p>הבקשה למורה כוללת עכשיו את העדכון הזה.</p>${d.disposition!=='complete'&&d.remainingMinutes!==null?`<p>הערכת הזמן שנותר: ${d.remainingMinutes} דקות.</p>`:''}<p class="hint">${d.minutes!==null?'הזמן שתיעדת נשמר במפגש הזה. ':''}${d.learned?'החומר סומן כנלמד, לפי בחירתך.':'החומר לא סומן כנלמד.'} תאריך המשימה לא השתנה.</p>`,'תוצאות ונקודת המשך');
+    footer(`${d.disposition!=='complete'?`<button class="button primary task-copy-button" data-task-action="copy" data-id="${id}">העתקת בקשה להמשך</button>`:''}<button class="button" data-action="session" data-id="${id}">חזרה למשימה</button><button class="text-link" data-meeting-action="history" data-id="${id}">היסטוריית המפגשים</button>`);
   }
   function historyHtml(items){return items.length?items.map(d=>`<article class="meeting-history-item"><div class="row-between"><strong>${esc(when(d.at))}</strong><span>${d.minutes===null?'לא נרשם זמן':d.minutes+' דקות'}</span></div><p>${d.disposition==='complete'?'סיום המשימה':'עצירה להמשך'}${d.problemId?` · ${esc(problemOf(d.problemId)?.title||d.problemId)}`:''}</p>${d.problemId?`<p>${esc(outcomes[d.outcome])} · ${esc(helps[d.help])}${d.independentConfirmed?' · עצמאות אושרה':''}</p>`:''}${d.note?`<p>${esc(d.note)}</p>`:''}${d.continuation?`<p><strong>להמשך:</strong> ${esc(d.continuation)}</p>`:''}${d.obstacle!=='unknown'?`<p class="muted">${esc(obstacles[d.obstacle])}</p>`:''}${d.evidence?`<details><summary>איך נבדק הפתרון</summary><p>${esc(d.evidence)}</p></details>`:''}</article>`).join(''):'<p class="muted">עדיין לא נשמר עדכון מהמפגש. הרישומים הקיימים שלך לא הומרו לניסיונות שלא תיעדת.</p>';}
   function showHistory(id){openDialog('meeting-history',id,'היסטוריית המפגשים',`<p>${esc(sessionOf(id)?.title)}</p>${historyHtml(history(id))}`,'כל ניסיון נשמר בנפרד');footer(`<button class="button primary" data-meeting-action="open" data-id="${id}">עדכון מהמפגש</button><button class="button" data-action="session" data-id="${id}">חזרה למשימה</button>`);}
@@ -120,7 +157,7 @@ window.StudyMeetings = (() => {
   function onReady(){
     if(!enabled()||!window.STUDY_CONFIG.preview)return;
     const banner=document.createElement('aside');banner.className='meeting-preview-banner';banner.setAttribute('aria-label','גרסת ניסיון');
-    banner.innerHTML='<div><strong>חדש בניסיון: עזרה בבחירת מה ללמוד</strong><p>בעמוד הבית מוצעת משימה אחת, עם הסבר למה כדאי להתמקד בה. אפשר לראות דוגמה קצרה לפני השימוש.</p></div><button class="button primary" data-recommend-action="example">איך זה עובד? הצג דוגמה</button><a class="text-link" href="./index.html">לאתר הלימוד הרגיל</a>';
+    banner.innerHTML='<div><strong>גרסת ניסיון — התיעוד נשמר כאן בנפרד</strong><p>ללימוד השוטף ולהתקדמות שלך, פתח את האתר הראשי.</p></div><a class="button primary" href="./index.html">לאתר הלימוד הראשי</a>';
     main.before(banner);$('.local-tag').textContent='גרסת ניסיון';
   }
   document.addEventListener('input',event=>{if(enabled()&&event.target.form?.id==='meeting-form')capture(event.target.form);});

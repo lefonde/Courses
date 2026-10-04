@@ -4,14 +4,15 @@
   const scaffold = typeof module === 'object' && module.exports ? require('./scaffold-engine.js') : root && root.StudyScaffoldEngine;
   const mixed = typeof module === 'object' && module.exports ? require('./mixed-engine.js') : root && root.StudyMixedEngine;
   const reviews = typeof module === 'object' && module.exports ? require('./review-engine.js') : root && root.StudyReviewEngine;
-  const api = factory(learning, scaffold, mixed, reviews);
+  const calendar = typeof module === 'object' && module.exports ? require('./plan-calendar.js') : root && root.StudyPlanCalendar;
+  const api = factory(learning, scaffold, mixed, reviews, calendar);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root && root.document) root.StudyStorage = api.createStorage(root, root.STUDY_CONFIG || {});
-})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold, mixed, reviews) {
+})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold, mixed, reviews, calendar) {
   'use strict';
   const MAX_BYTES = 1024 * 1024;
-  const START = '2026-09-21', END = '2026-10-08';
-  const DEADLINE = Date.parse('2026-10-07T20:00:00+03:00');
+  const START = calendar.HISTORY_START, END = calendar.END;
+  const DEADLINE = Date.parse(calendar.DEADLINE);
   const BAD_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
   const SESSION_STATUSES = ['planned', 'in-progress', 'completed'];
   const PROBLEM_STATUSES = ['unseen', 'read', 'guided', 'independent', 'timed'];
@@ -63,7 +64,7 @@
     if (own(value, 'status') && !SESSION_STATUSES.includes(value.status)) invalid('מצב היחידה אינו נתמך.');
     if (own(value, 'kind') && !KINDS.includes(value.kind)) invalid('סוג היחידה אינו נתמך.');
     if (value.topicId != null) identifier(value.topicId, 'נושא');
-    minutes(value, 'minutes', 1); minutes(value, 'actualMinutes', 0, true);
+    minutes(value, 'minutes', 1); minutes(value, 'actualMinutes', 0, true); minutes(value, 'remainingMinutes', 0, true);
     if (own(value, 'mock')) {
       record(value.mock, 'סימולציה'); fields(value.mock, [], ['uninterrupted', 'noHelp', 'newQuestions']);
       if (own(value.mock, 'scores') && (!Array.isArray(value.mock.scores) || value.mock.scores.length !== 3 || value.mock.scores.some(score => score !== null && (typeof score !== 'number' || !Number.isFinite(score) || score < 0 || score > 100)))) invalid('בסימולציה נדרשים שלושה ציונים תקינים או ערכים ריקים.');
@@ -84,7 +85,7 @@
       const due = review.dueAt != null ? timestamp(review.dueAt, 'החזרה הבאה') : null;
       if (review.reviews > 0 && (last === null || !own(review, 'lastRating'))) invalid('לחזרה מתועדת נדרשים מועד ודירוג.');
       if (first !== null && last !== null && first > last) invalid('סדר התאריכים בכרטיסייה אינו תקין.');
-      if (due !== null && (due > DEADLINE || last !== null && due <= last)) invalid('החזרה הבאה חייבת להיות אחרי הקודמת ועד 7.10 בשעה 20:00.');
+      if (due !== null && (due > DEADLINE || last !== null && due <= last)) invalid('החזרה הבאה חייבת להיות אחרי הקודמת ועד 22.11 בשעה 20:00.');
       if (own(review, 'history')) {
         if (!Array.isArray(review.history) || review.history.length > 100) invalid('היסטוריית הכרטיסייה אינה תקינה.');
         let preceding = null;
@@ -94,6 +95,52 @@
           const at = timestamp(item.at, 'מועד חזרה');
           if (preceding !== null && at < preceding || last !== null && at > last) invalid('היסטוריית החזרות אינה מסודרת לפי זמן.');
           preceding = at;
+        }
+      }
+    }
+  }
+  function planChanges(value) {
+    if (!Array.isArray(value) || value.length > 50) invalid('אפשר לשמור עד חמישים שינויים בתוכנית.');
+    const ids = new Set();
+    function exact(item, keys, label) {
+      record(item, label);
+      if (Object.keys(item).length !== keys.length || keys.some(key => !own(item, key))) invalid(`${label}: שדות הרישום אינם תקינים.`);
+    }
+    function placement(item) {
+      exact(item, ['date', 'start', 'minutes'], 'פרטי שיבוץ');
+      date(item.date, 'תאריך השיבוץ', true);
+      if (item.start !== null && (typeof item.start !== 'string' || !/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(item.start))) invalid('שעת השיבוץ אינה תקינה.');
+      minutes(item, 'minutes', 1);
+    }
+    for (const entry of value) {
+      record(entry, 'שינוי בתוכנית');
+      const keys = ['id', 'at', 'status', 'changes', 'reviewChanges'];
+      if (entry.status === 'undone') keys.push('undoneAt');
+      exact(entry, keys, 'שינוי בתוכנית');
+      identifier(entry.id, 'שינוי בתוכנית');
+      if (ids.has(entry.id)) invalid('מזהה שינוי בתוכנית מופיע יותר מפעם אחת.');
+      ids.add(entry.id);
+      if (!['applied', 'undone'].includes(entry.status)) invalid('מצב שינוי התוכנית אינו נתמך.');
+      const at = timestamp(entry.at, 'מועד שינוי התוכנית');
+      if (entry.status === 'undone' && timestamp(entry.undoneAt, 'מועד ביטול השינוי') < at) invalid('ביטול השינוי אינו יכול להקדים את השינוי.');
+      if (!Array.isArray(entry.changes) || entry.changes.length < 1 || entry.changes.length > 100) invalid('בשינוי תוכנית נדרשים בין שינוי שיבוץ אחד למאה.');
+      const sessions = new Set();
+      for (const change of entry.changes) {
+        exact(change, ['id', 'before', 'after', 'reason'], 'שינוי שיבוץ'); identifier(change.id, 'יחידת לימוד');
+        if (sessions.has(change.id)) invalid('אותה משימה מופיעה פעמיים בשינוי התוכנית.');
+        sessions.add(change.id); placement(change.before); placement(change.after);
+        if (typeof change.reason !== 'string' || change.reason.length > 1200) invalid('סיבת שינוי השיבוץ צריכה להיות טקסט של עד 1200 תווים.');
+      }
+      if (!Array.isArray(entry.reviewChanges) || entry.reviewChanges.length > 100) invalid('אפשר לכלול עד מאה שינויים בחזרות.');
+      const reservations = new Set();
+      for (const change of entry.reviewChanges) {
+        exact(change, ['id', 'before', 'after'], 'שינוי חזרה'); identifier(change.id, 'חזרה');
+        if (reservations.has(change.id)) invalid('אותה חזרה מופיעה פעמיים בשינוי התוכנית.');
+        reservations.add(change.id);
+        for (const item of [change.before, change.after]) {
+          if (!reviews) invalid('אימות החזרות על שאלות אינו זמין. יש לרענן את האתר ולנסות שוב.');
+          try {reviews.validateReviews({version: 1, entries: [item]});} catch (error) {invalid(error.message);}
+          if (item.id !== change.id) invalid('מזהה שינוי החזרה אינו תואם לחזרה השמורה.');
         }
       }
     }
@@ -152,6 +199,24 @@
     if (own(settings, 'activeDate')) date(settings.activeDate, 'תאריך העבודה', true);
     if (own(settings, 'theme') && !['dark', 'light'].includes(settings.theme)) invalid('ערכת הנושא אינה נתמכת.');
     fields(settings, ['fallbackApplied']);
+    if (own(settings, 'activePlanId')) identifier(settings.activePlanId, 'תוכנית פעילה');
+    if (own(settings, 'planChanges')) planChanges(settings.planChanges);
+    if (own(settings, 'planHistory')) {
+      if (!Array.isArray(settings.planHistory) || settings.planHistory.length > 5) invalid('אפשר לשמור עד חמישה מחזורי לימוד בארכיון.');
+      const ids = new Set();
+      for (const archive of settings.planHistory) {
+        record(archive, 'מחזור לימוד קודם');
+        if (Object.keys(archive).sort().join(',') !== 'archivedAt,id,label,planId,snapshot') invalid('פרטי ארכיון הלימוד אינם תקינים.');
+        identifier(archive.id, 'ארכיון'); identifier(archive.planId, 'תוכנית קודמת');
+        if (ids.has(archive.id)) invalid('מזהה הארכיון מופיע יותר מפעם אחת.');
+        ids.add(archive.id);
+        if (typeof archive.label !== 'string' || !archive.label.trim() || archive.label.length > 200) invalid('נדרשת כותרת קצרה לארכיון.');
+        timestamp(archive.archivedAt, 'מועד הארכוב');
+        if (archive.snapshot?.settings && own(archive.snapshot.settings, 'planHistory')) invalid('ארכיון לימוד אינו יכול להכיל ארכיון נוסף.');
+        validateState(archive.snapshot);
+      }
+    }
+
     if (own(settings, 'scaffoldTracks')) {
       if (!scaffold) invalid('אימות מסלול הלימוד אינו זמין. יש לרענן את האתר ולנסות שוב.');
       try {scaffold.validateTracks(settings.scaffoldTracks);} catch (error) {invalid(error.message);}

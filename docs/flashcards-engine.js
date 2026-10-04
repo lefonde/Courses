@@ -1,53 +1,22 @@
 /* Short-horizon recall scheduling. Pure functions: no clock, storage or DOM access. */
 (function (root, factory) {
-  const api = factory();
+  const calendar = typeof module === 'object' && module.exports ? require('./plan-calendar.js') : root.StudyPlanCalendar;
+  const api = factory(calendar);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root) root.FlashcardsEngine = api;
-})(typeof window === 'undefined' ? globalThis : window, function () {
+})(typeof window === 'undefined' ? globalThis : window, function (calendar) {
   'use strict';
   const DAY = 86400000;
   const ZONE = 'Asia/Jerusalem';
-  const DEFAULT_EXAM = '2026-10-08';
+  const DEFAULT_EXAM = calendar.EXAM;
   const RATINGS = ['again', 'hard', 'good'];
-  const dateFormatter = new Intl.DateTimeFormat('en-CA', {
-    timeZone: ZONE, year: 'numeric', month: '2-digit', day: '2-digit'
-  });
-  const timeFormatter = new Intl.DateTimeFormat('en-GB', {
-    timeZone: ZONE, year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
-  });
   function instant(value) {
     const result = Date.parse(value);
     if (!Number.isFinite(result)) throw new TypeError('A valid timestamp is required.');
     return result;
   }
-  function parts(formatter, value) {
-    return Object.fromEntries(formatter.formatToParts(new Date(value)).filter(p => p.type !== 'literal').map(p => [p.type, p.value]));
-  }
-  function dayKey(value) {
-    const p = parts(dateFormatter, instant(value));
-    return `${p.year}-${p.month}-${p.day}`;
-  }
-  function localInstant(day, hour) {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || new Date(day + 'T00:00:00Z').toISOString().slice(0, 10) !== day) {
-      throw new TypeError('Exam date must be a real YYYY-MM-DD date.');
-    }
-    const [y, m, d] = day.split('-').map(Number);
-    const desired = Date.UTC(y, m - 1, d, hour);
-    let guess = desired;
-    // Convert a known, unambiguous afternoon wall time using the actual IANA offset.
-    for (let i = 0; i < 3; i++) {
-      const p = parts(timeFormatter, guess);
-      const represented = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second);
-      guess += desired - represented;
-    }
-    return guess;
-  }
-  function deadlineAt(examDateISO = DEFAULT_EXAM) {
-    localInstant(examDateISO, 16); // Validate before doing calendar arithmetic.
-    const previousDay = new Date(Date.parse(examDateISO + 'T00:00:00Z') - DAY).toISOString().slice(0, 10);
-    return new Date(localInstant(previousDay, 20)).toISOString();
-  }
+  const dayKey = calendar.dayKey;
+  const deadlineAt = calendar.deadlineAt;
   function blockedReasons(card, sessionUpdates = {}) {
     const requirements = Array.isArray(card.unlockAfter) ? card.unlockAfter : [];
     return requirements.filter(id => !sessionUpdates[id] || sessionUpdates[id].learned !== true);
