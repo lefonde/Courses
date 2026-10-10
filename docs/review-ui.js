@@ -25,6 +25,7 @@ window.StudyReviews=(()=>{
     const s=[...schedule.sessions,...(snapshot.settings.customSessions||[])].map(x=>({...x,...(snapshot.sessionUpdates[x.id]||{})})).find(x=>x.id===e.sessionId);
     if(!s)return ['המשימה שאליה הוקצתה החזרה אינה נמצאת בתוכנית.'];
     const issues=[],day={...schedule.days.find(d=>d.date===s.date),...(snapshot.dayOverrides[s.date]||{})};
+    if(s.unscheduled)issues.push('המשימה פתוחה ללא מועד. יש לשבץ אותה לפני הוספת חזרה.');
     if(s.disabled)issues.push('המשימה שאליה הוקצתה החזרה הוסרה מהתוכנית.');
     if(isDone(s))issues.push('המשימה כבר סומנה כהושלמה, אך לחזרה עדיין לא תועדה תוצאה.');
     if(s.conditional&&!day.confirmedOptional)issues.push('חלון הזמן של המשימה עדיין לא אושר.');
@@ -34,7 +35,7 @@ window.StudyReviews=(()=>{
   }
   function reservationNotice(e){const issues=reservationIssues(e);return issues.length?`<div class="notice neutral"><strong>השיבוץ דורש בדיקה</strong><ul>${issues.map(reason=>`<li>${esc(reason)}</li>`).join('')}</ul><p>בחר מועד אחר או הסר את השיבוץ. אם כבר ביצעת את החזרה, אפשר לתעד כאן את התוצאה; המועד השמור אינו משתנה מעצמו.</p></div>`:'';}
   function reservationLabel(e){return reservationIssues(e).length?'השיבוץ דורש בדיקה':`${Date.parse(e.dueAt)<Date.now()?'המועד הגיע · ':''}${fmtDate(localDay(e.dueAt))}`;}
-  function choices(editing,snapshot=current()){return [...schedule.sessions,...(snapshot.settings.customSessions||[])].map(s=>({...s,...(snapshot.sessionUpdates[s.id]||{})})).filter(s=>{const at=timeOf(s),day={...schedule.days.find(d=>d.date===s.date),...(snapshot.dayOverrides[s.date]||{})};return !s.disabled&&!isDone(s)&&(!s.conditional||day.confirmedOptional)&&['practice','review'].includes(s.kind)&&arr(s.problemIds).length&&at&&Date.parse(at)>=Date.now()&&Date.parse(at)+10*60000<=Date.parse(StudyPlanCalendar.deadlineAt(schedule.exam?.date))&&remaining(s,editing,snapshot)>=10&&(!window.StudyRecommendationEngine?.reviewIssues||!window.StudyRecommendationEngine.reviewIssues({sessionId:s.id,dueAt:at},schedule,snapshot).length);}).sort((a,b)=>timeOf(a).localeCompare(timeOf(b)));}
+  function choices(editing,snapshot=current()){return [...schedule.sessions,...(snapshot.settings.customSessions||[])].map(s=>({...s,...(snapshot.sessionUpdates[s.id]||{})})).filter(s=>{const at=timeOf(s),day={...schedule.days.find(d=>d.date===s.date),...(snapshot.dayOverrides[s.date]||{})};return !s.disabled&&!s.unscheduled&&!isDone(s)&&(!s.conditional||day.confirmedOptional)&&['practice','review'].includes(s.kind)&&arr(s.problemIds).length&&at&&Date.parse(at)>=Date.now()&&Date.parse(at)+10*60000<=Date.parse(StudyPlanCalendar.deadlineAt(schedule.exam?.date))&&remaining(s,editing,snapshot)>=10&&(!window.StudyRecommendationEngine?.reviewIssues||!window.StudyRecommendationEngine.reviewIssues({sessionId:s.id,dueAt:at},schedule,snapshot).length);}).sort((a,b)=>timeOf(a).localeCompare(timeOf(b)));}
   async function change(transform,message){
     if(demoState){const draft=clone(demoState);draft.settings.questionReviews=transform(draft.settings.questionReviews,draft);demoState=draft;notify('הדגמה בלבד: '+message);}
     else await save(d=>{d.settings.questionReviews=transform(d.settings.questionReviews,d);},message);

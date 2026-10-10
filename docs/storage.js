@@ -56,7 +56,7 @@
     record(value, 'יחידת לימוד');
     if (custom && ['id', 'title', 'date', 'minutes', 'kind'].some(key => !own(value, key))) invalid('ליחידה חדשה חסרים פרטים נדרשים.');
     if (own(value, 'id')) identifier(value.id, 'יחידה');
-    fields(value, ['title', 'objective', 'note', 'updatedAt', 'priority', 'stage'], ['conditional', 'optional', 'disabled', 'learned'], ['dependsOn', 'problemIds', 'sourceIds', 'steps']);
+    fields(value, ['title', 'objective', 'note', 'updatedAt', 'priority', 'stage'], ['conditional', 'optional', 'disabled', 'learned', 'unscheduled', 'planningLocked'], ['dependsOn', 'problemIds', 'sourceIds', 'steps']);
     if (own(value, 'doneWhen') && typeof value.doneWhen !== 'string') fields(value, [], [], ['doneWhen']);
     if (own(value, 'date')) date(value.date, 'תאריך היחידה', true);
     if (value.learnedAt != null) timestamp(value.learnedAt, 'מועד למידת החומר');
@@ -65,6 +65,7 @@
     if (own(value, 'kind') && !KINDS.includes(value.kind)) invalid('סוג היחידה אינו נתמך.');
     if (value.topicId != null) identifier(value.topicId, 'נושא');
     minutes(value, 'minutes', 1); minutes(value, 'actualMinutes', 0, true); minutes(value, 'remainingMinutes', 0, true);
+    minutes(value, 'reserveUsedMinutes', 0);
     if (own(value, 'mock')) {
       record(value.mock, 'סימולציה'); fields(value.mock, [], ['uninterrupted', 'noHelp', 'newQuestions']);
       if (own(value.mock, 'scores') && (!Array.isArray(value.mock.scores) || value.mock.scores.length !== 3 || value.mock.scores.some(score => score !== null && (typeof score !== 'number' || !Number.isFinite(score) || score < 0 || score > 100)))) invalid('בסימולציה נדרשים שלושה ציונים תקינים או ערכים ריקים.');
@@ -145,6 +146,49 @@
       }
     }
   }
+  function catchUpChanges(value) {
+    if (!Array.isArray(value) || value.length > 50) invalid('אפשר לשמור עד חמישים התאמות של התוכנית.');
+    const ids = new Set();
+    function placement(item) {
+      record(item, 'שיבוץ');
+      if (Object.keys(item).sort().join(',') !== 'date,minutes,planningLocked,reserveUsedMinutes,start,unscheduled') invalid('פרטי השיבוץ אינם תקינים.');
+      session(item); date(item.date, 'שיבוץ', true);
+      if (!integer(item.minutes) || item.minutes < 1 || !integer(item.reserveUsedMinutes)) invalid('תקציב השיבוץ אינו תקין.');
+      fields(item, [], ['unscheduled', 'planningLocked']);
+    }
+    for (const entry of value) {
+      record(entry, 'התאמת תוכנית'); identifier(entry.id, 'התאמת תוכנית');
+      if (ids.has(entry.id) || entry.version !== 2 || !['applied', 'undone'].includes(entry.status)) invalid('רישום התאמת התוכנית אינו תקין.');
+      ids.add(entry.id); const at = timestamp(entry.at, 'מועד התאמה');
+      if (entry.status === 'undone' && timestamp(entry.undoneAt, 'מועד ביטול') < at) invalid('מועד ביטול אינו תקין.');
+      fields(entry, [], ['partial'], ['unplacedIds']);
+      if (!Array.isArray(entry.unplacedIds) || entry.unplacedIds.length > 100 || new Set(entry.unplacedIds).size !== entry.unplacedIds.length || entry.partial !== (entry.unplacedIds.length > 0)) invalid('רשימת העבודה שלא שובצה אינה תקינה.');
+      entry.unplacedIds.forEach(id => identifier(id, 'משימה שלא שובצה'));
+      for (const key of ['changes', 'availabilityChanges', 'reviewChanges']) if (!Array.isArray(entry[key]) || entry[key].length > 100) invalid('רשימת שינויים אינה תקינה.');
+      const changed = new Set();
+      for (const item of entry.changes) {
+        record(item, 'שינוי'); identifier(item.id, 'משימה');
+        if (changed.has(item.id)) invalid('משימה מופיעה פעמיים בשינוי.'); changed.add(item.id);
+        placement(item.before); placement(item.after);
+        if (typeof item.reason !== 'string' || item.reason.length > 1200) invalid('סיבת השינוי אינה תקינה.');
+      }
+      const dates = new Set();
+      for (const item of entry.availabilityChanges) {
+        record(item, 'שינוי זמינות'); date(item.date, 'זמינות', true);
+        if (dates.has(item.date)) invalid('יום מופיע פעמיים בשינוי הזמינות.'); dates.add(item.date);
+        for (const value of [item.before, item.after]) if (value !== null) {record(value, 'זמינות'); minutes(value, 'capacityMinutes'); fields(value, [], ['confirmedOptional']);}
+      }
+      const reviewIds = new Set();
+      for (const item of entry.reviewChanges) {
+        record(item, 'שינוי חזרה'); identifier(item.id, 'חזרה');
+        if (reviewIds.has(item.id)) invalid('חזרה מופיעה פעמיים בשינוי.'); reviewIds.add(item.id);
+        for (const value of [item.before, item.after]) {
+          if (value?.id !== item.id || !reviews) invalid('שינוי החזרה אינו תקין.');
+          try {reviews.validateReviews({version: 1, entries: [value]});} catch (error) {invalid(error.message);}
+        }
+      }
+    }
+  }
   function validateState(value) {
     record(value, 'קובץ התקדמות');
     for (const key of Object.keys(defaultState())) if (!own(value, key)) invalid('בקובץ ההתקדמות חסרים שדות נדרשים.');
@@ -201,6 +245,7 @@
     fields(settings, ['fallbackApplied']);
     if (own(settings, 'activePlanId')) identifier(settings.activePlanId, 'תוכנית פעילה');
     if (own(settings, 'planChanges')) planChanges(settings.planChanges);
+    if (own(settings, 'catchUpChanges')) catchUpChanges(settings.catchUpChanges);
     if (own(settings, 'planHistory')) {
       if (!Array.isArray(settings.planHistory) || settings.planHistory.length > 5) invalid('אפשר לשמור עד חמישה מחזורי לימוד בארכיון.');
       const ids = new Set();

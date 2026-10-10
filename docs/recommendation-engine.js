@@ -25,7 +25,7 @@
     const all = sessions(schedule, state), s = all.find(s => s.id === sessionId);
     if (!s) return {cards: 0, mixed: 0, reviews: 0, total: 0};
     const day = dayOf(s.date, schedule, state);
-    const candidates = all.filter(x => x.date === s.date && !x.disabled && committed(x, schedule, state) && !['setup', 'mock'].includes(x.kind)).sort(compare);
+    const candidates = all.filter(x => x.date === s.date && !x.disabled && !x.unscheduled && committed(x, schedule, state) && !['setup', 'mock'].includes(x.kind)).sort(compare);
     const cards = ['setup', 'mock'].includes(s.kind) || s.date === schedule.exam?.date || candidates.at(-1)?.id !== s.id ? 0 : Math.min(s.minutes, day.kind === 'deep' ? 10 : 5);
     const mixed = list(state.settings?.mixedPractice?.rounds).filter(r => r.budgetSessionId === sessionId).length * 10;
     const reviews = list(state.settings?.questionReviews?.entries).filter(r => r.sessionId === sessionId && r.status !== 'cancelled').length * 10;
@@ -34,6 +34,7 @@
   function sessionIssues(s, schedule, state) {
     const reasons = [];
     if (!s) return ['המשימה שאליה הוקצה הזמן אינה נמצאת בתוכנית.'];
+    if (s.unscheduled) reasons.push('המשימה פתוחה ללא מועד. יש למצוא לה מקום בחוזרים למסלול.');
     if (s.disabled) reasons.push('המשימה שאליה הוקצה הזמן הושבתה.');
     if (s.status === 'completed') reasons.push('המשימה שאליה הוקצה הזמן כבר סומנה כבוצעה.');
     if (!committed(s, schedule, state)) reasons.push('חלון הלימוד של המשימה עדיין לא אושר.');
@@ -42,7 +43,7 @@
     else {
       const windows = list(day.windows).filter(w => !w.conditional || day.confirmedOptional === true);
       if (windows.length && !windows.some(w => begin >= clock(w.start) && end <= clock(w.end))) reasons.push('המשימה אינה נכנסת בחלון לימוד מאושר ביום הזה.');
-      const sameDay = sessions(schedule, state).filter(x => x.date === s.date && !x.disabled && committed(x, schedule, state));
+      const sameDay = sessions(schedule, state).filter(x => x.date === s.date && !x.disabled && !x.unscheduled && committed(x, schedule, state));
       if (Number.isFinite(begin) && sameDay.some(x => x.id !== s.id && Number.isFinite(clock(x.start)) && begin < clock(x.start) + x.minutes && end > clock(x.start))) reasons.push('המשימה חופפת למשימה אחרת בתוכנית.');
       const capacity = Number(day.capacityMinutes || 0) + (day.confirmedOptional === true ? Number(day.optionalMinutes || 0) + Number(day.conditionalMinutes || 0) : 0);
       if (sameDay.reduce((n, x) => n + Number(x.minutes || 0), 0) > capacity) reasons.push('סך המשימות ביום הזה חורג מהזמן הזמין שנקבע.');
@@ -90,7 +91,7 @@
     if (!Number.isInteger(availableMinutes) || availableMinutes < 5 || availableMinutes > 300) throw new Error('הזמן הזמין צריך להיות בין 5 ל־300 דקות.');
     if (!['focused', 'light'].includes(focus) || !['planned', 'now'].includes(context)) throw new Error('אפשרות הזמן או הריכוז אינה נתמכת.');
     const time = stamp(now), today = israelDay(time), all = sessions(schedule, state).sort(compare);
-    const pending = all.filter(s => !s.disabled && s.status !== 'completed' && committed(s, schedule, state));
+    const pending = all.filter(s => !s.disabled && !s.unscheduled && s.status !== 'completed' && committed(s, schedule, state));
     const problems = list(curriculum.problems).filter(official);
     let host = context === 'planned' ? pending.find(s => dateOnly(s) ? s.date >= today : Number.isFinite(startOf(s)) && startOf(s) + s.minutes * 60000 > time) : null;
     const effectiveAt = context === 'planned' && host ? Math.max(time, dateOnly(host) ? stamp(calendar.localStamp(host.date)) : startOf(host)) : time;
@@ -107,13 +108,14 @@
       if (!gates(review.problemId, state) || !attempted(review.problemId, state, time)) issues.push('חזרה זו דורשת חומר שסומן כנלמד וניסיון קודם בשאלת המקור.');
       if (issues.length) return result('no-fit', 'צריך לבדוק חזרה שהגיעה זמנה', 'החזרה נשמרה, אבל תנאי השיבוץ או החומר השתנו. היא אינה מוצגת כפעולה מוכנה.', issues, {sessionId: review.sessionId, problemId: review.problemId, reviewId: review.id, actionLabel: 'בדיקת שיבוץ החזרה'});
     }
+    if (!pending.length && all.some(s => !s.disabled && s.unscheduled && s.status !== 'completed')) return result('no-fit', 'נותרה עבודה ללא שיבוץ', 'אפשר למצוא לה מקום בחוזרים למסלול. תוכנית חלקית אינה כיסוי מלא.', [], {sessionId: all.find(s => !s.disabled && s.unscheduled && s.status !== 'completed').id, actionLabel: 'בדיקת העבודה שנותרה'});
     if (!pending.length) return result('finished', 'אין משימה פתוחה בתוכנית המאושרת', 'כל המשימות המאושרות סומנו כבוצעות או הוסרו מהתוכנית. מצב זה אינו מוכיח שהשאלות נפתרו באופן עצמאי.');
     if (context === 'planned' && !host) return result('no-fit', 'צריך לבחור מועד לימוד חדש', 'נותרו משימות פתוחות, אבל אין להן חלון מאושר שטרם הסתיים.', ['חלונות מותנים אינם נספרים עד לאישור הזמינות.'], {sessionId: pending[0]?.id || null, actionLabel: 'בדיקת המשימה הפתוחה'});
     if (host) {
       const issues = sessionIssues(host, schedule, state);
       if (issues.length) return result('no-fit', 'צריך לבדוק את מועד המפגש הבא', 'השיבוץ הקיים אינו מאפשר הצעה שאפשר להסתמך עליה.', issues, {sessionId: host.id, actionLabel: 'בדיקת השיבוץ'});
     }
-    const allowedTask = s => !s.disabled && committed(s, schedule, state) && (focus === 'focused' || ['setup', 'review'].includes(s.kind));
+    const allowedTask = s => !s.disabled && !s.unscheduled && committed(s, schedule, state) && (focus === 'focused' || ['setup', 'review'].includes(s.kind));
     const fit = s => {
       const replacing = host && host.id !== s.id;
       const hostReserved = replacing ? reservedMinutes(host.id, schedule, state).total : 0;

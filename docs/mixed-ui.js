@@ -18,7 +18,7 @@ window.StudyMixed = (() => {
   const plain=blocks=>(blocks||[]).map(b=>b.text||b.math).join('\n\n');
   const badge=()=>demoState?'<p class="mixed-demo-note" role="status">מצב הדגמה · הנתונים כאן זמניים. אין שינוי בחומר שסימנת כנלמד או בהתקדמות השמורה.</p>':'';
   const remainingBudget=(s,snapshot=current())=>s.minutes-StudyMixedEngine.allocatedMinutes(snapshot,s.id)-(window.StudyTasks?.recallBudget(s,snapshot)||0)-(window.StudyReviews?.allocatedMinutes(s.id,snapshot)||0);
-  function budgetChoices(snapshot=current()){return [...schedule.sessions,...(snapshot.settings.customSessions||[])].map(s=>({...s,...(snapshot.sessionUpdates[s.id]||{})})).filter(s=>!s.disabled&&(!s.conditional||({...schedule.days.find(d=>d.date===s.date),...(snapshot.dayOverrides[s.date]||{})}).confirmedOptional)&&!isDone(s)&&['practice','review'].includes(s.kind)&&arr(s.problemIds).length&&remainingBudget(s,snapshot)>=10);}
+  function budgetChoices(snapshot=current()){return [...schedule.sessions,...(snapshot.settings.customSessions||[])].map(s=>({...s,...(snapshot.sessionUpdates[s.id]||{})})).filter(s=>!s.disabled&&!s.unscheduled&&(!s.conditional||({...schedule.days.find(d=>d.date===s.date),...(snapshot.dayOverrides[s.date]||{})}).confirmedOptional)&&!isDone(s)&&['practice','review'].includes(s.kind)&&arr(s.problemIds).length&&remainingBudget(s,snapshot)>=10);}
   function footer(text){const n=document.createElement('div');n.className='task-fixed-actions mixed-actions';n.innerHTML=text;$('#dialog-content').append(n);}
   function button(action,label,primary=false,extra=''){return `<button class="button ${primary?'primary':''}" data-mixed-action="${action}" ${extra}>${label}</button>`;}
   function panel(){
