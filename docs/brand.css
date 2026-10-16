@@ -1,0 +1,51 @@
+/* A stacked portrait and wordmark, direction-isolated inside Hebrew navigation.
+   The viewport removes only the proof's surrounding paper: v13's pixels stay intact. */
+.brand-block{display:flex;flex-direction:column;align-items:center;gap:16px}
+.brand.erdos-brand{display:inline-flex;flex-direction:column;align-items:center;gap:7px;max-width:100%;padding-inline:8px;color:var(--text);direction:ltr;unicode-bidi:isolate;text-decoration:none}
+.erdos-portrait{position:relative;display:block;flex:none;width:68px;aspect-ratio:750/630;overflow:hidden;isolation:isolate;background:var(--brand-surface,var(--panel))}
+.erdos-icon{position:absolute;display:block;max-width:none;width:167.2%;height:auto;left:-33.333333%;top:-46.031746%;filter:grayscale(1) contrast(1.1);mix-blend-mode:multiply}
+.erdos-icon--dark{display:none;width:150.588235%;left:-24.705882%;top:-40.845070%;filter:none;mix-blend-mode:normal}
+.erdos-eye{display:none;pointer-events:none}
+.erdos-name{font:400 32px/1.2 Baskerville,"Baskerville Old Face","Times New Roman",serif;letter-spacing:.01em;white-space:nowrap}
+/* A dedicated reverse drawing uses complete, muted eyelid strokes and a dark mouth.
+   The transparent artwork supplies its own subdued highlights. No inversion,
+   blending or enclosing badge is applied to the dark variant. */
+:is(:root[data-theme=dark],[data-brand-tone=dark],.sample[data-appearance=dark]) .erdos-portrait{aspect-ratio:850/710;background:transparent}
+:is(:root[data-theme=dark],[data-brand-tone=dark],.sample[data-appearance=dark]) .erdos-icon:not(.erdos-icon--dark){display:none}
+:is(:root[data-theme=dark],[data-brand-tone=dark],.sample[data-appearance=dark]) .erdos-icon--dark{display:block}
+/* Split out the same raster's viewer-right eye, without redrawing any pixels.
+   Only this small region closes, so the glasses and face never shift. Keep
+   the intact image as the fallback for touch, reduced motion and old browsers. */
+@supports (clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0)) {
+ @media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .erdos-icon:not(.erdos-icon--dark){clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,55.422648% 35.885167%,55.422648% 44.258373%,72.966507% 44.258373%,72.966507% 35.885167%,55.422648% 35.885167%)}
+  .erdos-icon--dark{clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,55.46875% 36.40625%,55.46875% 46.09375%,76.09375% 46.09375%,76.09375% 36.40625%,55.46875% 36.40625%)}
+  .erdos-eye{position:absolute;overflow:hidden;transform-origin:50% 54%;}
+  .erdos-eye--light{display:block;left:59.333333%;top:25.396825%;width:29.333333%;height:16.666667%;mix-blend-mode:multiply}
+  .erdos-eye--light img{position:absolute;max-width:none;width:570%;height:auto;left:-315.909091%;top:-428.571429%;filter:grayscale(1) contrast(1.1)}
+  .erdos-eye--dark{left:58.823529%;top:24.788732%;width:31.058824%;height:17.464789%;mix-blend-mode:normal}
+  .erdos-eye--dark img{position:absolute;max-width:none;width:484.848485%;height:auto;left:-268.939394%;top:-375.806452%}
+  :is(:root[data-theme=dark],[data-brand-tone=dark],.sample[data-appearance=dark]) .erdos-eye--light{display:none}
+  :is(:root[data-theme=dark],[data-brand-tone=dark],.sample[data-appearance=dark]) .erdos-eye--dark{display:block}
+  :is(.erdos-brand,.mobile-brand):is(:hover,:focus-visible) .erdos-eye{animation:erdos-wink 620ms ease-in-out 1}
+ }
+}
+@keyframes erdos-wink{
+ 0%,12%,100%{transform:scaleY(1)}
+ 36%,52%{transform:scaleY(.32)}
+ 84%{transform:scaleY(1)}
+}
+.brand.erdos-brand:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:4px}
+@media(max-width:700px){
+ /* Only the reading toolbar stays sticky, so it cannot slide behind the brand/navigation. */
+ .sidebar{position:static}
+ .brand.erdos-brand{gap:4px;padding-inline:4px}
+ .erdos-portrait{width:48px}
+ .erdos-name{font-size:28px}
+}
+@media(forced-colors:active){
+ .erdos-portrait{aspect-ratio:750/630!important;background:white!important;forced-color-adjust:none}
+ .erdos-icon:not(.erdos-icon--dark){display:block!important;clip-path:none!important;filter:none!important;mix-blend-mode:normal!important}
+ .erdos-icon--dark{display:none!important}
+ .erdos-eye{display:none!important}
+}

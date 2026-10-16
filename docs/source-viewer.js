@@ -80,7 +80,7 @@
         message('לא נמצא קישור מוכר לקובץ', ['חזור לרשימת המקורות ופתח את הקובץ משם.'], true); return;
       }
       currentPage = requestedPage(); sourceLabel = source.label;
-      document.title = source.label + ' · מצפן';
+      document.title = source.label + ' · erdős';
       byId('source-title').textContent = source.label;
       const record = await SourceLibrary.getFile(source.path);
       if (!record) {

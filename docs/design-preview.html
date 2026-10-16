@@ -13,18 +13,20 @@
 .sample[data-palette=clay][data-appearance=light]{--paper:#f3eee8;--surface:#fffaf4;--support:#eee4d9;--ink:#302923;--quiet:#6b5e53;--rule:#dbcec0;--boundary:#8a7766;--action:#8b482c;--on-action:#fff;--focus:#8b482c}
 .sample :is(button,a,summary):focus-visible{outline-color:var(--focus)}.sample svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.sample-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 34px;border-bottom:1px solid var(--rule);background:var(--surface);flex-wrap:wrap}.wordmark{display:flex;align-items:center;gap:14px}.wordmark svg{width:32px;height:32px;stroke-width:1.5;color:var(--action)}.wordmark strong{font-size:32px;line-height:1.2;letter-spacing:-1px}.brand-caption{font-size:12px;color:var(--quiet);margin-top:4px}.sample-tools{display:flex;align-items:center;gap:12px}.course-name{font-size:13px;color:var(--quiet)}.sample button{background:var(--surface);color:var(--ink);border:1px solid var(--boundary);border-radius:7px;padding:8px 13px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px}.sample button:hover{background:var(--support)}.sample-body{display:grid;grid-template-columns:196px minmax(0,1fr)}.sample-nav{padding:32px 20px;border-inline-end:1px solid var(--rule)}.nav-item{display:flex;gap:12px;align-items:center;color:var(--quiet);padding:12px 14px;margin:3px 0;font-size:14px;border-radius:7px}.nav-item.current{background:var(--support);color:var(--action);font-weight:600}.nav-foot{border-top:1px solid var(--rule);margin-top:28px;padding:20px 14px;font-size:12px;color:var(--quiet)}.sample-main{padding:38px clamp(20px,5vw,68px) 60px}.lesson-context{font-size:13px;color:var(--quiet);margin-bottom:12px}.sample h2{font-size:32px;line-height:1.35;margin:0 0 14px;letter-spacing:-.5px}.lead{font-size:17px;line-height:1.85;color:var(--quiet);max-width:740px;margin:0}.sample-meta{display:flex;gap:20px;flex-wrap:wrap;color:var(--quiet);font-size:13px;margin:20px 0 28px}.sample-steps{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;border-bottom:1px solid var(--rule);margin-bottom:28px;color:var(--quiet)}.sample-steps span{padding:8px 0 12px}.sample-steps .current{color:var(--action);border-bottom:2px solid var(--action)}.article{max-width:760px;background:var(--surface);padding:32px 40px;border-radius:9px}.section-type{font-size:12px;color:var(--quiet);margin:0 0 8px}.article h3{font-size:25px;line-height:1.45;margin:0 0 18px}.article p{font-size:18px;line-height:1.9;margin:16px 0}.formula{direction:ltr;unicode-bidi:isolate;text-align:center;font:24px/1.8 Georgia,serif;padding:20px 8px;border-block:1px solid var(--rule);margin:24px 0;overflow:auto}.exercise{border-top:1px solid var(--rule);margin-top:32px;padding-top:28px}.exercise h4{font-size:19px;margin:0 0 10px}.exercise p{font-size:17px}.sample details{border-top:1px solid var(--rule);margin-top:12px}.sample summary{padding:14px 0;min-height:48px;font-size:15px}.sample details p{background:var(--support);padding:16px 20px;font-size:16px;border-radius:5px}.sample-end{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:28px}.sample-end a{min-height:44px;display:inline-flex;align-items:center;text-underline-offset:4px;font-size:14px}.sample-end .primary{background:var(--action);color:var(--on-action);padding:10px 18px;border-radius:7px;text-decoration:none}.specimen-note{font-size:12px!important;color:var(--quiet)}.proposal-footer{padding:26px 20px;text-align:center;color:#5d6571;font-size:14px}
 @media(max-width:760px){.proposal{padding:22px 18px}.proposal-controls{gap:12px}.proposal-controls label{flex:1 1 160px}.proposal-controls select{width:100%}.sample{border-radius:0}.sample-header{padding:18px 20px;gap:15px}.sample-tools{justify-content:space-between;flex:1;min-width:220px}.sample-body{grid-template-columns:1fr}.sample-nav{display:none}.sample-main{padding:28px 18px}.sample h2{font-size:27px}.article{padding:25px 20px}.article h3{font-size:23px}.sample-steps{gap:10px 18px}.sample-steps span{font-size:12px}.sample-end .primary{width:100%;justify-content:center}.formula{font-size:22px}.course-name{font-size:12px}}
+.sample{--text:var(--ink);--muted:var(--quiet);--accent:var(--action);--brand-surface:var(--surface)}.sample .erdos-brand{text-decoration:none}
 </style>
+<link rel="stylesheet" href="./brand.css?v=20261017-portrait-eyes3">
 </head>
 <body>
 <section class="proposal" aria-labelledby="proposal-title">
 <h1 id="proposal-title">מראה חדש למרחב הלימוד</h1>
-<p>הצעה לעיון: משטחי קריאה שקטים, צבע אחד לפעולות ואייקונים עקביים. אפשר להשוות צבעים ושמות על אותו שיעור. ארבע אפשרויות הצבע זמינות באתר. השם, הסמל וסידור הניווט כאן עדיין בגדר הצעה.</p>
+<p><bdi>erdős</bdi> — לימוד ותרגול לקורס. אפשר להשוות את ארבע אפשרויות הצבע עם הלוגו החדש בתוך עמוד לימוד. סידור הניווט כאן הוא הצעה להמשך הפיתוח.</p>
 <div class="proposal-controls">
-<label>כיוון צבעוני<select id="palette"><option value="ink">נייר ודיו — ההצעה המובילה</option><option value="clay">פחם וחמר — חלופה חמה</option></select></label>
-<label>שם לבדיקה<select id="brand"><option>עיון</option><option>מחברת</option><option>לומדים</option></select></label>
+<label>כיוון צבעוני<select id="palette"><option value="ink">נייר ודיו</option><option value="clay">פחם וחמר</option></select></label>
+<a href="./brand-preview.html">הלוגו בארבע התצוגות</a>
 <a href="https://github.com/lefonde/Courses/blob/main/UI_DESIGN_PLAN.md">תוכנית העיצוב המלאה</a>
 </div>
-<p class="proposal-note">הסמל לצד השם הוא סקיצה לבדיקת הפרופורציות. את הלוגו הסופי נעצב לאחר בחירת השם. הבקרות כאן משנות רק את ההדגמה.</p>
+<p class="proposal-note">השם שנבחר הוא <bdi>erdős</bdi>. הסמל נבנה בהשראת הדיוקן של ארדש. הבקרות כאן משנות רק את ההדגמה.</p>
 </section>
 <div class="sample" id="sample" data-appearance="dark" data-palette="ink">
 <svg style="display:none" aria-hidden="true"><defs>
@@ -39,7 +41,12 @@
 <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11z"/></symbol>
 </defs></svg>
 <header class="sample-header">
-<div class="wordmark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 7v21M4 5h7l5 3 5-3h7v20h-7l-5 3-5-3H4z"/></svg><div><strong id="wordmark">עיון</strong><div class="brand-caption">לימוד ותרגול לקורס</div></div></div>
+<div class="brand-block">
+      <a class="brand erdos-brand" href="./#overview" dir="ltr" aria-label="erdős — לעמוד הבית">
+        <span class="erdos-portrait" aria-hidden="true"><img class="erdos-icon" src="./assets/brand/erdos-proof-v13.png" width="1254" height="1254" alt="" decoding="async"><img class="erdos-icon erdos-icon--dark" src="./assets/brand/erdos-dark-v3.png" width="1254" height="1254" alt="" decoding="async"><span class="erdos-eye erdos-eye--light"><img src="./assets/brand/erdos-proof-v13.png" width="1254" height="1254" alt="" decoding="async"></span><span class="erdos-eye erdos-eye--dark"><img src="./assets/brand/erdos-dark-v3.png" width="1254" height="1254" alt="" decoding="async"></span></span>
+        <span class="erdos-name" lang="hu">erdős</span>
+      </a>
+    </div>
 <div class="sample-tools"><span class="course-name">אלגוריתמים אקראיים · 22902</span><button type="button" id="appearance"><svg aria-hidden="true"><use href="#icon-sun"/></svg><span>תצוגה בהירה</span></button></div>
 </header>
 <div class="sample-body">
@@ -79,7 +86,6 @@
 <script>
 const sample=document.getElementById('sample'),appearance=document.getElementById('appearance');
 document.getElementById('palette').addEventListener('change',event=>{sample.dataset.palette=event.target.value;});
-document.getElementById('brand').addEventListener('change',event=>{document.getElementById('wordmark').textContent=event.target.value;});
 appearance.addEventListener('click',()=>{const light=sample.dataset.appearance!=='light';sample.dataset.appearance=light?'light':'dark';appearance.querySelector('span').textContent=light?'תצוגה כהה':'תצוגה בהירה';appearance.querySelector('use').setAttribute('href',light?'#icon-moon':'#icon-sun');});
 </script>
 </body>

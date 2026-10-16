@@ -158,7 +158,7 @@ window.StudyMeetings = (() => {
     if(!enabled()||!window.STUDY_CONFIG.preview)return;
     const banner=document.createElement('aside');banner.className='meeting-preview-banner';banner.setAttribute('aria-label','גרסת ניסיון');
     banner.innerHTML='<div><strong>גרסת ניסיון — התיעוד נשמר כאן בנפרד</strong><p>ללימוד השוטף ולהתקדמות שלך, פתח את האתר הראשי.</p></div><a class="button primary" href="./index.html">לאתר הלימוד הראשי</a>';
-    main.before(banner);$('.local-tag').textContent='גרסת ניסיון';
+    main.before(banner);
   }
   document.addEventListener('input',event=>{if(enabled()&&event.target.form?.id==='meeting-form')capture(event.target.form);});
   document.addEventListener('change',event=>{if(enabled()&&event.target.form?.id==='meeting-form')syncFields(event.target.form);});

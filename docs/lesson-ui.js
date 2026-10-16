@@ -85,7 +85,7 @@ window.StudyLessons=(()=>{
   function reader(){
     const r=parse();if(!r)return `<section class="panel"><h1>לא ניתן לפתוח את השיעור</h1><p>${esc(lastError||'הכתובת אינה תואמת לשיעור קיים.')}</p><a class="button" href="#lessons">חזרה לשיעורים</a></section>`;
     const {lesson:l,section:s}=r,index=l.sections.indexOf(s),answer=read(l,s.id),next=l.sections[index+1];
-    document.title=`${s.title} · ${l.title} · מצפן`;
+    document.title=`${s.title} · ${l.title} · erdős`;
     return `<div class="lesson-reader"><a class="lesson-back" href="#lessons"><span aria-hidden="true">→</span> כל השיעורים</a>
       <header class="lesson-header"><span class="eyebrow">שבוע 1 · שיעור ${l.number} מתוך 4</span><h1>${esc(l.title)}</h1><p>${esc(l.summary)}</p><div class="lesson-meta"><span>${timeLabel(sessionOf(l.sessionId).minutes)} · כולל תרגול והפסקות</span>${next?'<button class="text-link" data-lesson-action="finish">לעצור ולסכם את המפגש</button>':''}</div></header>
       <div class="lesson-layout"><aside class="lesson-outline"><details open><summary>בשיעור הזה</summary><nav aria-label="חלקי השיעור"><ol>${l.sections.map((part,i)=>`<li><a href="${route(l.sessionId,part.id)}" ${part===s?'aria-current="step"':''}><span>${i+1}</span><span>${esc(part.title)}</span></a></li>`).join('')}</ol></nav></details><div class="lesson-outline-note"><strong>בסיום תוכלו</strong><p>${esc(l.outcome)}</p></div></aside>
