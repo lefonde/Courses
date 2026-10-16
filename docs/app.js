@@ -3,8 +3,8 @@ const $ = (q, root=document) => root.querySelector(q);
 const $$ = (q, root=document) => [...root.querySelectorAll(q)];
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone = value => JSON.parse(JSON.stringify(value));
-const LABELS = {overview:'מבט על',schedule:'לוח הזמנים',questions:'שאלות לתרגול',flashcards:'כרטיסיות חזרה',readiness:'מצב הלימוד שלי',library:'חומרי הקורס'};
-const ICONS = {overview:'◈',schedule:'▦',questions:'▤',readiness:'◴',library:'▱',flashcards:'▧'};
+const LABELS = {overview:'מבט על',lessons:'השיעורים',schedule:'לוח הזמנים',questions:'שאלות לתרגול',flashcards:'כרטיסיות חזרה',readiness:'מצב הלימוד שלי',library:'חומרי הקורס'};
+const ICONS = {overview:'◈',lessons:'▤',schedule:'▦',questions:'?',readiness:'◴',library:'▱',flashcards:'▧'};
 const STATUS = {unseen:'טרם תועד ניסיון',read:'קראתי והבנתי',guided:'פתרתי בעזרה',independent:'פתרתי עצמאית',timed:'פתרתי עצמאית בזמן'};
 const KINDS = {setup:'התארגנות',study:'בניית בסיס',practice:'תרגול',review:'חזרה ותחקור',mock:'סימולציה'};
 const DAYS = {setup:'ערב התארגנות',workday:'יום עבודה',deep:'יום עומק',light:'חזרה קצרה',reserve:'עתודה',exam:'יום הבחינה'};
@@ -51,26 +51,28 @@ const pageValue = value => typeof value==='object'&&value!==null?(value.pdf||val
 const sourceLink = (id,pages,label) => {const s=sourceOf(id);if(!s)return '';const n=pageValue(arr(pages)[0])||1;return `<a class="source-link" href="${esc(sourceUrl(s,n))}" target="_blank" rel="noopener">${esc(label||s.label)}<span>PDF · עמ׳ ${esc(arr(pages).map(pageValue).join(', ')||n)} ↗</span></a>`;};
 const tag = (label,style='') => `<span class="tag ${style}">${esc(label)}</span>`;
 function notify(message){$('#toast').textContent=message;$('#toast').classList.add('toast');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('toast'),4200);}
-function save(fn,message){
+function save(fn,message,options={}){
   saveQueue=saveQueue.catch(()=>{}).then(async()=>{
     $('#save-status').textContent='שומר שינויים…';
     const next=clone(state);fn(next);
     let data;try{data=await StudyStorage.save(next,state.revision);}catch(error){if(error.status===409)error.message='התוכנית עודכנה בחלון אחר. רענן את הדף לפני שמירה נוספת.';throw error;}
     state=data;$('#save-status').textContent=StudyStorage.mode==='static'?'✓ נשמר בדפדפן הזה':'✓ השינויים נשמרו במחשב';
-    render();if(message)notify(message);
+    if(!options.background)render();if(message)notify(message);
   }).catch(err=>{$('#save-status').textContent='השינוי לא נשמר';notify(err.message);throw err;});
   return saveQueue;
 }
-function currentPage(){const hash=location.hash.slice(1);return LABELS[hash]?hash:'overview';}
+function currentPage(){const hash=location.hash.slice(1);return hash.startsWith('lesson/')?'lesson':LABELS[hash]?hash:'overview';}
 function render(){
-  page=currentPage();document.title=`מצפן · ${LABELS[page]}`;$('#page-label').textContent=LABELS[page];
-  $('#nav').innerHTML=Object.entries(LABELS).map(([key,label])=>`<a class="nav-link ${page===key?'active':''}" href="#${key}" ${page===key?'aria-current="page"':''}><span class="nav-icon" aria-hidden="true">${ICONS[key]}</span><span class="nav-label">${label}</span>${key==='questions'?`<span class="nav-count">${curriculum.problems.length}</span>`:''}</a>`).join('');
+  page=currentPage();document.title=`מצפן · ${LABELS[page]||'שיעור'}`;$('#page-label').textContent=LABELS[page]||'לומדים';main.classList.toggle('is-lesson',page==='lesson');
+  $('#nav').innerHTML=Object.entries(LABELS).map(([key,label])=>`<a class="nav-link ${(page==='lesson'?'lessons':page)===key?'active':''}" href="#${key}" ${(page==='lesson'?'lessons':page)===key?'aria-current="page"':''}><span class="nav-icon" aria-hidden="true">${ICONS[key]}</span><span class="nav-label">${label}</span>${key==='questions'?`<span class="nav-count">${curriculum.problems.length}</span>`:''}</a>`).join('');
   const examCard=$('.exam-card');if(examCard){$('strong',examCard).textContent=fmtDate(schedule.exam.date);$('strong + span',examCard).textContent=fmtDay(schedule.exam.date)+' · '+schedule.exam.minutes+' דקות';}
-  if(window.StudyPlanner&&!StudyPlanner.active()){main.innerHTML=StudyPlanner.startPage();document.documentElement.dataset.theme=state.settings.theme||'dark';return;}
-  main.innerHTML=({overview:renderOverview,schedule:renderSchedule,questions:renderQuestions,readiness:renderReadiness,library:renderLibrary,flashcards:()=>StudyCards.render()})[page]();
-  document.documentElement.dataset.theme=state.settings.theme||'dark';
-  $('#theme-button').textContent=state.settings.theme==='light'?'☾ מעבר לתצוגה כהה':'☼ מעבר לתצוגה בהירה';
+  renderTheme();
+  if(window.StudyPlanner&&!StudyPlanner.active()){main.innerHTML=StudyPlanner.startPage();return;}
+  main.innerHTML=({overview:()=>StudyLessons.overview(),lessons:()=>StudyLessons.directory(),lesson:()=>StudyLessons.reader(),schedule:renderSchedule,questions:renderQuestions,readiness:renderReadiness,library:renderLibrary,flashcards:()=>StudyCards.render()})[page]();
+  if(page==='lesson')StudyLessons.afterRender();
 }
+function renderTheme(){StudyTheme.apply(document,state.settings);}
+
 function heading(title,subtitle,tools=''){return `<div class="page-heading"><div><h1>${title}</h1><p class="subtitle">${subtitle}</p></div>${tools?`<div class="heading-tools">${tools}</div>`:''}</div>`;}
 function dependencyIssues(s){return arr(s.dependsOn).map(sessionOf).filter(Boolean).filter(x=>!isDone(x));}
 function nextSession(){
@@ -119,7 +121,7 @@ function renderLibrary(){
  const sources=Object.entries(curriculum.sources),groups=[['lectures','מחברות הכיתה',s=>s.kind==='lecture'||/Lectures\//.test(s.path)],['mamans','ממ״נים',s=>s.kind==='maman'||/Mamans\//.test(s.path)],['exam','הבחינה ודוגמאות המרצה',s=>/Test\//.test(s.path)],['reading','מדריך וספר — קריאה ממוקדת',s=>/Course (Guide|Book)/.test(s.path)]];
  const seen=new Set();
  return heading('המקורות במקום אחד','הקישורים פותחים את הקבצים המקוריים במחשב. בכל יחידה מופיעים גם העמודים והשאלות שמשרתים אותה.')+
- `<div class="panel section"><div class="row-between"><div><span class="eyebrow">חומר מותאם ליחידה</span><h2 style="margin-top:6px">מכינים את מפגש הלימוד הבא מתוך התוכנית</h2></div><button class="button" data-action="brief" data-id="${esc(nextSession()?.id||'')}">הצגת בקשה מוכנה למורה AI ←</button></div><p class="subtitle">בחר משימה וקבל טקסט שאפשר להדביק בשיחה עם המורה. הטקסט מציין מה ללמוד, מאילו קבצים ובאיזה סדר. ההוראה עצמה מתרחשת בשיחה, ולא באתר.</p></div>`+
+ `<div class="panel section"><div class="row-between"><div><span class="eyebrow">חומר מותאם ליחידה</span><h2 style="margin-top:6px">לומדים לפי התוכנית</h2></div><a class="button" href="#lessons">לשיעורים ←</a></div><p class="subtitle">השבוע הראשון כולל הסברים, תרגילים ומשוב בתוך האתר. מתוך כל שיעור אפשר לפתוח את המקורות או להכין בקשת עזרה ל־NotebookLM. בשבועות הבאים עובדים לפי ההנחיות שבמפגש.</p></div>`+
  (StudyStorage.mode==='static'?`<section class="panel section"><h2>חיבור חומרי הקורס בדפדפן הזה</h2><p class="subtitle">קובצי הספר, ההרצאות והממ״נים נשארים אצלך. בחר פעם אחת את תיקיית הקורס כדי לפתוח כאן את ה־PDF הרלוונטי. הקבצים אינם נשלחים ל־GitHub.</p><button class="button" data-action="source-manager" style="margin-top:15px">חיבור תיקיית חומרי הקורס</button></section>`:'')+
  groups.map(([id,label,test])=>{const items=sources.filter(([key,s])=>!seen.has(key)&&test(s));items.forEach(([key])=>seen.add(key));return items.length?`<section class="library-group"><h2>${label}</h2><div class="library-grid">${items.map(([key,s])=>`<a class="source-card" href="${esc(sourceUrl(s,1))}" target="_blank" rel="noopener"><span class="source-icon">PDF</span><div><h3>${esc(s.label)}</h3><p>${esc(s.note||s.description||'פתיחה במקור המקומי')}</p></div><span class="out" aria-hidden="true">↗</span></a>`).join('')}</div></section>`:'';}).join('')+
  `<div class="notice neutral">שיעור 6 הוגדר כהעשרה לפי הבהרתך ולכן אינו חלק מתוכנית הליבה. הקבצים המקוריים והיומן שלך לא משתנים מתוך האתר.</div>`;
@@ -146,7 +148,7 @@ function showProblem(id){const p=problemOf(id);if(!p)return;const progress=state
  if(window.StudyMeetings?.enabled())StudyMeetings.decorateProblem(id);
 }
 function showAvailability(date){const d=dayOf(date);openDialog('availability',date,`זמינות · ${fmtDate(date)}`,`<p>הזמינות היא מלוא החלון שאפשר להקדיש למפגש, כולל ההפסקות שבתוכו. שינוי הזמינות לא מזיז משימות אוטומטית.</p><form id="availability-form" data-date="${date}"><div class="form-grid" style="margin-top:18px"><div class="form-field"><label for="capacity-minutes">משך חלון הלימוד בדקות</label><input class="field-input" type="number" min="0" max="600" step="5" id="capacity-minutes" name="capacityMinutes" value="${Number(d.capacityMinutes||0)}" required></div><div class="form-field"><label for="availability-note">הערת זמינות</label><input class="field-input" id="availability-note" name="notes" value="${esc(arr(d.notes).join(' '))}" placeholder="למשל: פנוי רק בשעות הבוקר"></div></div>${extraMinutes(d)?`<label class="check-line"><input type="checkbox" name="confirmedOptional" ${d.confirmedOptional?'checked':''}>החלון הנוסף של ${extraMinutes(d)} דקות התפנה בפועל ואפשר לכלול אותו בקיבולת.</label>`:''}<div class="notice neutral">כרגע משובצות ${totalPlanned(date,false)} דקות, ועוד ${totalPlanned(date)-totalPlanned(date,false)} דקות מותנות. חריגה תסומן ביומן.</div><button type="submit" class="button primary">שמירת זמינות</button></form>`,'התוכנית מסתגלת למציאות');}
-function promptForSession(s){const base=window.StudyScaffold?.prompt(s.id)||basePromptForSession(s);const context=window.StudyMeetings?.enabled()?StudyLearningEngine.promptContext(state,s.id):'';return [base,context].filter(Boolean).join('\n\n');}
+function promptForSession(s){const base=window.StudyLessons?.prompt(s.id)||window.StudyScaffold?.prompt(s.id)||basePromptForSession(s);const context=window.StudyMeetings?.enabled()?StudyLearningEngine.promptContext(state,s.id):'';return [base,context].filter(Boolean).join('\n\n');}
 function sessionModeSelector(s){return StudyTeachingPolicy.supportsMode(s)&&!window.StudyScaffold?.enabled(s.id)?StudyTeaching.selector():'';}
 function planningContextText(){return allSessions().filter(s=>!s.disabled).map(s=>`- ${s.title} | ${s.unscheduled?'ללא שיבוץ':s.date} ${s.unscheduled?'':s.start||''} | ${s.minutes} דקות | ${s.status||'מתוכננת'} | ${s.learned?'החומר סומן כנלמד':'אין סימון שהחומר נלמד'}${s.note?' | הערה: '+s.note:''}`).join('\n');}
 function basePromptForSession(s){
@@ -222,9 +224,10 @@ document.addEventListener('click',async event=>{
 });
 document.addEventListener('input',event=>{if(event.target.id==='problem-search'){questionFilters.search=event.target.value;$('#question-results').innerHTML=questionResults();}if(['session-date','session-time'].includes(event.target.id))updateMoveImpact();if(['custom-date','custom-time','custom-minutes'].includes(event.target.id)){const date=$('#custom-date').value,minutes=Number($('#custom-minutes').value),start=$('#custom-time').value;if(date&&minutes){const issues=planningIssues({id:'new-task',minutes,conditional:false,dependsOn:[]},date,start);$('#custom-impact').textContent=`לאחר השיבוץ: ${totalPlanned(date,false)+minutes} דקות מתוך ${capacity(date)} זמינות. ${issues.join(' · ')}`;$('#custom-impact').className=issues.length?'notice danger':'notice neutral';}}});
 document.addEventListener('change',async event=>{const el=event.target;try{
+ if(el.id==='theme-select'){const choice=el.value,hadFocus=document.activeElement===el;el.disabled=true;try{await save(d=>StudyTheme.setChoice(d,choice));}finally{renderTheme();el.disabled=false;if(hadFocus)el.focus({preventScroll:true});}}
  if(el.id==='active-date'){if(!el.value)return;activeDate=el.value;selectedDate=el.value;await save(d=>{d.settings.activeDate=activeDate;});}
  if(el.id.startsWith('filter-')){questionFilters[el.id.slice(7)]=el.value;$('#question-results').innerHTML=questionResults();}
- if(el.id==='import-file'&&el.files[0]){const file=el.files[0];if(file.size>1000000)throw new Error('הגיבוי גדול מדי. יש לבחור קובץ יצוא של האתר.');const imported=JSON.parse(await file.text());openDialog('import-confirm','import-confirm','בדיקת גיבוי לפני יבוא',`<p>היבוא יחליף את ההתקדמות המקומית בעותק שבחרת. לפני ההחלפה יישמר גיבוי של המצב הנוכחי.</p><div class="notice neutral">קובץ: ${esc(file.name)}<br>יחידות מעודכנות: ${Object.keys(imported.sessionUpdates||{}).length}<br>שאלות מתועדות: ${Object.keys(imported.problemProgress||{}).length}</div><div class="dialog-actions"><button class="button primary" id="confirm-import">יבוא הגיבוי הזה</button><button class="button" data-action="close">ביטול</button></div>`);$('#confirm-import').onclick=async()=>{try{await saveQueue.catch(()=>{});const data=await StudyStorage.importState(imported,state.revision);state=data;applyPrivateAssessment();StudyCards.reset();activeDate=state.settings.activeDate||activeDate;selectedDate=activeDate;closeDialog();render();$('#save-status').textContent='✓ הגיבוי יובא ונשמר';notify('הגיבוי יובא בהצלחה');}catch(e){notify(e.message);}};}
+ if(el.id==='import-file'&&el.files[0]){const file=el.files[0];if(file.size>1000000)throw new Error('הגיבוי גדול מדי. יש לבחור קובץ יצוא של האתר.');const imported=JSON.parse(await file.text());openDialog('import-confirm','import-confirm','בדיקת גיבוי לפני יבוא',`<p>היבוא יחליף את ההתקדמות המקומית בעותק שבחרת. לפני ההחלפה יישמר גיבוי של המצב הנוכחי.</p><div class="notice neutral">קובץ: ${esc(file.name)}<br>יחידות מעודכנות: ${Object.keys(imported.sessionUpdates||{}).length}<br>שאלות מתועדות: ${Object.keys(imported.problemProgress||{}).length}</div><div class="dialog-actions"><button class="button primary" id="confirm-import">יבוא הגיבוי הזה</button><button class="button" data-action="close">ביטול</button></div>`);$('#confirm-import').onclick=async()=>{try{await window.StudyLessons?.flush();await saveQueue.catch(()=>{});const data=await StudyStorage.importState(imported,state.revision);state=data;window.StudyLessons?.discardPending();applyPrivateAssessment();StudyCards.reset();activeDate=state.settings.activeDate||activeDate;selectedDate=activeDate;closeDialog();render();$('#save-status').textContent='✓ הגיבוי יובא ונשמר';notify('הגיבוי יובא בהצלחה');}catch(e){notify(e.message);}};}
  }catch(err){notify(err.message);}});
 document.addEventListener('submit',async event=>{
  const form=event.target;if(!['session-form','problem-form','availability-form','journal-form','custom-task-form'].includes(form.id))return;event.preventDefault();const fields=Object.fromEntries(new FormData(form)),button=$('button[type=submit]',form);button.disabled=true;
@@ -236,16 +239,16 @@ document.addEventListener('submit',async event=>{
  if(form.id==='journal-form'){await save(d=>d.journal.push({date:activeDate,title:fields.title,text:fields.text}),'הרשומה נשמרה');closeDialog();}
  }catch(err){}finally{button.disabled=false;}
 });
-$('#theme-button').addEventListener('click',()=>save(d=>{d.settings.theme=d.settings.theme==='light'?'dark':'light';}).catch(()=>{}));
 $('#settings-button').addEventListener('click',()=>state&&showSettings());
 $('#detail-dialog').addEventListener('click',event=>{if(event.target===$('#detail-dialog')){const r=event.target.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeDialog();}});
-window.addEventListener('hashchange',()=>{closeDialog({restore:false});if(state){render();main.focus();window.scrollTo(0,0);}});
+window.addEventListener('hashchange',()=>{closeDialog({restore:false});if(state){render();const target=page==='lesson'&&location.hash.split('/').length===3?$('#lesson-section-title'):null;if(target){target.focus({preventScroll:true});target.parentElement.scrollIntoView({block:'start'});}else{main.focus();window.scrollTo(0,0);}}});
 function applyPrivateAssessment(){
  if(schedule?.planId==='november-2026')return;
  const baseline=state.settings?.baselineAssessment;
  if(baseline){Object.assign(curriculum.meta,baseline.meta||{});for(const topic of curriculum.topics){const saved=baseline.topics?.find(t=>t.id===topic.id);if(saved)Object.assign(topic,saved);}}
 }
 async function exportProgress(){
+ await window.StudyLessons?.flush();
  await saveQueue.catch(()=>{});
  const exported=await StudyStorage.exportState();exported.settings||={};
  if(curriculum.meta.diagnosticCompleted){

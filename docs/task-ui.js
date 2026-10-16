@@ -12,8 +12,9 @@ window.StudyTasks = (() => {
   }
   function open(id){
     const s=sessionOf(id);if(!s)return;
+    if(window.StudyLessons?.has(id)){closeDialog();const href=StudyLessons.route(id);if(location.hash===href){render();main.focus();}else location.hash=href;return;}
     const setup=s.kind==='setup',cards=relatedCards(id),budget=recallBudget(s),deps=dependencyIssues(s),pilot=StudyMeetings.enabled()&&!setup&&s.kind!=='mock';
-    const primary=setup?'<button class="button primary" data-task-action="calendar">פתיחת לוח הזמנים</button>':`<button class="button primary" data-task-action="copy" data-id="${id}">העתקת בקשה ל־AI</button><button class="text-link" data-action="brief" data-id="${id}">הצגת הבקשה</button>`;
+    const primary=setup?'<button class="button primary" data-task-action="calendar">פתיחת לוח הזמנים</button>':`<button class="button primary" data-task-action="copy" data-id="${id}">העתקת הנחיות ל־NotebookLM</button><button class="text-link" data-action="brief" data-id="${id}">קריאת ההנחיות לפני העתקה</button>`;
     const sources=setup?'':sessionSources(s);
     openDialog('session',id,s.title,`
       <div class="status-line">${tag(s.unscheduled?'ללא שיבוץ':fmtDate(s.date))}${tag(timeLabel(s.minutes))}${isDone(s)?tag('המשימה הושלמה','green'):''}${s.learned?tag('החומר סומן כנלמד','green'):''}</div>
@@ -22,7 +23,7 @@ window.StudyTasks = (() => {
       ${!setup&&s.kind!=='mock'?StudyMeetings.taskSummary(id):''}${s.remainingMinutes!=null&&s.status!=='completed'?`<p class="notice neutral">אומדן ההמשך שאישרת: ${s.remainingMinutes} דקות. אפשר לשנות בעדכון מהמפגש.</p>`:''}
       ${sessionModeSelector(s)}
       <div class="task-main-actions">${primary}</div>
-      ${!setup?'<p class="hint">מדביקים את הבקשה בשיחה עם מחברת NotebookLM שמכילה את חומרי הקורס. המורה ישתמש במקורות המחברת ובאופן העזרה שבחרת. כשעוצרים, חוזרים לכאן ובוחרים „עדכון מהמפגש” כדי לשמור מאיפה להמשיך.</p>':''}
+      ${!setup?'<p class="hint">המפגש הזה מתקיים בעזרת חומרי הקורס ו־NotebookLM. הדביקו את ההנחיות בשיחה עם מחברת הקורס. בסיום חוזרים לכאן כדי לתעד מה למדתם.</p>':''}
       ${deps.length?`<details class="task-details"><summary>לפני המשימה: ${deps.length} משימות קודמות עדיין פתוחות</summary><div class="source-links">${deps.map(x=>`<button class="source-link" data-action="session" data-id="${x.id}">${esc(x.title)}<span>פתיחה ←</span></button>`).join('')}</div></details>`:''}
       ${window.StudyReviews?.taskEntry(id)||''}
       ${window.StudyScaffold?.enabled(id)?StudyScaffold.entry(id):`<h3>מה לעשות</h3><ol class="task-steps">${arr(s.steps).map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`}
@@ -33,7 +34,7 @@ window.StudyTasks = (() => {
       ${arr(s.problemIds).length?`<details class="task-details"><summary>עדכון מצב הפתרון בשאלות של המשימה</summary><p class="hint">כאן אפשר לרשום אם פתרת בעזרה או לבד. אין צורך למלא זאת כדי לסמן שהמשימה הסתיימה.</p><div class="source-links">${s.problemIds.map(problemOf).filter(Boolean).map(p=>`<button class="source-link" data-action="problem" data-id="${p.id}">${esc(p.title)}<span>${esc(StudyMeetings.problemLabel(p.id,STATUS[problemStatus(p.id)]))} ←</span></button>`).join('')}</div></details>`:''}
     `,setup?'בדיקת התוכנית':'משימת לימוד');
     const footer=document.createElement('div');footer.className='task-fixed-actions';
-    footer.innerHTML=`${!setup?`<button class="button primary task-copy-button" data-task-action="copy" data-id="${id}">העתקת בקשה ל־AI</button>`:''}<button class="button ${setup?'primary':''}" data-task-action="${pilot?'finish':isDone(s)?'reopen':'finish'}" data-id="${id}">${pilot?'עדכון מהמפגש':isDone(s)?'סמן כלא הושלם':'סיימתי את המשימה'}</button><button class="button" data-task-action="edit" data-id="${id}">${s.kind==='mock'?'שעה ותוצאות הסימולציה':'שינוי שעה או הוספת הערה'}</button>${isDone(s)&&cards.length?`<button class="text-link" data-task-action="learned" data-id="${id}">עדכון החומר שלמדתי</button>`:''}`;
+    footer.innerHTML=`<button class="button ${setup?'primary':''}" data-task-action="${pilot?'finish':isDone(s)?'reopen':'finish'}" data-id="${id}">${pilot?'סיכום המפגש':isDone(s)?'סמן כלא הושלם':'סיימתי את המשימה'}</button><button class="text-link" data-task-action="edit" data-id="${id}">${s.kind==='mock'?'שעה ותוצאות הסימולציה':'שינוי מועד או הערה'}</button>${isDone(s)&&cards.length?`<button class="text-link" data-task-action="learned" data-id="${id}">עדכון החומר שלמדתי</button>`:''}`;
     $('#dialog-content').append(footer);
   }
   function edit(id){

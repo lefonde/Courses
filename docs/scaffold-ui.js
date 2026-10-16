@@ -1,7 +1,7 @@
 'use strict';
 window.StudyScaffold = (() => {
   const lesson=window.StudyScaffoldContent;
-  const enabled=id=>window.STUDY_CONFIG?.scaffoldPilot===true&&lesson?.sessionId===id;
+  const enabled=id=>!window.StudyLessons?.has(id)&&window.STUDY_CONFIG?.scaffoldPilot===true&&lesson?.sessionId===id;
   const views=new Map(),hintCounts=new Map();
   const stageOf=id=>lesson.stages.find(s=>s.id===id);
   const track=()=>StudyScaffoldEngine.trackFor(state,lesson);

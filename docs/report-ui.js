@@ -18,7 +18,7 @@ window.StudyReports = (() => {
   function entry(id,filled=false){
     if(!enabled())return '';
     return `<details class="task-details report-entry" ${buffers.get(id)&&!filled?'open':''}>
-      <summary>מילוי העדכון בעזרת AI (לא חובה)</summary>
+      <summary>סיכום בעזרת NotebookLM (לא חובה)</summary>
       <p>כשעוצרים או מסיימים ללמוד, אפשר לבקש מה־AI לסכם מה תרגלת, מה היה קשה ומאיפה להמשיך. כך נחסכת הקלדה בטופס. אפשר גם למלא את העדכון בעצמך בהמשך העמוד.</p>
       <h3>1. מבקשים סיכום בשיחה שבה למדת</h3>
       <div class="report-actions"><button class="button small" data-report-action="copy" data-id="${id}">העתקת בקשה לסיכום הלימוד</button><button class="text-link" data-report-action="show" data-id="${id}">הצגת הבקשה</button></div>

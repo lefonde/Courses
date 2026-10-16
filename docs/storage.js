@@ -2,13 +2,14 @@
 (function (root, factory) {
   const learning = typeof module === 'object' && module.exports ? require('./learning-engine.js') : root && root.StudyLearningEngine;
   const scaffold = typeof module === 'object' && module.exports ? require('./scaffold-engine.js') : root && root.StudyScaffoldEngine;
+  const lessons = typeof module === 'object' && module.exports ? require('./lesson-engine.js') : root && root.StudyLessonEngine;
   const mixed = typeof module === 'object' && module.exports ? require('./mixed-engine.js') : root && root.StudyMixedEngine;
   const reviews = typeof module === 'object' && module.exports ? require('./review-engine.js') : root && root.StudyReviewEngine;
   const calendar = typeof module === 'object' && module.exports ? require('./plan-calendar.js') : root && root.StudyPlanCalendar;
-  const api = factory(learning, scaffold, mixed, reviews, calendar);
+  const api = factory(learning, scaffold, mixed, reviews, calendar, lessons);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root && root.document) root.StudyStorage = api.createStorage(root, root.STUDY_CONFIG || {});
-})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold, mixed, reviews, calendar) {
+})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold, mixed, reviews, calendar, lessons) {
   'use strict';
   const MAX_BYTES = 1024 * 1024;
   const START = calendar.HISTORY_START, END = calendar.END;
@@ -242,6 +243,7 @@
     const settings = value.settings;
     if (own(settings, 'activeDate')) date(settings.activeDate, 'תאריך העבודה', true);
     if (own(settings, 'theme') && !['dark', 'light'].includes(settings.theme)) invalid('ערכת הנושא אינה נתמכת.');
+    if (own(settings, 'themePalette') && !['ink', 'clay'].includes(settings.themePalette)) invalid('צבעי התצוגה אינם נתמכים.');
     fields(settings, ['fallbackApplied']);
     if (own(settings, 'activePlanId')) identifier(settings.activePlanId, 'תוכנית פעילה');
     if (own(settings, 'planChanges')) planChanges(settings.planChanges);
@@ -265,6 +267,10 @@
     if (own(settings, 'scaffoldTracks')) {
       if (!scaffold) invalid('אימות מסלול הלימוד אינו זמין. יש לרענן את האתר ולנסות שוב.');
       try {scaffold.validateTracks(settings.scaffoldTracks);} catch (error) {invalid(error.message);}
+    }
+    if (own(settings, 'lessonWorkspace')) {
+      if (!lessons) invalid('אימות טיוטות השיעור אינו זמין. יש לרענן ולנסות שוב.');
+      try {lessons.validate(settings.lessonWorkspace);} catch (error) {invalid(error.message);}
     }
     if (own(settings, 'mixedPractice')) {
       if (!mixed) invalid('אימות התרגול המעורב אינו זמין. יש לרענן את האתר ולנסות שוב.');
