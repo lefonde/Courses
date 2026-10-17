@@ -2,7 +2,7 @@
 
 ## Current revision — 17 October 2026
 
-**Status: revised and verified locally; publication pending.** This record supersedes the teaching descriptions in the historical 16 October review below. It does not claim deployment or learner validation. The revision started from `f8afda9`; the [evaluation standard](docs/week-one-evaluation-standard.html) was written and committed as `e69e467` before lesson edits. Its frozen SHA-256 is `08A1F5B92E51BE114730EAB58DFA4E8AA841EF22B15A3847C619FE394CB7785F`. Release commit and publication evidence will be recorded separately.
+**Status: published and verified, 17 October 2026.** This record supersedes the teaching descriptions in the historical 16 October review below. The revision started from `f8afda9`; the [evaluation standard](docs/week-one-evaluation-standard.html) was written and committed as `e69e467` before lesson edits. Its frozen SHA-256 is `08A1F5B92E51BE114730EAB58DFA4E8AA841EF22B15A3847C619FE394CB7785F`. The evaluated implementation is `26aabaa8d6c019d73091047dd821adfd76a856fa`. Publication does not establish learner effectiveness.
 
 The task was to correct unclear Hebrew, questions without a meaningful mathematical purpose, and solutions or proof routes disclosed before an attempt, while preserving existing progress. All **22 sections of the four first-week lessons** were reviewed and revised against that standard. Direct concept teaching remains available. Practice now asks for a justified mathematical result; optional hints supply progressively more help, and full solutions remain directly available. Summaries do not require another quiz or reconstruction to finish.
 
@@ -35,9 +35,11 @@ Actual local source PDFs were checked again on 17 October: lecture 1 pages 2 and
 | Prompt and selector behavior | All section requests and both help modes checked; hidden help and drafts excluded. Focused regression covers preview selection, closing/reopening, changing the main selector and rerendering. |
 | Rendered lesson content | All 22 sections inspected with initial content and revealed help in the local browser preview at 320 CSS pixels. Formula overflow was corrected so long equations scroll locally without widening the page. |
 | Untested environments and outcomes | No real Safari, screen-reader or 200% browser-zoom check, and no uncoached learner attempt. Responsive inspection and editorial scores do not establish accessibility conformance or learning effectiveness. |
-| Publication | Pending. Local verification does not establish that public assets have deployed. |
+| Publication | [Pages deployment succeeded](https://github.com/lefonde/Courses/actions/runs/39059840826) for `26aabaa`. At 18:52:06 UTC, seven public assets returned HTTP 200 and exactly matched that commit's Git blobs: index, lesson content, old question context, lesson UI, lesson CSS, teaching UI and the frozen standard. The public browser's personal storage was not accessed or changed. |
 
-The final evaluation uses the frozen rubric, with per-lesson scores, section findings and disclosed deductions. Publication status and the evaluated release revision must be added to that report when available.
+The independent final evaluation applies all 32 rubric criteria to each lesson and passes all five acceptance gates in the tested scope. Scores are **99.1, 99.1, 99.4 and 98.1 out of 100** (mean 98.9). Remaining deductions concern compressed covariance algebra, modest additional transfer in the balls-and-bins assignment, one shared hint ladder for the permutation assignment, and limited repair of logarithm/exponential algebra. These are material-review scores, not measured learning outcomes. The complete local report records all 22 section findings, every criterion rating and the evidence.
+
+[GitHub CI also passed](https://github.com/lefonde/Courses/actions/runs/39059841497) using the repository's `npm test` command on Ubuntu with Node 22. The separate Windows command limitation above remains accurately recorded. Focused browser verification additionally covered 390×844 and desktop 1280×720, keyboard Enter/Escape, restoration of focus after pause/help dialogs, and survival of a synthetic earlier draft. The browser surface was Codex's in-app browser; its engine version was not exposed. Two intermittent local reloads omitted an unchanged JavaScript asset and succeeded on retry; the cause was not established.
 
 ## Historical implementation review — 16 October 2026
 
