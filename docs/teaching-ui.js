@@ -1,7 +1,7 @@
 /* Tutor preference is transient UI state, separate from learning progress. */
 window.StudyTeaching = (() => {
   'use strict';
-  let selected = 'guided', preview = null;
+  let selected = 'guided', preview = null, selectorSequence = 0;
   const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const policy = () => window.StudyTeachingPolicy;
   function setMode(value) {
@@ -15,7 +15,8 @@ window.StudyTeaching = (() => {
     return selected;
   }
   function selector() {
-    return `<fieldset class="teaching-modes"><legend>איך ללמוד בשיחה הזאת?</legend>${policy().modes.map(item => `<label class="teaching-mode"><input type="radio" name="teaching-mode" data-teaching-mode value="${item.id}" ${selected === item.id ? 'checked' : ''}><span><strong>${escape(item.label)}</strong><small>${escape(item.description)}</small></span></label>`).join('')}</fieldset>`;
+    const groupName = `teaching-mode-${++selectorSequence}`;
+    return `<fieldset class="teaching-modes"><legend>איך ללמוד בשיחה הזאת?</legend>${policy().modes.map(item => `<label class="teaching-mode"><input type="radio" name="${groupName}" data-teaching-mode value="${item.id}" ${selected === item.id ? 'checked' : ''}><span><strong>${escape(item.label)}</strong><small>${escape(item.description)}</small></span></label>`).join('')}</fieldset>`;
   }
   function bindRefresh(getText) {
     const element = document.getElementById('prompt-text');

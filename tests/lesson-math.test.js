@@ -3,13 +3,14 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const {lessons}=require('../docs/lesson-content.js'),schedule=require('../docs/data/schedule.json'),curriculum=require('../docs/data/curriculum.json');
 const approx=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,`${a} != ${b}`);
 const mean=xs=>xs.reduce((a,b)=>a+b,0)/xs.length,variance=xs=>mean(xs.map(x=>(x-mean(xs))**2));
-const section=(i,id)=>lessons[i].sections.find(s=>s.id===id),equations=s=>s.question.solution.filter(b=>b.type==='equation').map(b=>b.text);
+const section=(i,id)=>lessons[i].sections.find(s=>s.id===id),compact=s=>s.replace(/\s+/g,''),equations=s=>s.question.solution.filter(b=>b.type==='equation').map(b=>compact(b.text));
+const hasEquation=(s,text)=>equations(s).some(eq=>eq.includes(compact(text)));
 function permutations(xs){if(!xs.length)return [[]];return xs.flatMap((x,i)=>permutations(xs.filter((_,j)=>i!==j)).map(p=>[x,...p]));}
 test('exhaustive coin outcomes independently verify both covariance exercises',()=>{
  const triples=Array.from({length:8},(_,i)=>[i>>2&1,i>>1&1,i&1]),a=triples.map(([x,y])=>x*y),b=triples.map(([,y,z])=>y*z),v=triples.map(([,y,z])=>(1-y)*z);
  approx(mean(a),1/4);approx(variance(a),3/16);approx(mean(a.map((x,i)=>x*b[i]))-mean(a)*mean(b),1/16);
  approx(variance(a.map((x,i)=>x+b[i])),1/2);approx(mean(a.map((x,i)=>x*v[i]))-mean(a)*mean(v),-1/16);approx(variance(a.map((x,i)=>x+v[i])),1/4);
- assert.ok(equations(section(0,'guided')).includes('Var(S) = 3/16 + 3/16 + 2/16 = 1/2'));assert.ok(equations(section(0,'practice')).includes('E[T] = 1/2,   Var(T) = 3/16 + 3/16 − 2/16 = 1/4'));
+ assert.ok(hasEquation(section(0,'guided'),'Var(S) = 3/16 + 3/16 + 2/16 = 1/2'));assert.ok(hasEquation(section(0,'practice'),'E[T] = 1/2,   Var(T) = 3/16 + 3/16 − 2/16 = 1/4'));
 });
 test('enumerating all permutations verifies fixed points, transpositions and joint probabilities',()=>{
  for(let n=2;n<=7;n++){
@@ -18,7 +19,7 @@ test('enumerating all permutations verifies fixed points, transpositions and joi
   approx(all.filter(p=>p[0]===0&&p[1]===1).length/all.length,1/(n*(n-1)));
  }
  assert.deepEqual(section(2,'recall').question.solution.find(b=>b.type==='table').rows.map(r=>Number(r[1])),[3,1,1,0,0,1]);
- const bounds=section(2,'assignment').question.solution.find(b=>b.type==='table');assert.deepEqual(bounds.rows,[['X ≥ 7','1/7','1/(7−1)² = 1/36'],['Y ≥ 3','(1/2)/3 = 1/6','(1/2)/(3−1/2)² = 2/25']]);approx((.5)/(3-.5)**2,2/25);
+ const bounds=section(2,'assignment').question.solution.find(b=>b.type==='table');assert.deepEqual(bounds.rows.map(row=>row.map(compact)),[['X≥7','1/7','1/(7−1)²=1/36'],['Y≥3','(1/2)/3=1/6','(1/2)/(3−1/2)²=2/25']]);approx((.5)/(3-.5)**2,2/25);
 });
 test('the balls/bin argument uses only pairwise independence and the published constant works',()=>{
  // Affine functions over a prime field are pairwise independent, not jointly independent.
@@ -28,7 +29,7 @@ test('the balls/bin argument uses only pairwise independence and the published c
   const failure=outcomes.filter(o=>Math.max(...Array.from({length:n},(_,j)=>o.filter(v=>v===j).length))>3*Math.sqrt(n)).length/outcomes.length;assert.ok(failure<=.5);
  }
  for(let n=1;n<=1000;n++){assert.ok(1+2*Math.sqrt(n)<=3*Math.sqrt(n)+1e-10);approx(n/(2*Math.sqrt(n))**2,.25);}
- assert.ok(equations(section(1,'assignment')).includes('P(M ≥ 1+2√n) ≤ 1/4'));
+ assert.ok(hasEquation(section(1,'assignment'),'P(M ≥ 1+2√n) ≤ 1/4'));
 });
 test('coupon and run bounds respect rounding, overlap and the requested limits',()=>{
  const m=Math.ceil(100*Math.log(2000));assert.equal(m,761);assert.ok(100*Math.exp(-m/100)<=.05);
@@ -39,7 +40,7 @@ test('coupon and run bounds respect rounding, overlap and the requested limits',
   assert.ok(runs/2**n<=Math.max(0,n-k+1)*2**(-k)+1e-10);
   assert.ok(n*Math.exp(-Math.ceil(2*n*Math.log(n))/n)<=1/n+1e-10);
  }
- assert.ok(equations(section(3,'coupons')).includes('m = ⌈100(ln 100 + ln 20)⌉ = ⌈100 ln 2000⌉ = 761'));
+ assert.ok(hasEquation(section(3,'coupons'),'m = ⌈100(ln 100 + ln 20)⌉ = ⌈100 ln 2000⌉ = 761'));
 });
 test('first week covers the scheduled original questions within existing time allocations',()=>{
  assert.equal(lessons.length,4);const sources=new Set(Object.keys(curriculum.sources));

@@ -53,7 +53,7 @@ main.is-lesson{max-width:1440px}
 .lesson-exercise label{display:block;font-size:15px;font-weight:600;margin-bottom:9px}.lesson-exercise label span{font-size:13px;color:var(--muted);font-weight:400;display:block;margin-top:3px}
 #lesson-draft{display:block;width:100%;padding:15px 17px;background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:8px;font-size:17px;line-height:1.8;resize:vertical;min-height:140px;unicode-bidi:plaintext}
 .lesson-draft-status{display:flex;flex-wrap:wrap;gap:4px 18px;color:var(--muted);font-size:12px;line-height:1.8;margin-top:8px}
-.lesson-help{display:grid;gap:10px;margin:24px 0}.lesson-help>details{border:1px solid var(--line);border-radius:8px}
+.lesson-help{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:24px 0}.lesson-help>details{min-width:0;border:1px solid var(--line);border-radius:8px}
 .lesson-help summary,.lesson-details summary{cursor:pointer;min-height:48px;padding:12px 16px;font-size:15px;color:var(--text)}
 .lesson-help>details[open]{background:var(--panel-2)}.lesson-hints,.lesson-feedback{padding:0 20px 18px}.lesson-hints p{font-size:16px;line-height:1.85;margin:10px 0}
 .lesson-feedback h4{font-size:16px;margin-top:24px}.lesson-feedback ul{padding-inline-start:24px;line-height:1.9}.lesson-feedback li{margin:8px 0}

@@ -80,7 +80,17 @@ window.StudyLessons=(()=>{
   function prompt(id,sectionId){
     const l=lessonFor(id);if(!l)return '';
     const part=validSection(l,sectionId||saved(l).currentSection);
-    return `${StudyTeachingPolicy.notebookContext()}\n\nאני לומד: ${l.title}.\nכעת: ${part.title}.\nמטרת השיעור: ${l.outcome}\n\n${part.body.map(b=>b.type==='table'?[b.headers.join(' | '),...b.rows.map(row=>row.join(' | '))].join('\n'):[b.title,b.text].filter(Boolean).join(': ')).join('\n')}\n\nהשאלה שבה אני מבקש עזרה:\n${part.question?.text||'עזור לי לבדוק את הבנתי בנושא הזה.'}\n\n${part.official?.length?'יש לקרוא את נוסח שאלת המקור במחברת. אל תמציא סעיפים או הגבלות שאינם בו.':'זהו תרגיל לימוד שנכתב לאתר, ולא שאלת ממ״ן.'}\nהתחל בשאלה ממוקדת על הקושי שלי. תן רמז או הסבר לפי בקשתי. אל תמשיך אוטומטית לשיעור אחר ואל תסמן התקדמות באתר.\n${StudyTeachingPolicy.policy(window.StudyTeaching.mode(),'practice')}`;
+    const activity=part.activity||(part.id==='summary'?'wrapup':'practice');
+    const textBlocks=items=>(items||[]).map(b=>b.type==='table'?[b.headers.join(' | '),...b.rows.map(row=>row.join(' | '))].join('\n'):[b.title,b.text].filter(Boolean).join(': ')).join('\n');
+    const refs=[...(l.sourceRefs||[])];
+    for(const problemId of part.official||[]){const problem=problemOf(problemId);refs.push({sourceId:problem.sourceId,pages:problem.pages,label:`שאלה ${problemId.split('-q')[1]}`});}
+    const sources=typeof sourceOf==='function'&&StudyTeachingPolicy.sourceText?refs.map(ref=>StudyTeachingPolicy.sourceText(sourceOf(ref.sourceId),ref)).join('\n'):'';
+    const exposure=read(l,part.id);
+    const assistance=exposure.solution?'בחלק הזה כבר נפתח פתרון, דוגמה מוסברת או נוסח קודם עם הכוונה. אין להסיק מכך פתרון עצמאי.':exposure.hints?'בחלק הזה כבר נפתח רמז. אין להסיק עצמאות מלאה מהניסיון.':'';
+    const exampleBoundary=part.example?'הדוגמה הנוספת הסגורה אינה כלולה בבקשה. אל תפתור אותה אלא אם אבקש במפורש; הסבר רק את הדוגמה הגלויה או את הקושי שאציין.':'';
+    // Only the initial visible material belongs in this handoff. Optional examples,
+    // hints, answer keys, archived wording and the learner's draft are excluded.
+    return `${StudyTeachingPolicy.notebookContext()}\n\nאני לומד: ${l.title}.\nכעת: ${part.title}.\n\n${textBlocks(part.body)}\n\n${part.question?'השאלה שבה אני מבקש עזרה:\n'+part.question.text:activity==='wrapup'?'אני מבקש לסכם את מה שעשיתי. אל תניח שסיימתי או הבנתי; הסתמך על מה שאמסור.':'אני מבקש הסבר על המושג בחלק הזה. הסבר את הידע החסר לפי בקשתי, בלי לפתור מראש תרגיל אחר.'}\n\n${part.official?.length?'יש לקרוא את נוסח שאלת המקור במחברת ולשמור על כל סעיפיו והגבלותיו. אל תמציא נוסח או סעיפים.':'ההסבר ותרגיל הלימוד נכתבו לאתר ואינם נוסח ממ״ן.'}\n${sources?'מקורות לזיהוי במחברת:\n'+sources+'\n':''}${assistance}\n${exampleBoundary}\nהטיוטה שלי אינה כלולה בבקשה. אם כבר צירפתי ניסיון בשיחה, התחל ממנו. אין להסיק מהיעדר רישום עזרה שלא ראיתי הסבר קודם. אל תמשיך אוטומטית לחלק אחר ואל תסמן התקדמות באתר.\n${StudyTeachingPolicy.policy(window.StudyTeaching.mode(),activity)}`;
   }
   function reader(){
     const r=parse();if(!r)return `<section class="panel"><h1>לא ניתן לפתוח את השיעור</h1><p>${esc(lastError||'הכתובת אינה תואמת לשיעור קיים.')}</p><a class="button" href="#lessons">חזרה לשיעורים</a></section>`;
@@ -92,14 +102,19 @@ window.StudyLessons=(()=>{
       <article class="lesson-article" aria-labelledby="lesson-section-title"><div class="lesson-section-heading"><span class="eyebrow">${esc(s.kind)} · חלק ${index+1} מתוך ${l.sections.length} · כ־${s.minutes} דקות</span><h2 id="lesson-section-title" tabindex="-1">${esc(s.title)}</h2></div>
       ${index===0?`<details class="lesson-details"><summary>מה צריך לדעת לפני שמתחילים?</summary><p>${esc(l.prerequisites)}</p><p>${esc(l.time)}</p>${l.number>1?`<a class="text-link" href="${route(lessons[0].sessionId)}">חזרה לתוחלת ולשונות ←</a>`:''}</details>`:''}
       ${window.StudyMeetings?.taskSummary(l.sessionId)||''}<div class="lesson-prose">${blocks(s.body)}</div>
+      ${s.example?`<details class="lesson-details lesson-worked-example" data-lesson-help="solution"><summary>${esc(s.example.title)}</summary><div class="lesson-prose">${blocks(s.example.body)}</div></details>`:''}
       ${s.official?.length?`<div class="lesson-source-task">${s.official.map(id=>{const problem=problemOf(id);return sourceLink(problem.sourceId,problem.pages,problem.title);}).join('')}<p>קובץ המקור נפתח בלשונית נוספת. אם טרם קישרתם אותו, אפשר לעשות זאת דרך ״חומרי הקורס״.</p></div>`:''}
       ${s.question?`<section class="lesson-exercise" aria-labelledby="exercise-title"><span class="eyebrow">${s.official?'הניסיון שלכם במטלה':'עכשיו תורכם · תרגיל לימוד'}</span><h3 id="exercise-title">${s.official?'עובדים לפי נוסח המקור':'בדקו את ההבנה'}</h3><p class="lesson-question-text">${esc(s.question.text)}</p><label for="lesson-draft">הטיוטה שלכם <span>אפשר גם לפתור במחברת</span></label><textarea id="lesson-draft" data-session="${l.sessionId}" data-section="${s.id}" rows="5" maxlength="12000" placeholder="כתבו את דרך הפתרון או את השלב שבו נתקעתם…">${esc(answer.draft)}</textarea><div class="lesson-draft-status"><span id="lesson-save-state" role="status" aria-live="polite">${lastError?'לא נשמר. הטיוטה עדיין פתוחה כאן.':pending.size?'שומר…':'הטיוטה נשמרת בדפדפן הזה'}</span><span>האתר אינו בודק את התשובה אוטומטית</span></div>
       <div id="lesson-save-recovery" ${lastError?'':'hidden'}><p class="error">${esc(lastError)}</p><button class="button" data-lesson-action="retry">ניסיון שמירה נוסף</button><button class="button" data-lesson-action="export">הורדת גיבוי עם הטיוטה</button></div>
-      <div class="lesson-help"><details data-lesson-help="hint"><summary>רמז להתחלה</summary><div class="lesson-hints">${s.question.hints.map((hint,i)=>i===0?`<p>${esc(hint)}</p>`:`<details data-lesson-help="hint" data-hint-count="${i+1}"><summary>רמז נוסף</summary><p>${esc(hint)}</p></details>`).join('')}</div></details><details data-lesson-help="solution"><summary>פתרון והסבר</summary><div class="lesson-feedback">${blocks(s.question.solution)}<h4>מה לבדוק בניסיון שלכם</h4><ul>${s.question.check.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></details></div></section>`:'<span id="lesson-save-state" class="lesson-position-status" role="status" aria-live="polite">המקום בשיעור נשמר אוטומטית</span><div id="lesson-save-recovery" hidden><p>השמירה לא הצליחה.</p><button class="button" data-lesson-action="retry">ניסיון נוסף</button><button class="button" data-lesson-action="export">הורדת גיבוי</button></div>'}
-      <details class="lesson-details lesson-ai"><summary>צריך הסבר נוסף? עזרה ב־NotebookLM</summary><p>הבקשה כוללת את החלק הזה בשיעור. העתיקו אותה לשיחה עם מחברת הקורס. הטיוטה שלכם אינה מצורפת אוטומטית.</p><button class="button" data-lesson-action="copy">העתקת בקשת עזרה</button><button class="text-link" data-lesson-action="preview">הצגת הבקשה</button></details>
+      <div class="lesson-help"><details data-lesson-help="hint"><summary>רמז להתחלה</summary><div class="lesson-hints">${s.question.hints.map((hint,i)=>i===0?`<p>${esc(hint)}</p>`:`<details data-lesson-help="hint" data-hint-count="${i+1}"><summary>רמז נוסף ${i+1}</summary><p>${esc(hint)}</p></details>`).join('')}</div></details><details data-lesson-help="solution"><summary>פתרון והסבר</summary><div class="lesson-feedback">${blocks(s.question.solution)}<h4>מה לבדוק בניסיון שלכם</h4><ul>${s.question.check.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></details></div>
+      ${answer.draft&&window.StudyPreviousLessonContent?.[l.sessionId]?.[s.id]?`<details class="lesson-details lesson-previous" data-lesson-help="solution"><summary>נוסח התרגיל לפני עדכון 17.10.2026 — כולל הכוונה</summary><p>אם כתבתם את הטיוטה לפני עדכון הניסוח, אפשר להיעזר בנוסח הקודם כדי להבין למה התייחסתם. הטיוטה נשארת כפי שכתבתם אותה. הנוסח הישן כולל הכוונה שהוסרה מהשאלה החדשה.</p><div class="lesson-prose">${blocks(window.StudyPreviousLessonContent[l.sessionId][s.id].body)}<p>${esc(window.StudyPreviousLessonContent[l.sessionId][s.id].question)}</p></div></details>`:''}</section>`:'<span id="lesson-save-state" class="lesson-position-status" role="status" aria-live="polite">המקום בשיעור נשמר אוטומטית</span><div id="lesson-save-recovery" hidden><p>השמירה לא הצליחה.</p><button class="button" data-lesson-action="retry">ניסיון נוסף</button><button class="button" data-lesson-action="export">הורדת גיבוי</button></div>'}
+      <details class="lesson-details lesson-ai"><summary>צריך הסבר נוסף? עזרה ב־NotebookLM</summary><p>הבקשה כוללת את ההסבר הגלוי והשאלה בחלק הזה, בלי הרמזים, הפתרון או הטיוטה שלכם. העתיקו אותה לשיחה עם מחברת הקורס.</p>${['practice','recall','mixed'].includes(s.activity||'practice')?window.StudyTeaching?.selector?.()||'':''}<button class="button" data-lesson-action="copy">העתקת בקשת עזרה</button><button class="text-link" data-lesson-action="preview">הצגת הבקשה</button></details>
       <footer class="lesson-navigation">${index?`<a class="button" href="${route(l.sessionId,l.sections[index-1].id)}"><span aria-hidden="true">→</span> החלק הקודם</a>`:'<span></span>'}${next?`<a class="button primary" href="${route(l.sessionId,next.id)}">להמשך: ${esc(next.title)} <span aria-hidden="true">←</span></a>`:`<button class="button primary" data-lesson-action="finish">סיכום המפגש</button>`}</footer>
       ${!next?`<p class="lesson-end-note">אפשר לתעד מה למדתם ומה נשאר להמשך. ${lessons[l.number]?`השיעור הבא: <a class="text-link" href="${route(lessons[l.number].sessionId)}">${esc(lessons[l.number].title)} ←</a>`:'אפשר לחזור לכל שיעור כדי לתרגל שוב.'}</p>`:''}
       <details class="lesson-details lesson-sources"><summary>מקורות והערות לשיעור</summary><p>${esc(l.sourceNote)}</p><button class="text-link" data-task-action="edit" data-id="${l.sessionId}">מועד המפגש והערות</button><div class="source-links">${l.sourceRefs.map(ref=>sourceLink(ref.sourceId,ref.pages)).join('')}</div></details></article></div></div>`;
+  }
+  function refreshMathAccess(){
+    document.querySelectorAll('.lesson-equation').forEach(node=>{node.tabIndex=node.scrollWidth>node.clientWidth?0:-1;});
   }
   function afterRender(){
     const r=parse();if(!r)return;
@@ -107,26 +122,32 @@ window.StudyLessons=(()=>{
     const old=latest?.section||saved(r.lesson).currentSection;
     if(!state.settings.lessonWorkspace?.sessions[r.lesson.sessionId]||old!==r.section.id)queue(r.lesson,r.section.id);
     if(window.matchMedia('(max-width: 760px)').matches){const details=$('.lesson-outline details');if(details)details.open=false;}
-    document.querySelectorAll('.lesson-equation').forEach(node=>{if(node.scrollWidth>node.clientWidth)node.tabIndex=0;});
+    refreshMathAccess();
   }
   document.addEventListener('input',event=>{const field=event.target;if(field.id!=='lesson-draft')return;queue(lessonFor(field.dataset.session),field.dataset.section,{draft:field.value});});
   document.addEventListener('toggle',event=>{
+    if(event.target.open&&event.target.isConnected)refreshMathAccess();
     const type=event.target.dataset?.lessonHelp;if(!type||!event.target.open||!event.target.isConnected)return;
     const r=parse();if(!r)return;queue(r.lesson,r.section.id,type==='solution'?{solution:true}:{hints:Number(event.target.dataset.hintCount||1)});
   },true);
+  window.addEventListener('resize',refreshMathAccess);
   document.addEventListener('click',async event=>{
     const b=event.target.closest('[data-lesson-action]');if(!b)return;
     const r=parse();if(!r)return;
-    const action=b.dataset.lessonAction;b.disabled=true;
+    const action=b.dataset.lessonAction;if(action!=='preview')b.disabled=true;
     try{
       if(action==='retry')await flush();
       if(action==='export')await exportDrafts();
-      if(action==='finish'){await flush();StudyMeetings.open(r.lesson.sessionId);}
-      if(action==='copy'){try{await navigator.clipboard.writeText([prompt(r.lesson.sessionId,r.section.id),StudyLearningEngine.promptContext(state,r.lesson.sessionId)].filter(Boolean).join('\n\n'));notify('הבקשה הועתקה. הדביקו אותה בשיחה עם מחברת הקורס ב־NotebookLM.');}catch{preview(r);}}
+      if(action==='finish'){await flush();b.disabled=false;b.focus?.({preventScroll:true});StudyMeetings.open(r.lesson.sessionId);}
+      if(action==='copy'){try{await navigator.clipboard.writeText([prompt(r.lesson.sessionId,r.section.id),StudyLearningEngine.promptContext(state,r.lesson.sessionId)].filter(Boolean).join('\n\n'));notify('הבקשה הועתקה. הדביקו אותה בשיחה עם מחברת הקורס ב־NotebookLM.');}catch{b.disabled=false;b.focus?.({preventScroll:true});preview(r);}}
       if(action==='preview')preview(r);
     }catch(error){status('לא נשמר. הטיוטה עדיין פתוחה כאן.',true);notify(error.message);}finally{b.disabled=false;}
   });
-  function preview(r){openDialog('lesson-help',r.lesson.sessionId,'בקשת עזרה ל־NotebookLM',`<p>הבקשה מתייחסת לחלק ״${esc(r.section.title)}״. היא אינה שולחת הודעה ואינה כוללת את הטיוטה שלכם.</p><textarea id="prompt-text" class="prompt-textarea" readonly>${esc([prompt(r.lesson.sessionId,r.section.id),StudyLearningEngine.promptContext(state,r.lesson.sessionId)].filter(Boolean).join('\n\n'))}</textarea><div class="dialog-actions"><button class="button primary" data-action="copy-prompt">העתקת הבקשה</button><button class="button" data-action="close">חזרה לשיעור</button></div>`,'עזרה בשיעור');}
+  function preview(r){
+    const getText=()=>[prompt(r.lesson.sessionId,r.section.id),StudyLearningEngine.promptContext(state,r.lesson.sessionId)].filter(Boolean).join('\n\n');
+    openDialog('lesson-help',r.lesson.sessionId,'בקשת עזרה ל־NotebookLM',`<p>הבקשה מתייחסת לחלק ״${esc(r.section.title)}״. היא אינה שולחת הודעה ואינה כוללת את הטיוטה שלכם.</p>${['practice','recall','mixed'].includes(r.section.activity||'practice')?window.StudyTeaching?.selector?.()||'':''}<textarea id="prompt-text" class="prompt-textarea" readonly>${esc(getText())}</textarea><div class="dialog-actions"><button class="button primary" data-action="copy-prompt">העתקת הבקשה</button><button class="button" data-action="close">חזרה לשיעור</button></div>`,'עזרה בשיעור');
+    window.StudyTeaching?.bindRefresh?.(getText);
+  }
   window.addEventListener('beforeunload',event=>{if(pending.size){event.preventDefault();event.returnValue='';}});
   window.addEventListener('pagehide',()=>{if(pending.size)flush().catch(()=>{});});
   window.addEventListener('hashchange',()=>{if(pending.size)flush().catch(()=>{});});

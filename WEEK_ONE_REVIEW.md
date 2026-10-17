@@ -1,10 +1,53 @@
 # First-week teaching and lesson workspace review
 
+## Current revision — 17 October 2026
+
+**Status: revised and verified locally; publication pending.** This record supersedes the teaching descriptions in the historical 16 October review below. It does not claim deployment or learner validation. The revision started from `f8afda9`; the [evaluation standard](docs/week-one-evaluation-standard.html) was written and committed as `e69e467` before lesson edits. Its frozen SHA-256 is `08A1F5B92E51BE114730EAB58DFA4E8AA841EF22B15A3847C619FE394CB7785F`. Release commit and publication evidence will be recorded separately.
+
+The task was to correct unclear Hebrew, questions without a meaningful mathematical purpose, and solutions or proof routes disclosed before an attempt, while preserving existing progress. All **22 sections of the four first-week lessons** were reviewed and revised against that standard. Direct concept teaching remains available. Practice now asks for a justified mathematical result; optional hints supply progressively more help, and full solutions remain directly available. Summaries do not require another quiz or reconstruction to finish.
+
+### Revised lesson briefs
+
+| Session | Starting knowledge and capability | Current teaching and practice |
+| --- | --- | --- |
+| 5 October: expectation and variance | Elementary coin probabilities; define indicators, calculate moments and explain the variance of a sum | Explicit descriptions distinguish two independent tosses from counting one toss's indicator twice. The overlapping-event exercise asks for a complete calculation and dependence argument, followed by the changed-event exercise. Neither supplies its intermediate values before help is opened. |
+| 7 October: balls and bins | Lesson 1; apply probability bounds and distinguish pairwise from mutual independence | Direct teaching includes a concrete pairwise-but-not-mutually-independent example. One-bin and maximum-load exercises require modeling and justification. Maman 12 Q2 is honestly identified as application after same-model preparation; its collision-counting prohibition remains. |
+| 9 October: random permutations | Expectation, covariance and bounds; count joint events and compare justified bounds | Small-case enumeration precedes a separate card-draw example. The general fixed-point derivation is an optional closed example explicitly identified as disclosing Maman 12 Q1(a). All mandatory parts a–d remain; the transposition-variance proof remains optional. Prior assistance is acknowledged instead of requiring artificial reconstruction. |
+| 10 October: coupons and runs | Complements, independent trials and union bounds; choose event decompositions and justify limits | The numerical coupon and run exercises allow a full attempt before disclosing event choices. Both Maman 11 questions retain the required union/intersection method, while choosing the specific events remains part of the attempt. Solutions explain logarithm bases, integer rounding, sufficient bounds and asymptotic conclusions. |
+
+Dates, durations, prerequisites, official problem references and the mathematical experiments and final targets remain compatible with existing work. Numerical blanks were broadened into justified calculations of the same quantities. Time estimates remain estimates, not measured completion times.
+
+### Help, previous work and sources
+
+Generated NotebookLM requests distinguish concept teaching, demonstrations, practice, recall and summaries. Both practice help modes use the current section and preserve their chosen behavior. Requests exclude hidden examples, hints, solutions, checking criteria and private drafts. Selecting a mode in the preview and closing it now leaves the main selector correctly selected: each selector has its own native radio group while the transient preference remains shared.
+
+Existing lesson and section IDs, content version `1`, storage keys, settings schema and progress semantics are unchanged. The old public explanations and question text are archived in `docs/lesson-previous-content.js` and available in a closed disclosure beside an existing nonempty draft. This archive contains no private answers. Rewording never awards independent-solution credit, and absence of a recorded help reveal does not establish that an earlier attempt was independent. Synthetic regression fixtures were used; the user's personal progress was not a test fixture.
+
+Actual local source PDFs were checked again on 17 October: lecture 1 pages 2 and 6; lecture 2 pages **3, 4 and 5**; and page 1 of Maman 11 and Maman 12. Lecture 2 page 5 supports the condition check for the taught Chernoff theorem. Source restrictions, mandatory assignment parts and the distinction between authored exercises and official questions remain explicit. Private PDFs and student solutions were not published or used as answer material.
+
+### Verification and remaining limits
+
+| Check | Result on this revision |
+| --- | --- |
+| Automated suite | **74/74 passed** with `node --test` and the expanded test-file list on Windows. `npm test` failed because the `tests/*.test.js` wildcard was not expanded by this Node 20 Windows invocation; it is not recorded as passing. |
+| Mathematical and source review | Independently checked definitions, calculations, proofs, source restrictions, small coin/permutation cases, pairwise-independent placements, thresholds and rounding. |
+| Progress compatibility | Synthetic pre-revision records retained drafts, bookmarks, opened-help records, completion and learning evidence, schedules and unrelated fields across save, reload and export/import. Recovery and conflict checks preserve work; no state migration or reset was introduced. |
+| Prompt and selector behavior | All section requests and both help modes checked; hidden help and drafts excluded. Focused regression covers preview selection, closing/reopening, changing the main selector and rerendering. |
+| Rendered lesson content | All 22 sections inspected with initial content and revealed help in the local browser preview at 320 CSS pixels. Formula overflow was corrected so long equations scroll locally without widening the page. |
+| Untested environments and outcomes | No real Safari, screen-reader or 200% browser-zoom check, and no uncoached learner attempt. Responsive inspection and editorial scores do not establish accessibility conformance or learning effectiveness. |
+| Publication | Pending. Local verification does not establish that public assets have deployed. |
+
+The final evaluation uses the frozen rubric, with per-lesson scores, section findings and disclosed deductions. Publication status and the evaluated release revision must be added to that report when available.
+
+## Historical implementation review — 16 October 2026
+
+The record below describes the earlier implementation and its checks. Phrases such as “copied tosses” and “partially completed” describe that former content, not the revised teaching brief above. Its release status and test results apply only to that earlier version.
+
 Implementation date: 16 October 2026. Baseline: `7dcc1a7f67e37973501fc012f45e1b655ab963b9`.
 
 Status: implemented and checked locally. The owner reviewed the preview and reported that it looks much better. Publication is authorized for the first-week reader and theme-control correction. That visual feedback does not substitute for the learner exercise below. Deployment evidence is recorded in the release notes. The governing document is [DEVELOPMENT_PROTOCOL.md](DEVELOPMENT_PROTOCOL.md).
 
-## Brief and scope
+### Brief and scope
 
 The student opens the next planned meeting to learn. Previously the task dialog prioritized copying an AI prompt, repeated that action, and placed the actual lesson behind a separate “track.” Explanations, questions, progress bookkeeping and scheduling policy competed for attention.
 
@@ -12,7 +55,7 @@ This change makes learning the default first-week experience. The home page has 
 
 The four existing session IDs, dates, durations, dependencies, topic gates and original problem IDs are preserved. Only their titles, descriptions, steps and completion guidance change. Later weeks retain their existing task guides and are identified as such in the directory. Their duplicated AI-copy action was removed. Adaptive recommendations remain accessible from a disclosure on the home page. Catch-up planning and the unscheduled backlog remain available.
 
-## Lesson briefs
+### Lesson briefs
 
 | Session | Starting knowledge | Capability and sequence | Practice and feedback | Time |
 | --- | --- | --- | --- | --- |
@@ -23,7 +66,7 @@ The four existing session IDs, dates, durations, dependencies, topic gates and o
 
 Times are estimates, not measured completion times. Reading and navigating do not imply understanding. Feedback is available on request. Original assignment solutions are labelled as solutions, and the student still reads the full original question from the PDF. The independent coin exercise changes the dependence structure instead of merely changing a number.
 
-## Source record
+### Source record
 
 The originals were found in the user's Documents course folder and inspected locally. No source PDF, scan, personal progress or answer was copied into this repository. Page numbers below are PDF page numbers.
 
@@ -38,7 +81,7 @@ The lesson text and preparation exercises were authored for this site. They are 
 
 Mathematical review checked the coin examples by enumerating all outcomes; fixed-point and transposition moments by enumerating all permutations through n=7; balls-and-bins claims on pairwise-independent affine-function distributions; and coupon/run rounding and bounds. The exposition states where independence is needed and distinguishes an upper bound from an exact probability. The standard independent-indicator Chernoff bound is not applied to dependent permutation indicators. This does not rule out stronger bounds from other analyses.
 
-## Interaction and data model
+### Interaction and data model
 
 `lesson-content.js` holds semantic content blocks and stable section IDs. `lesson-ui.js` renders them; `lessons.css` contains the reading layout. `lesson-engine.js` manages only reading location, answer draft and opened-help records.
 
@@ -48,7 +91,7 @@ Draft saves use the existing revision-checked storage queue without rerendering 
 
 The optional AI request includes the current section, question, tables and any explicitly recorded meeting context. It excludes the answer draft and does not send anything automatically. Opening hints or a solution never awards independent-solution credit. Self-reported evidence continues through the existing meeting review and confirmation flow.
 
-## Checks and limitations
+### Checks and limitations
 
 | Check | Result and evidence |
 | --- | --- |
@@ -64,7 +107,7 @@ The optional AI request includes the current section, question, tables and any e
 | Learner understanding and naturalness of Hebrew | Editorial and mathematical review completed. An uncoached learner attempt has not yet happened. No claim of demonstrated learning effectiveness |
 | Deployment | See `RELEASE_2026_10_16.md` for the release and verification record |
 
-## Learner check before expanding the pattern
+### Learner check before expanding the pattern
 
 Following protocol section 11, let the student open the variance lesson, explain what they expect to learn, attempt a question, obtain help if needed, and resume after a pause. Observe hesitation without coaching through the controls. Ask for an explanation of why copied tosses change the variance and then an attempt at the changed-event exercise. Check whether the student distinguishes a hint from a solution and a saved position from completed work.
 
