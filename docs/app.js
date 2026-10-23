@@ -3,10 +3,11 @@ const $ = (q, root=document) => root.querySelector(q);
 const $$ = (q, root=document) => [...root.querySelectorAll(q)];
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone = value => JSON.parse(JSON.stringify(value));
-const LABELS = {overview:'מבט על',lessons:'השיעורים',schedule:'לוח הזמנים',questions:'שאלות לתרגול',flashcards:'כרטיסיות חזרה',readiness:'מצב הלימוד שלי',library:'חומרי הקורס'};
+const LABELS = {overview:'מבט על','exam-map':'הכנה לפי שאלות',lessons:'השיעורים',schedule:'לוח הזמנים',questions:'שאלות לתרגול',flashcards:'כרטיסיות חזרה',readiness:'מצב הלימוד שלי',library:'חומרי הקורס'};
 // Locally authored navigation symbols share a 24-unit grid and stroke weight.
 const icon = paths => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;
 const ICONS = {
+ 'exam-map':icon('<path d="M9 5h12M9 12h12M9 19h12M3 4h2v2H3zM3 11h2v2H3zM3 18h2v2H3z"/>'),
  overview:icon('<path d="m3 10 9-7 9 7v10H3Z"/><path d="M9 20v-7h6v7"/>'),
  lessons:icon('<path d="M12 5v15M12 5C9 3 5 3 3 4v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-1-9 1Z"/>'),
  schedule:icon('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M15 14h2M7 17h2"/>'),
@@ -61,6 +62,11 @@ const pageValue = value => typeof value==='object'&&value!==null?(value.pdf||val
 const sourceLink = (id,pages,label) => {const s=sourceOf(id);if(!s)return '';const n=pageValue(arr(pages)[0])||1;return `<a class="source-link" href="${esc(sourceUrl(s,n))}" target="_blank" rel="noopener">${esc(label||s.label)}<span>PDF · עמ׳ ${esc(arr(pages).map(pageValue).join(', ')||n)} ↗</span></a>`;};
 const tag = (label,style='') => `<span class="tag ${style}">${esc(label)}</span>`;
 function notify(message){$('#toast').textContent=message;$('#toast').classList.add('toast');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('toast'),4200);}
+function downloadFile(name,content,type){
+ const url=URL.createObjectURL(new Blob([content],{type})),anchor=document.createElement('a');
+ anchor.href=url;anchor.download=name;document.body.append(anchor);anchor.click();anchor.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
 function save(fn,message,options={}){
   saveQueue=saveQueue.catch(()=>{}).then(async()=>{
     const next=clone(state);fn(next);
@@ -76,9 +82,10 @@ function render(){
   $('#nav').innerHTML=Object.entries(LABELS).map(([key,label])=>`<a class="nav-link ${(page==='lesson'?'lessons':page)===key?'active':''}" href="#${key}" ${(page==='lesson'?'lessons':page)===key?'aria-current="page"':''}><span class="nav-icon" aria-hidden="true">${ICONS[key]}</span><span class="nav-label">${label}</span>${key==='questions'?`<span class="nav-count">${curriculum.problems.length}</span>`:''}</a>`).join('');
   const examCard=$('.exam-card');if(examCard){$('strong',examCard).textContent=fmtDate(schedule.exam.date);$('strong + span',examCard).textContent=fmtDay(schedule.exam.date)+' · '+schedule.exam.minutes+' דקות';}
   renderTheme();
-  if(window.StudyPlanner&&!StudyPlanner.active()){main.innerHTML=StudyPlanner.startPage();return;}
-  main.innerHTML=({overview:()=>StudyLessons.overview(),lessons:()=>StudyLessons.directory(),lesson:()=>StudyLessons.reader(),schedule:renderSchedule,questions:renderQuestions,readiness:renderReadiness,library:renderLibrary,flashcards:()=>StudyCards.render()})[page]();
+  if(!['exam-map','library'].includes(page)&&window.StudyPlanner&&!StudyPlanner.active()){main.innerHTML=StudyPlanner.startPage();return;}
+  main.innerHTML=({'exam-map':()=>StudyExamDashboard.render(),overview:()=>StudyLessons.overview(),lessons:()=>StudyLessons.directory(),lesson:()=>StudyLessons.reader(),schedule:renderSchedule,questions:renderQuestions,readiness:renderReadiness,library:renderLibrary,flashcards:()=>StudyCards.render()})[page]();
   if(page==='lesson')StudyLessons.afterRender();
+  if(page==='exam-map')StudyExamDashboard.afterRender();
 }
 function renderTheme(){StudyTheme.apply(document,state.settings);}
 
@@ -236,7 +243,7 @@ document.addEventListener('change',async event=>{const el=event.target;try{
  if(el.id==='theme-select'){const choice=el.value,hadFocus=document.activeElement===el;el.disabled=true;try{await save(d=>StudyTheme.setChoice(d,choice));}finally{renderTheme();el.disabled=false;if(hadFocus)el.focus({preventScroll:true});}}
  if(el.id==='active-date'){if(!el.value)return;activeDate=el.value;selectedDate=el.value;await save(d=>{d.settings.activeDate=activeDate;});}
  if(el.id.startsWith('filter-')){questionFilters[el.id.slice(7)]=el.value;$('#question-results').innerHTML=questionResults();}
- if(el.id==='import-file'&&el.files[0]){const file=el.files[0];if(file.size>1000000)throw new Error('הגיבוי גדול מדי. יש לבחור קובץ יצוא של האתר.');const imported=JSON.parse(await file.text());openDialog('import-confirm','import-confirm','בדיקת גיבוי לפני יבוא',`<p>היבוא יחליף את ההתקדמות המקומית בעותק שבחרת. לפני ההחלפה יישמר גיבוי של המצב הנוכחי.</p><div class="notice neutral">קובץ: ${esc(file.name)}<br>יחידות מעודכנות: ${Object.keys(imported.sessionUpdates||{}).length}<br>שאלות מתועדות: ${Object.keys(imported.problemProgress||{}).length}</div><div class="dialog-actions"><button class="button primary" id="confirm-import">יבוא הגיבוי הזה</button><button class="button" data-action="close">ביטול</button></div>`);$('#confirm-import').onclick=async()=>{try{await window.StudyLessons?.flush();await saveQueue.catch(()=>{});const data=await StudyStorage.importState(imported,state.revision);state=data;window.StudyLessons?.discardPending();applyPrivateAssessment();StudyCards.reset();activeDate=state.settings.activeDate||activeDate;selectedDate=activeDate;closeDialog();render();$('#save-status').textContent='';notify('הגיבוי יובא בהצלחה');}catch(e){notify(e.message);}};}
+ if(el.id==='import-file'&&el.files[0]){const file=el.files[0];if(file.size>1000000)throw new Error('הגיבוי גדול מדי. יש לבחור קובץ יצוא של האתר.');const imported=JSON.parse(await file.text());openDialog('import-confirm','import-confirm','בדיקת גיבוי לפני יבוא',`<p>היבוא יחליף את ההתקדמות המקומית בעותק שבחרת. לפני ההחלפה יישמר גיבוי של המצב הנוכחי.</p><div class="notice neutral">קובץ: ${esc(file.name)}<br>יחידות מעודכנות: ${Object.keys(imported.sessionUpdates||{}).length}<br>שאלות מתועדות: ${Object.keys(imported.problemProgress||{}).length}<br>משפחות שסומנו כנלמדות במפה החדשה: ${Object.values(imported.examPreparation?.learned||{}).filter(p=>p.learned===true).length}<br>גם סימוני המפה החדשה יוחלפו; גיבוי ישן אינו כולל אותם.</div><div class="dialog-actions"><button class="button primary" id="confirm-import">יבוא הגיבוי הזה</button><button class="button" data-action="close">ביטול</button></div>`);$('#confirm-import').onclick=async()=>{try{await window.StudyLessons?.flush();await saveQueue.catch(()=>{});const data=await StudyStorage.importState(imported,state.revision);state=data;window.StudyLessons?.discardPending();applyPrivateAssessment();StudyCards.reset();activeDate=state.settings.activeDate||activeDate;selectedDate=activeDate;closeDialog();render();$('#save-status').textContent='';notify('הגיבוי יובא בהצלחה');}catch(e){notify(e.message);}};}
  }catch(err){notify(err.message);}});
 document.addEventListener('submit',async event=>{
  const form=event.target;if(!['session-form','problem-form','availability-form','journal-form','custom-task-form'].includes(form.id))return;event.preventDefault();const fields=Object.fromEntries(new FormData(form)),button=$('button[type=submit]',form);button.disabled=true;

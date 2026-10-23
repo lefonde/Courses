@@ -6,10 +6,11 @@
   const mixed = typeof module === 'object' && module.exports ? require('./mixed-engine.js') : root && root.StudyMixedEngine;
   const reviews = typeof module === 'object' && module.exports ? require('./review-engine.js') : root && root.StudyReviewEngine;
   const calendar = typeof module === 'object' && module.exports ? require('./plan-calendar.js') : root && root.StudyPlanCalendar;
-  const api = factory(learning, scaffold, mixed, reviews, calendar, lessons);
+  const examPreparation = typeof module === 'object' && module.exports ? require('./exam-dashboard-engine.js') : root && root.StudyExamDashboardEngine;
+  const api = factory(learning, scaffold, mixed, reviews, calendar, lessons, examPreparation);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root && root.document) root.StudyStorage = api.createStorage(root, root.STUDY_CONFIG || {});
-})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold, mixed, reviews, calendar, lessons) {
+})(typeof window === 'undefined' ? globalThis : window, function (learning, scaffold, mixed, reviews, calendar, lessons, examPreparation) {
   'use strict';
   const MAX_BYTES = 1024 * 1024;
   const START = calendar.HISTORY_START, END = calendar.END;
@@ -209,6 +210,10 @@
       }
     }
     visit(value);
+    if (own(value, 'examPreparation')) {
+      if (!examPreparation) invalid('אימות מפת השאלות אינו זמין. יש לרענן ולנסות שוב.');
+      try {examPreparation.validate(value.examPreparation);} catch (error) {invalid(error.message);}
+    }
     if (own(value, 'learning')) {
       if (!learning) invalid('אימות רישומי הלימוד אינו זמין. יש לרענן את האתר ולנסות שוב.');
       try {learning.validateLearning(value.learning);} catch (error) {invalid(error.message);}

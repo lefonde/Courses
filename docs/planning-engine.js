@@ -18,6 +18,7 @@
   const snapshot=copy(state);delete snapshot.settings.planHistory;
   history.push({id:'cycle-'+Date.parse(at),label:'התיעוד לפני ההתחלה מחדש',archivedAt:at,planId:state.settings.activePlanId||'september-2026',snapshot});
   return {schemaVersion:1,revision:state.revision,sessionUpdates:{},problemProgress:{},dayOverrides:{},journal:[],
+   ...(Object.prototype.hasOwnProperty.call(state,'examPreparation')?{examPreparation:copy(state.examPreparation)}:{}),
    settings:{theme:state.settings.theme||'dark',...(state.settings.themePalette?{themePalette:state.settings.themePalette}:{}),activePlanId:PLAN,activeDate:calendar.START,planHistory:history,planChanges:[],customSessions:[]}};
  }
  function propose(schedule,state,from){

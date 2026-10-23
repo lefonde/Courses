@@ -1,0 +1,27 @@
+Exam preparation dashboard — 23 October 2026
+
+Problem: the learner needs a problem-first study workflow based on the completed research, rather than another day-by-day course. The research currently identifies 129 candidate families; content will be authored one family at a time after the dashboard is established.
+
+Outcome: open a dedicated page in the existing Erdos site, understand recorded learning progress, find the next highest-priority family, inspect its evidence, and explicitly mark/unmark it as learned.
+
+Scope: additive #exam-map route; all 129 families ordered by baseline score; pagination, search, topic/priority/learning filters; expandable details and sources; explicit content availability. No new exercises or solutions, no scheduling changes, no automatic readiness claim. Preserve the existing site identity, themes, navigation and hosting.
+
+Data: stable research family IDs. Dedicated optional examPreparation namespace in the existing browser progress object. Old progress remains independent. Existing revision-aware save/export/import/backups apply. Starting the legacy November cycle preserves this new namespace. Old backups lacking it contain no new-map marks; import confirmation states the replacement scope. No source PDFs, personal progress, local absolute paths or diagnostic data enter public assets.
+
+Interaction: one ordered list, 12 rows per page by default; filters change visible rows but never change the global progress denominator. Explicit learned toggles are self-report only and reversible. Unwritten pages have a clear status and no dead links. Expandable research details are available immediately. All scores retain the research model and are priority points, not probabilities.
+
+Acceptance: all 129 IDs and scores match research; no problem pages generated; toggles survive reload and export/import, survive legacy cycle activation, preserve legacy records, and report failed/stale saves; search/filter/page combinations are consistent; keyboard focus and RTL layout work at desktop/mobile widths; all four themes remain usable.
+
+Verification: run project Node tests and focused browser checks with synthetic data in an isolated browser profile. Inspect desktop/mobile and all themes. Safari, physical touch hardware and assistive-technology assessment are unavailable in this Windows environment and must not be claimed as checked.
+
+Release: extend lefonde/Courses, existing public GitHub Pages main/docs. Record implementation, verification and deployment separately. No new hosting provider or account is required.
+
+Local verification completed:
+- 87/87 Node tests passed, including 13 new progress, migration, ordering and pagination cases.
+- Chromium browser walkthrough passed: pagination, combined filters, empty results, learned/unlearned/reload, real backup download and confirmed import, source-library access without legacy reset, mobile menu, keyboard expansion and focus after paging, four themes, and 320/390/720/1440px reflow. No browser runtime errors or failed asset requests.
+- Additional browser checks passed for a blocked storage write, explicit retry, and preserving search focus when a queued save finishes.
+- Desktop, mobile, expanded details and all four themes inspected visually. This is an implementation review, not a learner usability study or a claim of full WCAG conformance.
+- Browser testing exposed a pre-existing missing downloadFile helper used by progress export and draft recovery. Restored the helper; the actual export/import flow now passes.
+- Current Pages build logs were checked: branch main, artifact source ./docs. No hosting setting was changed.
+
+Future iteration: the first family is max3sat-small-sample-space. Every family currently has contentStatus=planned and lessonUrl=null. A page becomes available only after its authored content is ready and both fields are updated explicitly. No practice exercises or solutions were generated in this change.
