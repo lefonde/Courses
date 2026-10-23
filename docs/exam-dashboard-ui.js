@@ -3,7 +3,7 @@
 window.StudyExamDashboard = (() => {
   const engine = () => window.StudyExamDashboardEngine;
   const h = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const text = value => h(String(value ?? '').replace(/[A-Za-zΑ-Ωα-ω0-9][A-Za-zΑ-Ωα-ω0-9₀-₉⁰-⁹(){}\[\]|=<>≤≥≠≈∞+−*/^.,:_%–-]*/g, m => '\u2066'+m+'\u2069'));
+  const text = value => StudyMath.text(data?.mathText?.[value] ?? value);
   const defaults = {search:'',theme:'all',band:'all',status:'all',page:1,pageSize:12};
   let filters = {...defaults}, data = null, pending = null, error = '', searchTimer;
   const expanded = new Set();
@@ -18,7 +18,7 @@ window.StudyExamDashboard = (() => {
     if (pending) return pending;
     pending = (async () => {
       try {
-        const response = await fetch('./data/exam-dashboard.json?v=20261023');
+        const response = await fetch('./data/exam-dashboard.json?v=20261023-problems1');
         if (!response.ok) throw new Error('רשימת השאלות לא נטענה.');
         const next = await response.json();
         if (!Array.isArray(next.families) || !next.families.length) throw new Error('רשימת השאלות אינה זמינה.');
@@ -47,7 +47,7 @@ window.StudyExamDashboard = (() => {
       <aside class="exam-next" aria-label="המשפחה הבאה לפי הדירוג"><span class="eyebrow">${next?'הבאה לפי סדר העדיפות':'כל המשפחות סומנו כנלמדות'}</span>
         <h2>${next?text(next.title):'אפשר לחזור ולתרגל'}</h2>
         <p>${next?`${text(next.themeLabel)} · ${next.score} נקודות עדיפות`:'הסימונים נשמרו. אפשר לבחור משפחה מהרשימה לחזרה נוספת.'}</p>
-        ${next?`<button class="button primary" data-exam-action="locate" data-id="${h(next.id)}">לעיון במשפחה <span aria-hidden="true">←</span></button><small>${available(next)?'דף הלימוד זמין':'דף הלימוד יתווסף בהמשך'}</small>`:'<button class="button" data-exam-action="reset">לכל הרשימה</button>'}
+        ${next?`${available(next)?`<a class="button primary" href="${h(next.lessonUrl)}">לפתרון הבעיה <span aria-hidden="true">←</span></a>`:`<button class="button primary" data-exam-action="locate" data-id="${h(next.id)}">לעיון במשפחה <span aria-hidden="true">←</span></button>`}<small>${available(next)?'תרגיל בסיסי · שאלת מבחן · פתרונות מלאים':'דף הלימוד יתווסף בהמשך'}</small>`:'<button class="button" data-exam-action="reset">לכל הרשימה</button>'}
       </aside>
     </section>`;
   }
@@ -146,5 +146,5 @@ window.StudyExamDashboard = (() => {
       const target=document.querySelector(`[data-exam-id="${CSS.escape(id)}"]`);target?.scrollIntoView({block:'start'});target?.querySelector('.exam-family-button').focus({preventScroll:true});
     }
   });
-  return {render:renderPage,afterRender:refresh,load};
+  return {render:renderPage,afterRender:refresh,load,family:id=>families().find(f=>f.id===id)};
 })();

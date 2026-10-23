@@ -102,6 +102,11 @@ def current_evidence(family):
 
 
 def build(database, public_sources, input_digest):
+    pages = {page['id']: page for page in read_json(REPO / 'docs/data/exam-problem-pages.json')['pages']}
+    notation = read_json(REPO / 'scripts/exam-math-notation.json')
+    # These are reviewed, exact source expressions, not a heuristic TeX parser.
+    pattern = re.compile('|'.join(re.escape(key) for key in sorted(notation, key=len, reverse=True)))
+    overrides = read_json(REPO / 'scripts/exam-content-overrides.json')
     families = []
     for ordinal, source in enumerate(database['candidates'], 1):
         band = next(b for b in BANDS if source['score'] >= b['minimum'])
@@ -129,9 +134,19 @@ def build(database, public_sources, input_digest):
             'sources': compact_sources(source, public_sources),
             'caveats': unique(source['notes_he']),
             'variants': unique(source['variants_he']),
-            'lessonUrl': None,
-            'contentStatus': 'planned',
+            'lessonUrl': '#exam-problem/' + source['id'] if source['id'] in pages else None,
+            'contentStatus': 'ready' if source['id'] in pages else 'planned',
         })
+        families[-1].update(overrides.get(source['id'], {}))
+
+    math_text = {}
+    for family in families:
+        for field in ('title', 'tasks', 'techniques', 'prerequisites', 'caveats', 'variants'):
+            values = [family[field]] if isinstance(family[field], str) else family[field]
+            for value in values:
+                marked = pattern.sub(lambda match: r'\(' + notation[match.group()] + r'\)', value)
+                if marked != value:
+                    math_text[value] = marked
 
     counts = Counter(f['band'] for f in families)
     themes = {}
@@ -141,7 +156,7 @@ def build(database, public_sources, input_digest):
         theme['count'] += 1
     return {
         'schemaVersion': 1,
-        'version': '2026-10-23.1',
+        'version': '2026-10-23.2',
         'researchDate': database['created_date'],
         'researchSha256': input_digest,
         'title': 'מפת ההכנה למבחן',
@@ -153,7 +168,7 @@ def build(database, public_sources, input_digest):
             'guideExercises': 64,
             'bookExercises': len(database['book_exercise_index']),
             'prerequisiteFamilies': database['prerequisite_count'],
-            'readyPages': 0,
+            'readyPages': len(pages),
             'scenarios': len(database['scoring_model']['scenarios']),
         },
         'bands': [{**band, 'count': counts[band['id']]} for band in BANDS],
@@ -166,7 +181,7 @@ def build(database, public_sources, input_digest):
             'rankRangeMeaning': 'טווח המקום מציג את המיקום הנמוך והגבוה בששת תרחישי המשקל. זהו מדד לרגישות הדירוג, לא רווח סמך סטטיסטי.',
             'progressMeaning': 'ההתקדמות מבוססת על סימון אישי של נושאים שנלמדו. היא אינה מעידה כשלעצמה על פתרון עצמאי או על ציון צפוי בבחינה.',
             'coverageMeaning': 'המאגר רחב בכוונה. 83 המשפחות בקבוצת ההרחבה אינן רשימת חובה להספק בחודש.',
-            'contentStatusMeaning': 'דפי הלימוד ייכתבו בהדרגה, החל מהבעיה הראשונה. בשלב זה כל הפריטים מציגים את המיפוי ואת מקורותיו, ללא תרגילים או פתרונות חדשים.',
+            'contentStatusMeaning': 'דפי הלימוד מתווספים בהדרגה. שלוש המשפחות הראשונות כוללות תרגיל בסיסי, שאלת בחינה ופתרונות מלאים.',
             'components': COMPONENTS,
             'limits': [
                 'המדגם כולל שמונה בחינות עבר בלבד, ואינו מדגם אקראי או רציף של כל המועדים.',
@@ -177,6 +192,7 @@ def build(database, public_sources, input_digest):
         },
         'scenarios': [{'id': s['id'], 'label': s['label_he']} for s in database['scoring_model']['scenarios']],
         'families': families,
+        'mathText': math_text,
     }
 
 
@@ -191,7 +207,10 @@ def validate(output, database, public_sources):
     assert [f['ordinal'] for f in families] == list(range(1, 130))
     assert Counter(f['band'] for f in families) == {'high': 5, 'medium': 27, 'supplementary': 14, 'extension': 83}
     assert sum(theme['count'] for theme in output['themes']) == 129
-    assert all(f['lessonUrl'] is None and f['contentStatus'] == 'planned' for f in families)
+    page_ids = {p['id'] for p in read_json(REPO / 'docs/data/exam-problem-pages.json')['pages']}
+    assert page_ids <= {f['id'] for f in families}
+    assert all(f['contentStatus'] == ('ready' if f['id'] in page_ids else 'planned') for f in families)
+    assert all(f['lessonUrl'] == ('#exam-problem/' + f['id'] if f['id'] in page_ids else None) for f in families)
     assert all(0 <= f['score'] <= 100 and f['rankRange'][0] <= f['rankRange'][1] for f in families)
     public_ids = {s['id'] for s in public_sources.values()}
     assert all(ref['sourceId'] is None or ref['sourceId'] in public_ids for f in families for ref in f['sources'])

@@ -1,0 +1,53 @@
+/* Math owns its bidi boundary; surrounding prose retains Hebrew direction. */
+.study-math{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%;vertical-align:baseline;text-indent:0}
+.study-math .katex{direction:ltr;unicode-bidi:isolate;font-size:1.08em;text-align:left}
+.study-math-block{display:block;overflow-x:auto;overflow-y:hidden;padding:12px 6px;margin:16px 0;border-radius:8px;background:var(--panel-2);text-align:center;scrollbar-width:thin}
+.study-math-block .katex-display{margin:0;min-width:max-content}
+.study-math-block .katex-display>.katex{white-space:nowrap}
+.study-math-error{color:var(--text);text-decoration:underline wavy}
+.exam-family-detail .study-math{font-size:.98em}
+.exam-problem{max-width:1000px;margin-inline:auto;padding-bottom:50px;line-height:1.9;min-width:0}
+.problem-back{display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:18px}
+.problem-back:hover{color:var(--text)}
+.problem-heading{border-bottom:1px solid var(--line);padding-bottom:28px}
+.problem-kicker{display:flex;gap:10px 20px;flex-wrap:wrap;font-size:12px;color:var(--accent)}
+.problem-heading h1{font-family:var(--font-display,inherit);font-size:clamp(28px,3.1vw,42px);font-weight:500;line-height:1.35;margin:12px 0 18px;max-width:900px}
+.problem-lead{font-size:18px;max-width:760px;color:var(--text);line-height:1.85}
+.problem-session{display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--muted);font-size:12px;margin:17px 0 22px}
+.problem-session>span+span{border-inline-start:1px solid var(--line);padding-inline-start:20px}
+.problem-instruction{font-size:13px;color:var(--muted);max-width:740px;margin:14px 0 0;line-height:1.9}
+.problem-nav{position:sticky;top:70px;z-index:9;display:flex;flex-wrap:wrap;gap:4px 9px;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--line);margin-bottom:30px}
+.problem-nav button{font:inherit;font-size:13px;background:transparent;color:var(--muted);border:1px solid transparent;border-radius:6px;padding:8px 12px;min-height:44px;cursor:pointer}
+.problem-nav button:hover,.problem-nav button:focus-visible{color:var(--text);background:var(--panel);border-color:var(--line)}
+.problem-body{max-width:820px;margin-inline:auto;font-size:16px;line-height:2}
+.problem-body>section{scroll-margin-top:145px;margin-bottom:52px}
+.problem-body h2{font-size:25px;font-weight:500;line-height:1.45;margin:0 0 22px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.problem-body h3{font-size:18px;font-weight:600;line-height:1.6;margin:24px 0 10px}
+.problem-body h4{font-size:16px;margin:20px 0 8px}
+.problem-body p{margin:12px 0}
+.problem-body ul,.problem-body ol{padding-inline-start:26px;margin:15px 0}
+.problem-body li{padding-inline-start:3px;margin:9px 0}
+.problem-body strong{font-weight:600}
+.problem-body details{border:1px solid var(--line);border-radius:10px;padding:0 20px;margin:16px 0;background:var(--panel)}
+.problem-body details summary{cursor:pointer;min-height:48px;padding:12px 0;font-size:15px;font-weight:500;color:var(--text)}
+.problem-body details[open]{padding-bottom:14px}
+.problem-body details[open]>summary{border-bottom:1px solid var(--line);margin-bottom:14px}
+.problem-body .problem-solution{border-inline-start:3px solid var(--accent)}
+.problem-body .problem-hint{background:transparent}
+.problem-body .problem-note,.problem-body aside,.problem-body .problem-callout{border-inline-start:3px solid var(--gold);padding:14px 20px;background:var(--panel);margin:22px 0;border-radius:6px}
+.problem-body table{border-collapse:collapse;max-width:100%;width:100%;font-size:14px;margin:20px 0}
+.problem-body th,.problem-body td{text-align:start;border-bottom:1px solid var(--line);padding:10px}
+.problem-body svg{display:block;max-width:100%;height:auto;margin:20px auto}
+.problem-body .text-btn{color:var(--accent);text-decoration:underline;text-underline-offset:4px;line-height:1.8}
+.problem-body figure{margin:20px 0}.problem-body figcaption{font-size:13px;color:var(--muted)}
+.problem-finish{max-width:820px;margin:42px auto 0;padding:26px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.problem-finish h2{font-size:21px;font-weight:500;margin:0 0 10px}
+.problem-finish p{font-size:14px;color:var(--muted);margin:8px 0 18px;line-height:1.9}
+.problem-learned{display:flex;align-items:center;gap:12px;cursor:pointer;font-size:15px;min-height:44px}
+.problem-learned input{width:20px;height:20px;accent-color:var(--accent);flex:none;margin:0}
+.problem-finish .problem-save-note{font-size:12px;min-height:24px;margin:6px 32px 12px 0}
+.problem-bottom-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:20px;font-size:13px}
+.exam-problem :focus-visible,.study-math-block:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.exam-problem h2:focus,.exam-problem h1:focus{outline:none}
+@media(max-width:760px){.problem-nav{top:62px;gap:0;padding:6px 0}.problem-nav button{font-size:12px;padding:6px 9px}.problem-body{font-size:16px}.problem-body>section{scroll-margin-top:180px}.problem-body h2{font-size:23px}.problem-lead{font-size:16px}.problem-body details{padding-inline:14px}.problem-body .study-math-block{margin-inline:-3px}.problem-finish{padding:20px}}
+@media(max-width:420px){.problem-session{display:block}.problem-session>span{display:block}.problem-session>span+span{border:0;padding:0}.problem-body details{padding-inline:10px}.problem-body ul,.problem-body ol{padding-inline-start:20px}.problem-kicker{font-size:11px;gap:6px 12px}.problem-nav{position:static}.problem-body>section{scroll-margin-top:90px}.problem-finish{padding:18px}.problem-finish .problem-save-note{margin-inline-start:0}}
