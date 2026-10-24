@@ -15,7 +15,7 @@ window.StudyExamProblems=(()=>{
         if(!/^[a-z0-9-]+$/.test(key))throw new Error('הכתובת אינה שייכת לדף לימוד זמין.');
         if(!manifest){const response=await fetch(`./data/exam-problem-pages.json?v=${version}`);if(!response.ok)throw new Error('רשימת דפי הלימוד לא נטענה.');manifest=await response.json();}
         const meta=manifest.pages.find(p=>p.id===key);if(!meta)throw new Error('דף הלימוד הזה עדיין אינו זמין.');
-        const [response]=await Promise.all([fetch(`./exam-problems/${key}.html?v=${version}`),StudyExamDashboard.load()]);
+        const [response]=await Promise.all([fetch(`./exam-problems/${key}.html?v=${version}`),StudyExamDashboard.load(),StudyReference.load()]);
         if(!response.ok)throw new Error('דף הלימוד לא נטען. אפשר לנסות שוב.');
         const family=StudyExamDashboard.family(key);if(!family)throw new Error('פרטי השאלה לא נטענו.');
         cache.set(key,{meta,family,html:await response.text()});errors.delete(key);
@@ -35,6 +35,7 @@ window.StudyExamProblems=(()=>{
         <div class="problem-session"><span>כ־<bdi>${h(meta.minutes)}</bdi> דקות, כולל ניסיון פתרון</span><span>רמזים ופתרונות לפי הצורך</span></div>
         <a class="button primary" href="#exam-problem/${h(key)}" data-problem-jump="problem-basic">לתחילת התרגול <span aria-hidden="true">↓</span></a>
         <p class="problem-instruction">כדאי לעבוד עם דף ועט. נסו תחילה את התרגיל הבסיסי; אם חסר כלי, חזרו להסבר שבהמשך העמוד. הרמזים והפתרונות נפתחים רק לפי בחירתכם.</p>
+        ${StudyReference.help()}
       </header>
       <nav class="problem-nav" aria-label="בתוך דף הלימוד">${[['basic','תרגיל בסיסי'],['tools','כלים והגדרות'],['exam','שאלת בחינה'],['check','בדיקת הבנה'],['sources','מקורות']].map(([section,label])=>`<button type="button" data-problem-jump="problem-${section}">${label}</button>`).join('')}</nav>
       <div class="problem-body">${html}</div>
@@ -45,6 +46,7 @@ window.StudyExamProblems=(()=>{
   function afterRender(){
     const entry=cache.get(id());if(!entry)return;
     document.title=`erdős · ${entry.family.title}`;
+    StudyReference.enhance(document.querySelector('.problem-body'),{newWindow:true});
     StudyMath.render(document.querySelector('.problem-body'));
     const opened=readView(id());
     document.querySelectorAll('.problem-body details').forEach((detail,index)=>{detail.dataset.problemDisclosure=String(index);detail.open=Array.isArray(opened)&&opened.includes(index);});

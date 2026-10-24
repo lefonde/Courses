@@ -3,11 +3,12 @@ const $ = (q, root=document) => root.querySelector(q);
 const $$ = (q, root=document) => [...root.querySelectorAll(q)];
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone = value => JSON.parse(JSON.stringify(value));
-const LABELS = {overview:'מבט על','exam-map':'הכנה לפי שאלות',lessons:'השיעורים',schedule:'לוח הזמנים',questions:'שאלות לתרגול',flashcards:'כרטיסיות חזרה',readiness:'מצב הלימוד שלי',library:'חומרי הקורס'};
+const LABELS = {overview:'מבט על','exam-map':'הכנה לפי שאלות',reference:'מושגים ומשפטים',lessons:'השיעורים',schedule:'לוח הזמנים',questions:'שאלות לתרגול',flashcards:'כרטיסיות חזרה',readiness:'מצב הלימוד שלי',library:'חומרי הקורס'};
 // Locally authored navigation symbols share a 24-unit grid and stroke weight.
 const icon = paths => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;
 const ICONS = {
  'exam-map':icon('<path d="M9 5h12M9 12h12M9 19h12M3 4h2v2H3zM3 11h2v2H3zM3 18h2v2H3z"/>'),
+ reference:icon('<path d="M4 4h6v16H4zM14 4h6v16h-6zM6 8h2M16 8h2M6 16h2M16 16h2"/>'),
  overview:icon('<path d="m3 10 9-7 9 7v10H3Z"/><path d="M9 20v-7h6v7"/>'),
  lessons:icon('<path d="M12 5v15M12 5C9 3 5 3 3 4v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-1-9 1Z"/>'),
  schedule:icon('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M15 14h2M7 17h2"/>'),
@@ -76,18 +77,20 @@ function save(fn,message,options={}){
   }).catch(err=>{window.StudyShell?.closeMenu();$('#save-status').textContent='השינוי לא נשמר. השאירו את העמוד פתוח ונסו שוב.';notify(err.message);throw err;});
   return saveQueue;
 }
-function currentPage(){const hash=location.hash.slice(1);return hash.startsWith('exam-problem/')?'exam-problem':hash.startsWith('lesson/')?'lesson':LABELS[hash]?hash:'overview';}
+function currentPage(){const hash=location.hash.slice(1);return hash.startsWith('reference/')?'reference-entry':hash.startsWith('exam-problem/')?'exam-problem':hash.startsWith('lesson/')?'lesson':LABELS[hash]?hash:'overview';}
 function render(){
   page=currentPage();document.title=`erdős · ${LABELS[page]||'שיעור'}`;$('#page-label').textContent=page==='exam-problem'?'הכנה לפי שאלות':LABELS[page]||'לומדים';main.classList.toggle('is-lesson',page==='lesson');
-  const navPage=page==='lesson'?'lessons':page==='exam-problem'?'exam-map':page;
+  const navPage=page==='lesson'?'lessons':page==='exam-problem'?'exam-map':page==='reference-entry'?'reference':page;
+  if(page==='reference-entry')$('#page-label').textContent=LABELS.reference;
   $('#nav').innerHTML=Object.entries(LABELS).map(([key,label])=>`<a class="nav-link ${navPage===key?'active':''}" href="#${key}" ${navPage===key?'aria-current="page"':''}><span class="nav-icon" aria-hidden="true">${ICONS[key]}</span><span class="nav-label">${label}</span>${key==='questions'?`<span class="nav-count">${curriculum.problems.length}</span>`:''}</a>`).join('');
   const examCard=$('.exam-card');if(examCard){$('strong',examCard).textContent=fmtDate(schedule.exam.date);$('strong + span',examCard).textContent=fmtDay(schedule.exam.date)+' · '+schedule.exam.minutes+' דקות';}
   renderTheme();
-  if(!['exam-map','exam-problem','library'].includes(page)&&window.StudyPlanner&&!StudyPlanner.active()){main.innerHTML=StudyPlanner.startPage();return;}
-  main.innerHTML=({'exam-map':()=>StudyExamDashboard.render(),'exam-problem':()=>StudyExamProblems.reader(),overview:()=>StudyLessons.overview(),lessons:()=>StudyLessons.directory(),lesson:()=>StudyLessons.reader(),schedule:renderSchedule,questions:renderQuestions,readiness:renderReadiness,library:renderLibrary,flashcards:()=>StudyCards.render()})[page]();
+  if(!['exam-map','exam-problem','reference','reference-entry','library'].includes(page)&&window.StudyPlanner&&!StudyPlanner.active()){main.innerHTML=StudyPlanner.startPage();return;}
+  main.innerHTML=({'exam-map':()=>StudyExamDashboard.render(),'exam-problem':()=>StudyExamProblems.reader(),reference:()=>StudyReference.reader(),'reference-entry':()=>StudyReference.reader(),overview:()=>StudyLessons.overview(),lessons:()=>StudyLessons.directory(),lesson:()=>StudyLessons.reader(),schedule:renderSchedule,questions:renderQuestions,readiness:renderReadiness,library:renderLibrary,flashcards:()=>StudyCards.render()})[page]();
   if(page==='lesson')StudyLessons.afterRender();
   if(page==='exam-map')StudyExamDashboard.afterRender();
   if(page==='exam-problem')StudyExamProblems.afterRender();
+  if(page==='reference'||page==='reference-entry')StudyReference.afterRender();
 }
 function renderTheme(){StudyTheme.apply(document,state.settings);}
 
