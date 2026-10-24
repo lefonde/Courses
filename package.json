@@ -1,6 +1,11 @@
 {
   "name": "matzpen-courses",
   "private": true,
-  "scripts": {"test": "node --test tests/*.test.js"},
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check:course-content": "node scripts/check-course-content.cjs",
+    "check:publication": "node scripts/check-publication.cjs",
+    "check:release": "npm run check:publication && npm test"
+  },
   "engines": {"node": ">=20"}
 }

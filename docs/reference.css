@@ -26,6 +26,8 @@
 .reference-related{border-top:1px solid var(--line);margin:35px 0 25px;padding-top:20px}.reference-related h2{font-size:20px;font-weight:500;margin:0 0 15px}.reference-related>div{display:flex;gap:10px;flex-wrap:wrap}.reference-related a{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:8px 13px;font-size:13px;text-decoration:none;color:var(--text)}.reference-related a:hover{color:var(--accent)}
 .reference-sources{border-top:1px solid var(--line);padding:12px 0;font-size:13px;color:var(--muted)}.reference-sources summary{min-height:44px;cursor:pointer;color:var(--text);padding:8px 0}.reference-sources ul{padding-inline-start:22px}.reference-sources li{margin:10px 0}.reference-return-note{font-size:12px;color:var(--muted);margin-top:20px}
 .reference-bank :focus-visible,.reference-entry :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.reference-excerpt{margin:12px 0;padding:12px 16px;background:var(--panel-2);border-inline-start:2px solid var(--accent);border-radius:4px;color:var(--text)}
+.reference-excerpt>span{font-size:11px;color:var(--muted)}.reference-excerpt blockquote{margin:5px 0;line-height:1.9;overflow-wrap:anywhere}
 @media(max-width:760px){.reference-results{grid-template-columns:1fr}.reference-card{padding:18px}.reference-entry h1{font-size:29px}.reference-lead{font-size:16px}.reference-search{gap:12px;grid-template-columns:minmax(0,1fr) 135px}.reference-search input,.reference-search select{font-size:16px}}
 @media(max-width:460px){.reference-search{grid-template-columns:1fr}.reference-tooltip{padding:14px 16px;font-size:13px}.reference-tooltip h2{font-size:17px}}
 @media(hover:none){.reference-hover-note{display:none}.reference-touch-note{display:inline}.reference-term{cursor:pointer}}

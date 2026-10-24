@@ -5,12 +5,12 @@ const entries=['sat','walk','probability'].flatMap(name=>require('../docs/data/r
 const katex=require('../docs/vendor/katex/katex.min.js');
 const sources=require('../docs/data/curriculum.json').sources;
 
-test('the exact family phrase is one reference and preserves surrounding Hebrew and math',()=>{
-  const phrase='משפחה \\(\\mathcal F_{n,k}\\) של \\(O(n^{\\lfloor k/2\\rfloor})\\) השמות';
-  const text='הוכיחו שקיימת '+phrase+', הנבחרת לפני קבלת הקלט.';
+test('the exam assignment-set phrase is one reference and preserves surrounding Hebrew and math',()=>{
+  const phrase='קבוצה \\(A\\) של \\(\\Theta(n^{k/2})\\) השמות';
+  const text='הוכיחו שקיימת '+phrase+', המתאימה לכל רשימת פסוקיות.';
   const parts=engine.matcher(links)(text);
   assert.equal(parts.map(p=>p.text).join(''),text);
-  assert.deepEqual(parts.filter(p=>p.id),[{text:phrase,id:'assignment-family'},{text:'לפני קבלת הקלט',id:'universal-family'}]);
+  assert.deepEqual(parts.filter(p=>p.id),[{text:phrase,id:'assignment-family'},{text:'פסוקיות',id:'sat-clause'}]);
 });
 
 test('specific concepts take precedence, word endings are intact, and unrelated TeX is never split',()=>{
@@ -32,7 +32,11 @@ test('every reference and related link resolves and each entry has an explanatio
     for(const key of ['id','title','kind','summary','example','body'])assert.ok(entry[key],entry.id+' '+key);
     assert.match(entry.body,/<h2>/,entry.id+' has structured full text');
     assert.ok(entry.sources.length,entry.id+' provenance');
-    for(const ref of entry.sources)if(ref.sourceId)assert.ok(sources[ref.sourceId],entry.id+' source '+ref.sourceId);
+    assert.ok(entry.sources.some(ref=>ref.excerpt?.trim()),entry.id+' exact excerpt for comparison');
+    for(const ref of entry.sources){
+      assert.ok(sources[ref.sourceId],entry.id+' source '+ref.sourceId);
+      assert.ok(Number.isInteger(ref.page)&&ref.page>0,entry.id+' PDF page');
+    }
     for(const id of entry.related)assert.ok(ids.has(id),entry.id+' → '+id);
     assert.doesNotMatch(entry.body,/<script|\bon\w+\s*=|javascript:|file:\/\/|C:\\\\Users/i);
   }
@@ -40,13 +44,22 @@ test('every reference and related link resolves and each entry has an explanatio
 
 test('all reference TeX renders under strict untrusted KaTeX',()=>{
   for(const entry of entries){
-    const texts=[entry.title,entry.summary,entry.example,entry.body];
+    const texts=[entry.title,entry.summary,entry.example,entry.body,...entry.sources.flatMap(ref=>[ref.label,ref.excerpt||'',ref.note||''])];
     if(entry.formula)texts.push('\\['+entry.formula+'\\]');
     for(const value of texts)for(const m of value.matchAll(/\\\(([\s\S]*?)\\\)|\\\[([\s\S]*?)\\\]/g)){
       const tex=(m[1]??m[2]).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
       assert.doesNotThrow(()=>katex.renderToString(tex,{strict:'error',throwOnError:true,trust:false}),entry.id+': '+tex);
     }
   }
+});
+
+test('the revised instructional slice does not reintroduce the rejected support/seed vocabulary',()=>{
+  const fs=require('node:fs'),path=require('node:path');
+  const pages=require('../docs/data/exam-problem-pages.json').pages;
+  const strings=[...entries.flatMap(e=>[e.title,e.summary,e.example,e.body,e.formula||'']),...pages.map(p=>p.lead),...pages.map(p=>fs.readFileSync(path.join(__dirname,'../docs/exam-problems',p.id+'.html'),'utf8'))];
+  for(const text of strings)assert.doesNotMatch(text,/תמיכ(?:ה|ת|תו|תם)|זרע|\\operatorname\{supp\}/);
+  assert.equal(entries.some(e=>e.id==='sample-space-support'),false);
+  assert.ok(entries.some(e=>e.id==='sample-space'));
 });
 
 test('search accepts Hebrew vowel marks and aliases, combines words, and respects kind filtering',()=>{

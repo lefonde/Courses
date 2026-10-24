@@ -1,12 +1,16 @@
 /* Reading support only: no progress, scheduling, or assistance records change. */
 'use strict';
 window.StudyReference=(()=>{
-  const version='20261024-reference1';
+  const version='20261024-course2';
   const files=['reference-sat','reference-walk','reference-probability','reference-links'];
   let entries=[],links=[],byId=new Map(),pending=null,error='',ready=false,search='',kind='all';
   let tooltip=null,active=null,hoverTimer,closeTimer,dismissed=null;
   const h=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const currentId=()=>location.hash.startsWith('#reference/')?location.hash.slice('#reference/'.length):null;
+  const currentId=()=>{
+    const id=location.hash.startsWith('#reference/')?location.hash.slice('#reference/'.length):null;
+    // Keep saved links to the replaced entry usable without retaining its old definition.
+    return id==='sample-space-support'?'sample-space':id;
+  };
   const isBank=()=>currentPage()==='reference'||currentPage()==='reference-entry';
   async function load(){
     if(ready)return true;if(pending)return pending;
@@ -48,7 +52,7 @@ window.StudyReference=(()=>{
   function help(){return `<p class="reference-instruction"><span class="reference-hover-note">מונח בקו מנוקד: ריחוף או מיקוד במקלדת מציגים תזכורת; לחיצה פותחת הסבר מלא בחלון חדש.</span><span class="reference-touch-note">נגיעה במונח בקו מנוקד פותחת הסבר מלא בחלון חדש.</span> <a href="#reference" target="_blank" rel="noopener" data-reference-window="true">למאגר המושגים והמשפטים ↗</a>${error?'<span role="status"> התזכורות לא נטענו. <button type="button" class="reference-retry" data-reference-retry>ניסיון נוסף</button></span>':''}</p>`;}
   function list(){
     return `<section class="reference-bank"><header><span class="eyebrow">עזרה בזמן פתרון</span><h1>מושגים ומשפטים</h1><p>הגדרות, סימונים וכלים מתוך שלושת דפי התרגול. כל ערך מתחיל במשמעות פשוטה, וממשיך לניסוח המדויק, לדוגמה ולהסבר או להוכחה המתאימים לו.</p></header>
-      <form id="reference-search-form" class="reference-search" role="search"><label for="reference-search">מה תרצו להיזכר בו?<input type="search" id="reference-search" autocomplete="off" value="${h(search)}" placeholder="למשל: משפחת השמות, תוחלת, זמן פגיעה"></label><label for="reference-kind">סוג הערך<select id="reference-kind"><option value="all">כל הסוגים</option>${[...new Set(entries.map(e=>e.kind))].map(k=>`<option ${kind===k?'selected':''} value="${h(k)}">${h(k)}</option>`).join('')}</select></label></form>
+      <form id="reference-search-form" class="reference-search" role="search"><label for="reference-search">מה תרצו להיזכר בו?<input type="search" id="reference-search" autocomplete="off" value="${h(search)}" placeholder="למשל: קבוצת השמות, תוחלת, זמן הגעה"></label><label for="reference-kind">סוג הערך<select id="reference-kind"><option value="all">כל הסוגים</option>${[...new Set(entries.map(e=>e.kind))].map(k=>`<option ${kind===k?'selected':''} value="${h(k)}">${h(k)}</option>`).join('')}</select></label></form>
       <p class="reference-count" id="reference-count" role="status"></p><div id="reference-results" class="reference-results"></div></section>`;
   }
   function refreshList(){
@@ -59,7 +63,7 @@ window.StudyReference=(()=>{
   }
   function source(ref){
     const known=ref.sourceId&&sourceOf(ref.sourceId);
-    return `<li>${known?`<a href="${h(sourceUrl(known,ref.page||1))}" target="_blank" rel="noopener">${StudyMath.text(ref.label)} ↗</a>`:StudyMath.text(ref.label)}</li>`;
+    return `<li>${known?`<a href="${h(sourceUrl(known,ref.page||1))}" target="_blank" rel="noopener">${StudyMath.text(ref.label)} ↗</a>`:StudyMath.text(ref.label)}${ref.excerpt?`<div class="reference-excerpt"><span>קטע מהמקור:</span><blockquote dir="auto">${StudyMath.text(ref.excerpt)}</blockquote></div>`:''}${ref.note?`<p>${StudyMath.text(ref.note)}</p>`:''}</li>`;
   }
   function reader(){
     close();
@@ -70,7 +74,7 @@ window.StudyReference=(()=>{
     return `<article class="reference-entry" aria-labelledby="reference-title"><a class="problem-back" href="#reference">→ לכל המושגים והמשפטים</a><header><span class="eyebrow">${h(entry.kind)}</span><h1 id="reference-title">${StudyMath.text(entry.title)}</h1><p class="reference-lead">${StudyMath.text(entry.summary)}</p>${entry.formula?StudyMath.text('\\['+entry.formula+'\\]'):''}</header>
       <div class="reference-body problem-body">${entry.body}</div>
       ${(entry.related||[]).filter(id=>byId.has(id)).length?`<section class="reference-related"><h2>מושגים קשורים</h2><div>${entry.related.filter(id=>byId.has(id)).map(id=>`<a href="#reference/${h(id)}">${StudyMath.text(byId.get(id).title)} ←</a>`).join('')}</div></section>`:''}
-      <details class="reference-sources"><summary>מקורות והקשר לקורס</summary><p>ההסברים והדוגמאות נכתבו עבור המאגר. מראי המקום מציינים את חומר הקורס שעליו נשענו; קובצי המקור נפתחים מן הספרייה המקומית בדפדפן.</p><ul>${(entry.sources||[]).map(source).join('')}</ul></details>
+      <details class="reference-sources"><summary>מקורות מהקורס וקטעים להשוואה</summary><p>הניסוח שבערך מפרט את חומר הקורס. הקטעים שלהלן מובאים מן המקורות כדי שאפשר יהיה להשוות; נוסחאות סודרו לתצוגה. הקישורים נפתחים בעמוד ה־PDF המצוין, מתוך ספריית הקבצים המקומית בדפדפן.</p><ul>${(entry.sources||[]).map(source).join('')}</ul></details>
       <p class="reference-return-note">אפשר להשאיר חלון זה פתוח לצד התרגיל. הקריאה כאן אינה משנה את סימוני הלמידה.</p></article>`;
   }
   function afterRender(){

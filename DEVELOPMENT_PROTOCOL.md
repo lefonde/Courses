@@ -1,6 +1,8 @@
 # Courses Website and Course Development Protocol
 
-Version 1.0 · 16 October 2026 · Applies to מצפן and the Courses repository
+Version 1.1 · 24 October 2026 · Applies to מצפן and the Courses repository
+
+**Mandatory course-source policy:** Read [COURSE_CONTENT_POLICY.md](COURSE_CONTENT_POLICY.md) before any educational-content work. The user's instruction of 24 October 2026 requires course material only, with current classroom terminology and focus taking precedence. The guide and supplied book resolve or clarify issues without importing outside concepts. This rule overrides any broader permission for enrichment or independent content in this protocol. Mathematical correctness alone does not establish course alignment. Existing content has no automatic approval under this policy.
 
 This protocol guides the people and AI assistants who design, write, implement, review, and maintain the website. Its purpose is to make the site a dependable place to learn: the student can understand the subject, begin the next useful activity, get appropriate help, and return later without reconstructing the process.
 
@@ -112,6 +114,8 @@ Difficulty can be productive. Confusion about the interface, unexplained vocabul
 
 ## 5. Verify sources and mathematical claims
 
+Apply the ten rules and source hierarchy in `COURSE_CONTENT_POLICY.md`. A topic-level citation does not support a newly introduced term, definition, notation, or method. Record provenance at the level of the substantive content element; distinguish quotations, paraphrases, documented derivations using course tools, and authorized adaptations. Read the original source pages. Independently review source fidelity and classroom terminology as well as mathematical correctness. Do not repair gaps with external material or model memory.
+
 Distinguish official course problems, quotations, adapted explanations, and newly authored exercises. Label a new exercise as new. An adaptation must retain the assumptions needed for its solution and must not masquerade as the original exam question.
 
 For each lesson, keep a source record with the document name, edition or version where relevant, page or question, claim supported, and verification status. Verify the actual source before claiming alignment. A file name, an AI-generated citation, or a remembered summary is insufficient. If the source is unavailable, mark the specific claim as unverified and avoid presenting the lesson as source-checked.
@@ -132,7 +136,7 @@ Draft the teaching argument first. Then edit for natural Hebrew, logical order, 
 
 Each paragraph should have one clear purpose. Its connection to the preceding paragraph should be understandable. Prefer specific verbs and named subjects over abstract process language. Keep grammatical person and number consistent. Use neutral action labels where natural, and a consistent direct voice in instruction. Avoid awkward mixtures such as a plural verb addressing a singular learner.
 
-Technical terms are appropriate when taught and used consistently. Simpler language must not remove necessary precision. Avoid childish encouragement, empty reassurance, literal translations, and vague motivational titles.
+Technical terms are appropriate only when sourced and permitted by `COURSE_CONTENT_POLICY.md`, taught and used consistently. Explaining a new outside term does not authorize its inclusion. Simpler language must not remove necessary precision. Avoid childish encouragement, empty reassurance, literal translations, and vague motivational titles.
 
 Punctuation serves the thought. A semicolon is acceptable when it connects genuinely related clauses. Repeated semicolons often signal that separate ideas need separate sentences, a clearer relationship, or different locations. Replacing every semicolon with a period is not an editorial method.
 
@@ -278,6 +282,8 @@ Review result and learner observations:
 ```
 
 ## 11. What counts as good enough to release
+
+Run `npm run check:release`. The content manifest must cover the exact release files and include source, terminology, mathematical, and clarity review. A passing program cannot certify the semantic truth of a review record; reviewers must actually inspect sources. Unreviewed legacy content is not grandfathered in. The prior 24 October source-review statement for the three new problems and glossary does not establish compliance with the new policy.
 
 Assess the relevant rows below as **pass**, **fail**, **not checked**, or **not applicable with a reason**. Attach enough evidence to make the result credible. A known serious mathematical error, data-loss risk, inaccessible essential action, or broken primary flow blocks release of the affected change. Hide or disable an incomplete optional feature rather than presenting it as ready.
 

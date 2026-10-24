@@ -226,6 +226,55 @@
       "pages": [],
       "note": "מספר עמוד ה־PDF גדול בשניים ממספר העמוד המודפס."
     },
+    "guide-1": {
+      "id": "guide-1",
+      "label": "מדריך הקורס — פרק 1",
+      "path": "Course Guide Chapters/Course Guide - Chapter 1.pdf",
+      "kind": "guide",
+      "pages": []
+    },
+    "guide-2": {
+      "id": "guide-2",
+      "label": "מדריך הקורס — פרק 2",
+      "path": "Course Guide Chapters/Course Guide - Chapter 2.pdf",
+      "kind": "guide",
+      "pages": []
+    },
+    "guide-3": {
+      "id": "guide-3",
+      "label": "מדריך הקורס — פרק 3",
+      "path": "Course Guide Chapters/Course Guide - Chapter 3.pdf",
+      "kind": "guide",
+      "pages": []
+    },
+    "guide-5": {
+      "id": "guide-5",
+      "label": "מדריך הקורס — פרק 5",
+      "path": "Course Guide Chapters/Course Guide - Chapter 5.pdf",
+      "kind": "guide",
+      "pages": []
+    },
+    "guide-7": {
+      "id": "guide-7",
+      "label": "מדריך הקורס — פרק 7",
+      "path": "Course Guide Chapters/Course Guide - Chapter 7.pdf",
+      "kind": "guide",
+      "pages": []
+    },
+    "book-1": {
+      "id": "book-1",
+      "label": "ספר הקורס — פרק 1",
+      "path": "Course Book Chapters/Course Book - Chapter 1.pdf",
+      "kind": "book",
+      "pages": []
+    },
+    "book-master": {
+      "id": "book-master",
+      "label": "ספר הקורס — הקובץ שסופק בשם Course Book.pdf",
+      "path": "Course Book.pdf",
+      "kind": "book",
+      "pages": []
+    },
     "book-2": {
       "id": "book-2",
       "label": "ספר הקורס — פרק 2: תוחלת",

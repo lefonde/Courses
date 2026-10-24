@@ -1,4 +1,4 @@
-name: Planning regression tests
+name: Software tests and course-source review
 on:
   pull_request:
   push:
@@ -6,6 +6,16 @@ on:
 permissions:
   contents: read
 jobs:
+  course-content:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-publication.cjs --revision "$GITHUB_SHA"
   test:
     runs-on: ubuntu-latest
     steps:

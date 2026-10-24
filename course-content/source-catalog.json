@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "2026-10-24.1",
+  "note": "Supplied course files only. Catalog membership is not content approval. Student solutions are excluded. Lecture notes may contain handwriting/transcription errors. Printed exam questions are distinguished from student answers in the same scan. Private source PDFs and absolute paths are not published.",
+  "sources": [
+    {
+      "id": "exam-sources-01",
+      "sourceType": "official-lecturer-material",
+      "document": "מבחן 22902 - דף נוסחאות.pdf",
+      "sha256": "1b31d86154e6c942618909eb69edf070b32b0048fdbb6975412e4567946ea144"
+    },
+    {
+      "id": "exam-sources-02",
+      "sourceType": "official-exam",
+      "document": "מבחן 22902 - שאלון לדוגמא.pdf",
+      "sha256": "4f1594a482b0245ff36d0941915b1246cc2541e0476066a2eb1dbe6ed01d7fa2"
+    },
+    {
+      "id": "exam-sources-03",
+      "sourceType": "official-solution",
+      "document": "ת כדורים וסלים מאוזנים - הערכת זנב - פתרון לדוגמא.pdf",
+      "sha256": "b41410fe752340221658c24e57f9da5bf80302bac6e5b692a38ae344f93a4849"
+    },
+    {
+      "id": "exam-sources-04",
+      "sourceType": "official-solution",
+      "document": "ת ספיקות - קרוב מבוסס דה-רנדומיזציה - אי תלות חלקית - פתרון לדוגמא.pdf",
+      "sha256": "99223ea75a630ba3415518e2be6867c8449b4bb2999579925e9efe21039f9c72"
+    },
+    {
+      "id": "exam-sources-05",
+      "sourceType": "official-solution",
+      "document": "ת שרשרת מרקוב - קיום מצב נשנה - פתרון לדוגמא.pdf",
+      "sha256": "b518441a192948cb01aa9ca92b7f06136f77d587a0d1892bda44d156ef8f5cd4"
+    },
+    {
+      "id": "exam-sources-06",
+      "sourceType": "official-lecturer-material",
+      "document": "לקראת המבחן - הערות מרצה.pdf",
+      "sha256": "cccdf69311bf0f8f8b6ff8adb738fe30d8d6de0505b33797d0a5693432f5cfa1"
+    },
+    {
+      "id": "exams-01",
+      "sourceType": "official-exam",
+      "document": "2021א מועד 77.pdf",
+      "sha256": "a46a5fd12fe9e62f683486277c2fe0a790a6ed84073ea84c22b09b3594161cc5"
+    },
+    {
+      "id": "exams-02",
+      "sourceType": "official-exam",
+      "document": "2021א מועד 99.pdf",
+      "sha256": "1be0a12fb59185262ea95cc8f0b67a92814815d527204180849c59c03e878a38"
+    },
+    {
+      "id": "exams-03",
+      "sourceType": "official-exam",
+      "document": "2021ג מועד 91.pdf",
+      "sha256": "3f0b9201fa0f43217a162e6e6e894517f4dbd7a3457b7e69ab3fccc84f62c9fa"
+    },
+    {
+      "id": "exams-04",
+      "sourceType": "official-exam",
+      "document": "2022ג מועד 84.pdf",
+      "sha256": "4236d75137bc4ea88e90f8212f1a442957756f54867e725f99229e709f1401b2"
+    },
+    {
+      "id": "exams-05",
+      "sourceType": "official-exam",
+      "document": "בחינה ארכיונית — exams-05",
+      "sha256": "8c6cde035928af7c7cb3e10a470496ba9a067a9a864a9f853d53b23490bfe2c9"
+    },
+    {
+      "id": "exams-06",
+      "sourceType": "official-exam",
+      "document": "קיץ 2021 מועד ראשון.pdf",
+      "sha256": "21a193e7ba9a2efa7d2d88261feac70c7be14a84cffae288521107d56094f88a"
+    },
+    {
+      "id": "exams-07",
+      "sourceType": "official-exam",
+      "document": "קיץ 2022 מועד שני.pdf",
+      "sha256": "e95bae4c134b4a18c0d398999d2084cb9fe1ade43ab47431df8cdac5d5fdae4f"
+    },
+    {
+      "id": "exams-08",
+      "sourceType": "official-exam",
+      "document": "קיץ 2023 מועד ראשון.pdf",
+      "sha256": "dfcc263120d0f840ee739912e0535bcdc5e33309f444a7c20a4d74558697a4bd"
+    },
+    {
+      "id": "book-guide-01",
+      "sourceType": "book",
+      "document": "Course Book - Chapter 1.pdf",
+      "sha256": "9ee14b2c36de7078380041f0b34ffc79fe4b00af1c8d617028ffd8d1deb0cc95"
+    },
+    {
+      "id": "book-guide-02",
+      "sourceType": "book",
+      "document": "Course Book - Chapter 2.pdf",
+      "sha256": "1c65745debe6df21057c0684a762f683ff2f39a4268c108d7b2d91909c41e34b"
+    },
+    {
+      "id": "book-guide-03",
+      "sourceType": "book",
+      "document": "Course Book - Chapter 3.pdf",
+      "sha256": "1af8b58117a5d18122964a8bb71e5bff07084a165f0fd3d55b2dace7baf14800"
+    },
+    {
+      "id": "book-guide-04",
+      "sourceType": "book",
+      "document": "Course Book - Chapter 4.pdf",
+      "sha256": "f1ef997d05b98a45e7d9e15125dd75969d1e7be5e38aa41948c7fd2bc7f305dd"
+    },
+    {
+      "id": "book-guide-05",
+      "sourceType": "book",
+      "document": "Course Book - Chapter 5.pdf",
+      "sha256": "b4f13dfba7659afa3d7e870868c5e44124b6429c566019af09487b65051e3edf"
+    },
+    {
+      "id": "book-guide-06",
+      "sourceType": "book",
+      "document": "Course Book - Chapter 6.pdf",
+      "sha256": "2672ca07937a9f60440fc3fd7cb5f4247fe43c173313cb2f2a508347adcd8a69"
+    },
+    {
+      "id": "book-guide-07",
+      "sourceType": "book",
+      "document": "Course Book - Chapter 7.pdf",
+      "sha256": "1809679a0af8e9bf76d2fde72129392b1c0d93aa41348322f411cfe2d3e06eb0"
+    },
+    {
+      "id": "book-guide-08",
+      "sourceType": "guide",
+      "document": "Course Guide - Chapter 1.pdf",
+      "sha256": "051f1227bd3a169a0d7d487026cb2a762ecabecdc34202155d93d7f67efc8735"
+    },
+    {
+      "id": "book-guide-09",
+      "sourceType": "guide",
+      "document": "Course Guide - Chapter 2.pdf",
+      "sha256": "5dc23ba3937d2e9a63b01009ad6fbc6d3d300dcb7045abb8188eaf3a99d39b36"
+    },
+    {
+      "id": "book-guide-10",
+      "sourceType": "guide",
+      "document": "Course Guide - Chapter 3.pdf",
+      "sha256": "973e7800d025ad92e16ecc7cf72dc6ed0b5f974df809eab276f8733449e04596"
+    },
+    {
+      "id": "book-guide-11",
+      "sourceType": "guide",
+      "document": "Course Guide - Chapter 4.pdf",
+      "sha256": "d3c8c783f5144bcd0e1a171b5e6f0e5c7466d9b1d3cc272a24e6ebe1d42c6b08"
+    },
+    {
+      "id": "book-guide-12",
+      "sourceType": "guide",
+      "document": "Course Guide - Chapter 5.pdf",
+      "sha256": "868bc32f7256e9c45035c85c43b8adba545b121d504e3f269adcf0e39ca42062"
+    },
+    {
+      "id": "book-guide-13",
+      "sourceType": "guide",
+      "document": "Course Guide - Chapter 6.pdf",
+      "sha256": "5c75d44996a61e5c41b5aa94104efdff5f71cb1eed3ddbdfec8874e0caf1bb9b"
+    },
+    {
+      "id": "book-guide-14",
+      "sourceType": "guide",
+      "document": "Course Guide - Chapter 7.pdf",
+      "sha256": "f02c270d61740e83e963bc5fa1797828b0a054d548e1cb4b1db4c28afbd35879"
+    },
+    {
+      "id": "lectures-01",
+      "sourceType": "lecture",
+      "document": "אלגוריתמים אקראיים - שיעור 1.pdf",
+      "sha256": "56f15dc3c7ed5fa2d3931aba58211626422e584ee8335235a248a4d1c1a366d9"
+    },
+    {
+      "id": "lectures-02",
+      "sourceType": "lecture",
+      "document": "אלגוריתמים אקראיים - שיעור 2.pdf",
+      "sha256": "ed73e57eab466dd61fd81502fff7d838fb86335935db85c20aa7749da6692519"
+    },
+    {
+      "id": "lectures-03",
+      "sourceType": "lecture",
+      "document": "אלגוריתמים אקראיים - שיעור 3.pdf",
+      "sha256": "db9525267fe9f14f041dd1cde6fc15571cf64c80ac1f6fe76c7a8c65dd573bb2"
+    },
+    {
+      "id": "lectures-04",
+      "sourceType": "lecture",
+      "document": "אלגוריתמים אקראיים - שיעור 4.pdf",
+      "sha256": "0589c9ecd9756553d1680bf173d8809d2a7ded8b1f87ba6dd1e52bba980afbb3"
+    },
+    {
+      "id": "lectures-05",
+      "sourceType": "lecture",
+      "document": "אלגוריתמים אקראיים - שיעור 5.pdf",
+      "sha256": "a346a4047d8ca152f0022b8f4b579526ca15bd7af65a1f887e4423bc8748c466"
+    },
+    {
+      "id": "lectures-06",
+      "sourceType": "lecture",
+      "document": "אלגוריתמים אקראיים - שיעור 6.pdf",
+      "sha256": "236289efe678fe3ac85139bce93ad448566639de668bae91fcf86bb01414a54b"
+    },
+    {
+      "id": "homework-04",
+      "sourceType": "official-homework",
+      "document": "מטלה 11 - ניתוח מאורעות, חישוב תוחלות.pdf",
+      "sha256": "424a5c8d3bd8b38d52ab690081c1bd5702f1b382a8fab8d70994e6c639895fff"
+    },
+    {
+      "id": "homework-05",
+      "sourceType": "official-homework",
+      "document": "מטלה 12 - הערכות זנב.pdf",
+      "sha256": "cb463cabe54e564eec2e9aafb1e028734d4566337a1655b227380e5f370a78d3"
+    },
+    {
+      "id": "homework-06",
+      "sourceType": "official-homework",
+      "document": "מטלה 13 - דה-רנדומיזציה, שיטת התיקונים.pdf",
+      "sha256": "645648b0a83a5d74eb5ace458e39fe04e940fcfa06b91cbcba2ab41587e0e61f"
+    },
+    {
+      "id": "homework-07",
+      "sourceType": "official-homework",
+      "document": "מטלה 14 - דה-רנדומיזציה (קרוב בעיות קשות).pdf",
+      "sha256": "6c370bf2faafc0f4d6e6d681af36969da712892755932f29334a61c2ad9c6fd4"
+    },
+    {
+      "id": "homework-08",
+      "sourceType": "official-homework",
+      "document": "מטלה 15 - שרשראות מרקוב.pdf",
+      "sha256": "ca4bf68b78dfe4153505d07fb2c76157042e6b8a8ccd46b1602c9f5090a0c12d"
+    },
+    {
+      "id": "book-master",
+      "sourceType": "book",
+      "document": "Course Book.pdf",
+      "sha256": "fa91d7aab14550d10399b835a22537558bb9f81d5d4a8013738bcab4c0a05687"
+    },
+    {
+      "id": "guide-master",
+      "sourceType": "guide",
+      "document": "Course Guide.pdf",
+      "sha256": "62b07353fe0124604a603ce4bf85ceaed892e1528dc78d6225c9a37352370ba6"
+    }
+  ]
+}
