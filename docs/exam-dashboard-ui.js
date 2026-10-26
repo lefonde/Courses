@@ -18,7 +18,7 @@ window.StudyExamDashboard = (() => {
     if (pending) return pending;
     pending = (async () => {
       try {
-        const response = await fetch('./data/exam-dashboard.json?v=20261023-problems1');
+        const response = await fetch('./data/exam-dashboard.json?v=20261025-fingerprinting-import1');
         if (!response.ok) throw new Error('רשימת השאלות לא נטענה.');
         const next = await response.json();
         if (!Array.isArray(next.families) || !next.families.length) throw new Error('רשימת השאלות אינה זמינה.');

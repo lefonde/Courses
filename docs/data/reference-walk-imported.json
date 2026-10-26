@@ -1,0 +1,140 @@
+[
+  {
+    "id": "walk-stationary-distribution",
+    "title": "התפלגות סטציונרית",
+    "kind": "הגדרה",
+    "summary": "וקטור הסתברויות גבולי \\(\\pi\\) הנשמר תחת פעולת מטריצת המעברים של השרשרת (\\(\\pi = \\pi P\\)). בשרשרת ארגודית התפלגות זו יחידה, ומשמעותה היא תוחלת הזמן היחסי שההילוך מבלה בכל מצב.",
+    "body": "<p>וקטור הסתברויות גבולי \\(\\pi\\) הנשמר תחת פעולת מטריצת המעברים של השרשרת (\\(\\pi = \\pi P\\)). בשרשרת ארגודית התפלגות זו יחידה, ומשמעותה היא תוחלת הזמן היחסי שההילוך מבלה בכל מצב.</p>",
+    "aliases": [
+      "ההתפלגות הסטציונרית של השרשרת",
+      "משוואות ההתפלגות הסטציונרית",
+      "התפלגות סטציונרית",
+      "ההתפלגות הסטציונרית",
+      "ההתפלגויות הסטציונריות",
+      "משוואת ההתפלגות הסטציונרית",
+      "ההתפלגות המלאה"
+    ],
+    "referenceIds": [
+      "walk-stationary-distribution",
+      "walk-markov-theorem",
+      "walk-chain-conditions",
+      "walk-hitting-return-time"
+    ],
+    "related": [
+      "walk-markov-theorem",
+      "walk-chain-conditions",
+      "walk-hitting-return-time"
+    ],
+    "sources": [],
+    "lessonId": "directed-reset-walk",
+    "lessonTitle": "הילוך מקרי בגרף מכוון — התפלגות סטציונרית ותוחלת זמן הגעה",
+    "summaryIsBody": true,
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "walk-markov-theorem",
+    "title": "המשפט המרכזי של שרשראות מרקוב",
+    "kind": "משפט",
+    "summary": "משפט הקובע כי לכל שרשרת מרקוב סופית, אי־פריקה ובלתי־מחזורית, קיימת התפלגות סטציונרית יחידה \\(\\pi\\). בנוסף, ההתפלגות הופכית לתוחלת זמן החזרה לכל מצב \\(v\\) (\\(h_{v,v} = 1/\\pi_v\\)).",
+    "body": "<p>משפט הקובע כי לכל שרשרת מרקוב סופית, אי־פריקה ובלתי־מחזורית, קיימת התפלגות סטציונרית יחידה \\(\\pi\\). בנוסף, ההתפלגות הופכית לתוחלת זמן החזרה לכל מצב \\(v\\) (\\(h_{v,v} = 1/\\pi_v\\)).</p>",
+    "aliases": [
+      "המשפט המרכזי של שרשראות מרקוב",
+      "לפי המשפט",
+      "המשפט המרכזי",
+      "המשפט"
+    ],
+    "referenceIds": [
+      "walk-stationary-distribution",
+      "walk-markov-theorem",
+      "walk-chain-conditions",
+      "walk-hitting-return-time"
+    ],
+    "related": [
+      "walk-stationary-distribution",
+      "walk-chain-conditions",
+      "walk-hitting-return-time"
+    ],
+    "sources": [],
+    "lessonId": "directed-reset-walk",
+    "lessonTitle": "הילוך מקרי בגרף מכוון — התפלגות סטציונרית ותוחלת זמן הגעה",
+    "summaryIsBody": true,
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "walk-chain-conditions",
+    "title": "אי־פריקות ובלתי־מחזוריות",
+    "kind": "הגדרה",
+    "summary": "התנאים לקיום התפלגות סטציונרית יחידה. \"אי־פריקה\" (Irreducible) פירושה שקיים מסלול מכל קדקוד לכל קדקוד אחר. \"בלתי־מחזורית\" (Aperiodic) פירושה שהמחזור המשותף המקסימלי לכל זמני החזרה הוא 1 (מובטח, למשל, כשקיימת לולאה עצמית בגרף).",
+    "body": "<p>התנאים לקיום התפלגות סטציונרית יחידה. \"אי־פריקה\" (Irreducible) פירושה שקיים מסלול מכל קדקוד לכל קדקוד אחר. \"בלתי־מחזורית\" (Aperiodic) פירושה שהמחזור המשותף המקסימלי לכל זמני החזרה הוא 1 (מובטח, למשל, כשקיימת לולאה עצמית בגרף).</p>",
+    "aliases": [
+      "אי־פריקה ובלתי־מחזורית (אפריודית)",
+      "אי־פריקות",
+      "אי־פריקה",
+      "בלתי־מחזוריות",
+      "בלתי־מחזורית (אפריודית)",
+      "בלתי־מחזורית"
+    ],
+    "referenceIds": [
+      "walk-stationary-distribution",
+      "walk-markov-theorem",
+      "walk-chain-conditions",
+      "walk-hitting-return-time"
+    ],
+    "related": [
+      "walk-stationary-distribution",
+      "walk-markov-theorem",
+      "walk-hitting-return-time"
+    ],
+    "sources": [],
+    "lessonId": "directed-reset-walk",
+    "lessonTitle": "הילוך מקרי בגרף מכוון — התפלגות סטציונרית ותוחלת זמן הגעה",
+    "summaryIsBody": true,
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "walk-hitting-return-time",
+    "title": "זמן חזרה / תוחלת הגעה (\\(h_{u,v}\\))",
+    "kind": "הגדרה",
+    "summary": "תוחלת מספר הצעדים המינימלי הנדרש להגיע מקדקוד התחלה \\(u\\) לקדקוד יעד \\(v\\). אם \\(u=v\\), זהו זמן החזרה אל הקדקוד לאחר עזיבתו.",
+    "body": "<p>תוחלת מספר הצעדים המינימלי הנדרש להגיע מקדקוד התחלה \\(u\\) לקדקוד יעד \\(v\\). אם \\(u=v\\), זהו זמן החזרה אל הקדקוד לאחר עזיבתו.</p>",
+    "aliases": [
+      "זמן החזרה",
+      "תוחלת זמן ההגעה",
+      "תוחלת הגעה",
+      "זמן ההגעה",
+      "זמן חזרה"
+    ],
+    "referenceIds": [
+      "walk-stationary-distribution",
+      "walk-markov-theorem",
+      "walk-chain-conditions",
+      "walk-hitting-return-time"
+    ],
+    "related": [
+      "walk-stationary-distribution",
+      "walk-markov-theorem",
+      "walk-chain-conditions"
+    ],
+    "sources": [],
+    "lessonId": "directed-reset-walk",
+    "lessonTitle": "הילוך מקרי בגרף מכוון — התפלגות סטציונרית ותוחלת זמן הגעה",
+    "summaryIsBody": true,
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

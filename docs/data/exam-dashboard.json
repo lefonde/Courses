@@ -12,7 +12,7 @@
     "guideExercises": 64,
     "bookExercises": 110,
     "prerequisiteFamilies": 16,
-    "readyPages": 3,
+    "readyPages": 4,
     "scenarios": 6
   },
   "bands": [
@@ -669,8 +669,8 @@
       ],
       "caveats": [],
       "variants": [],
-      "lessonUrl": null,
-      "contentStatus": "planned"
+      "lessonUrl": "#exam-problem/equality-fingerprinting-primes",
+      "contentStatus": "ready"
     },
     {
       "id": "gni-interactive-proof",

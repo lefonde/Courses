@@ -37,6 +37,8 @@
 .problem-body .problem-note,.problem-body aside,.problem-body .problem-callout{border-inline-start:3px solid var(--gold);padding:14px 20px;background:var(--panel);margin:22px 0;border-radius:6px}
 .problem-body table{border-collapse:collapse;max-width:100%;width:100%;font-size:14px;margin:20px 0}
 .problem-body th,.problem-body td{text-align:start;border-bottom:1px solid var(--line);padding:10px}
+.problem-table-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}
+.problem-table-scroll table{min-width:650px}
 .problem-body svg{display:block;max-width:100%;height:auto;margin:20px auto}
 .problem-body .text-btn{color:var(--accent);text-decoration:underline;text-underline-offset:4px;line-height:1.8}
 .problem-body figure{margin:20px 0}.problem-body figcaption{font-size:13px;color:var(--muted)}

@@ -4,7 +4,8 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function prose(value){
     let result='',start=0;
-    for(const match of String(value).matchAll(/[A-Za-z0-9Α-Ωα-ω][A-Za-z0-9Α-Ωα-ω–-]*(?:\.[A-Za-z0-9]+)*/g)){
+    // Keep a multiword Latin source name in one LTR span inside Hebrew prose.
+    for(const match of String(value).matchAll(/[A-Za-z0-9Α-Ωα-ω][A-Za-z0-9Α-Ωα-ω–-]*(?:\.[A-Za-z0-9]+)*(?:[ \t]+[A-Za-z0-9Α-Ωα-ω][A-Za-z0-9Α-Ωα-ω–-]*(?:\.[A-Za-z0-9]+)*)*/g)){
       result+=escape(value.slice(start,match.index))+`<bdi dir="ltr">${escape(match[0])}</bdi>`;
       start=match.index+match[0].length;
     }

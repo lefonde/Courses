@@ -28,6 +28,8 @@
 .reference-bank :focus-visible,.reference-entry :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .reference-excerpt{margin:12px 0;padding:12px 16px;background:var(--panel-2);border-inline-start:2px solid var(--accent);border-radius:4px;color:var(--text)}
 .reference-excerpt>span{font-size:11px;color:var(--muted)}.reference-excerpt blockquote{margin:5px 0;line-height:1.9;overflow-wrap:anywhere}
+.reference-card .reference-scope{font-size:12px;margin-top:14px;padding-top:10px;border-top:1px solid var(--line)}
+.reference-scope a{color:var(--accent);text-decoration:none}
 @media(max-width:760px){.reference-results{grid-template-columns:1fr}.reference-card{padding:18px}.reference-entry h1{font-size:29px}.reference-lead{font-size:16px}.reference-search{gap:12px;grid-template-columns:minmax(0,1fr) 135px}.reference-search input,.reference-search select{font-size:16px}}
 @media(max-width:460px){.reference-search{grid-template-columns:1fr}.reference-tooltip{padding:14px 16px;font-size:13px}.reference-tooltip h2{font-size:17px}}
 @media(hover:none){.reference-hover-note{display:none}.reference-touch-note{display:inline}.reference-term{cursor:pointer}}

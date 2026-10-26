@@ -1,9 +1,9 @@
 /* One reading route per problem; learning marks share the dashboard's store. */
 'use strict';
 window.StudyExamProblems=(()=>{
-  const version='20261024-course2', cache=new Map(), pending=new Map(), errors=new Map(), pendingReports=new Map();
+  const version='20261025-fingerprinting-import1', cache=new Map(), pending=new Map(), errors=new Map(), pendingReports=new Map();
   let manifest;
-  const viewKey=key=>'erdos:exam-problem:view:v1:'+key;
+  const viewKey=key=>'erdos:exam-problem:view:v1:'+key+(cache.get(key)?.meta.viewVersion?':'+cache.get(key).meta.viewVersion:'');
   function readView(key){try{return JSON.parse(sessionStorage.getItem(viewKey(key))||'[]');}catch{return [];}}
   const h=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const id=()=>location.hash.slice('#exam-problem/'.length).split('/')[0];
@@ -32,21 +32,21 @@ window.StudyExamProblems=(()=>{
       <a class="problem-back" href="#exam-map">→ חזרה למפת השאלות</a>
       <header class="problem-heading"><div class="problem-kicker"><span>משפחה ${family.rank} בדירוג</span><span>${StudyMath.text(family.themeLabel)}</span><span><bdi>${family.score}/100</bdi> נקודות עדיפות</span></div>
         <h1 id="problem-title" tabindex="-1">${StudyMath.text(meta.title||family.title)}</h1><p class="problem-lead">${h(meta.lead)}</p>
-        <div class="problem-session"><span>כ־<bdi>${h(meta.minutes)}</bdi> דקות, כולל ניסיון פתרון</span><span>רמזים ופתרונות לפי הצורך</span></div>
+        <div class="problem-session">${meta.minutes?`<span>כ־<bdi>${h(meta.minutes)}</bdi> דקות, כולל ניסיון פתרון</span>`:''}<span>רמזים ופתרונות לפי הצורך</span></div>
         <a class="button primary" href="#exam-problem/${h(key)}" data-problem-jump="problem-basic">לתחילת התרגול <span aria-hidden="true">↓</span></a>
-        <p class="problem-instruction">כדאי לעבוד עם דף ועט. נסו תחילה את התרגיל הבסיסי; אם חסר כלי, חזרו להסבר שבהמשך העמוד. הרמזים והפתרונות נפתחים רק לפי בחירתכם.</p>
+        <p class="problem-instruction">${h(meta.instruction||'כדאי לעבוד עם דף ועט. נסו תחילה את התרגיל הבסיסי; אם חסר כלי, חזרו להסבר שבהמשך העמוד. הרמזים והפתרונות נפתחים רק לפי בחירתכם.')}</p>
         ${StudyReference.help()}
       </header>
-      <nav class="problem-nav" aria-label="בתוך דף הלימוד">${[['basic','תרגיל בסיסי'],['tools','כלים והגדרות'],['exam','שאלת בחינה'],['check','בדיקת הבנה'],['sources','מקורות']].map(([section,label])=>`<button type="button" data-problem-jump="problem-${section}">${label}</button>`).join('')}</nav>
+      <nav class="problem-nav" aria-label="בתוך דף הלימוד">${(meta.sections||[['basic','תרגיל בסיסי'],['tools','כלים והגדרות'],['exam','שאלת בחינה'],['check','בדיקת הבנה'],['sources','מקורות']]).map(([section,label])=>`<button type="button" data-problem-jump="problem-${h(section)}">${h(label)}</button>`).join('')}</nav>
       <div class="problem-body">${html}</div>
       <footer class="problem-finish"><div><h2>סיימתם את התרגול?</h2><p>סמנו ״למדתי״ לאחר שעברתם על שני התרגילים והבנתם את דרך הפתרון. הסימון מתעד למידה; פתרון חוזר ללא עזרה הוא בדיקה נפרדת.</p><label class="problem-learned"><input id="problem-learned" type="checkbox" data-problem-learned="${h(key)}" ${learned?'checked':''} ${pendingReports.has(key)?'disabled':''}><span>למדתי את משפחת השאלות הזאת</span></label><p id="problem-save-note" class="problem-save-note" role="status">${pendingReports.has(key)?'שומרים את סימון הלמידה…':learned?'מסומן כנלמד במפת השאלות.':'הסימון יישמר במפת השאלות ובגיבוי ההתקדמות.'}</p></div>
-        <div class="problem-bottom-links"><a class="button" href="#exam-map">חזרה למפה</a>${next?`<a href="#exam-problem/${h(next.id)}">למשפחה הבאה בדירוג ←</a>`:'<span>שלושת הדפים הראשונים מוכנים לעיונך.</span>'}</div>
+        <div class="problem-bottom-links"><a class="button" href="#exam-map">חזרה למפה</a>${next?`<a href="#exam-problem/${h(next.id)}">למשפחה הבאה בדירוג ←</a>`:'<span>דפי לימוד נוספים יתווספו בהמשך.</span>'}</div>
       </footer></article>`;
   }
   function afterRender(){
     const entry=cache.get(id());if(!entry)return;
     document.title=`erdős · ${entry.meta.title||entry.family.title}`;
-    StudyReference.enhance(document.querySelector('.problem-body'),{newWindow:true});
+    StudyReference.enhance(document.querySelector('.problem-body'),{newWindow:true,referenceIds:entry.meta.referenceIds||null});
     StudyMath.render(document.querySelector('.problem-body'));
     const opened=readView(id());
     document.querySelectorAll('.problem-body details').forEach((detail,index)=>{detail.dataset.problemDisclosure=String(index);detail.open=Array.isArray(opened)&&opened.includes(index);});

@@ -8,6 +8,10 @@ const {execFileSync} = require('node:child_process');
 const {checkRepository, validateManifest, canonicalContentHash, POLICY_VERSION} = require('./check-course-content.cjs');
 const AUTH_PATH = 'course-content/online-review-authorization.json';
 const AUTH_HASH = '9b0695f4f552b485121217785e1f6b1ce1d9a24961d27526d47f00f42ff814b4';
+// A separate, bounded publication request; it does not refresh the 24-Oct record.
+const SITE_RELEASE_PATH = 'course-content/site-release-2026-10-26.json';
+const SITE_RELEASE_HASH = '55a55a9d09cd3637464f79f2c38de90712bcf622c9771fad10748bfb4a1a93d3';
+const SITE_RELEASE_BASELINE = '4ff46f4c6fb9375bdb5fa9162c99c7f98c59fe87';
 const MANIFEST_PATH = 'course-content/review-status.json';
 const CATALOG_PATH = 'course-content/source-catalog.json';
 const APPROVED = [
@@ -79,6 +83,42 @@ function validateAuthorization({authorization: a, files, baselineFiles, manifest
   return {ok:errors.length === 0, errors, mode:'authorized-online-review', reviewedContentFiles:result.approvedFiles, legacyApprovalGranted:false};
 }
 
+function readSiteReleaseAuthorization(bytes) {
+  if (hash(SITE_RELEASE_PATH, bytes) !== SITE_RELEASE_HASH) throw new Error('The 26-Oct authorization differs from the exact user-requested snapshot; do not refresh it for later edits');
+  return JSON.parse(bytes);
+}
+
+function validateSiteRelease({authorization: a, files, baselineFiles, manifest, catalog, manifestBytes, catalogBytes, remoteBase}) {
+  const errors = [], fail = message => errors.push(message);
+  if (!a || a.schemaVersion !== 1 || a.kind !== 'user-requested-site-release' || a.policyVersion !== POLICY_VERSION) return {ok:false, errors:['Missing or unsupported site-release authorization']};
+  if (a.requestQuote !== 'push the current site' || a.requestDate !== '2026-10-26' || typeof a.scope !== 'string' || !a.scope.trim()) fail('Authorization must record the specific 26-Oct user request and scope');
+  if (a.baselineCommit !== SITE_RELEASE_BASELINE) fail('Site release must use the previously published baseline');
+  if (remoteBase !== undefined && remoteBase !== SITE_RELEASE_BASELINE) fail('The publishing branch has moved since the authorized baseline; do not overwrite it');
+  if (a.contentReviewPerformed !== false || typeof a.technicalReview !== 'string' || !a.technicalReview.trim()) fail('Publication must distinguish technical verification from unperformed content review');
+  if (a.reviewManifestHash !== hash(MANIFEST_PATH, manifestBytes) || a.sourceCatalogHash !== hash(CATALOG_PATH, catalogBytes)) fail('Review records or source catalog changed after authorization');
+  const authorized = new Map();
+  if (!Array.isArray(a.files)) fail('Published snapshot requires a files array');
+  for (const row of Array.isArray(a.files) ? a.files : []) {
+    if (!row || !safePath(row.path) || !/^[a-f0-9]{64}$/.test(row.sha256 || '') || authorized.has(row.path)) {fail('Invalid or duplicate snapshot entry'); continue;}
+    authorized.set(row.path, row.sha256);
+  }
+  if (!sameSet([...authorized.keys()], [...files.keys()])) fail('Published file inventory differs from the authorized snapshot');
+  const changed = [];
+  for (const [name, bytes] of files) {
+    if (!safePath(name)) fail('Invalid published path');
+    const current = hash(name, bytes);
+    if (current !== authorized.get(name)) fail(`${name}: differs from the authorized snapshot`);
+    if (!baselineFiles.has(name) || current !== hash(name, baselineFiles.get(name))) changed.push(name);
+  }
+  if (!Array.isArray(a.changedPaths) || a.changedPaths.some(name => !safePath(name)) || !sameSet(a.changedPaths, changed)) fail('Changed files differ from the authorized release scope');
+  if (!sameSet(a.deletedPaths, []) || [...baselineFiles.keys()].some(name => !files.has(name))) fail('This release does not authorize deleting published files');
+  const full = validateManifest(manifest, new Map([...files].filter(([name]) => !name.startsWith('docs/vendor/'))), catalog);
+  // Only pending status is deferred. Hashes, registration, source catalog and
+  // any existing approval must still pass their normal structural checks.
+  errors.push(...full.errors.filter(error => !/: status (needs-review|blocked) prevents publication$/.test(error)));
+  return {ok:errors.length === 0, errors, mode:'authorized-site-release', contentReviewPerformed:false, legacyApprovalGranted:false};
+}
+
 function checkPublication({root = path.resolve(__dirname, '..'), revision, remoteBase} = {}) {
   const strict = checkRepository({root, revision});
   if (strict.ok) return {...strict, mode:'full-course-review'};
@@ -131,7 +171,15 @@ function checkPublication({root = path.resolve(__dirname, '..'), revision, remot
       };
       walk('docs');
     }
-    const manifestBytes = read(MANIFEST_PATH), catalogBytes = read(CATALOG_PATH), authorizationBytes = read(AUTH_PATH);
+    const manifestBytes = read(MANIFEST_PATH), catalogBytes = read(CATALOG_PATH);
+    const hasSiteRelease = revision
+      ? git(['ls-tree','--name-only',revision,'--',SITE_RELEASE_PATH]).toString('utf8').trim() === SITE_RELEASE_PATH
+      : fs.existsSync(path.join(root, SITE_RELEASE_PATH));
+    if (hasSiteRelease) {
+      const authorization = readSiteReleaseAuthorization(read(SITE_RELEASE_PATH));
+      return validateSiteRelease({authorization, files, baselineFiles:readTree(SITE_RELEASE_BASELINE), manifest:JSON.parse(manifestBytes), catalog:JSON.parse(catalogBytes), manifestBytes, catalogBytes, remoteBase});
+    }
+    const authorizationBytes = read(AUTH_PATH);
     if (hash(AUTH_PATH, authorizationBytes) !== AUTH_HASH) throw new Error('The dated user authorization was changed; it must not be refreshed to permit another revision');
     return validateAuthorization({authorization:JSON.parse(authorizationBytes), files, baselineFiles:readTree(BASELINE), manifest:JSON.parse(manifestBytes), catalog:JSON.parse(catalogBytes), manifestBytes, catalogBytes, remoteBase});
   } catch(error) {return {ok:false,errors:[`Online-review authorization failed: ${error.message}`]};}
@@ -146,8 +194,8 @@ function main(args) {
   }
   const result = checkPublication(options);
   if (!result.ok) {console.error(result.errors.join('\n'));return 1;}
-  console.log(result.mode === 'authorized-online-review' ? 'Exact online-review snapshot authorized by the user. Six content files reviewed; legacy course approval is NOT granted.' : 'Full course-source publication check passed.');
+  console.log(result.mode === 'authorized-site-release' ? 'Exact current-site snapshot authorized by the user on 26-Oct. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-online-review' ? 'Exact online-review snapshot authorized by the user. Six content files reviewed; legacy course approval is NOT granted.' : 'Full course-source publication check passed.');
   return 0;
 }
-module.exports = {validateAuthorization, checkPublication, publicationContentHash:hash, AUTH_PATH, APPROVED, INTEGRATION, BASELINE, REQUEST};
+module.exports = {validateAuthorization, validateSiteRelease, readSiteReleaseAuthorization, checkPublication, publicationContentHash:hash, AUTH_PATH, APPROVED, INTEGRATION, BASELINE, REQUEST, SITE_RELEASE_PATH, SITE_RELEASE_BASELINE};
 if (require.main === module) {try {process.exitCode=main(process.argv.slice(2));} catch(error) {console.error(error.message);process.exitCode=1;}}

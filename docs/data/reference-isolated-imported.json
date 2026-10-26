@@ -1,0 +1,94 @@
+[
+  {
+    "id": "isolated-linearity-expectation",
+    "title": "לינאריות התוחלת",
+    "kind": "כלי",
+    "summary": "תכונה הקובעת שתוחלת סכום של משתנים מקריים שווה לסכום התוחלות שלהם. תכונה זו מתקיימת תמיד, גם כאשר המשתנים תלויים זה בזה. (Course Guide Chapter 3, עמ' 65).",
+    "body": "<p>תכונה הקובעת שתוחלת סכום של משתנים מקריים שווה לסכום התוחלות שלהם. תכונה זו מתקיימת תמיד, גם כאשר המשתנים תלויים זה בזה. (Course Guide Chapter 3, עמ' 65).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "לינאריות התוחלת"
+    ],
+    "referenceIds": [
+      "isolated-linearity-expectation",
+      "isolated-markov-inequality",
+      "isolated-imported-vertex"
+    ],
+    "related": [
+      "isolated-markov-inequality",
+      "isolated-imported-vertex"
+    ],
+    "sources": [],
+    "lessonId": "random-graph-isolated-vertices",
+    "lessonTitle": "היעדר קודקודים מבודדים מעל הסף במודל \\(G(n,p)\\)",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "isolated-markov-inequality",
+    "title": "אי-שוויון מרקוב",
+    "kind": "כלי",
+    "summary": "חסם המקשר בין תוחלת של משתנה מקרי אי-שלילי להסתברות שהוא יעלה על ערך מסוים. בניסוחו הנפוץ לגרפים: ההסתברות שקיים לפחות אירוע אחד (\\(X \\ge 1\\)) קטנה או שווה לתוחלת המספר הכולל של אירועים אלו (\\(E[X]\\)). (מרומז ב-Course Guide Chapter 3, עמ' 65).",
+    "body": "<p>חסם המקשר בין תוחלת של משתנה מקרי אי-שלילי להסתברות שהוא יעלה על ערך מסוים. בניסוחו הנפוץ לגרפים: ההסתברות שקיים לפחות אירוע אחד (\\(X \\ge 1\\)) קטנה או שווה לתוחלת המספר הכולל של אירועים אלו (\\(E[X]\\)). (מרומז ב-Course Guide Chapter 3, עמ' 65).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "אי-שוויון מרקוב",
+      "אי־שוויון מרקוב",
+      "באי-שוויון מרקוב",
+      "באי־שוויון מרקוב"
+    ],
+    "referenceIds": [
+      "isolated-linearity-expectation",
+      "isolated-markov-inequality",
+      "isolated-imported-vertex"
+    ],
+    "related": [
+      "isolated-linearity-expectation",
+      "isolated-imported-vertex"
+    ],
+    "sources": [],
+    "lessonId": "random-graph-isolated-vertices",
+    "lessonTitle": "היעדר קודקודים מבודדים מעל הסף במודל \\(G(n,p)\\)",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "isolated-imported-vertex",
+    "title": "קודקוד מבודד",
+    "kind": "הגדרה",
+    "summary": "קודקוד בגרף שדרגתו היא 0, כלומר אינו מחובר באף קשת לאף קודקוד אחר בגרף. במודל \\(G(n,p)\\), ההסתברות לכך שקודקוד ספציפי יהיה מבודד היא \\((1-p)^{n-1}\\).",
+    "body": "<p>קודקוד בגרף שדרגתו היא 0, כלומר אינו מחובר באף קשת לאף קודקוד אחר בגרף. במודל \\(G(n,p)\\), ההסתברות לכך שקודקוד ספציפי יהיה מבודד היא \\((1-p)^{n-1}\\).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "קודקוד מבודד",
+      "הקודקודים המבודדים",
+      "קודקודים מבודדים",
+      "קודקוד הוא מבודד",
+      "הקודקוד מבודד",
+      "הקודקוד המבודד"
+    ],
+    "referenceIds": [
+      "isolated-linearity-expectation",
+      "isolated-markov-inequality",
+      "isolated-imported-vertex"
+    ],
+    "related": [
+      "isolated-linearity-expectation",
+      "isolated-markov-inequality"
+    ],
+    "sources": [],
+    "lessonId": "random-graph-isolated-vertices",
+    "lessonTitle": "היעדר קודקודים מבודדים מעל הסף במודל \\(G(n,p)\\)",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

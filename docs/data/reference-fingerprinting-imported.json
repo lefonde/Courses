@@ -1,0 +1,63 @@
+[
+  {
+    "id": "fingerprinting-imported-protocol",
+    "title": "פרוטוקול טביעת אצבע (Fingerprint)",
+    "kind": "הגדרה",
+    "summary": "שיטה לייצוג אובייקט גדול (כמו מחרוזת ארוכה) באמצעות ערך קטן הרבה יותר, על ידי הפעלת פונקציית גיבוב או חלוקה מודולרית. המטרה היא לחסוך בתקשורת על חשבון הסתברות קטנה לשגיאה.",
+    "body": "<p>שיטה לייצוג אובייקט גדול (כמו מחרוזת ארוכה) באמצעות ערך קטן הרבה יותר, על ידי הפעלת פונקציית גיבוב או חלוקה מודולרית. המטרה היא לחסוך בתקשורת על חשבון הסתברות קטנה לשגיאה.</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "אלגוריתם טביעת אצבע",
+      "פרוטוקול טביעת אצבע",
+      "אלגוריתם טביעת האצבע",
+      "טביעת האצבע",
+      "טביעת אצבע"
+    ],
+    "referenceIds": [
+      "fingerprinting-imported-protocol",
+      "fingerprinting-imported-modulo"
+    ],
+    "related": [
+      "fingerprinting-imported-modulo"
+    ],
+    "sources": [],
+    "lessonId": "equality-fingerprinting-primes",
+    "lessonTitle": "טביעת אצבע לבדיקת שוויון מחרוזות — סיבוכיות תקשורת",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "fingerprinting-imported-modulo",
+    "title": "מודולו (Modulo)",
+    "kind": "הגדרה",
+    "summary": "פעולה מתמטית המחזירה את שארית החלוקה של מספר אחד במספר אחר. בשוויון מחרוזות, השוואת \\(X \\bmod p = Y \\bmod p\\) שקולה לכך ש־\\(p\\) מחלק את ההפרש בין המספרים.",
+    "body": "<p>פעולה מתמטית המחזירה את שארית החלוקה של מספר אחד במספר אחר. בשוויון מחרוזות, השוואת \\(X \\bmod p = Y \\bmod p\\) שקולה לכך ש־\\(p\\) מחלק את ההפרש בין המספרים.</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "שארית",
+      "\\(X_A \\bmod p\\)",
+      "השארית",
+      "שאריות",
+      "השאריות",
+      "מודולו"
+    ],
+    "referenceIds": [
+      "fingerprinting-imported-protocol",
+      "fingerprinting-imported-modulo"
+    ],
+    "related": [
+      "fingerprinting-imported-protocol"
+    ],
+    "sources": [],
+    "lessonId": "equality-fingerprinting-primes",
+    "lessonTitle": "טביעת אצבע לבדיקת שוויון מחרוזות — סיבוכיות תקשורת",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

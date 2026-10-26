@@ -2,8 +2,8 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
 const path = require('node:path');
+const {execFileSync} = require('node:child_process');
 const {validateAuthorization, APPROVED, INTEGRATION, BASELINE, REQUEST} = require('../scripts/check-publication.cjs');
 const {canonicalContentHash, POLICY_VERSION} = require('../scripts/check-course-content.cjs');
 const copy = value => JSON.parse(JSON.stringify(value));
@@ -11,6 +11,9 @@ const MANIFEST = 'course-content/review-status.json';
 const CATALOG = 'course-content/source-catalog.json';
 const LEGACY = 'docs/data/unchanged-legacy.json';
 const VENDOR = 'docs/vendor/library.js';
+// The historical authorization tests must exercise its historical bytes, not
+// whatever happens to be in today's working directory.
+const historicalIntegration = new Map(INTEGRATION.map(name => [name, execFileSync('git', ['show', `4ff46f4c6fb9375bdb5fa9162c99c7f98c59fe87:${name}`], {cwd:path.join(__dirname,'..'), windowsHide:true})]));
 
 function review() {
   const evidence = {sourceId:'fixture-lecture', pdfPage:1, sourceLocator:'Synthetic definition paragraph', evidenceNote:'Synthetic fixture only; this is not course evidence.', sourceExcerpt:'Synthetic definition quotation.'};
@@ -43,9 +46,9 @@ function fixture() {
   const changed = [...APPROVED, ...INTEGRATION];
   const files = new Map(changed.map(name => [name, Buffer.from('Synthetic changed file: ' + name + '\n')]));
   // The dated authorization pins the independently reviewed integration hashes.
-  // Read those eight files without modifying them; all course reviews, legacy
+  // Read those eight historical files without modifying them; all course reviews, legacy
   // content, the baseline and all mutations below remain isolated fixtures.
-  for (const name of INTEGRATION) files.set(name, fs.readFileSync(path.join(__dirname, '..', name)));
+  for (const name of INTEGRATION) files.set(name, historicalIntegration.get(name));
   files.set(LEGACY, Buffer.from('Synthetic unchanged legacy text.\n'));
   files.set(VENDOR, Buffer.from('Synthetic unchanged vendor bytes.\n'));
   const baselineFiles = new Map([...files].map(([name, bytes]) => [name, changed.includes(name) ? Buffer.from('Synthetic old file: ' + name + '\n') : Buffer.from(bytes)]));

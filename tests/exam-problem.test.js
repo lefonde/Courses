@@ -21,6 +21,14 @@ test('mathematical formatting does not interpret prose as markup or trusted comm
   assert.doesNotMatch(untrusted,/href="javascript:/);
 });
 
+test('English source names keep their word order as one LTR phrase in Hebrew prose',()=>{
+  const rendered=math.text("מקור: Course Guide Chapter 3, עמ' 65. לאחר מכן Course Book Chapter 3.");
+  assert.match(rendered,/<bdi dir="ltr">Course Guide Chapter 3<\/bdi>/);
+  assert.match(rendered,/<bdi dir="ltr">Course Book Chapter 3<\/bdi>/);
+  assert.doesNotMatch(rendered,/<bdi dir="ltr">Course<\/bdi>/);
+  assert.match(rendered,/לאחר מכן/);
+});
+
 test('all catalogue display notation parses as TeX without changing the raw research strings',()=>{
   let count=0;
   for(const [plain,marked] of Object.entries(catalogue.mathText)){
@@ -32,11 +40,13 @@ test('all catalogue display notation parses as TeX without changing the raw rese
   assert.ok(count>150);
 });
 
-test('only the three requested pages are registered and all exercises and formulae are consumable',()=>{
-  assert.deepEqual(manifest.pages.map(p=>p.id),catalogue.families.slice(0,3).map(f=>f.id));
+test('the four requested pages are registered and all exercises and formulae are consumable',()=>{
+  assert.deepEqual(manifest.pages.map(p=>p.id),catalogue.families.slice(0,4).map(f=>f.id));
   for(const entry of manifest.pages){
     const html=fs.readFileSync(path.join(__dirname,'../docs/exam-problems',entry.id+'.html'),'utf8');
-    for(const section of ['basic','tools','exam','check','sources'])assert.match(html,new RegExp('id="problem-'+section+'"'));
+    for(const section of ['basic','tools','exam','check'])assert.match(html,new RegExp('id="problem-'+section+'"'));
+    const sections=entry.sections||[['basic'],['tools'],['exam'],['check'],['sources']];
+    for(const [section] of sections)assert.match(html,new RegExp('id="problem-'+section+'"'),entry.id+' navigation destination '+section);
     assert.doesNotMatch(html,/<details[^>]*\bopen(?:\s|=|>)/);
     assert.ok((html.match(/class="problem-solution"/g)||[]).length>=3);
     let count=0;

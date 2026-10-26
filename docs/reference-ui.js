@@ -1,8 +1,8 @@
 /* Reading support only: no progress, scheduling, or assistance records change. */
 'use strict';
 window.StudyReference=(()=>{
-  const version='20261024-course2';
-  const files=['reference-sat','reference-walk','reference-probability','reference-links'];
+  const version='20261025-fingerprinting-import1';
+  const files=['reference-sat','reference-walk','reference-probability','reference-walk-imported','reference-isolated-imported','reference-fingerprinting-imported','reference-links'];
   let entries=[],links=[],byId=new Map(),pending=null,error='',ready=false,search='',kind='all';
   let tooltip=null,active=null,hoverTimer,closeTimer,dismissed=null;
   const h=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -17,11 +17,11 @@ window.StudyReference=(()=>{
     pending=(async()=>{
       try{
         const results=await Promise.all(files.map(async file=>{const response=await fetch(`./data/${file}.json?v=${version}`);if(!response.ok)throw new Error('מאגר המושגים לא נטען.');return response.json();}));
-        const next=results.slice(0,3).flat();
+        const next=results.slice(0,-1).flat();
         if(!next.length||next.some(e=>!e.id||!e.title||!e.summary||!e.body)||new Set(next.map(e=>e.id)).size!==next.length)throw new Error('לא ניתן לקרוא את מאגר המושגים.');
-        entries=next;links=results[3];byId=new Map(entries.map(e=>[e.id,e]));
+        entries=next;links=results.at(-1);byId=new Map(entries.map(e=>[e.id,e]));
         if(links.some(l=>!byId.has(l.id)))throw new Error('חלק מן ההפניות למושגים חסרות.');
-        for(const entry of entries)entry.aliases=links.find(l=>l.id===entry.id)?.phrases||[];
+        for(const entry of entries)entry.aliases=links.find(l=>l.id===entry.id)?.phrases||entry.aliases||[];
         ready=true;error='';return true;
       }catch(err){error=err.message;return false;}
       finally{pending=null;}
@@ -35,9 +35,11 @@ window.StudyReference=(()=>{
     notice.textContent=newWindow?' — הסבר מלא בחלון חדש':' — להסבר המלא';link.append(notice);
     return link;
   }
-  function enhance(element,{newWindow=false,exclude=null}={}){
+  function enhance(element,{newWindow=false,exclude=null,referenceIds=null}={}){
     if(!ready||!element)return;
-    const split=StudyReferenceEngine.matcher(links.filter(l=>l.id!==exclude));
+    // Imported lessons can bind their supplied explanations without replacing shared entries.
+    const selected=referenceIds===null?links:referenceIds.filter(id=>byId.has(id)).map(id=>({id,phrases:byId.get(id).aliases}));
+    const split=StudyReferenceEngine.matcher(selected.filter(l=>l.id!==exclude));
     const walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT,{acceptNode(node){
       return node.parentElement.closest('a,button,summary,h1,script,style,pre,code,svg,.katex,.study-math,#problem-sources')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;
     }});
@@ -51,7 +53,7 @@ window.StudyReference=(()=>{
   }
   function help(){return `<p class="reference-instruction"><span class="reference-hover-note">מונח בקו מנוקד: ריחוף או מיקוד במקלדת מציגים תזכורת; לחיצה פותחת הסבר מלא בחלון חדש.</span><span class="reference-touch-note">נגיעה במונח בקו מנוקד פותחת הסבר מלא בחלון חדש.</span> <a href="#reference" target="_blank" rel="noopener" data-reference-window="true">למאגר המושגים והמשפטים ↗</a>${error?'<span role="status"> התזכורות לא נטענו. <button type="button" class="reference-retry" data-reference-retry>ניסיון נוסף</button></span>':''}</p>`;}
   function list(){
-    return `<section class="reference-bank"><header><span class="eyebrow">עזרה בזמן פתרון</span><h1>מושגים ומשפטים</h1><p>הגדרות, סימונים וכלים מתוך שלושת דפי התרגול. כל ערך מתחיל במשמעות פשוטה, וממשיך לניסוח המדויק, לדוגמה ולהסבר או להוכחה המתאימים לו.</p></header>
+    return `<section class="reference-bank"><header><span class="eyebrow">עזרה בזמן פתרון</span><h1>מושגים ומשפטים</h1><p>הגדרות, סימונים וכלים מתוך דפי התרגול באתר. אפשר לחפש מונח ולפתוח את ההסבר המלא שלו.</p></header>
       <form id="reference-search-form" class="reference-search" role="search"><label for="reference-search">מה תרצו להיזכר בו?<input type="search" id="reference-search" autocomplete="off" value="${h(search)}" placeholder="למשל: קבוצת השמות, תוחלת, זמן הגעה"></label><label for="reference-kind">סוג הערך<select id="reference-kind"><option value="all">כל הסוגים</option>${[...new Set(entries.map(e=>e.kind))].map(k=>`<option ${kind===k?'selected':''} value="${h(k)}">${h(k)}</option>`).join('')}</select></label></form>
       <p class="reference-count" id="reference-count" role="status"></p><div id="reference-results" class="reference-results"></div></section>`;
   }
@@ -59,7 +61,7 @@ window.StudyReference=(()=>{
     const target=document.getElementById('reference-results');if(!target||!ready)return;
     const found=StudyReferenceEngine.filter(entries,{search,kind});
     document.getElementById('reference-count').textContent=`${found.length} מתוך ${entries.length} ערכים`;
-    target.innerHTML=found.length?found.map(entry=>`<article class="reference-card"><span class="reference-kind">${h(entry.kind)}</span><h2><a href="#reference/${h(entry.id)}">${StudyMath.text(entry.title)} <span aria-hidden="true">←</span></a></h2><p>${StudyMath.text(entry.summary)}</p></article>`).join(''):'<div class="panel"><h2>לא נמצא ערך מתאים</h2><p>נסו מילה קצרה יותר או הציגו שוב את כל הערכים.</p><button class="button" data-reference-clear>ניקוי החיפוש</button></div>';
+    target.innerHTML=found.length?found.map(entry=>`<article class="reference-card"><span class="reference-kind">${h(entry.kind)}</span><h2><a href="#reference/${h(entry.id)}">${StudyMath.text(entry.title)} <span aria-hidden="true">←</span></a></h2><p>${StudyMath.text(entry.summary)}</p>${entry.lessonId?`<p class="reference-scope"><a href="#exam-problem/${h(entry.lessonId)}">מתוך השיעור: ${StudyMath.text(entry.lessonTitle)}</a></p>`:''}</article>`).join(''):'<div class="panel"><h2>לא נמצא ערך מתאים</h2><p>נסו מילה קצרה יותר או הציגו שוב את כל הערכים.</p><button class="button" data-reference-clear>ניקוי החיפוש</button></div>';
   }
   function source(ref){
     const known=ref.sourceId&&sourceOf(ref.sourceId);
@@ -71,15 +73,16 @@ window.StudyReference=(()=>{
     const key=currentId();if(!key)return list();
     const entry=byId.get(key);
     if(!entry)return '<section class="reference-bank"><h1>הערך אינו נמצא במאגר</h1><p>אפשר למצוא את המושג באמצעות החיפוש.</p><a class="button" href="#reference">למאגר המושגים</a></section>';
-    return `<article class="reference-entry" aria-labelledby="reference-title"><a class="problem-back" href="#reference">→ לכל המושגים והמשפטים</a><header><span class="eyebrow">${h(entry.kind)}</span><h1 id="reference-title">${StudyMath.text(entry.title)}</h1><p class="reference-lead">${StudyMath.text(entry.summary)}</p>${entry.formula?StudyMath.text('\\['+entry.formula+'\\]'):''}</header>
+    return `<article class="reference-entry" aria-labelledby="reference-title"><a class="problem-back" href="#reference">→ לכל המושגים והמשפטים</a><header><span class="eyebrow">${h(entry.kind)}</span><h1 id="reference-title">${StudyMath.text(entry.title)}</h1>${entry.summaryIsBody?'':`<p class="reference-lead">${StudyMath.text(entry.summary)}</p>`}${entry.formula?StudyMath.text('\\['+entry.formula+'\\]'):''}</header>
       <div class="reference-body problem-body">${entry.body}</div>
       ${(entry.related||[]).filter(id=>byId.has(id)).length?`<section class="reference-related"><h2>מושגים קשורים</h2><div>${entry.related.filter(id=>byId.has(id)).map(id=>`<a href="#reference/${h(id)}">${StudyMath.text(byId.get(id).title)} ←</a>`).join('')}</div></section>`:''}
-      <details class="reference-sources"><summary>מקורות מהקורס וקטעים להשוואה</summary><p>הניסוח שבערך מפרט את חומר הקורס. הקטעים שלהלן מובאים מן המקורות כדי שאפשר יהיה להשוות; נוסחאות סודרו לתצוגה. הקישורים נפתחים בעמוד ה־PDF המצוין, מתוך ספריית הקבצים המקומית בדפדפן.</p><ul>${(entry.sources||[]).map(source).join('')}</ul></details>
+      ${(entry.sources||[]).length?`<details class="reference-sources"><summary>מקורות מהקורס וקטעים להשוואה</summary><p>הניסוח שבערך מפרט את חומר הקורס. הקטעים שלהלן מובאים מן המקורות כדי שאפשר יהיה להשוות; נוסחאות סודרו לתצוגה. הקישורים נפתחים בעמוד ה־PDF המצוין, מתוך ספריית הקבצים המקומית בדפדפן.</p><ul>${entry.sources.map(source).join('')}</ul></details>`:''}
+      ${entry.lessonId?`<p><a href="#exam-problem/${h(entry.lessonId)}">לשיעור: ${StudyMath.text(entry.lessonTitle)}</a></p>`:''}
       <p class="reference-return-note">אפשר להשאיר חלון זה פתוח לצד התרגיל. הקריאה כאן אינה משנה את סימוני הלמידה.</p></article>`;
   }
   function afterRender(){
     const entry=byId.get(currentId());
-    if(entry){document.title=`erdős · ${entry.title}`;const body=document.querySelector('.reference-body');enhance(body,{exclude:entry.id});StudyMath.render(body);StudyMath.refreshOverflow(document.querySelector('.reference-entry'));}
+    if(entry){document.title=`erdős · ${entry.title}`;const body=document.querySelector('.reference-body');enhance(body,{exclude:entry.id,referenceIds:entry.referenceIds||null});StudyMath.render(body);StudyMath.refreshOverflow(document.querySelector('.reference-entry'));}
     else refreshList();
   }
   function panel(){
