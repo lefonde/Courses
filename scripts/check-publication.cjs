@@ -18,6 +18,11 @@ const SIDEBAR_RELEASE_PATH = 'course-content/sidebar-release-2026-11-04.json';
 const SIDEBAR_RELEASE_HASH = '91fdafa42b20e65d885f6002c7b7e14a4a3c618585859e948723c0befb287d12';
 const SIDEBAR_RELEASE_BASELINE = '83be09beb46e5fb7f6d829c335f1e17a8482b4d3';
 const SIDEBAR_RELEASE_PATHS = ['docs/index.html', 'docs/sidebar.css', 'docs/site-shell.js'];
+// A subsequent request covers the current six-page site, retaining the sidebar.
+// This new record never refreshes the earlier dated authorizations.
+const NOV4_SITE_RELEASE_PATH = 'course-content/site-release-2026-11-04.json';
+const NOV4_SITE_RELEASE_HASH = 'dcf1fa4b406afa6478069b4077f9fc0d259ded5cbe370353026fddc3a70c7406';
+const NOV4_SITE_RELEASE_BASELINE = '173b5fae72ca1e56dab72016b9e155ec57a0ad83';
 const MANIFEST_PATH = 'course-content/review-status.json';
 const CATALOG_PATH = 'course-content/source-catalog.json';
 const APPROVED = [
@@ -94,12 +99,27 @@ function readSiteReleaseAuthorization(bytes) {
   return JSON.parse(bytes);
 }
 
-function validateSiteRelease({authorization: a, files, baselineFiles, manifest, catalog, manifestBytes, catalogBytes, remoteBase}) {
+function readNov4SiteReleaseAuthorization(bytes) {
+  if (hash(NOV4_SITE_RELEASE_PATH, bytes) !== NOV4_SITE_RELEASE_HASH) throw new Error('The 4-Nov site authorization differs from the exact user-requested snapshot; do not refresh it for later edits');
+  return JSON.parse(bytes);
+}
+
+function validateSiteRelease(input) {
+  return validateSiteReleaseSnapshot(input, {quote:'push the current site', date:'2026-10-26', label:'26-Oct', baseline:SITE_RELEASE_BASELINE, mode:'authorized-site-release'});
+}
+
+function validateNov4SiteRelease(input) {
+  return validateSiteReleaseSnapshot(input, {quote:'publish it', date:'2026-11-04', label:'4-Nov', baseline:NOV4_SITE_RELEASE_BASELINE, mode:'authorized-site-release-2026-11-04'});
+}
+
+// Only the fixed dated wrappers above select this internal validator's scope.
+// Callers cannot substitute a different request, baseline or authorization hash.
+function validateSiteReleaseSnapshot({authorization: a, files, baselineFiles, manifest, catalog, manifestBytes, catalogBytes, remoteBase}, release) {
   const errors = [], fail = message => errors.push(message);
   if (!a || a.schemaVersion !== 1 || a.kind !== 'user-requested-site-release' || a.policyVersion !== POLICY_VERSION) return {ok:false, errors:['Missing or unsupported site-release authorization']};
-  if (a.requestQuote !== 'push the current site' || a.requestDate !== '2026-10-26' || typeof a.scope !== 'string' || !a.scope.trim()) fail('Authorization must record the specific 26-Oct user request and scope');
-  if (a.baselineCommit !== SITE_RELEASE_BASELINE) fail('Site release must use the previously published baseline');
-  if (remoteBase !== undefined && remoteBase !== SITE_RELEASE_BASELINE) fail('The publishing branch has moved since the authorized baseline; do not overwrite it');
+  if (a.requestQuote !== release.quote || a.requestDate !== release.date || typeof a.scope !== 'string' || !a.scope.trim()) fail(`Authorization must record the specific ${release.label} user request and scope`);
+  if (a.baselineCommit !== release.baseline) fail('Site release must use the previously published baseline');
+  if (remoteBase !== undefined && remoteBase !== release.baseline) fail('The publishing branch has moved since the authorized baseline; do not overwrite it');
   if (a.contentReviewPerformed !== false || typeof a.technicalReview !== 'string' || !a.technicalReview.trim()) fail('Publication must distinguish technical verification from unperformed content review');
   if (a.reviewManifestHash !== hash(MANIFEST_PATH, manifestBytes) || a.sourceCatalogHash !== hash(CATALOG_PATH, catalogBytes)) fail('Review records or source catalog changed after authorization');
   const authorized = new Map();
@@ -122,7 +142,7 @@ function validateSiteRelease({authorization: a, files, baselineFiles, manifest, 
   // Only pending status is deferred. Hashes, registration, source catalog and
   // any existing approval must still pass their normal structural checks.
   errors.push(...full.errors.filter(error => !/: status (needs-review|blocked) prevents publication$/.test(error)));
-  return {ok:errors.length === 0, errors, mode:'authorized-site-release', contentReviewPerformed:false, legacyApprovalGranted:false};
+  return {ok:errors.length === 0, errors, mode:release.mode, contentReviewPerformed:false, legacyApprovalGranted:false};
 }
 
 function readSidebarReleaseAuthorization(bytes) {
@@ -225,6 +245,13 @@ function checkPublication({root = path.resolve(__dirname, '..'), revision, remot
       walk('docs');
     }
     const manifestBytes = read(MANIFEST_PATH), catalogBytes = read(CATALOG_PATH);
+    const hasNov4SiteRelease = revision
+      ? git(['ls-tree','--name-only',revision,'--',NOV4_SITE_RELEASE_PATH]).toString('utf8').trim() === NOV4_SITE_RELEASE_PATH
+      : fs.existsSync(path.join(root, NOV4_SITE_RELEASE_PATH));
+    if (hasNov4SiteRelease) {
+      const authorization = readNov4SiteReleaseAuthorization(read(NOV4_SITE_RELEASE_PATH));
+      return validateNov4SiteRelease({authorization, files, baselineFiles:readTree(NOV4_SITE_RELEASE_BASELINE), manifest:JSON.parse(manifestBytes), catalog:JSON.parse(catalogBytes), manifestBytes, catalogBytes, remoteBase});
+    }
     const hasSidebarRelease = revision
       ? git(['ls-tree','--name-only',revision,'--',SIDEBAR_RELEASE_PATH]).toString('utf8').trim() === SIDEBAR_RELEASE_PATH
       : fs.existsSync(path.join(root, SIDEBAR_RELEASE_PATH));
@@ -255,8 +282,8 @@ function main(args) {
   }
   const result = checkPublication(options);
   if (!result.ok) {console.error(result.errors.join('\n'));return 1;}
-  console.log(result.mode === 'authorized-sidebar-release' ? 'Exact sidebar UI snapshot authorized by the user on 4-Nov. Existing content and review statuses are unchanged.' : result.mode === 'authorized-site-release' ? 'Exact current-site snapshot authorized by the user on 26-Oct. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-online-review' ? 'Exact online-review snapshot authorized by the user. Six content files reviewed; legacy course approval is NOT granted.' : 'Full course-source publication check passed.');
+  console.log(result.mode === 'authorized-site-release-2026-11-04' ? 'Exact current-site snapshot authorized by the user on 4-Nov. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-sidebar-release' ? 'Exact sidebar UI snapshot authorized by the user on 4-Nov. Existing content and review statuses are unchanged.' : result.mode === 'authorized-site-release' ? 'Exact current-site snapshot authorized by the user on 26-Oct. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-online-review' ? 'Exact online-review snapshot authorized by the user. Six content files reviewed; legacy course approval is NOT granted.' : 'Full course-source publication check passed.');
   return 0;
 }
-module.exports = {validateSidebarRelease, readSidebarReleaseAuthorization, SIDEBAR_RELEASE_PATH, SIDEBAR_RELEASE_BASELINE, SIDEBAR_RELEASE_PATHS, validateAuthorization, validateSiteRelease, readSiteReleaseAuthorization, checkPublication, publicationContentHash:hash, AUTH_PATH, APPROVED, INTEGRATION, BASELINE, REQUEST, SITE_RELEASE_PATH, SITE_RELEASE_BASELINE};
+module.exports = {validateNov4SiteRelease, readNov4SiteReleaseAuthorization, NOV4_SITE_RELEASE_PATH, NOV4_SITE_RELEASE_BASELINE, validateSidebarRelease, readSidebarReleaseAuthorization, SIDEBAR_RELEASE_PATH, SIDEBAR_RELEASE_BASELINE, SIDEBAR_RELEASE_PATHS, validateAuthorization, validateSiteRelease, readSiteReleaseAuthorization, checkPublication, publicationContentHash:hash, AUTH_PATH, APPROVED, INTEGRATION, BASELINE, REQUEST, SITE_RELEASE_PATH, SITE_RELEASE_BASELINE};
 if (require.main === module) {try {process.exitCode=main(process.argv.slice(2));} catch(error) {console.error(error.message);process.exitCode=1;}}

@@ -11,6 +11,21 @@
     }
     return result+escape(value.slice(start));
   }
+  function renderFormula(tex,display=false){
+    // KaTeX can render Hebrew text, but reports its glyphs as unknown symbols.
+    // Keep all other strict checks and untrusted-command handling enabled.
+    const strict=(code,message,token)=>{
+      if(code==='unknownSymbol'&&/^[\u0590-\u05ff]+$/u.test(token?.text||''))return 'ignore';
+      if(code==='symbolNotInFont'&&/^No character metrics for '[\u0590-\u05ff]+' /u.test(message))return 'ignore';
+      return 'error';
+    };
+    let markup=root.katex.renderToString(tex,{displayMode:display,throwOnError:true,trust:false,strict,output:'htmlAndMathml'});
+    if(/[\u0590-\u05ff]/u.test(tex)){
+      markup=markup.replace(/<span class="mord text">/g,'<span class="mord text" dir="auto" style="unicode-bidi:isolate">')
+        .replace(/<mtext>([^<]*)<\/mtext>/g,(whole,value)=>/[\u0590-\u05ff]/u.test(value)?`<mtext dir="rtl">${value}</mtext>`:whole);
+    }
+    return markup;
+  }
   function text(value){
     const input=String(value??''), regex=/\\\(([\s\S]*?)\\\)|\\\[([\s\S]*?)\\\]/g;
     let result='', start=0;
@@ -18,7 +33,7 @@
       result+=prose(input.slice(start,match.index));
       const tex=match[1]??match[2], display=match[2]!==undefined;
       try{
-        const math=root.katex.renderToString(tex,{displayMode:display,throwOnError:true,trust:false,strict:'error',output:'htmlAndMathml'});
+        const math=renderFormula(tex,display);
         result+=`<span class="study-math${display?' study-math-block':''}" dir="ltr">${math}</span>`;
       }catch(error){
         result+=`<bdi class="study-math-error" dir="ltr">${escape(tex)}</bdi>`;
@@ -50,6 +65,6 @@
     document.addEventListener('toggle',()=>requestAnimationFrame(()=>refreshOverflow(document)),true);
     document.fonts?.ready.then(()=>refreshOverflow(document));
   }
-  const api={text,render,refreshOverflow};root.StudyMath=api;
+  const api={text,render,renderFormula,refreshOverflow};root.StudyMath=api;
   if(typeof module==='object'&&module.exports)module.exports=api;
 })(typeof window==='object'?window:globalThis);

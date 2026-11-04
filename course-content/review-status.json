@@ -155,15 +155,15 @@
     },
     {
       "path": "docs/data/exam-dashboard.json",
-      "sha256": "9ed630b83931046574ab2d2d0095351b768c2a2dda71148ccee9930c6170a297",
+      "sha256": "971847634fd9febbce39b3a005d1d495da1f4861017d2385335d70278d67bf5b",
       "status": "needs-review",
-      "reason": "Local integration of the user-supplied Gemini fingerprinting lesson under the user-directed import workflow. Copy fidelity, formatting, glossary links, navigation and browser interactions were checked; no course-source or mathematical review was performed. Records: work/fingerprinting-gemini-import. Author-reported lack of access to exam PDFs is attributed in the lesson. This is not academic content approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/data/exam-problem-pages.json",
-      "sha256": "f8710b21fe57b7765cfd71153482f7937634f4766cc1612ee0ea9543b98eba10",
+      "sha256": "1c195d81cf97999244f424a795ff21fd2f30daaaf5dc59f7e9936eb45a8b67e7",
       "status": "needs-review",
-      "reason": "Local integration of the user-supplied Gemini fingerprinting lesson under the user-directed import workflow. Copy fidelity, formatting, glossary links, navigation and browser interactions were checked; no course-source or mathematical review was performed. Records: work/fingerprinting-gemini-import. Author-reported lack of access to exam PDFs is attributed in the lesson. This is not academic content approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/data/flashcards.json",
@@ -4987,9 +4987,9 @@
     },
     {
       "path": "docs/exam-dashboard-ui.js",
-      "sha256": "4b9832a66e0a569199163152a3aa23fdfa46b3bc42396967d88e170fe31a4ec2",
+      "sha256": "b7f328e83f770a62a030d2f23cf4747e4e9c3eac54ea5b7050d74a0c0c37476d",
       "status": "needs-review",
-      "reason": "Local integration of the user-supplied Gemini fingerprinting lesson under the user-directed import workflow. Copy fidelity, formatting, glossary links, navigation and browser interactions were checked; no course-source or mathematical review was performed. Records: work/fingerprinting-gemini-import. Author-reported lack of access to exam PDFs is attributed in the lesson. This is not academic content approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/exam-dashboard.css",
@@ -4999,9 +4999,9 @@
     },
     {
       "path": "docs/exam-problem-ui.js",
-      "sha256": "4dfa16a8881438aab02184f669adcfd0fb1beae1de2e63aad3582571b5e5e45f",
+      "sha256": "be1ab2bb24cc39e31193d426894ba76f6b9a1b7d01913471b672fc15e57238f2",
       "status": "needs-review",
-      "reason": "Local integration of the user-supplied Gemini fingerprinting lesson under the user-directed import workflow. Copy fidelity, formatting, glossary links, navigation and browser interactions were checked; no course-source or mathematical review was performed. Records: work/fingerprinting-gemini-import. Author-reported lack of access to exam PDFs is attributed in the lesson. This is not academic content approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/exam-problem.css",
@@ -5988,9 +5988,9 @@
     },
     {
       "path": "docs/index.html",
-      "sha256": "9872b4abb62cd795f5137951e3832c789bd62e7acd653a0b34bea592b6e4f653",
+      "sha256": "e1349226eee343ca93bccc3fd13e7206de3720ae7a9f160bf4c2de653ca8851b",
       "status": "needs-review",
-      "reason": "Local integration of the user-supplied Gemini fingerprinting lesson under the user-directed import workflow. Copy fidelity, formatting, glossary links, navigation and browser interactions were checked; no course-source or mathematical review was performed. Records: work/fingerprinting-gemini-import. Author-reported lack of access to exam PDFs is attributed in the lesson. This is not academic content approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/learning-engine.js",
@@ -6114,9 +6114,9 @@
     },
     {
       "path": "docs/reference-ui.js",
-      "sha256": "a178d8cf7f84f574346ce43f06217c82c54faaf00b9ab2b7c97107792a5418b6",
+      "sha256": "cffec7d98ffad06f9e2c650aa40234c8ba5c50b5a110c7f0ba498d657317f90a",
       "status": "needs-review",
-      "reason": "Local integration of the user-supplied Gemini fingerprinting lesson under the user-directed import workflow. Copy fidelity, formatting, glossary links, navigation and browser interactions were checked; no course-source or mathematical review was performed. Records: work/fingerprinting-gemini-import. Author-reported lack of access to exam PDFs is attributed in the lesson. This is not academic content approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/reference.css",
@@ -6210,9 +6210,9 @@
     },
     {
       "path": "docs/study-math.js",
-      "sha256": "6f07be35f27d108cbe206cc3dfcec2801910a0ced78831bc520de4de15938df1",
+      "sha256": "db4cd1f8919b204c19c9941279ede0f2ae7e1ef84aff64330b1a9b880fb230a6",
       "status": "needs-review",
-      "reason": "Local faithful integration of user-supplied Gemini content under the user-directed import workflow. Copy fidelity, formatting, glossary binding and browser interactions were checked; no course-source or mathematical review was performed. Technical records: work/isolated-gemini-import. The supplied exam section is incomplete and displayed as such. This record is not content approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/styles.css",
@@ -6273,6 +6273,30 @@
       "sha256": "0f9095388f8e8a2f3a9ae73266d112ea491de7b2b7f146635a0990b3fa95f440",
       "status": "needs-review",
       "reason": "Local integration of the user-supplied Gemini fingerprinting lesson under the user-directed import workflow. Copy fidelity, formatting, glossary links, navigation and browser interactions were checked; no course-source or mathematical review was performed. Records: work/fingerprinting-gemini-import. Author-reported lack of access to exam PDFs is attributed in the lesson. This is not academic content approval or publication authorization."
+    },
+    {
+      "path": "docs/exam-problems/gni-interactive-proof.html",
+      "sha256": "59d614eddc375d1f978f73e8581af4f659928ff478a7edb61d743155f84f182d",
+      "status": "needs-review",
+      "reason": "Local technical integration of the user-supplied Gemini GNI lesson under the user-directed import workflow. Supplied wording and formulas retained; no course-source or mathematical review performed. Copy fidelity, glossary links, navigation, formula rendering and browser behavior checked. Evidence: work/gni-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/data/reference-gni-imported.json",
+      "sha256": "508d261dc072505595a1f144b757478f58bd850df18034bcb417bf28d1f64a8d",
+      "status": "needs-review",
+      "reason": "Local technical integration of the user-supplied Gemini GNI lesson under the user-directed import workflow. Supplied wording and formulas retained; no course-source or mathematical review performed. Copy fidelity, glossary links, navigation, formula rendering and browser behavior checked. Evidence: work/gni-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/data/reference-balls-bins-imported.json",
+      "sha256": "036ddd36478ac675a782babf3eabf9801e890cce0d5b7a52c4e138138c603781",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/exam-problems/balls-bins-balanced-loads.html",
+      "sha256": "a8d02461e4628e64c0856ee18e1ee4bbca9fa8186915817bc61b3357f5d75c20",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
     }
   ]
 }

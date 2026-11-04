@@ -1,7 +1,7 @@
 /* One reading route per problem; learning marks share the dashboard's store. */
 'use strict';
 window.StudyExamProblems=(()=>{
-  const version='20261025-fingerprinting-import1', cache=new Map(), pending=new Map(), errors=new Map(), pendingReports=new Map();
+  const version='20261104-balls-bins-import1', cache=new Map(), pending=new Map(), errors=new Map(), pendingReports=new Map();
   let manifest;
   const viewKey=key=>'erdos:exam-problem:view:v1:'+key+(cache.get(key)?.meta.viewVersion?':'+cache.get(key).meta.viewVersion:'');
   function readView(key){try{return JSON.parse(sessionStorage.getItem(viewKey(key))||'[]');}catch{return [];}}

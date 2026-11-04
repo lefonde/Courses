@@ -29,6 +29,20 @@ test('English source names keep their word order as one LTR phrase in Hebrew pro
   assert.match(rendered,/לאחר מכן/);
 });
 
+test('Hebrew event labels retain their wording and RTL direction within LTR probability formulas',()=>{
+  const tex=String.raw`P(\text{לפחות סל אחד אינו מאוזן}) \le \frac{1}{n^2}`;
+  const rendered=math.text('\\['+tex+'\\]');
+  assert.doesNotMatch(rendered,/study-math-error/);
+  assert.match(rendered,/class="study-math study-math-block" dir="ltr"/);
+  assert.match(rendered,/<span class="mord text" dir="auto" style="unicode-bidi:isolate">/);
+  assert.match(rendered,/<mtext dir="rtl">לפחות\s+סל\s+אחד\s+אינו\s+מאוזן<\/mtext>/);
+  assert.ok(rendered.includes(tex));
+  assert.throws(()=>math.renderFormula(String.raw`\unknownCommand{x}`));
+  assert.throws(()=>math.renderFormula(String.raw`\text{😀}`));
+  const untrusted=math.renderFormula(String.raw`\href{javascript:alert(1)}{\text{עברית}}`);
+  assert.doesNotMatch(untrusted,/href="javascript:/);
+});
+
 test('all catalogue display notation parses as TeX without changing the raw research strings',()=>{
   let count=0;
   for(const [plain,marked] of Object.entries(catalogue.mathText)){
@@ -40,8 +54,8 @@ test('all catalogue display notation parses as TeX without changing the raw rese
   assert.ok(count>150);
 });
 
-test('the four requested pages are registered and all exercises and formulae are consumable',()=>{
-  assert.deepEqual(manifest.pages.map(p=>p.id),catalogue.families.slice(0,4).map(f=>f.id));
+test('the six requested pages are registered and all exercises and formulae are consumable',()=>{
+  assert.deepEqual(manifest.pages.map(p=>p.id),catalogue.families.slice(0,6).map(f=>f.id));
   for(const entry of manifest.pages){
     const html=fs.readFileSync(path.join(__dirname,'../docs/exam-problems',entry.id+'.html'),'utf8');
     for(const section of ['basic','tools','exam','check'])assert.match(html,new RegExp('id="problem-'+section+'"'));
@@ -52,7 +66,7 @@ test('the four requested pages are registered and all exercises and formulae are
     let count=0;
     for(const match of html.matchAll(/\\\(([\s\S]*?)\\\)|\\\[([\s\S]*?)\\\]/g)){
       const tex=(match[1]??match[2]).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
-      assert.doesNotThrow(()=>globalThis.katex.renderToString(tex,{throwOnError:true,strict:'error'}),entry.id+': '+tex);count++;
+      assert.doesNotThrow(()=>math.renderFormula(tex),entry.id+': '+tex);count++;
     }
     assert.ok(count>40,entry.id+' has explicit typeset mathematical content');
     assert.equal(catalogue.families.find(f=>f.id===entry.id).lessonUrl,'#exam-problem/'+entry.id);

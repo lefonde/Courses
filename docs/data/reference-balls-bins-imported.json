@@ -1,0 +1,136 @@
+[
+  {
+    "id": "balls-bins-imported-binomial",
+    "title": "התפלגות בינומית",
+    "kind": "הגדרה",
+    "summary": "התפלגות המונה את מספר ההצלחות בסדרה של \\(m\\) ניסויים בלתי-תלויים בעלי הסתברות זהה \\(p\\). תוחלתה היא \\(\\mu = m \\cdot p\\).",
+    "body": "<p>התפלגות המונה את מספר ההצלחות בסדרה של \\(m\\) ניסויים בלתי-תלויים בעלי הסתברות זהה \\(p\\). תוחלתה היא \\(\\mu = m \\cdot p\\).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "התפלגות בינומית",
+      "מתפלג בינומית"
+    ],
+    "referenceIds": [
+      "balls-bins-imported-binomial",
+      "balls-bins-imported-chernoff",
+      "balls-bins-imported-union-bound",
+      "balls-bins-imported-little-o"
+    ],
+    "related": [
+      "balls-bins-imported-chernoff",
+      "balls-bins-imported-union-bound",
+      "balls-bins-imported-little-o"
+    ],
+    "sources": [],
+    "lessonId": "balls-bins-balanced-loads",
+    "lessonTitle": "כדורים וסלים — חסמי צ׳רנוף וחסם האיחוד",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "balls-bins-imported-chernoff",
+    "title": "חסם צ'רנוף (Chernoff Bound)",
+    "kind": "הגדרה",
+    "summary": "כלי חזק המספק חסם מעריכי דועך להסתברות שסכום משתנים מקריים בלתי-תלויים (כגון משתנה בינומי) יסטה משמעותית מהתוחלת שלו. מחולק לזנב עליון ותחתון.",
+    "body": "<p>כלי חזק המספק חסם מעריכי דועך להסתברות שסכום משתנים מקריים בלתי-תלויים (כגון משתנה בינומי) יסטה משמעותית מהתוחלת שלו. מחולק לזנב עליון ותחתון.</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "חסמי צ'רנוף",
+      "חסם צ'רנוף לזנב תחתון",
+      "חסם צ'רנוף התחתון",
+      "חסם צ'רנוף לזנב עליון",
+      "חסם צ'רנוף העליון",
+      "חסם צ'רנוף",
+      "חסמי צ׳רנוף",
+      "חסם צ׳רנוף לזנב תחתון",
+      "חסם צ׳רנוף התחתון",
+      "חסם צ׳רנוף לזנב עליון",
+      "חסם צ׳רנוף העליון",
+      "חסם צ׳רנוף"
+    ],
+    "referenceIds": [
+      "balls-bins-imported-binomial",
+      "balls-bins-imported-chernoff",
+      "balls-bins-imported-union-bound",
+      "balls-bins-imported-little-o"
+    ],
+    "related": [
+      "balls-bins-imported-binomial",
+      "balls-bins-imported-union-bound",
+      "balls-bins-imported-little-o"
+    ],
+    "sources": [],
+    "lessonId": "balls-bins-balanced-loads",
+    "lessonTitle": "כדורים וסלים — חסמי צ׳רנוף וחסם האיחוד",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "balls-bins-imported-union-bound",
+    "title": "חסם האיחוד (Union Bound)",
+    "kind": "הגדרה",
+    "summary": "חסם כללי הקובע שההסתברות להתרחשותו של לפחות מאורע אחד מקבוצה היא לכל היותר סכום ההסתברויות שלהם בנפרד. כלל זה תקף גם אם המאורעות תלויים זה בזה.",
+    "body": "<p>חסם כללי הקובע שההסתברות להתרחשותו של לפחות מאורע אחד מקבוצה היא לכל היותר סכום ההסתברויות שלהם בנפרד. כלל זה תקף גם אם המאורעות תלויים זה בזה.</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "חסם האיחוד"
+    ],
+    "referenceIds": [
+      "balls-bins-imported-binomial",
+      "balls-bins-imported-chernoff",
+      "balls-bins-imported-union-bound",
+      "balls-bins-imported-little-o"
+    ],
+    "related": [
+      "balls-bins-imported-binomial",
+      "balls-bins-imported-chernoff",
+      "balls-bins-imported-little-o"
+    ],
+    "sources": [],
+    "lessonId": "balls-bins-balanced-loads",
+    "lessonTitle": "כדורים וסלים — חסמי צ׳רנוף וחסם האיחוד",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "balls-bins-imported-little-o",
+    "title": "סימון \\(o(1)\\)",
+    "kind": "סימון",
+    "summary": "פונקציה אסימפטוטית המייצגת ביטוי השואף ל-0 כאשר הפרמטר גדל לאינסוף (לרוב \\(n \\to \\infty\\)). ביטוי בהסתברות של \\(1-o(1)\\) מתאר אירוע שמתרחש כמעט בוודאות מוחלטת ככל שהמערכת גדלה.",
+    "body": "<p>פונקציה אסימפטוטית המייצגת ביטוי השואף ל-0 כאשר הפרמטר גדל לאינסוף (לרוב \\(n \\to \\infty\\)). ביטוי בהסתברות של \\(1-o(1)\\) מתאר אירוע שמתרחש כמעט בוודאות מוחלטת ככל שהמערכת גדלה.</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "\\(o(1)\\)",
+      "\\(1-o(1)\\)",
+      "\\(1 - o(1)\\)"
+    ],
+    "referenceIds": [
+      "balls-bins-imported-binomial",
+      "balls-bins-imported-chernoff",
+      "balls-bins-imported-union-bound",
+      "balls-bins-imported-little-o"
+    ],
+    "related": [
+      "balls-bins-imported-binomial",
+      "balls-bins-imported-chernoff",
+      "balls-bins-imported-union-bound"
+    ],
+    "sources": [],
+    "lessonId": "balls-bins-balanced-loads",
+    "lessonTitle": "כדורים וסלים — חסמי צ׳רנוף וחסם האיחוד",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

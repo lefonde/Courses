@@ -1,0 +1,130 @@
+[
+  {
+    "id": "gni-imported-isomorphism",
+    "title": "איזומורפיזם של גרפים",
+    "kind": "הגדרה",
+    "summary": "מצב שבו לשני גרפים יש מבנה זהה, כך שניתן להתאים בין קודקודיהם באופן חד־חד־ערכי ועל, תוך שמירה מלאה על קיומן או אי־קיומן של קשתות בין הקודקודים הממופים.",
+    "body": "<p>מצב שבו לשני גרפים יש מבנה זהה, כך שניתן להתאים בין קודקודיהם באופן חד־חד־ערכי ועל, תוך שמירה מלאה על קיומן או אי־קיומן של קשתות בין הקודקודים הממופים.</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "איזומורפיזם של גרפים",
+      "איזומורפיים",
+      "איזומורפי"
+    ],
+    "referenceIds": [
+      "gni-imported-isomorphism",
+      "gni-imported-interactive-proof",
+      "gni-imported-completeness",
+      "gni-imported-soundness"
+    ],
+    "related": [
+      "gni-imported-interactive-proof",
+      "gni-imported-completeness",
+      "gni-imported-soundness"
+    ],
+    "sources": [],
+    "lessonId": "gni-interactive-proof",
+    "lessonTitle": "הוכחה אינטראקטיבית לאי־איזומורפיזם של גרפים (GNISO)",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "gni-imported-interactive-proof",
+    "title": "מערכת־ההוכחה האינטראקטיבית (IP)",
+    "kind": "הגדרה",
+    "summary": "מודל חישובי שבו \"מוודא\" (Verifier), בעל כוח חישובי פולינומי המסוגל להגריל בחירות, מנהל דיאלוג עם \"מוכיח\" (Prover) בעל כוח חישוב בלתי מוגבל, כדי להשתכנע בנכונותה של טענה.",
+    "body": "<p>מודל חישובי שבו \"מוודא\" (Verifier), בעל כוח חישובי פולינומי המסוגל להגריל בחירות, מנהל דיאלוג עם \"מוכיח\" (Prover) בעל כוח חישוב בלתי מוגבל, כדי להשתכנע בנכונותה של טענה.</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "מערכת־ההוכחה האינטראקטיבית",
+      "מערכת הוכחה אינטראקטיבית",
+      "מערכת ההוכחה האינטראקטיבית"
+    ],
+    "referenceIds": [
+      "gni-imported-isomorphism",
+      "gni-imported-interactive-proof",
+      "gni-imported-completeness",
+      "gni-imported-soundness"
+    ],
+    "related": [
+      "gni-imported-isomorphism",
+      "gni-imported-completeness",
+      "gni-imported-soundness"
+    ],
+    "sources": [],
+    "lessonId": "gni-interactive-proof",
+    "lessonTitle": "הוכחה אינטראקטיבית לאי־איזומורפיזם של גרפים (GNISO)",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "gni-imported-completeness",
+    "title": "שלמות (Completeness)",
+    "kind": "הגדרה",
+    "summary": "הדרישה במערכת הוכחה שאם טענה היא אכן נכונה, קיים לפחות מוכיח אחד שיצליח לשכנע את המוודא באמיתותה בהסתברות גבוהה (או בהסתברות 1 כפי שקורה ב־GNISO).",
+    "body": "<p>הדרישה במערכת הוכחה שאם טענה היא אכן נכונה, קיים לפחות מוכיח אחד שיצליח לשכנע את המוודא באמיתותה בהסתברות גבוהה (או בהסתברות 1 כפי שקורה ב־GNISO).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "שלמות",
+      "שלמותו",
+      "שלמותה"
+    ],
+    "referenceIds": [
+      "gni-imported-isomorphism",
+      "gni-imported-interactive-proof",
+      "gni-imported-completeness",
+      "gni-imported-soundness"
+    ],
+    "related": [
+      "gni-imported-isomorphism",
+      "gni-imported-interactive-proof",
+      "gni-imported-soundness"
+    ],
+    "sources": [],
+    "lessonId": "gni-interactive-proof",
+    "lessonTitle": "הוכחה אינטראקטיבית לאי־איזומורפיזם של גרפים (GNISO)",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "gni-imported-soundness",
+    "title": "נאותות (Soundness)",
+    "kind": "הגדרה",
+    "summary": "הדרישה במערכת הוכחה שאם הטענה אינה נכונה, לא קיים אף מוכיח (גם לא רמאי בעל כוח מוחלט) שיצליח לגרום למוודא לאשר את הטענה, אלא בהסתברות שגיאה נמוכה.",
+    "body": "<p>הדרישה במערכת הוכחה שאם הטענה אינה נכונה, לא קיים אף מוכיח (גם לא רמאי בעל כוח מוחלט) שיצליח לגרום למוודא לאשר את הטענה, אלא בהסתברות שגיאה נמוכה.</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "נאותות",
+      "נאותותו",
+      "נאותותה"
+    ],
+    "referenceIds": [
+      "gni-imported-isomorphism",
+      "gni-imported-interactive-proof",
+      "gni-imported-completeness",
+      "gni-imported-soundness"
+    ],
+    "related": [
+      "gni-imported-isomorphism",
+      "gni-imported-interactive-proof",
+      "gni-imported-completeness"
+    ],
+    "sources": [],
+    "lessonId": "gni-interactive-proof",
+    "lessonTitle": "הוכחה אינטראקטיבית לאי־איזומורפיזם של גרפים (GNISO)",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

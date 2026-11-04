@@ -12,7 +12,7 @@
     "guideExercises": 64,
     "bookExercises": 110,
     "prerequisiteFamilies": 16,
-    "readyPages": 4,
+    "readyPages": 6,
     "scenarios": 6
   },
   "bands": [
@@ -773,8 +773,8 @@
       ],
       "caveats": [],
       "variants": [],
-      "lessonUrl": null,
-      "contentStatus": "planned"
+      "lessonUrl": "#exam-problem/gni-interactive-proof",
+      "contentStatus": "ready"
     },
     {
       "id": "balls-bins-balanced-loads",
@@ -876,8 +876,8 @@
         "ההשמות של הכדורים עצמאיות; עומסי התאים עצמם תלויים. חסם האיחוד אינו דורש אי־תלות בין העומסים."
       ],
       "variants": [],
-      "lessonUrl": null,
-      "contentStatus": "planned"
+      "lessonUrl": "#exam-problem/balls-bins-balanced-loads",
+      "contentStatus": "ready"
     },
     {
       "id": "undirected-walk-cover-time",
