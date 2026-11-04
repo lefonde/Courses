@@ -5988,7 +5988,7 @@
     },
     {
       "path": "docs/index.html",
-      "sha256": "68151c80771089ce4eb730823ebf505d6976e204ca466912619aaa2e928d9fd7",
+      "sha256": "9872b4abb62cd795f5137951e3832c789bd62e7acd653a0b34bea592b6e4f653",
       "status": "needs-review",
       "reason": "Local integration of the user-supplied Gemini fingerprinting lesson under the user-directed import workflow. Copy fidelity, formatting, glossary links, navigation and browser interactions were checked; no course-source or mathematical review was performed. Records: work/fingerprinting-gemini-import. Author-reported lack of access to exam PDFs is attributed in the lesson. This is not academic content approval or publication authorization."
     },
@@ -6174,13 +6174,13 @@
     },
     {
       "path": "docs/sidebar.css",
-      "sha256": "760847b7031511534b28ac9253352c484d1bea369817c8711aee371a37db9b0a",
+      "sha256": "1e7ef1b90487a81ffd484f0b19eb1a054ba28b1021e0ded8b643010108a138a9",
       "status": "needs-review",
       "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
     },
     {
       "path": "docs/site-shell.js",
-      "sha256": "b0bd7bb8ab41479760d433f8695ce374d7256be09b6940836a7591ae222fb170",
+      "sha256": "da940d95762e4974f639a1f4cef46c84b1ec4c9a1ea7076db3bb3bf698c37246",
       "status": "needs-review",
       "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
     },

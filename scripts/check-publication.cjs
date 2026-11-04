@@ -5,6 +5,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {execFileSync} = require('node:child_process');
+const {isDeepStrictEqual} = require('node:util');
 const {checkRepository, validateManifest, canonicalContentHash, POLICY_VERSION} = require('./check-course-content.cjs');
 const AUTH_PATH = 'course-content/online-review-authorization.json';
 const AUTH_HASH = '9b0695f4f552b485121217785e1f6b1ce1d9a24961d27526d47f00f42ff814b4';
@@ -12,6 +13,11 @@ const AUTH_HASH = '9b0695f4f552b485121217785e1f6b1ce1d9a24961d27526d47f00f42ff81
 const SITE_RELEASE_PATH = 'course-content/site-release-2026-10-26.json';
 const SITE_RELEASE_HASH = '55a55a9d09cd3637464f79f2c38de90712bcf622c9771fad10748bfb4a1a93d3';
 const SITE_RELEASE_BASELINE = '4ff46f4c6fb9375bdb5fa9162c99c7f98c59fe87';
+// The later sidebar request authorizes three UI files only, with no content changes.
+const SIDEBAR_RELEASE_PATH = 'course-content/sidebar-release-2026-11-04.json';
+const SIDEBAR_RELEASE_HASH = '91fdafa42b20e65d885f6002c7b7e14a4a3c618585859e948723c0befb287d12';
+const SIDEBAR_RELEASE_BASELINE = '83be09beb46e5fb7f6d829c335f1e17a8482b4d3';
+const SIDEBAR_RELEASE_PATHS = ['docs/index.html', 'docs/sidebar.css', 'docs/site-shell.js'];
 const MANIFEST_PATH = 'course-content/review-status.json';
 const CATALOG_PATH = 'course-content/source-catalog.json';
 const APPROVED = [
@@ -119,6 +125,53 @@ function validateSiteRelease({authorization: a, files, baselineFiles, manifest, 
   return {ok:errors.length === 0, errors, mode:'authorized-site-release', contentReviewPerformed:false, legacyApprovalGranted:false};
 }
 
+function readSidebarReleaseAuthorization(bytes) {
+  if (hash(SIDEBAR_RELEASE_PATH, bytes) !== SIDEBAR_RELEASE_HASH) throw new Error('The 4-Nov sidebar authorization differs from the exact user-requested snapshot; do not refresh it for later edits');
+  return JSON.parse(bytes);
+}
+
+function validateSidebarRelease({authorization: a, files, baselineFiles, manifest, catalog, manifestBytes, catalogBytes, baselineManifestBytes, baselineCatalogBytes, remoteBase}) {
+  const errors = [], fail = message => errors.push(message);
+  const text = value => typeof value === 'string' && value.trim().length > 0;
+  const identity = value => value.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase();
+  if (!a || a.schemaVersion !== 1 || a.kind !== 'user-requested-sidebar-release' || a.policyVersion !== POLICY_VERSION) return {ok:false, errors:['Missing or unsupported sidebar-release authorization']};
+  if (a.requestQuote !== 'publish' || a.requestDate !== '2026-11-04' || !text(a.scope)) fail('Authorization must record the specific 4-Nov sidebar publication request and scope');
+  if (a.baselineCommit !== SIDEBAR_RELEASE_BASELINE) fail('Sidebar release must use the previously published baseline');
+  if (remoteBase !== undefined && remoteBase !== SIDEBAR_RELEASE_BASELINE) fail('The publishing branch has moved since the authorized baseline; do not overwrite it');
+  const review = a.technicalReview;
+  if (a.contentReviewPerformed !== false || !review || !text(review.author) || !text(review.reviewer) || !text(review.note) || identity(review.author) === identity(review.reviewer)) fail('Sidebar publication requires an independent technical review and must not claim course-content approval');
+  if (a.reviewManifestHash !== hash(MANIFEST_PATH, manifestBytes) || a.sourceCatalogHash !== hash(CATALOG_PATH, catalogBytes)) fail('Review records or source catalog changed after authorization');
+  // Preserve all review evidence and statuses, including known pending content.
+  // Only the three UI file identities may change in the baseline manifest.
+  try {
+    if (hash(CATALOG_PATH, catalogBytes) !== hash(CATALOG_PATH, baselineCatalogBytes)) fail('The sidebar release cannot change the source catalog');
+    const expectedManifest = JSON.parse(baselineManifestBytes);
+    for (const row of expectedManifest.files) {
+      if (SIDEBAR_RELEASE_PATHS.includes(row.path)) row.sha256 = (manifest.files || []).find(current => current.path === row.path)?.sha256;
+    }
+    if (!isDeepStrictEqual(expectedManifest, manifest)) fail('The sidebar release can change only the three UI hashes in the baseline review manifest');
+  } catch {fail('The sidebar release requires valid baseline review records and source catalog');}
+  const authorized = new Map();
+  if (!Array.isArray(a.files)) fail('Published snapshot requires a files array');
+  for (const row of Array.isArray(a.files) ? a.files : []) {
+    if (!row || !safePath(row.path) || !/^[a-f0-9]{64}$/.test(row.sha256 || '') || authorized.has(row.path)) {fail('Invalid or duplicate snapshot entry'); continue;}
+    authorized.set(row.path, row.sha256);
+  }
+  if (!sameSet([...authorized.keys()], [...files.keys()])) fail('Published file inventory differs from the authorized snapshot');
+  if (!sameSet([...files.keys()], [...baselineFiles.keys()]) || !sameSet(a.deletedPaths, [])) fail('The sidebar release does not permit adding or deleting published files');
+  const changed = [];
+  for (const [name, bytes] of files) {
+    if (!safePath(name)) fail('Invalid published path');
+    const current = hash(name, bytes);
+    if (current !== authorized.get(name)) fail(`${name}: differs from the authorized snapshot`);
+    if (!baselineFiles.has(name) || current !== hash(name, baselineFiles.get(name))) changed.push(name);
+  }
+  if (!sameSet(a.changedPaths, SIDEBAR_RELEASE_PATHS) || !sameSet(changed, SIDEBAR_RELEASE_PATHS)) fail('Changed files must be exactly the three authorized sidebar UI files');
+  const full = validateManifest(manifest, new Map([...files].filter(([name]) => !name.startsWith('docs/vendor/'))), catalog);
+  errors.push(...full.errors.filter(error => !/: status (needs-review|blocked) prevents publication$/.test(error)));
+  return {ok:errors.length === 0, errors, mode:'authorized-sidebar-release', contentReviewPerformed:false, legacyApprovalGranted:false};
+}
+
 function checkPublication({root = path.resolve(__dirname, '..'), revision, remoteBase} = {}) {
   const strict = checkRepository({root, revision});
   if (strict.ok) return {...strict, mode:'full-course-review'};
@@ -172,6 +225,14 @@ function checkPublication({root = path.resolve(__dirname, '..'), revision, remot
       walk('docs');
     }
     const manifestBytes = read(MANIFEST_PATH), catalogBytes = read(CATALOG_PATH);
+    const hasSidebarRelease = revision
+      ? git(['ls-tree','--name-only',revision,'--',SIDEBAR_RELEASE_PATH]).toString('utf8').trim() === SIDEBAR_RELEASE_PATH
+      : fs.existsSync(path.join(root, SIDEBAR_RELEASE_PATH));
+    if (hasSidebarRelease) {
+      const authorization = readSidebarReleaseAuthorization(read(SIDEBAR_RELEASE_PATH));
+      return validateSidebarRelease({authorization, files, baselineFiles:readTree(SIDEBAR_RELEASE_BASELINE), manifest:JSON.parse(manifestBytes), catalog:JSON.parse(catalogBytes), manifestBytes, catalogBytes,
+        baselineManifestBytes:git(['show', `${SIDEBAR_RELEASE_BASELINE}:${MANIFEST_PATH}`]), baselineCatalogBytes:git(['show', `${SIDEBAR_RELEASE_BASELINE}:${CATALOG_PATH}`]), remoteBase});
+    }
     const hasSiteRelease = revision
       ? git(['ls-tree','--name-only',revision,'--',SITE_RELEASE_PATH]).toString('utf8').trim() === SITE_RELEASE_PATH
       : fs.existsSync(path.join(root, SITE_RELEASE_PATH));
@@ -194,8 +255,8 @@ function main(args) {
   }
   const result = checkPublication(options);
   if (!result.ok) {console.error(result.errors.join('\n'));return 1;}
-  console.log(result.mode === 'authorized-site-release' ? 'Exact current-site snapshot authorized by the user on 26-Oct. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-online-review' ? 'Exact online-review snapshot authorized by the user. Six content files reviewed; legacy course approval is NOT granted.' : 'Full course-source publication check passed.');
+  console.log(result.mode === 'authorized-sidebar-release' ? 'Exact sidebar UI snapshot authorized by the user on 4-Nov. Existing content and review statuses are unchanged.' : result.mode === 'authorized-site-release' ? 'Exact current-site snapshot authorized by the user on 26-Oct. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-online-review' ? 'Exact online-review snapshot authorized by the user. Six content files reviewed; legacy course approval is NOT granted.' : 'Full course-source publication check passed.');
   return 0;
 }
-module.exports = {validateAuthorization, validateSiteRelease, readSiteReleaseAuthorization, checkPublication, publicationContentHash:hash, AUTH_PATH, APPROVED, INTEGRATION, BASELINE, REQUEST, SITE_RELEASE_PATH, SITE_RELEASE_BASELINE};
+module.exports = {validateSidebarRelease, readSidebarReleaseAuthorization, SIDEBAR_RELEASE_PATH, SIDEBAR_RELEASE_BASELINE, SIDEBAR_RELEASE_PATHS, validateAuthorization, validateSiteRelease, readSiteReleaseAuthorization, checkPublication, publicationContentHash:hash, AUTH_PATH, APPROVED, INTEGRATION, BASELINE, REQUEST, SITE_RELEASE_PATH, SITE_RELEASE_BASELINE};
 if (require.main === module) {try {process.exitCode=main(process.argv.slice(2));} catch(error) {console.error(error.message);process.exitCode=1;}}

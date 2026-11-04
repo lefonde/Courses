@@ -114,3 +114,9 @@
 `course-content/site-release-2026-10-26.json` מתעד בנפרד את הבקשה, את גרסת `main` שנבדקה לפני הפרסום, את כל קובצי האתר וחתימותיהם ואת השינויים המדויקים. הרשאת 24.10.2026 נשארת ללא שינוי. בדיקת הפרסום מאמתת את הרשומה החדשה מול חתימה קבועה, דורשת התאמה מלאה של הקבצים ורשומות הבדיקה, וחוסמת שינוי נוסף או תזוזה של הענף המרוחק. בדיקות התוכנה נדרשות גם בפרסום זה.
 
 סטטוסי סקירת התוכן נשארים כפי שהם; בדיקה טכנית אינה הופכת תוכן מיובא או ותיק לתוכן שנבדק מול הקורס. החוסר בשאלת הבחינה ובפתרונה בשיעור הקודקודים המבודדים נשאר מסומן בשיעור. אין לפרש את ההרשאה המסוימת הזו כהיתר לפרסומים עתידיים.
+
+### Sidebar publication authorization, 4 November 2026
+
+After the collapsible sidebar was implemented and locally verified, the user instructed: "publish". This authorizes the sidebar UI update on published baseline `83be09beb46e5fb7f6d829c335f1e17a8482b4d3`: `docs/sidebar.css`, `docs/site-shell.js` and only their two asset-version references in `docs/index.html`. All other published files remain identical to the baseline. Unrelated local GNI course edits are excluded.
+
+`course-content/sidebar-release-2026-11-04.json` records this new request, independent technical review and exact snapshot. Earlier authorizations and every content-review status remain unchanged. Only the three reviewed UI file hashes change in the manifest. The new gate pins the authorization, exact inventory, unchanged source catalog, unchanged remaining manifest records, and remote baseline. It permits no educational edits, file additions or deletions, future snapshot refresh, or hook bypass. Required release tests still apply.
