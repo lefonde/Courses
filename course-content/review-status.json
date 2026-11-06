@@ -155,15 +155,15 @@
     },
     {
       "path": "docs/data/exam-dashboard.json",
-      "sha256": "971847634fd9febbce39b3a005d1d495da1f4861017d2385335d70278d67bf5b",
+      "sha256": "f166f4503ae5ccde6e451c48d95d39f70cd6afec157f316ef62043d3ffae0466",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/data/exam-problem-pages.json",
-      "sha256": "1c195d81cf97999244f424a795ff21fd2f30daaaf5dc59f7e9936eb45a8b67e7",
+      "sha256": "3ae912c1d62a5c125c4b1dc1fe0579a8b41a32356f7951d5950527d022287d55",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/data/flashcards.json",
@@ -4987,9 +4987,9 @@
     },
     {
       "path": "docs/exam-dashboard-ui.js",
-      "sha256": "b7f328e83f770a62a030d2f23cf4747e4e9c3eac54ea5b7050d74a0c0c37476d",
+      "sha256": "d47d3f36bd11edc97192a1fc06237a6208abc8a4decf41fb90f71e4653427415",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/exam-dashboard.css",
@@ -4999,15 +4999,15 @@
     },
     {
       "path": "docs/exam-problem-ui.js",
-      "sha256": "be1ab2bb24cc39e31193d426894ba76f6b9a1b7d01913471b672fc15e57238f2",
+      "sha256": "4f212f91d7c66b2546004e29cba7c075de9781c7fb70221d4cc30eea36479a84",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/exam-problem.css",
-      "sha256": "e7280fbfa7adb8c9aef097766f5119f4a6b5f9702b855f3d39b0469fb46751c1",
+      "sha256": "00e782b145061dd33533958a8c3055ac44aaa8e1d1f27b3739bb145b4f37f0a2",
       "status": "needs-review",
-      "reason": "The user explicitly directed faithful import of the supplied Gemini content without source or mathematical verification. This version has technical import/rendering checks only, recorded in work/walk-gemini-import. It is not a source-reviewed approval or a publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini vandermonde-determinant lesson and four definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/vandermonde-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/exam-problems/directed-reset-walk.html",
@@ -5988,9 +5988,9 @@
     },
     {
       "path": "docs/index.html",
-      "sha256": "e1349226eee343ca93bccc3fd13e7206de3720ae7a9f160bf4c2de653ca8851b",
+      "sha256": "e7e039dbc97a2be2c8cf065f00515e3be90ce40462c0f0d29fbf4f8e14e67fc7",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/learning-engine.js",
@@ -6114,9 +6114,9 @@
     },
     {
       "path": "docs/reference-ui.js",
-      "sha256": "cffec7d98ffad06f9e2c650aa40234c8ba5c50b5a110c7f0ba498d657317f90a",
+      "sha256": "759429adbcc17f86ff069eda90022a7c11454bac00e91b9b3aa3f4f2eff5a084",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/reference.css",
@@ -6210,9 +6210,9 @@
     },
     {
       "path": "docs/study-math.js",
-      "sha256": "db4cd1f8919b204c19c9941279ede0f2ae7e1ef84aff64330b1a9b880fb230a6",
+      "sha256": "b0786662f7f502bbe6860fe041bc8b491709fec02bf133bc8a62320cd3611626",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
     },
     {
       "path": "docs/styles.css",
@@ -6297,6 +6297,54 @@
       "sha256": "a8d02461e4628e64c0856ee18e1ee4bbca9fa8186915817bc61b3357f5d75c20",
       "status": "needs-review",
       "reason": "Local faithful technical integration of user-supplied Gemini balls-and-bins content, including birthday exercise. Supplied educational wording and TeX retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation, Hebrew formula rendering and browser behavior checked. Evidence: work/balls-bins-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/exam-problems/undirected-walk-cover-time.html",
+      "sha256": "6334b3053bb8932f9f826fe08e332fd80dd095404bd6acafe93d84fb4d00d3e7",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini undirected-walk cover-time lesson and five definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/cover-time-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/data/reference-cover-time-imported.json",
+      "sha256": "ca56eaadbcc236d2b67e4eddcd5d24f1b32c1199b97df1afb697c4eb9e6888d5",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini undirected-walk cover-time lesson and five definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/cover-time-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/exam-problems/coin-dense-blocks.html",
+      "sha256": "10a847c87a80d9c028e74a23db45523a5e11bbc7d6e617f1e16779a36f3d9646",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini coin-dense-blocks lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/coin-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/data/reference-coin-imported.json",
+      "sha256": "ce94b63910794dcb1c68bcda240b007c771bd263074218d4bdb08ed7a4c2ec5d",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini coin-dense-blocks lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/coin-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/exam-problems/vandermonde-determinant.html",
+      "sha256": "4c7594ab6a0e02f9962c47a1b6aec0bad8d9c55741bd24675d2fdb11980b4391",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini vandermonde-determinant lesson and four definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/vandermonde-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/data/reference-vandermonde-imported.json",
+      "sha256": "98ea50b151f4257be3fea77bf3e8df97cfb67072e332b3889c49be687f83bdba",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini vandermonde-determinant lesson and four definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/vandermonde-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/exam-problems/kwise-support-lower-bound.html",
+      "sha256": "2b61022aa7c2e2a9e32e7d9c8f35f661e3f6c85ddd4231c277c7636710b4fc0b",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/data/reference-kwise-imported.json",
+      "sha256": "a13a55f9ffebc54adcf7c0c282b095ced6f86cb12a90ae3492bfe664fdf24ed7",
+      "status": "needs-review",
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
     }
   ]
 }

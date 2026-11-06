@@ -1,8 +1,8 @@
 /* Reading support only: no progress, scheduling, or assistance records change. */
 'use strict';
 window.StudyReference=(()=>{
-  const version='20261104-balls-bins-import1';
-  const files=['reference-sat','reference-walk','reference-probability','reference-walk-imported','reference-isolated-imported','reference-fingerprinting-imported','reference-gni-imported','reference-balls-bins-imported','reference-links'];
+  const version='20261106-kwise-import1';
+  const files=['reference-sat','reference-walk','reference-probability','reference-walk-imported','reference-isolated-imported','reference-fingerprinting-imported','reference-gni-imported','reference-balls-bins-imported','reference-cover-time-imported','reference-coin-imported','reference-vandermonde-imported','reference-kwise-imported','reference-links'];
   let entries=[],links=[],byId=new Map(),pending=null,error='',ready=false,search='',kind='all';
   let tooltip=null,active=null,hoverTimer,closeTimer,dismissed=null;
   const h=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

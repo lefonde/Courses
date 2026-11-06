@@ -1,0 +1,174 @@
+[
+  {
+    "id": "cover-imported-cover-time",
+    "title": "זמן כיסוי",
+    "kind": "הגדרה",
+    "summary": "תוחלת הזמן (במספר צעדים) המקסימלית שתידרש להילוך מקרי כדי לבקר בכל קודקודי הגרף לפחות פעם אחת, מבין כל קודקודי ההתחלה האפשריים. (אלגוריתמים אקראיים - שיעור 5, עמ' 4).",
+    "body": "<p>תוחלת הזמן (במספר צעדים) המקסימלית שתידרש להילוך מקרי כדי לבקר בכל קודקודי הגרף לפחות פעם אחת, מבין כל קודקודי ההתחלה האפשריים. (אלגוריתמים אקראיים - שיעור 5, עמ' 4).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "זמן כיסוי",
+      "זמן הכיסוי",
+      "זמן הכיסוי הכולל"
+    ],
+    "referenceIds": [
+      "cover-imported-cover-time",
+      "cover-imported-stationary",
+      "cover-imported-hitting-return",
+      "cover-imported-dfs",
+      "cover-imported-non-bipartite"
+    ],
+    "related": [
+      "cover-imported-stationary",
+      "cover-imported-hitting-return",
+      "cover-imported-dfs",
+      "cover-imported-non-bipartite"
+    ],
+    "sources": [],
+    "lessonId": "undirected-walk-cover-time",
+    "lessonTitle": "הילוך מקרי בגרף לא מכוון — חסם זמן הכיסוי.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "cover-imported-stationary",
+    "title": "התפלגות סטציונרית בגרף לא מכוון",
+    "kind": "הגדרה",
+    "summary": "וקטור הסתברויות גבולי של ההילוך. בגרף לא מכוון קשיר, ההתפלגות תלויה בדרגות הקודקודים: \\(\\pi_v = \\frac{d(v)}{2\\vert{}E\\vert{}}\\). (Course Book - Chapter 7, עמ' 174).",
+    "body": "<p>וקטור הסתברויות גבולי של ההילוך. בגרף לא מכוון קשיר, ההתפלגות תלויה בדרגות הקודקודים: \\(\\pi_v = \\frac{d(v)}{2\\vert{}E\\vert{}}\\). (Course Book - Chapter 7, עמ' 174).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "התפלגות סטציונרית בגרף לא מכוון",
+      "התפלגות סטציונרית יחידה",
+      "ההתפלגות הסטציונרית"
+    ],
+    "referenceIds": [
+      "cover-imported-cover-time",
+      "cover-imported-stationary",
+      "cover-imported-hitting-return",
+      "cover-imported-dfs",
+      "cover-imported-non-bipartite"
+    ],
+    "related": [
+      "cover-imported-cover-time",
+      "cover-imported-hitting-return",
+      "cover-imported-dfs",
+      "cover-imported-non-bipartite"
+    ],
+    "sources": [],
+    "lessonId": "undirected-walk-cover-time",
+    "lessonTitle": "הילוך מקרי בגרף לא מכוון — חסם זמן הכיסוי.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "cover-imported-hitting-return",
+    "title": "זמן חזרה / זמן הגעה (\\(h_{u,v}\\))",
+    "kind": "הגדרה",
+    "summary": "תוחלת מספר הצעדים המינימלי הנדרש להגיע מקודקוד \\(u\\) לקודקוד \\(v\\). כאשר \\(u=v\\), זהו זמן החזרה אל אותו הקודקוד. (2021א מועד 99, עמ' 6).",
+    "body": "<p>תוחלת מספר הצעדים המינימלי הנדרש להגיע מקודקוד \\(u\\) לקודקוד \\(v\\). כאשר \\(u=v\\), זהו זמן החזרה אל אותו הקודקוד. (2021א מועד 99, עמ' 6).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "זמן חזרה / זמן הגעה (\\(h_{u,v}\\))",
+      "תוחלת זמן החזרה",
+      "זמן ההגעה"
+    ],
+    "referenceIds": [
+      "cover-imported-cover-time",
+      "cover-imported-stationary",
+      "cover-imported-hitting-return",
+      "cover-imported-dfs",
+      "cover-imported-non-bipartite"
+    ],
+    "related": [
+      "cover-imported-cover-time",
+      "cover-imported-stationary",
+      "cover-imported-dfs",
+      "cover-imported-non-bipartite"
+    ],
+    "sources": [],
+    "lessonId": "undirected-walk-cover-time",
+    "lessonTitle": "הילוך מקרי בגרף לא מכוון — חסם זמן הכיסוי.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "cover-imported-dfs",
+    "title": "סיור DFS",
+    "kind": "הגדרה",
+    "summary": "(Depth First Search) אלגוריתם סריקה בגרף או בעץ. כשמבצעים אותו על עץ, הוא יוצר מסלול סגור העובר על כל קשת בדיוק פעמיים – הלוך ושוב – ולכן אורכו כפול ממספר קשתות העץ. (אלגוריתמים אקראיים - שיעור 5, עמ' 4).",
+    "body": "<p>(Depth First Search) אלגוריתם סריקה בגרף או בעץ. כשמבצעים אותו על עץ, הוא יוצר מסלול סגור העובר על כל קשת בדיוק פעמיים – הלוך ושוב – ולכן אורכו כפול ממספר קשתות העץ. (אלגוריתמים אקראיים - שיעור 5, עמ' 4).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "סיור DFS",
+      "סיור חקר לעומק (DFS)"
+    ],
+    "referenceIds": [
+      "cover-imported-cover-time",
+      "cover-imported-stationary",
+      "cover-imported-hitting-return",
+      "cover-imported-dfs",
+      "cover-imported-non-bipartite"
+    ],
+    "related": [
+      "cover-imported-cover-time",
+      "cover-imported-stationary",
+      "cover-imported-hitting-return",
+      "cover-imported-non-bipartite"
+    ],
+    "sources": [],
+    "lessonId": "undirected-walk-cover-time",
+    "lessonTitle": "הילוך מקרי בגרף לא מכוון — חסם זמן הכיסוי.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "cover-imported-non-bipartite",
+    "title": "גרף שאיננו דו-צדדי",
+    "kind": "הגדרה",
+    "summary": "גרף שלא ניתן לחלק את קודקודיו לשתי קבוצות שאין ביניהן קשתות פנימיות. תכונה זו מבטיחה שהגרף יכיל מעגלים באורך אי-זוגי, מה שמונע מחזוריות בהילוך המקרי (אפריודיות) ומבטיח התכנסות להתפלגות הסטציונרית. (Course Book - Chapter 7, עמ' 174).",
+    "body": "<p>גרף שלא ניתן לחלק את קודקודיו לשתי קבוצות שאין ביניהן קשתות פנימיות. תכונה זו מבטיחה שהגרף יכיל מעגלים באורך אי-זוגי, מה שמונע מחזוריות בהילוך המקרי (אפריודיות) ומבטיח התכנסות להתפלגות הסטציונרית. (Course Book - Chapter 7, עמ' 174).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "גרף שאיננו דו-צדדי",
+      "איננו דו-צדדי",
+      "בלתי־מחזורית",
+      "גרף שאיננו דו־צדדי",
+      "איננו דו־צדדי",
+      "בלתי-מחזורית"
+    ],
+    "referenceIds": [
+      "cover-imported-cover-time",
+      "cover-imported-stationary",
+      "cover-imported-hitting-return",
+      "cover-imported-dfs",
+      "cover-imported-non-bipartite"
+    ],
+    "related": [
+      "cover-imported-cover-time",
+      "cover-imported-stationary",
+      "cover-imported-hitting-return",
+      "cover-imported-dfs"
+    ],
+    "sources": [],
+    "lessonId": "undirected-walk-cover-time",
+    "lessonTitle": "הילוך מקרי בגרף לא מכוון — חסם זמן הכיסוי.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

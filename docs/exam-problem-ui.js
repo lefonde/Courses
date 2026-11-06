@@ -1,7 +1,7 @@
 /* One reading route per problem; learning marks share the dashboard's store. */
 'use strict';
 window.StudyExamProblems=(()=>{
-  const version='20261104-balls-bins-import1', cache=new Map(), pending=new Map(), errors=new Map(), pendingReports=new Map();
+  const version='20261106-kwise-import1', cache=new Map(), pending=new Map(), errors=new Map(), pendingReports=new Map();
   let manifest;
   const viewKey=key=>'erdos:exam-problem:view:v1:'+key+(cache.get(key)?.meta.viewVersion?':'+cache.get(key).meta.viewVersion:'');
   function readView(key){try{return JSON.parse(sessionStorage.getItem(viewKey(key))||'[]');}catch{return [];}}
@@ -31,7 +31,7 @@ window.StudyExamProblems=(()=>{
     return `<article class="exam-problem" data-problem-id="${h(key)}" aria-labelledby="problem-title">
       <a class="problem-back" href="#exam-map">→ חזרה למפת השאלות</a>
       <header class="problem-heading"><div class="problem-kicker"><span>משפחה ${family.rank} בדירוג</span><span>${StudyMath.text(family.themeLabel)}</span><span><bdi>${family.score}/100</bdi> נקודות עדיפות</span></div>
-        <h1 id="problem-title" tabindex="-1">${StudyMath.text(meta.title||family.title)}</h1><p class="problem-lead">${h(meta.lead)}</p>
+        <h1 id="problem-title" tabindex="-1">${StudyMath.text(meta.title||family.title)}</h1><p class="problem-lead">${StudyMath.text(meta.lead)}</p>
         <div class="problem-session">${meta.minutes?`<span>כ־<bdi>${h(meta.minutes)}</bdi> דקות, כולל ניסיון פתרון</span>`:''}<span>רמזים ופתרונות לפי הצורך</span></div>
         <a class="button primary" href="#exam-problem/${h(key)}" data-problem-jump="problem-basic">לתחילת התרגול <span aria-hidden="true">↓</span></a>
         <p class="problem-instruction">${h(meta.instruction||'כדאי לעבוד עם דף ועט. נסו תחילה את התרגיל הבסיסי; אם חסר כלי, חזרו להסבר שבהמשך העמוד. הרמזים והפתרונות נפתחים רק לפי בחירתכם.')}</p>

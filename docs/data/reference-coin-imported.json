@@ -1,0 +1,93 @@
+[
+  {
+    "id": "coin-imported-binomial",
+    "title": "התפלגות בינומית",
+    "kind": "הגדרה",
+    "summary": "התפלגות של משתנה מקרי \\(X\\) המתאר את מספר ההצלחות בסדרה של \\(n\\) ניסויי ברנולי בלתי תלויים, שלכל אחד מהם הסתברות \\(p\\) להצלחה. התוחלת היא \\(np\\). (אלגוריתמים אקראיים - שיעור 2, עמ' 4).",
+    "body": "<p>התפלגות של משתנה מקרי \\(X\\) המתאר את מספר ההצלחות בסדרה של \\(n\\) ניסויי ברנולי בלתי תלויים, שלכל אחד מהם הסתברות \\(p\\) להצלחה. התוחלת היא \\(np\\). (אלגוריתמים אקראיים - שיעור 2, עמ' 4).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "התפלגות בינומית",
+      "משתנה מקרי בינומי",
+      "בינומי"
+    ],
+    "referenceIds": [
+      "coin-imported-binomial",
+      "coin-imported-chernoff",
+      "coin-imported-union-bound"
+    ],
+    "related": [
+      "coin-imported-chernoff",
+      "coin-imported-union-bound"
+    ],
+    "sources": [],
+    "lessonId": "coin-dense-blocks",
+    "lessonTitle": "הטלות מטבע — רצפים מוצלחים יחסית.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "coin-imported-chernoff",
+    "title": "חסם צ׳רנוף",
+    "kind": "הגדרה",
+    "summary": "אי־שוויון החוסם את ההסתברות שסכום של משתני ברנולי בלתי תלויים יסטה באופן משמעותי מתוחלתו. בניגוד לחסם מרקוב, הוא מנצל את התפלגות המשתנים כולם ולכן מספק חסם הדועך מעריכית בתוחלת. (Course Guide - Chapter 4, עמ' 72).",
+    "body": "<p>אי־שוויון החוסם את ההסתברות שסכום של משתני ברנולי בלתי תלויים יסטה באופן משמעותי מתוחלתו. בניגוד לחסם מרקוב, הוא מנצל את התפלגות המשתנים כולם ולכן מספק חסם הדועך מעריכית בתוחלת. (Course Guide - Chapter 4, עמ' 72).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "חסם צ׳רנוף",
+      "חסם צ׳רנוף לזנב העליון",
+      "חסם צ'רנוף",
+      "חסם צ'רנוף לזנב העליון"
+    ],
+    "referenceIds": [
+      "coin-imported-binomial",
+      "coin-imported-chernoff",
+      "coin-imported-union-bound"
+    ],
+    "related": [
+      "coin-imported-binomial",
+      "coin-imported-union-bound"
+    ],
+    "sources": [],
+    "lessonId": "coin-dense-blocks",
+    "lessonTitle": "הטלות מטבע — רצפים מוצלחים יחסית.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "coin-imported-union-bound",
+    "title": "חסם האיחוד (Union Bound)",
+    "kind": "הגדרה",
+    "summary": "כלל בסיסי הקובע שההסתברות לאיחוד של אוסף מאורעות (כלומר, ההסתברות שלפחות אחד מהם יתרחש) קטנה או שווה לסכום ההסתברויות שלהם בנפרד. כלל זה נכון תמיד ואינו דורש אי־תלות בין המאורעות. (ת כדורים וסלים מאוזנים - הערכת זנב - פתרון לדוגמא).",
+    "body": "<p>כלל בסיסי הקובע שההסתברות לאיחוד של אוסף מאורעות (כלומר, ההסתברות שלפחות אחד מהם יתרחש) קטנה או שווה לסכום ההסתברויות שלהם בנפרד. כלל זה נכון תמיד ואינו דורש אי־תלות בין המאורעות. (ת כדורים וסלים מאוזנים - הערכת זנב - פתרון לדוגמא).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "חסם האיחוד (Union Bound)",
+      "חסם האיחוד",
+      "Union Bound"
+    ],
+    "referenceIds": [
+      "coin-imported-binomial",
+      "coin-imported-chernoff",
+      "coin-imported-union-bound"
+    ],
+    "related": [
+      "coin-imported-binomial",
+      "coin-imported-chernoff"
+    ],
+    "sources": [],
+    "lessonId": "coin-dense-blocks",
+    "lessonTitle": "הטלות מטבע — רצפים מוצלחים יחסית.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

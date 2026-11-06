@@ -12,7 +12,7 @@
     "guideExercises": 64,
     "bookExercises": 110,
     "prerequisiteFamilies": 16,
-    "readyPages": 6,
+    "readyPages": 10,
     "scenarios": 6
   },
   "bands": [
@@ -1019,8 +1019,8 @@
         "חסמים עליונים ותחתונים מאותו סדר גודל",
         "הוכחת חסם הכיסוי 4|V||E| באמצעות סיור בעץ פורש וזמני פגיעה לאורך קשת"
       ],
-      "lessonUrl": null,
-      "contentStatus": "planned"
+      "lessonUrl": "#exam-problem/undirected-walk-cover-time",
+      "contentStatus": "ready"
     },
     {
       "id": "coin-dense-blocks",
@@ -1109,8 +1109,8 @@
         "זוהי משפחה נפרדת מן השאלה על רצף שכולו הצלחות; אין לצבור את שתיהן כאותה חזרה היסטורית."
       ],
       "variants": [],
-      "lessonUrl": null,
-      "contentStatus": "planned"
+      "lessonUrl": "#exam-problem/coin-dense-blocks",
+      "contentStatus": "ready"
     },
     {
       "id": "vandermonde-determinant",
@@ -1211,8 +1211,8 @@
       ],
       "caveats": [],
       "variants": [],
-      "lessonUrl": null,
-      "contentStatus": "planned"
+      "lessonUrl": "#exam-problem/vandermonde-determinant",
+      "contentStatus": "ready"
     },
     {
       "id": "kwise-support-lower-bound",
@@ -1298,8 +1298,8 @@
         "נוסחת גודל מרחב ביטים Θ(n^(k/2)) מצוטטת בלי בנייה או תנאים מלאים; אין להסיקה ישירות מן הבנייה הפולינומית מעל שדה. בעת כתיבת חומר הלימוד להציג בנייה מוכחת עם חסם תקף, ולבדוק בנפרד את נוסחת המקור."
       ],
       "variants": [],
-      "lessonUrl": null,
-      "contentStatus": "planned"
+      "lessonUrl": "#exam-problem/kwise-support-lower-bound",
+      "contentStatus": "ready"
     },
     {
       "id": "coin-long-runs",

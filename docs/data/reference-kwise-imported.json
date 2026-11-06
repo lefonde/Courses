@@ -1,0 +1,95 @@
+[
+  {
+    "id": "kwise-imported-sample-space",
+    "title": "מרחב המדגם (\\(\\Omega\\))",
+    "kind": "הגדרה",
+    "summary": "קבוצת כל התוצאות האפשריות של מודל הסתברותי. כל תוצאה בודדת במרחב נקראת מאורע אלמנטרי ומסומנת לעיתים קרובות באות \\(\\omega\\). (Course Guide - Chapter 2, עמ' 33).",
+    "body": "<p>קבוצת כל התוצאות האפשריות של מודל הסתברותי. כל תוצאה בודדת במרחב נקראת מאורע אלמנטרי ומסומנת לעיתים קרובות באות \\(\\omega\\). (Course Guide - Chapter 2, עמ' 33).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "מרחב המדגם (\\(\\Omega\\))",
+      "מרחב המדגם",
+      "\\(\\Omega\\)"
+    ],
+    "referenceIds": [
+      "kwise-imported-sample-space",
+      "kwise-imported-random-variable",
+      "kwise-imported-independence"
+    ],
+    "related": [
+      "kwise-imported-random-variable",
+      "kwise-imported-independence"
+    ],
+    "sources": [],
+    "lessonId": "kwise-support-lower-bound",
+    "lessonTitle": "חסם תחתון על גודל מרחב המדגם למשתנים מקריים בלתי תלויים ב־\\(k\\)־יות.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "kwise-imported-random-variable",
+    "title": "משתנה מקרי",
+    "kind": "הגדרה",
+    "summary": "פונקציה אשר מתאימה ערך מסוים לכל תוצאה \\(\\omega\\) במרחב המדגם \\(\\Omega\\). כאשר נבחרת תוצאה מהמרחב, היא קובעת את ערכיהם של כל המשתנים המקריים. (Course Guide - Chapter 2, עמ' 33).",
+    "body": "<p>פונקציה אשר מתאימה ערך מסוים לכל תוצאה \\(\\omega\\) במרחב המדגם \\(\\Omega\\). כאשר נבחרת תוצאה מהמרחב, היא קובעת את ערכיהם של כל המשתנים המקריים. (Course Guide - Chapter 2, עמ' 33).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "משתנה מקרי",
+      "משתנים מקריים",
+      "מ״מ"
+    ],
+    "referenceIds": [
+      "kwise-imported-sample-space",
+      "kwise-imported-random-variable",
+      "kwise-imported-independence"
+    ],
+    "related": [
+      "kwise-imported-sample-space",
+      "kwise-imported-independence"
+    ],
+    "sources": [],
+    "lessonId": "kwise-support-lower-bound",
+    "lessonTitle": "חסם תחתון על גודל מרחב המדגם למשתנים מקריים בלתי תלויים ב־\\(k\\)־יות.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "kwise-imported-independence",
+    "title": "אי־תלות ב־k־יות (k-wise independence)",
+    "kind": "הגדרה",
+    "summary": "תכונה של אוסף משתנים מקריים, המבטיחה שלכל בחירה של תת־קבוצה בגודל \\(k\\) (או פחות), המשתנים בקבוצה זו הם בלתי תלויים לחלוטין זה בזה. (אלגוריתמים אקראיים - שיעור 4, עמ' 2).",
+    "body": "<p>תכונה של אוסף משתנים מקריים, המבטיחה שלכל בחירה של תת־קבוצה בגודל \\(k\\) (או פחות), המשתנים בקבוצה זו הם בלתי תלויים לחלוטין זה בזה. (אלגוריתמים אקראיים - שיעור 4, עמ' 2).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "אי־תלות ב־k־יות (k-wise independence)",
+      "בלתי תלויים ב־k־יות",
+      "ב״ת ב־k־יות",
+      "בלתי תלויים ב־\\(k\\)־יות",
+      "ב״ת ב־\\(k\\)־יות",
+      "אי־תלות ב־\\(k\\)־יות"
+    ],
+    "referenceIds": [
+      "kwise-imported-sample-space",
+      "kwise-imported-random-variable",
+      "kwise-imported-independence"
+    ],
+    "related": [
+      "kwise-imported-sample-space",
+      "kwise-imported-random-variable"
+    ],
+    "sources": [],
+    "lessonId": "kwise-support-lower-bound",
+    "lessonTitle": "חסם תחתון על גודל מרחב המדגם למשתנים מקריים בלתי תלויים ב־\\(k\\)־יות.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

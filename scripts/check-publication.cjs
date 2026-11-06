@@ -23,6 +23,10 @@ const SIDEBAR_RELEASE_PATHS = ['docs/index.html', 'docs/sidebar.css', 'docs/site
 const NOV4_SITE_RELEASE_PATH = 'course-content/site-release-2026-11-04.json';
 const NOV4_SITE_RELEASE_HASH = 'dcf1fa4b406afa6478069b4077f9fc0d259ded5cbe370353026fddc3a70c7406';
 const NOV4_SITE_RELEASE_BASELINE = '173b5fae72ca1e56dab72016b9e155ec57a0ad83';
+// The 6-Nov request covers the current ten-page site, not future lesson imports.
+const NOV6_SITE_RELEASE_PATH = 'course-content/site-release-2026-11-06.json';
+const NOV6_SITE_RELEASE_HASH = '78421a6e789acf66ecf1a95b742d30b58dab58b2809620e707d03f37c1428a57';
+const NOV6_SITE_RELEASE_BASELINE = '79645ef0ebd226d8f8f88daa9366ac25c8aaa512';
 const MANIFEST_PATH = 'course-content/review-status.json';
 const CATALOG_PATH = 'course-content/source-catalog.json';
 const APPROVED = [
@@ -104,12 +108,21 @@ function readNov4SiteReleaseAuthorization(bytes) {
   return JSON.parse(bytes);
 }
 
+function readNov6SiteReleaseAuthorization(bytes) {
+  if (hash(NOV6_SITE_RELEASE_PATH, bytes) !== NOV6_SITE_RELEASE_HASH) throw new Error('The 6-Nov site authorization differs from the exact user-requested snapshot; do not refresh it for later edits');
+  return JSON.parse(bytes);
+}
+
 function validateSiteRelease(input) {
   return validateSiteReleaseSnapshot(input, {quote:'push the current site', date:'2026-10-26', label:'26-Oct', baseline:SITE_RELEASE_BASELINE, mode:'authorized-site-release'});
 }
 
 function validateNov4SiteRelease(input) {
   return validateSiteReleaseSnapshot(input, {quote:'publish it', date:'2026-11-04', label:'4-Nov', baseline:NOV4_SITE_RELEASE_BASELINE, mode:'authorized-site-release-2026-11-04'});
+}
+
+function validateNov6SiteRelease(input) {
+  return validateSiteReleaseSnapshot(input, {quote:"post the site for now. I'll give you the result later", date:'2026-11-06', label:'6-Nov', baseline:NOV6_SITE_RELEASE_BASELINE, mode:'authorized-site-release-2026-11-06'});
 }
 
 // Only the fixed dated wrappers above select this internal validator's scope.
@@ -245,6 +258,13 @@ function checkPublication({root = path.resolve(__dirname, '..'), revision, remot
       walk('docs');
     }
     const manifestBytes = read(MANIFEST_PATH), catalogBytes = read(CATALOG_PATH);
+    const hasNov6SiteRelease = revision
+      ? git(['ls-tree','--name-only',revision,'--',NOV6_SITE_RELEASE_PATH]).toString('utf8').trim() === NOV6_SITE_RELEASE_PATH
+      : fs.existsSync(path.join(root, NOV6_SITE_RELEASE_PATH));
+    if (hasNov6SiteRelease) {
+      const authorization = readNov6SiteReleaseAuthorization(read(NOV6_SITE_RELEASE_PATH));
+      return validateNov6SiteRelease({authorization, files, baselineFiles:readTree(NOV6_SITE_RELEASE_BASELINE), manifest:JSON.parse(manifestBytes), catalog:JSON.parse(catalogBytes), manifestBytes, catalogBytes, remoteBase});
+    }
     const hasNov4SiteRelease = revision
       ? git(['ls-tree','--name-only',revision,'--',NOV4_SITE_RELEASE_PATH]).toString('utf8').trim() === NOV4_SITE_RELEASE_PATH
       : fs.existsSync(path.join(root, NOV4_SITE_RELEASE_PATH));
@@ -282,8 +302,8 @@ function main(args) {
   }
   const result = checkPublication(options);
   if (!result.ok) {console.error(result.errors.join('\n'));return 1;}
-  console.log(result.mode === 'authorized-site-release-2026-11-04' ? 'Exact current-site snapshot authorized by the user on 4-Nov. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-sidebar-release' ? 'Exact sidebar UI snapshot authorized by the user on 4-Nov. Existing content and review statuses are unchanged.' : result.mode === 'authorized-site-release' ? 'Exact current-site snapshot authorized by the user on 26-Oct. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-online-review' ? 'Exact online-review snapshot authorized by the user. Six content files reviewed; legacy course approval is NOT granted.' : 'Full course-source publication check passed.');
+  console.log(result.mode === 'authorized-site-release-2026-11-06' ? 'Exact current-site snapshot authorized by the user on 6-Nov. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-site-release-2026-11-04' ? 'Exact current-site snapshot authorized by the user on 4-Nov. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-sidebar-release' ? 'Exact sidebar UI snapshot authorized by the user on 4-Nov. Existing content and review statuses are unchanged.' : result.mode === 'authorized-site-release' ? 'Exact current-site snapshot authorized by the user on 26-Oct. Technical release only; no new course-content approval is granted.' : result.mode === 'authorized-online-review' ? 'Exact online-review snapshot authorized by the user. Six content files reviewed; legacy course approval is NOT granted.' : 'Full course-source publication check passed.');
   return 0;
 }
-module.exports = {validateNov4SiteRelease, readNov4SiteReleaseAuthorization, NOV4_SITE_RELEASE_PATH, NOV4_SITE_RELEASE_BASELINE, validateSidebarRelease, readSidebarReleaseAuthorization, SIDEBAR_RELEASE_PATH, SIDEBAR_RELEASE_BASELINE, SIDEBAR_RELEASE_PATHS, validateAuthorization, validateSiteRelease, readSiteReleaseAuthorization, checkPublication, publicationContentHash:hash, AUTH_PATH, APPROVED, INTEGRATION, BASELINE, REQUEST, SITE_RELEASE_PATH, SITE_RELEASE_BASELINE};
+module.exports = {validateNov6SiteRelease, readNov6SiteReleaseAuthorization, NOV6_SITE_RELEASE_PATH, NOV6_SITE_RELEASE_BASELINE, validateNov4SiteRelease, readNov4SiteReleaseAuthorization, NOV4_SITE_RELEASE_PATH, NOV4_SITE_RELEASE_BASELINE, validateSidebarRelease, readSidebarReleaseAuthorization, SIDEBAR_RELEASE_PATH, SIDEBAR_RELEASE_BASELINE, SIDEBAR_RELEASE_PATHS, validateAuthorization, validateSiteRelease, readSiteReleaseAuthorization, checkPublication, publicationContentHash:hash, AUTH_PATH, APPROVED, INTEGRATION, BASELINE, REQUEST, SITE_RELEASE_PATH, SITE_RELEASE_BASELINE};
 if (require.main === module) {try {process.exitCode=main(process.argv.slice(2));} catch(error) {console.error(error.message);process.exitCode=1;}}

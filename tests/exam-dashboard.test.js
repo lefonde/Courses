@@ -162,12 +162,12 @@ test('filters combine across theme, band, report status and Hebrew or Latin sear
   assert.equal(empty.hasPrevious,false);assert.equal(empty.hasNext,false);
 });
 
-test('real catalogue remains a descending 129-family list with the first six pages available', () => {
+test('real catalogue remains a descending 129-family list with the first ten pages available', () => {
   const catalogue=require('../docs/data/exam-dashboard.json');
   assert.equal(catalogue.families.length,129);
   const state=storage.defaultState(),totals=engine.summary(catalogue.families,state),page=engine.query(catalogue.families,state,{pageSize:100});
-  assert.equal(totals.learned,0);assert.equal(totals.priorityTotal,32);assert.equal(totals.readyCount,6);
-  assert.deepEqual(catalogue.families.filter(f=>f.contentStatus==='ready').map(f=>f.id),catalogue.families.slice(0,6).map(f=>f.id));
+  assert.equal(totals.learned,0);assert.equal(totals.priorityTotal,32);assert.equal(totals.readyCount,10);
+  assert.deepEqual(catalogue.families.filter(f=>f.contentStatus==='ready').map(f=>f.id),catalogue.families.slice(0,10).map(f=>f.id));
   assert.equal(page.items[0].rank,1);assert.equal(page.items[0].score,80);
   assert.ok(page.items.every((row,index)=>index===0||page.items[index-1].score>=row.score));
   assert.equal(new Set(catalogue.families.map(row=>row.id)).size,129);

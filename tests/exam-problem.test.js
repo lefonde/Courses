@@ -27,6 +27,28 @@ test('English source names keep their word order as one LTR phrase in Hebrew pro
   assert.match(rendered,/<bdi dir="ltr">Course Book Chapter 3<\/bdi>/);
   assert.doesNotMatch(rendered,/<bdi dir="ltr">Course<\/bdi>/);
   assert.match(rendered,/לאחר מכן/);
+  const supplied=math.text("מקור: Course Guide - Chapter 2, עמ' 33. English - עברית");
+  assert.match(supplied,/<bdi dir="ltr">Course Guide - Chapter 2<\/bdi>/);
+  assert.match(supplied,/<bdi dir="ltr">English<\/bdi> - עברית/);
+});
+
+test('lesson introduction typesets inline formulas while treating its prose as untrusted text',async()=>{
+  const vm=require('node:vm'),key='synthetic-lesson';
+  let loaded;
+  const ready=new Promise(resolve=>{loaded=resolve;});
+  const family={id:key,title:'כותרת',themeLabel:'נושא',rank:1,score:1};
+  const meta={id:key,lead:String.raw`חסם \(4\vert{}V\vert{}\vert{}E\vert{}\) <img src=x onerror=alert(1)>`};
+  const context=vm.createContext({window:{},location:{hash:'#exam-problem/'+key},document:{addEventListener(){}},state:{},
+    currentPage:()=> 'exam-problem',render:loaded,StudyMath:math,
+    StudyExamDashboard:{load:async()=>{},family:()=>family},
+    StudyReference:{load:async()=>{},help:()=>''},StudyExamDashboardEngine:{getLearned:()=>false},
+    fetch:async url=>({ok:true,json:async()=>({pages:[meta]}),text:async()=>'<section></section>'})});
+  vm.runInContext(fs.readFileSync(path.join(__dirname,'../docs/exam-problem-ui.js'),'utf8'),context);
+  context.window.StudyExamProblems.reader();await ready;
+  const output=context.window.StudyExamProblems.reader(),lead=output.match(/<p class="problem-lead">([\s\S]*?)<\/p>/)[1];
+  assert.match(lead,/class="study-math" dir="ltr"/);
+  assert.match(lead,/<math/);assert.doesNotMatch(lead,/study-math-error|<img/);
+  assert.match(lead,/&lt;/);assert.match(lead,/&gt;/);
 });
 
 test('Hebrew event labels retain their wording and RTL direction within LTR probability formulas',()=>{
@@ -54,8 +76,8 @@ test('all catalogue display notation parses as TeX without changing the raw rese
   assert.ok(count>150);
 });
 
-test('the six requested pages are registered and all exercises and formulae are consumable',()=>{
-  assert.deepEqual(manifest.pages.map(p=>p.id),catalogue.families.slice(0,6).map(f=>f.id));
+test('the ten requested pages are registered and all exercises and formulae are consumable',()=>{
+  assert.deepEqual(manifest.pages.map(p=>p.id),catalogue.families.slice(0,10).map(f=>f.id));
   for(const entry of manifest.pages){
     const html=fs.readFileSync(path.join(__dirname,'../docs/exam-problems',entry.id+'.html'),'utf8');
     for(const section of ['basic','tools','exam','check'])assert.match(html,new RegExp('id="problem-'+section+'"'));

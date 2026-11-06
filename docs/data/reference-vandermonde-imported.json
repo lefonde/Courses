@@ -1,0 +1,127 @@
+[
+  {
+    "id": "vdm-imported-matrix",
+    "title": "מטריצת ואן דר מונדה (VDM)",
+    "kind": "הגדרה",
+    "summary": "מטריצה מסדר \\(n\\times n\\) שבה השורה ה־\\(i\\) מורכבת מ־\\(n\\) החזקות הראשונות של הערך \\(x_i\\), החל מחזקה 0. (מטלה 13, עמ' 1).",
+    "body": "<p>מטריצה מסדר \\(n\\times n\\) שבה השורה ה־\\(i\\) מורכבת מ־\\(n\\) החזקות הראשונות של הערך \\(x_i\\), החל מחזקה 0. (מטלה 13, עמ' 1).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "מטריצת ואן דר מונדה (VDM)",
+      "מטריצת ואן דר מונדה",
+      "VDM"
+    ],
+    "referenceIds": [
+      "vdm-imported-matrix",
+      "vdm-imported-determinant",
+      "vdm-imported-invertible",
+      "vdm-imported-field"
+    ],
+    "related": [
+      "vdm-imported-determinant",
+      "vdm-imported-invertible",
+      "vdm-imported-field"
+    ],
+    "sources": [],
+    "lessonId": "vandermonde-determinant",
+    "lessonTitle": "חישוב דטרמיננטה של מטריצת ואן דר מונדה בדירוג גאוס.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "vdm-imported-determinant",
+    "title": "דטרמיננטה",
+    "kind": "הגדרה",
+    "summary": "ערך מספרי המחושב מתוך מטריצה ריבועית. (Course Guide - Chapter 1, עמ' 21).",
+    "body": "<p>ערך מספרי המחושב מתוך מטריצה ריבועית. (Course Guide - Chapter 1, עמ' 21).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "דטרמיננטה",
+      "הדטרמיננטה"
+    ],
+    "referenceIds": [
+      "vdm-imported-matrix",
+      "vdm-imported-determinant",
+      "vdm-imported-invertible",
+      "vdm-imported-field"
+    ],
+    "related": [
+      "vdm-imported-matrix",
+      "vdm-imported-invertible",
+      "vdm-imported-field"
+    ],
+    "sources": [],
+    "lessonId": "vandermonde-determinant",
+    "lessonTitle": "חישוב דטרמיננטה של מטריצת ואן דר מונדה בדירוג גאוס.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "vdm-imported-invertible",
+    "title": "מטריצה הפיכה",
+    "kind": "הגדרה",
+    "summary": "מטריצה שקיימת לה מטריצה הופכית. תנאי הכרחי ומספיק להפיכות הוא שהדטרמיננטה שלה שונה מאפס. (אלגוריתמים אקראיים - שיעור 4, עמ' 4).",
+    "body": "<p>מטריצה שקיימת לה מטריצה הופכית. תנאי הכרחי ומספיק להפיכות הוא שהדטרמיננטה שלה שונה מאפס. (אלגוריתמים אקראיים - שיעור 4, עמ' 4).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "מטריצה הפיכה",
+      "הפיכה",
+      "הפיכות"
+    ],
+    "referenceIds": [
+      "vdm-imported-matrix",
+      "vdm-imported-determinant",
+      "vdm-imported-invertible",
+      "vdm-imported-field"
+    ],
+    "related": [
+      "vdm-imported-matrix",
+      "vdm-imported-determinant",
+      "vdm-imported-field"
+    ],
+    "sources": [],
+    "lessonId": "vandermonde-determinant",
+    "lessonTitle": "חישוב דטרמיננטה של מטריצת ואן דר מונדה בדירוג גאוס.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  },
+  {
+    "id": "vdm-imported-field",
+    "title": "שדה",
+    "kind": "הגדרה",
+    "summary": "קבוצת איברים שבה מוגדרות פעולות חיבור וכפל עם תכונות מסוימות. באלגוריתמים אקראיים משתמשים לרוב בשדות סופיים להגרלת ערכים. (Course Guide - Chapter 1, עמ' 21).",
+    "body": "<p>קבוצת איברים שבה מוגדרות פעולות חיבור וכפל עם תכונות מסוימות. באלגוריתמים אקראיים משתמשים לרוב בשדות סופיים להגרלת ערכים. (Course Guide - Chapter 1, עמ' 21).</p>",
+    "summaryIsBody": true,
+    "aliases": [
+      "שדה"
+    ],
+    "referenceIds": [
+      "vdm-imported-matrix",
+      "vdm-imported-determinant",
+      "vdm-imported-invertible",
+      "vdm-imported-field"
+    ],
+    "related": [
+      "vdm-imported-matrix",
+      "vdm-imported-determinant",
+      "vdm-imported-invertible"
+    ],
+    "sources": [],
+    "lessonId": "vandermonde-determinant",
+    "lessonTitle": "חישוב דטרמיננטה של מטריצת ואן דר מונדה בדירוג גאוס.",
+    "provenance": {
+      "kind": "user-supplied",
+      "contentOrigin": "Gemini response supplied by the user",
+      "sourceReviewPerformed": false
+    }
+  }
+]

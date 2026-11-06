@@ -196,6 +196,153 @@
           "הגדרות"
         ]
       ]
+    },
+    {
+      "id": "undirected-walk-cover-time",
+      "title": "הילוך מקרי בגרף לא מכוון — חסם זמן הכיסוי.",
+      "lead": "מטרת הדף היא להוכיח כי תוחלת זמן הכיסוי בגרף קשיר ולא מכוון חסומה על ידי \\(4\\vert{}V\\vert{}\\vert{}E\\vert{}\\), תוך שימוש בנוסחת זמן החזרה המבוססת על ההתפלגות הסטציונרית, וניתוח סיור על עץ פורש.",
+      "referenceIds": [
+        "cover-imported-cover-time",
+        "cover-imported-stationary",
+        "cover-imported-hitting-return",
+        "cover-imported-dfs",
+        "cover-imported-non-bipartite"
+      ],
+      "viewVersion": "gemini-import-1",
+      "instruction": "כדאי לעבוד עם דף ועט. התזכורת מופיעה לפני תרגיל החימום. הרמזים והפתרונות נפתחים לפי בחירתכם.",
+      "sections": [
+        [
+          "tools",
+          "תזכורת קצרה"
+        ],
+        [
+          "basic",
+          "תרגיל חימום"
+        ],
+        [
+          "exam",
+          "הבעיה המרכזית"
+        ],
+        [
+          "check",
+          "בדיקת הבנה"
+        ],
+        [
+          "definitions",
+          "הגדרות"
+        ]
+      ]
+    },
+    {
+      "id": "coin-dense-blocks",
+      "title": "הטלות מטבע — רצפים מוצלחים יחסית.",
+      "lead": "מטרת הדף היא למצוא חסם להסתברות שקיים רצף שבו רוב גדול של ההטלות מוצלחות (\"מוצלח יחסית\"), מתוך סדרה ארוכה של ההטלות. נלמד לעשות זאת על ידי חסם צ׳רנוף לרצף בודד וחסם האיחוד עבור כל הרצפים האפשריים.",
+      "referenceIds": [
+        "coin-imported-binomial",
+        "coin-imported-chernoff",
+        "coin-imported-union-bound"
+      ],
+      "viewVersion": "gemini-import-1",
+      "instruction": "כדאי לעבוד עם דף ועט. התזכורת מופיעה לפני תרגיל החימום. הרמזים והפתרונות נפתחים לפי בחירתכם.",
+      "sections": [
+        [
+          "tools",
+          "תזכורת קצרה"
+        ],
+        [
+          "basic",
+          "תרגיל חימום"
+        ],
+        [
+          "exam",
+          "הבעיה המרכזית"
+        ],
+        [
+          "check",
+          "בדיקת הבנה"
+        ],
+        [
+          "definitions",
+          "הגדרות"
+        ]
+      ]
+    },
+    {
+      "id": "vandermonde-determinant",
+      "title": "חישוב דטרמיננטה של מטריצת ואן דר מונדה בדירוג גאוס.",
+      "lead": "מטרת הדף היא להוכיח את נוסחת הדטרמיננטה עבור מטריצות ואן דר מונדה מסדר \\(2\\times2\\) ו־\\(3\\times3\\) בעזרת פעולות דירוג שורות, ולהסיק מתי המטריצה הפיכה ומדוע תכונה זו חשובה באלגוריתמים אקראיים.",
+      "referenceIds": [
+        "vdm-imported-matrix",
+        "vdm-imported-determinant",
+        "vdm-imported-invertible",
+        "vdm-imported-field"
+      ],
+      "viewVersion": "gemini-import-1",
+      "instruction": "כדאי לעבוד עם דף ועט. התזכורת מופיעה לפני התרגיל הבסיסי. הרמזים והפתרונות נפתחים לפי בחירתכם.",
+      "sections": [
+        [
+          "tools",
+          "תזכורת קצרה"
+        ],
+        [
+          "basic",
+          "תרגיל בסיסי"
+        ],
+        [
+          "exam",
+          "הבעיה המרכזית"
+        ],
+        [
+          "invertibility",
+          "מסקנה: הפיכות"
+        ],
+        [
+          "extension",
+          "הרחבת רשות"
+        ],
+        [
+          "check",
+          "בדיקת הבנה"
+        ],
+        [
+          "definitions",
+          "הגדרות"
+        ]
+      ]
+    },
+    {
+      "id": "kwise-support-lower-bound",
+      "title": "חסם תחתון על גודל מרחב המדגם למשתנים מקריים בלתי תלויים ב־\\(k\\)־יות.",
+      "lead": "מטרת הדף היא לנסח ולהוכיח חסם תחתון על גודלו של מרחב המדגם, מתוך הבנת המשמעות של משתנים מקריים כפונקציות על מרחב התוצאות, ושימוש בתכונות של התפלגות אחידה ואי־תלות חלקית.",
+      "referenceIds": [
+        "kwise-imported-sample-space",
+        "kwise-imported-random-variable",
+        "kwise-imported-independence"
+      ],
+      "viewVersion": "gemini-import-1",
+      "instruction": "כדאי לעבוד עם דף ועט. התזכורת מופיעה לפני התרגיל הבסיסי. הרמזים והפתרונות נפתחים לפי בחירתכם.",
+      "sections": [
+        [
+          "tools",
+          "תזכורת קצרה"
+        ],
+        [
+          "basic",
+          "תרגיל בסיסי"
+        ],
+        [
+          "exam",
+          "הבעיה המרכזית"
+        ],
+        [
+          "check",
+          "בדיקת הבנה"
+        ],
+        [
+          "definitions",
+          "הגדרות"
+        ]
+      ]
     }
   ]
 }

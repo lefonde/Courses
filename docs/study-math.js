@@ -5,7 +5,7 @@
   function prose(value){
     let result='',start=0;
     // Keep a multiword Latin source name in one LTR span inside Hebrew prose.
-    for(const match of String(value).matchAll(/[A-Za-z0-9Α-Ωα-ω][A-Za-z0-9Α-Ωα-ω–-]*(?:\.[A-Za-z0-9]+)*(?:[ \t]+[A-Za-z0-9Α-Ωα-ω][A-Za-z0-9Α-Ωα-ω–-]*(?:\.[A-Za-z0-9]+)*)*/g)){
+    for(const match of String(value).matchAll(/[A-Za-z0-9Α-Ωα-ω][A-Za-z0-9Α-Ωα-ω–-]*(?:\.[A-Za-z0-9]+)*(?:[ \t]+(?:[-–—][ \t]+)?[A-Za-z0-9Α-Ωα-ω][A-Za-z0-9Α-Ωα-ω–-]*(?:\.[A-Za-z0-9]+)*)*/g)){
       result+=escape(value.slice(start,match.index))+`<bdi dir="ltr">${escape(match[0])}</bdi>`;
       start=match.index+match[0].length;
     }
