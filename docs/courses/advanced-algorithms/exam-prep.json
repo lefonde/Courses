@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "kind": "legacy-research-backlog",
+  "courseId": "advanced-algorithms",
+  "offeringId": "exam-prep",
+  "courseScope": "unconfirmed",
+  "scopeConfirmed": false,
+  "contentStatus": "needs-review",
+  "evidenceNotice": "כותרות ורשימות נושאים הועתקו מארכיון אתר ההכנה הישן לצורך מיון בלבד. הן עדיין לא נבדקו מול חומרי הקורס ואינן קובעות את היקף הבחינה הנוכחית. אין כאן שיעורים או פתרונות מאושרים.",
+  "inventory": {
+    "candidateCount": 30,
+    "legacyReferenceCount": 83,
+    "legacyUniqueReferenceCount": 28,
+    "pdfFileCount": 34,
+    "uniquePdfCount": 31,
+    "duplicatePdfCount": 3,
+    "recordingCount": 8,
+    "recordingBytes": 5952739633,
+    "referenceMapping": {
+      "matchedByFilename": 17,
+      "ambiguousFilename": 0,
+      "missingFilename": 11,
+      "contentVerified": 0
+    }
+  },
+  "topics": [
+    {
+      "id": "ds",
+      "label": "Data Structures",
+      "count": 8
+    },
+    {
+      "id": "lp",
+      "label": "Linear Programming",
+      "count": 8
+    },
+    {
+      "id": "eg",
+      "label": "Expander Graphs",
+      "count": 8
+    },
+    {
+      "id": "mix",
+      "label": "Cross-Topic",
+      "count": 6
+    }
+  ],
+  "items": [
+    {
+      "id": "legacy-1",
+      "legacyId": 1,
+      "title": "Prove the logarithmic upper bound on degree in Fibonacci Heap (D(n) = O(log n))",
+      "topic": "ds",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 5
+    },
+    {
+      "id": "legacy-2",
+      "legacyId": 2,
+      "title": "Amortized analysis of Extract-Min in Fibonacci Heap",
+      "topic": "ds",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-3",
+      "legacyId": 3,
+      "title": "Amortized analysis of Decrease-Key in Fibonacci Heap",
+      "topic": "ds",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 4
+    },
+    {
+      "id": "legacy-4",
+      "legacyId": 4,
+      "title": "MF (Move-to-Front) Competitiveness: Prove MF is 2-competitive against optimal offline",
+      "topic": "ds",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 4
+    },
+    {
+      "id": "legacy-5",
+      "legacyId": 5,
+      "title": "Construct input sequence S where FC/MF cost ratio > constant",
+      "topic": "ds",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-6",
+      "legacyId": 6,
+      "title": "Splay Trees: operations, state drawing, analysis",
+      "topic": "ds",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 4
+    },
+    {
+      "id": "legacy-7",
+      "legacyId": 7,
+      "title": "Define potential function for a NEW data structure and perform amortized analysis",
+      "topic": "ds",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-8",
+      "legacyId": 8,
+      "title": "Worst-case sequences for Splay/FC/TR: compute exact running times",
+      "topic": "ds",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-9",
+      "legacyId": 9,
+      "title": "Write LP formulation (primal) for a graph problem and derive its dual",
+      "topic": "lp",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 6
+    },
+    {
+      "id": "legacy-10",
+      "legacyId": 10,
+      "title": "Prove Weak Duality Theorem",
+      "topic": "lp",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-11",
+      "legacyId": 11,
+      "title": "Prove Complementary Slackness conditions",
+      "topic": "lp",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-12",
+      "legacyId": 12,
+      "title": "Use LP duality to prove optimality / design approximation algorithm",
+      "topic": "lp",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-13",
+      "legacyId": 13,
+      "title": "Vertex definitions and equivalences: prove intersection/extreme-point/BFS equivalence",
+      "topic": "lp",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-14",
+      "legacyId": 14,
+      "title": "Prove feasibility ↔ optimization reduction (Section 5.1)",
+      "topic": "lp",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-15",
+      "legacyId": 15,
+      "title": "Simplex-based proof (understand algorithm, use in proof — NOT manual execution)",
+      "topic": "lp",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 1
+    },
+    {
+      "id": "legacy-16",
+      "legacyId": 16,
+      "title": "LP formulation for Maximum Matching in bipartite graph + duality proof",
+      "topic": "lp",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-17",
+      "legacyId": 17,
+      "title": "Prove: good vertex expansion ⟹ logarithmic diameter (ball-growing argument)",
+      "topic": "eg",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 4
+    },
+    {
+      "id": "legacy-18",
+      "legacyId": 18,
+      "title": "Find eigenvalues of a d-regular (multi)graph using trace trick",
+      "topic": "eg",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-19",
+      "legacyId": 19,
+      "title": "Edge expansion bounds in d-regular graph: prove d·|S| = 2|E(S)| + |∂(S)|",
+      "topic": "eg",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 5
+    },
+    {
+      "id": "legacy-20",
+      "legacyId": 20,
+      "title": "Prove: d-regular edge expander ⟹ vertex expander (or vice versa)",
+      "topic": "eg",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-21",
+      "legacyId": 21,
+      "title": "BPP/RP amplification: prove probability amplification by repeated runs",
+      "topic": "eg",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-22",
+      "legacyId": 22,
+      "title": "Show specific graph is a good expander / Ramanujan construction",
+      "topic": "eg",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-23",
+      "legacyId": 23,
+      "title": "Maman 16 Q3: Prove edge expansion ⟹ mixing/random-walk properties",
+      "topic": "eg",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 1
+    },
+    {
+      "id": "legacy-24",
+      "legacyId": 24,
+      "title": "Maman 16 Q4: Spectral gap ⟹ expansion property proof",
+      "topic": "eg",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 1
+    },
+    {
+      "id": "legacy-25",
+      "legacyId": 25,
+      "title": "Fibonacci Heap: Prove D(n) ≤ log_φ(n) (short proof version)",
+      "topic": "mix",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-26",
+      "legacyId": 26,
+      "title": "LP: Given primal+dual, verify optimality using Complementary Slackness",
+      "topic": "mix",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-27",
+      "legacyId": 27,
+      "title": "Tight vs non-tight constraints: identify and use at optimum",
+      "topic": "mix",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    },
+    {
+      "id": "legacy-28",
+      "legacyId": 28,
+      "title": "Polynomial tree (custom data structure): analyze structure and prove properties",
+      "topic": "mix",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 1
+    },
+    {
+      "id": "legacy-29",
+      "legacyId": 29,
+      "title": "Worst-case input for comparison of two online algorithms (FC vs MF vs TR)",
+      "topic": "mix",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 3
+    },
+    {
+      "id": "legacy-30",
+      "legacyId": 30,
+      "title": "Approximation algorithm using LP relaxation for a new problem",
+      "topic": "mix",
+      "contentStatus": "needs-review",
+      "lessonUrl": null,
+      "referenceCount": 2
+    }
+  ]
+}

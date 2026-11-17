@@ -1,0 +1,383 @@
+{
+  "meta": {
+    "version": 1,
+    "course": "advanced-algorithms",
+    "courseId": "advanced-algorithms",
+    "offeringId": "exam-prep",
+    "title": "נושאים מתקדמים באלגוריתמים",
+    "language": "he",
+    "direction": "rtl",
+    "courseScope": "unconfirmed",
+    "scopeConfirmed": false,
+    "contentStatus": "needs-review",
+    "evidenceNotice": "כותרות ורשימות נושאים הועתקו מארכיון אתר ההכנה הישן לצורך מיון בלבד. הן עדיין לא נבדקו מול חומרי הקורס ואינן קובעות את היקף הבחינה הנוכחית. אין כאן שיעורים או פתרונות מאושרים.",
+    "examDate": null
+  },
+  "topics": [
+    {
+      "id": "ds",
+      "label": "Data Structures",
+      "count": 8
+    },
+    {
+      "id": "lp",
+      "label": "Linear Programming",
+      "count": 8
+    },
+    {
+      "id": "eg",
+      "label": "Expander Graphs",
+      "count": 8
+    },
+    {
+      "id": "mix",
+      "label": "Cross-Topic",
+      "count": 6
+    }
+  ],
+  "sources": {
+    "aa-source-06ff401d5c5b25c1": {
+      "id": "aa-source-06ff401d5c5b25c1",
+      "label": "מקור 1 (PDF)",
+      "path": "aa-source-06ff401d5c5b25c1.pdf",
+      "sha256": "06ff401d5c5b25c1aa74c86949f746075ec6c1baac9444162498ffdbf4bce3ad",
+      "bytes": 1804594,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-0ccc2a7d12b1f497": {
+      "id": "aa-source-0ccc2a7d12b1f497",
+      "label": "מקור 2 (PDF)",
+      "path": "aa-source-0ccc2a7d12b1f497.pdf",
+      "sha256": "0ccc2a7d12b1f49702f49c6492058f7baf3acfdc492752f00c590d610695c8b3",
+      "bytes": 2757462,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-0df0bd520e6f6516": {
+      "id": "aa-source-0df0bd520e6f6516",
+      "label": "מקור 3 (PDF)",
+      "path": "aa-source-0df0bd520e6f6516.pdf",
+      "sha256": "0df0bd520e6f6516fa63b459a9cc3765cb2f5d3c8c7518f48d55b5c253c14bca",
+      "bytes": 8834009,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-1c92685e45e05df5": {
+      "id": "aa-source-1c92685e45e05df5",
+      "label": "מקור 4 (PDF)",
+      "path": "aa-source-1c92685e45e05df5.pdf",
+      "sha256": "1c92685e45e05df557a2380e3a4362a0bc08c2736d503a9813f63e4c7ae40270",
+      "bytes": 4015249,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-28e50179f6d9b1c0": {
+      "id": "aa-source-28e50179f6d9b1c0",
+      "label": "מקור 5 (PDF)",
+      "path": "aa-source-28e50179f6d9b1c0.pdf",
+      "sha256": "28e50179f6d9b1c0cd95d54a44af05a51af953a4fd498bbfc0472e614597d322",
+      "bytes": 1118302,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-2c292fda557c46d7": {
+      "id": "aa-source-2c292fda557c46d7",
+      "label": "מקור 6 (PDF)",
+      "path": "aa-source-2c292fda557c46d7.pdf",
+      "sha256": "2c292fda557c46d76a0e313de8dd1f6ed9e5c43008dc9fc8bf573142636c0947",
+      "bytes": 1414054,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-3ac78e70f5324849": {
+      "id": "aa-source-3ac78e70f5324849",
+      "label": "מקור 7 (PDF)",
+      "path": "aa-source-3ac78e70f5324849.pdf",
+      "sha256": "3ac78e70f532484913e4b15a074056cbfd473133b7e89a2b05718fbfc27a36aa",
+      "bytes": 2881406,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-46daee309a5cc0c4": {
+      "id": "aa-source-46daee309a5cc0c4",
+      "label": "מקור 8 (PDF)",
+      "path": "aa-source-46daee309a5cc0c4.pdf",
+      "sha256": "46daee309a5cc0c4bb5ff047e16426cec8b18b293e221b67aa8964719e629d22",
+      "bytes": 5026741,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-49f3892f10a855ee": {
+      "id": "aa-source-49f3892f10a855ee",
+      "label": "מקור 9 (PDF)",
+      "path": "aa-source-49f3892f10a855ee.pdf",
+      "sha256": "49f3892f10a855ee48699d5b5a5d837cf091dfa03fe49e1ee4d7024824c75695",
+      "bytes": 289364592,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-545ea771d547a735": {
+      "id": "aa-source-545ea771d547a735",
+      "label": "מקור 10 (PDF)",
+      "path": "aa-source-545ea771d547a735.pdf",
+      "sha256": "545ea771d547a735eb506e76e4bd4625497f0c3637f8094702472007605a524b",
+      "bytes": 12248565,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-5482b9ee751812ec": {
+      "id": "aa-source-5482b9ee751812ec",
+      "label": "מקור 11 (PDF)",
+      "path": "aa-source-5482b9ee751812ec.pdf",
+      "sha256": "5482b9ee751812ec5b98e139e93cf25c6b5b3ad08b512487fab824f3ced27df3",
+      "bytes": 61164,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-653dbb61d4408157": {
+      "id": "aa-source-653dbb61d4408157",
+      "label": "מקור 12 (PDF)",
+      "path": "aa-source-653dbb61d4408157.pdf",
+      "sha256": "653dbb61d44081572432d5d7c6a153b9a64496eac7d35921c4f95217eae87ef9",
+      "bytes": 3019109,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-66708efbc54ec38a": {
+      "id": "aa-source-66708efbc54ec38a",
+      "label": "מקור 13 (PDF)",
+      "path": "aa-source-66708efbc54ec38a.pdf",
+      "sha256": "66708efbc54ec38aac99ddf3d6b5da5bfa77c8a2fa1a5f91be5f4d8a8fe5c32f",
+      "bytes": 8758571,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-68726493836897dd": {
+      "id": "aa-source-68726493836897dd",
+      "label": "מקור 14 (PDF)",
+      "path": "aa-source-68726493836897dd.pdf",
+      "sha256": "68726493836897dd622bbc3105f63956a82c6e3a34bfab86476c8ed4750fc314",
+      "bytes": 66788,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-6e481d95b60e927f": {
+      "id": "aa-source-6e481d95b60e927f",
+      "label": "מקור 15 (PDF)",
+      "path": "aa-source-6e481d95b60e927f.pdf",
+      "sha256": "6e481d95b60e927f3fa9a210569f7e5e7fcf34aaee63328531b115e2a9382ef2",
+      "bytes": 1205438,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-72c1a33e0a358d1a": {
+      "id": "aa-source-72c1a33e0a358d1a",
+      "label": "מקור 16 (PDF)",
+      "path": "aa-source-72c1a33e0a358d1a.pdf",
+      "sha256": "72c1a33e0a358d1ada73a5aa842c9a4ea4fb195de1717973bd7487fdd234d8a5",
+      "bytes": 57332,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-803326257d1b564c": {
+      "id": "aa-source-803326257d1b564c",
+      "label": "מקור 17 (PDF)",
+      "path": "aa-source-803326257d1b564c.pdf",
+      "sha256": "803326257d1b564c69056cc164ebcb2e6f44db6e734aedb12761e377c34aa62c",
+      "bytes": 13906939,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-82bf8cf37d105219": {
+      "id": "aa-source-82bf8cf37d105219",
+      "label": "מקור 18 (PDF)",
+      "path": "aa-source-82bf8cf37d105219.pdf",
+      "sha256": "82bf8cf37d105219cd338808af4d88a13e80bd9bb1c4390c4a343b0897359a07",
+      "bytes": 2635503,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-8afdd5435576221e": {
+      "id": "aa-source-8afdd5435576221e",
+      "label": "מקור 19 (PDF)",
+      "path": "aa-source-8afdd5435576221e.pdf",
+      "sha256": "8afdd5435576221e6fb20b259f5f648679e2d4b889d6646dc9eb3ad89363f648",
+      "bytes": 2885206,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-a6a1fad1212d2dbe": {
+      "id": "aa-source-a6a1fad1212d2dbe",
+      "label": "מקור 20 (PDF)",
+      "path": "aa-source-a6a1fad1212d2dbe.pdf",
+      "sha256": "a6a1fad1212d2dbea4a725821a978cf9645e61b6ac1b367c1bcbd5512fccf4d1",
+      "bytes": 58749,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-ae95714b2f8998cf": {
+      "id": "aa-source-ae95714b2f8998cf",
+      "label": "מקור 21 (PDF)",
+      "path": "aa-source-ae95714b2f8998cf.pdf",
+      "sha256": "ae95714b2f8998cfea03b1b2fe72109126a727985a293cd75d403122752e81a3",
+      "bytes": 8209955,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-b39fd84f01a32ebd": {
+      "id": "aa-source-b39fd84f01a32ebd",
+      "label": "מקור 22 (PDF)",
+      "path": "aa-source-b39fd84f01a32ebd.pdf",
+      "sha256": "b39fd84f01a32ebdd798409751a3fd6529b825ac50da7d7ff2fbdb04619d1215",
+      "bytes": 5654501,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-b9601503467225c8": {
+      "id": "aa-source-b9601503467225c8",
+      "label": "מקור 23 (PDF)",
+      "path": "aa-source-b9601503467225c8.pdf",
+      "sha256": "b9601503467225c8686a3b7deafa61de8475adc1ce69c709d0457a8b24e96bfe",
+      "bytes": 16331514,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-c1de07f8e743d2b5": {
+      "id": "aa-source-c1de07f8e743d2b5",
+      "label": "מקור 24 (PDF)",
+      "path": "aa-source-c1de07f8e743d2b5.pdf",
+      "sha256": "c1de07f8e743d2b509eabe84bf8cd8e1ea72670ffb861a11e0708445513ca080",
+      "bytes": 2634418,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-caa69d78654578f3": {
+      "id": "aa-source-caa69d78654578f3",
+      "label": "מקור 25 (PDF)",
+      "path": "aa-source-caa69d78654578f3.pdf",
+      "sha256": "caa69d78654578f30201cf01da3e8268120479f96ac1bec933fcb32f569cee05",
+      "bytes": 241388,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-d697cd06d595794d": {
+      "id": "aa-source-d697cd06d595794d",
+      "label": "מקור 26 (PDF)",
+      "path": "aa-source-d697cd06d595794d.pdf",
+      "sha256": "d697cd06d595794db6241e7fdc2b88c8bd097c4c616e3944b884d600cfad16a0",
+      "bytes": 29187232,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-da8395e315a9d54d": {
+      "id": "aa-source-da8395e315a9d54d",
+      "label": "מקור 27 (PDF)",
+      "path": "aa-source-da8395e315a9d54d.pdf",
+      "sha256": "da8395e315a9d54d907fa1d515edefeb006ebd5f8946861548e32635770243dc",
+      "bytes": 6464744,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-e30e29b790585c5d": {
+      "id": "aa-source-e30e29b790585c5d",
+      "label": "מקור 28 (PDF)",
+      "path": "aa-source-e30e29b790585c5d.pdf",
+      "sha256": "e30e29b790585c5da8bdcdf57d05e4a769f715ed3eda0193e60306aa0994c7f6",
+      "bytes": 11955640,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-ec926ba6cc285cf6": {
+      "id": "aa-source-ec926ba6cc285cf6",
+      "label": "מקור 29 (PDF)",
+      "path": "aa-source-ec926ba6cc285cf6.pdf",
+      "sha256": "ec926ba6cc285cf6dc6bfe12b9a69cefbc84ff1fea722e3d0356b1b65e2b14bb",
+      "bytes": 2952047,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-ed11856ce061139e": {
+      "id": "aa-source-ed11856ce061139e",
+      "label": "מקור 30 (PDF)",
+      "path": "aa-source-ed11856ce061139e.pdf",
+      "sha256": "ed11856ce061139e6f8c4ab062d30c02eb36e5cd69f1cf82b4291da34f2ae83a",
+      "bytes": 234177,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    },
+    "aa-source-f13b7b5c5a7ab17a": {
+      "id": "aa-source-f13b7b5c5a7ab17a",
+      "label": "מקור 31 (PDF)",
+      "path": "aa-source-f13b7b5c5a7ab17a.pdf",
+      "sha256": "f13b7b5c5a7ab17acf3c26978683a65eecccc55d08a5c1ef931677a6fcbd6883",
+      "bytes": 4597624,
+      "kind": "unverified-document",
+      "sourceType": "unverified-document",
+      "identityStatus": "file-hash-only",
+      "contentStatus": "needs-review"
+    }
+  },
+  "problems": [],
+  "units": []
+}

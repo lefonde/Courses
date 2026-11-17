@@ -9,9 +9,10 @@
     for (const text of paragraphs) { const p = document.createElement('p'); p.textContent = text; panel.append(p); }
     if (connect) {
       const link = document.createElement('a'); link.className = 'button primary';
-      link.href = './#library'; link.textContent = 'חיבור תיקיית חומרי הקורס'; panel.append(link);
+      link.href = SourceLibrary.libraryUrl(); link.textContent = 'חיבור תיקיית חומרי הקורס'; panel.append(link);
     }
     byId('source-view').replaceChildren(panel);
+    return panel;
   }
   function updateNavigation() {
     byId('pdf-page-number').value = currentPage;
@@ -72,6 +73,19 @@
   }
   async function openSource() {
     try {
+      byId('source-library-back').href = SourceLibrary.libraryUrl();
+      if (window.StudyCourses && !StudyCourses.current()) {
+        byId('source-title').textContent = 'הקורס שבקישור אינו מוכר';
+        byId('source-library-back').textContent = '← אתר הקורסים';
+        const panel = message('יש לבחור קורס מוכר', ['בחר קורס כדי לפתוח את רשימת המקורות שלו.']);
+        const choices = document.createElement('div'); choices.className = 'dialog-actions';
+        for (const course of StudyCourses.all()) {
+          const link = document.createElement('a'); link.className = 'button';
+          link.href = StudyCourses.href(course.id, '#library', course.offeringId);
+          link.textContent = course.title; choices.append(link);
+        }
+        panel.append(choices); return;
+      }
       const path = new URLSearchParams(location.search).get('file');
       const sources = await SourceLibrary.getSources();
       const source = sources.find(item => item.path === path);
@@ -96,9 +110,9 @@
       download.download = record.name || source.path.split('/').pop(); download.textContent = 'שמירת עותק';
       byId('source-actions').replaceChildren(open, download);
       message('פותחים את המסמך', ['העמוד מוצג מתוך הקובץ שנשמר בדפדפן. בהמשך אפשר לעבור בין עמודים ולהגדיל את התצוגה.']);
-      const pdfjs = await import('./vendor/pdfjs/pdf.min.mjs');
+      const pdfjs = await import('./vendor/pdfjs/pdf.min.mjs?v=5.6.205');
       const assetRoot = new URL('./vendor/pdfjs/', document.baseURI);
-      pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdf.worker.min.mjs', assetRoot).href;
+      pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdf.worker.min.mjs?v=5.6.205', assetRoot).href;
       const bytes = new Uint8Array(await record.blob.arrayBuffer());
       // PDF bytes stay local; only vendored code, fonts and decoders are fetched.
       const loadingTask = pdfjs.getDocument({data:bytes,

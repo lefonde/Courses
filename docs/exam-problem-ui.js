@@ -1,9 +1,11 @@
 /* One reading route per problem; learning marks share the dashboard's store. */
 'use strict';
 window.StudyExamProblems=(()=>{
-  const version='20261106-kwise-import1', cache=new Map(), pending=new Map(), errors=new Map(), pendingReports=new Map();
+  const version='20261117-courses1', cache=new Map(), pending=new Map(), errors=new Map(), pendingReports=new Map();
   let manifest;
-  const viewKey=key=>'erdos:exam-problem:view:v1:'+key+(cache.get(key)?.meta.viewVersion?':'+cache.get(key).meta.viewVersion:'');
+  const activeCourse=window.StudyCourses?.current();
+  const viewPrefix=!activeCourse||activeCourse.id==='random-algorithms'?'erdos:exam-problem:view:v1:':`erdos:${activeCourse.id}:${activeCourse.offeringId}:exam-problem:view:v1:`;
+  const viewKey=key=>viewPrefix+key+(cache.get(key)?.meta.viewVersion?':'+cache.get(key).meta.viewVersion:'');
   function readView(key){try{return JSON.parse(sessionStorage.getItem(viewKey(key))||'[]');}catch{return [];}}
   const h=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const id=()=>location.hash.slice('#exam-problem/'.length).split('/')[0];
@@ -13,7 +15,7 @@ window.StudyExamProblems=(()=>{
     const work=(async()=>{
       try{
         if(!/^[a-z0-9-]+$/.test(key))throw new Error('הכתובת אינה שייכת לדף לימוד זמין.');
-        if(!manifest){const response=await fetch(`./data/exam-problem-pages.json?v=${version}`);if(!response.ok)throw new Error('רשימת דפי הלימוד לא נטענה.');manifest=await response.json();}
+        if(!manifest){const response=await fetch(`${activeCourse?.data.examProblemPages||'./data/exam-problem-pages.json'}?v=${version}`);if(!response.ok)throw new Error('רשימת דפי הלימוד לא נטענה.');manifest=await response.json();}
         const meta=manifest.pages.find(p=>p.id===key);if(!meta)throw new Error('דף הלימוד הזה עדיין אינו זמין.');
         const [response]=await Promise.all([fetch(`./exam-problems/${key}.html?v=${version}`),StudyExamDashboard.load(),StudyReference.load()]);
         if(!response.ok)throw new Error('דף הלימוד לא נטען. אפשר לנסות שוב.');

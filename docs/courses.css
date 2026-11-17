@@ -1,0 +1,28 @@
+/* Shared course controls and the preparation setup use the current theme. */
+.course-heading{display:block}.course-heading h1{margin:8px 0}.course-heading .subtitle{max-width:70ch}
+.course-control{display:grid;gap:7px;min-width:0;margin:0 0 22px;font-size:13px;color:var(--muted)}
+.course-control select{width:100%;min-height:44px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);padding:8px 10px;font:inherit;font-size:14px}
+.course-control select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.exam-card[hidden]{display:none}
+.course-start{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px}
+.course-start h2{font-size:21px;margin-bottom:8px}.course-start p{max-width:58ch;color:var(--muted)}
+.course-start .button{flex-shrink:0}
+.course-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}
+.course-facts>div{display:grid;gap:4px;border-inline-start:2px solid var(--line);padding-inline-start:18px}
+.course-facts strong{font-size:30px;font-weight:650;color:var(--text)}.course-facts span{color:var(--muted);font-size:14px}
+.course-prep .notice p{margin-top:8px;max-width:90ch}
+.course-filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;margin-top:30px}
+.course-filters label{display:grid;gap:8px;min-width:0;font-size:14px}
+.course-filters input,.course-filters select{width:100%;min-width:0;min-height:44px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit}
+.course-progress-note,.course-result-count{color:var(--muted);font-size:14px;margin:16px 0}
+.course-prep-list{list-style:none;padding:0;margin:0}.course-prep-item{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:23px 0;border-top:1px solid var(--line)}
+.course-prep-item>div{min-width:0}.course-prep-item h2{font-size:18px;line-height:1.6;overflow-wrap:anywhere;margin:4px 0 7px;font-weight:550}
+.course-item-topic,.course-item-status{font-size:13px;color:var(--muted)}
+.course-study-mark{display:flex;gap:8px;align-items:center;flex-shrink:0;min-height:44px;cursor:pointer;font-size:14px}
+.course-study-mark input{width:19px;height:19px;accent-color:var(--accent)}
+.course-pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0}
+.course-pagination span{font-size:14px;color:var(--muted)}
+.course-source-list{list-style:none;padding:0}.course-source-list li{display:flex;gap:20px;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}
+.course-source-list span{font-size:13px;color:var(--muted)}.course-source-list a{min-height:24px}.course-studied-list{line-height:1.9;padding-inline-start:22px}
+@media(min-width:701px){.sidebar-collapsed #desktop-course-slot{display:none}}
+@media(max-width:700px){.course-control{width:100%;margin-bottom:4px}.course-start{align-items:stretch;flex-direction:column;gap:16px}.course-filters{grid-template-columns:1fr 1fr}.course-filters label:first-child{grid-column:1/-1}.course-prep-item{gap:16px;align-items:flex-start}.course-prep-item h2{font-size:16px}.course-study-mark{flex-direction:column;gap:5px}.course-facts{gap:8px}.course-facts>div{padding-inline-start:10px}.course-facts span{font-size:12px}.course-facts strong{font-size:26px}.course-pagination .button{padding:9px 12px}}

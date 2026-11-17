@@ -6,6 +6,7 @@
   const menu = byId('site-menu'), button = byId('site-menu-button');
   const nav = byId('nav'), theme = document.querySelector('.theme-control');
   const settings = byId('settings-button'), desktopControls = document.querySelector('.topbar-actions');
+  const courseControl = document.querySelector('.course-control');
   const mobile = window.matchMedia('(max-width:700px)');
   if (!menu || !button || !nav || !theme || !settings) return;
 
@@ -61,6 +62,7 @@
     closeMenu({restoreFocus:false});
     (mobile.matches ? byId('mobile-nav-slot') : byId('desktop-nav-slot')).append(nav);
     (mobile.matches ? byId('mobile-controls-slot') : desktopControls).append(theme, settings);
+    if (courseControl) (mobile.matches ? byId('mobile-controls-slot') : byId('desktop-course-slot')).append(courseControl);
     applySidebar();
     document.documentElement.classList.add('site-shell-ready');
     if (mobile.matches && (sidebar?.contains(focus) || nav.contains(focus) || theme.contains(focus) || focus === settings)) {

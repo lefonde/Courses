@@ -3,6 +3,9 @@ const $ = (q, root=document) => root.querySelector(q);
 const $$ = (q, root=document) => [...root.querySelectorAll(q)];
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone = value => JSON.parse(JSON.stringify(value));
+const currentCourse = window.STUDY_CONFIG?.course || null;
+const courseHasPlanner = () => window.STUDY_CONFIG?.plannerEnabled !== false;
+const courseSupports = route => !window.StudyCourses || StudyCourses.supports(route);
 const LABELS = {overview:'מבט על','exam-map':'הכנה לפי שאלות',reference:'מושגים ומשפטים',lessons:'השיעורים',schedule:'לוח הזמנים',questions:'שאלות לתרגול',flashcards:'כרטיסיות חזרה',readiness:'מצב הלימוד שלי',library:'חומרי הקורס'};
 // Locally authored navigation symbols share a 24-unit grid and stroke weight.
 const icon = paths => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;
@@ -77,14 +80,19 @@ function save(fn,message,options={}){
   }).catch(err=>{window.StudyShell?.closeMenu();$('#save-status').textContent='השינוי לא נשמר. השאירו את העמוד פתוח ונסו שוב.';notify(err.message);throw err;});
   return saveQueue;
 }
-function currentPage(){const hash=location.hash.slice(1);return hash.startsWith('reference/')?'reference-entry':hash.startsWith('exam-problem/')?'exam-problem':hash.startsWith('lesson/')?'lesson':LABELS[hash]?hash:'overview';}
+function currentPage(){const hash=location.hash.slice(1);return hash.startsWith('reference/')?'reference-entry':hash.startsWith('exam-problem/')?'exam-problem':hash.startsWith('lesson/')?'lesson':LABELS[hash]?hash:courseHasPlanner()?'overview':'exam-map';}
 function render(){
-  page=currentPage();document.title=`erdős · ${LABELS[page]||'שיעור'}`;$('#page-label').textContent=page==='exam-problem'?'הכנה לפי שאלות':LABELS[page]||'לומדים';main.classList.toggle('is-lesson',page==='lesson');
+  page=currentPage();document.title=`erdős · ${currentCourse?.title||'אלגוריתמים אקראיים'} · ${LABELS[page]||'שיעור'}`;$('#page-label').textContent=page==='exam-problem'?'הכנה לפי שאלות':LABELS[page]||'לומדים';main.classList.toggle('is-lesson',page==='lesson');
   const navPage=page==='lesson'?'lessons':page==='exam-problem'?'exam-map':page==='reference-entry'?'reference':page;
   if(page==='reference-entry')$('#page-label').textContent=LABELS.reference;
-  $('#nav').innerHTML=Object.entries(LABELS).map(([key,label])=>`<a class="nav-link ${navPage===key?'active':''}" href="#${key}" ${navPage===key?'aria-current="page"':''}><span class="nav-icon" aria-hidden="true">${ICONS[key]}</span><span class="nav-label">${label}</span>${key==='questions'?`<span class="nav-count">${curriculum.problems.length}</span>`:''}</a>`).join('');
-  const examCard=$('.exam-card');if(examCard){$('strong',examCard).textContent=fmtDate(schedule.exam.date);$('strong + span',examCard).textContent=fmtDay(schedule.exam.date)+' · '+schedule.exam.minutes+' דקות';}
+  $('#nav').innerHTML=Object.entries(LABELS).filter(([key])=>courseSupports(key)).map(([key,label])=>`<a class="nav-link ${navPage===key?'active':''}" href="#${key}" ${navPage===key?'aria-current="page"':''}><span class="nav-icon" aria-hidden="true">${ICONS[key]}</span><span class="nav-label">${label}</span>${key==='questions'?`<span class="nav-count">${curriculum.problems.length}</span>`:''}</a>`).join('');
+  const examCard=$('.exam-card');if(examCard){examCard.hidden=!courseHasPlanner();if(courseHasPlanner()){$('strong',examCard).textContent=fmtDate(schedule.exam.date);$('strong + span',examCard).textContent=fmtDay(schedule.exam.date)+' · '+schedule.exam.minutes+' דקות';}}
   renderTheme();
+  rememberCourseLocation();
+  if(!courseHasPlanner()){
+    main.innerHTML=courseSupports(page)?StudyCourseSetup.render(page):`<div class="panel"><h1>העמוד אינו זמין בקורס הזה</h1><p>אפשר להמשיך ברשימת ההכנה לבחינה.</p><a class="button primary" href="#exam-map">להכנה לבחינה</a></div>`;
+    StudyCourseSetup.afterRender(page);return;
+  }
   if(!['exam-map','exam-problem','reference','reference-entry','library'].includes(page)&&window.StudyPlanner&&!StudyPlanner.active()){main.innerHTML=StudyPlanner.startPage();return;}
   main.innerHTML=({'exam-map':()=>StudyExamDashboard.render(),'exam-problem':()=>StudyExamProblems.reader(),reference:()=>StudyReference.reader(),'reference-entry':()=>StudyReference.reader(),overview:()=>StudyLessons.overview(),lessons:()=>StudyLessons.directory(),lesson:()=>StudyLessons.reader(),schedule:renderSchedule,questions:renderQuestions,readiness:renderReadiness,library:renderLibrary,flashcards:()=>StudyCards.render()})[page]();
   if(page==='lesson')StudyLessons.afterRender();
@@ -93,6 +101,29 @@ function render(){
   if(page==='reference'||page==='reference-entry')StudyReference.afterRender();
 }
 function renderTheme(){StudyTheme.apply(document,state.settings);}
+
+function courseLocationKey(course){return `erdos:${course.id}:${course.offeringId}:last-route:v1`;}
+function rememberCourseLocation(){
+ if(!currentCourse||!courseSupports(page))return;
+ try{sessionStorage.setItem(courseLocationKey(currentCourse),location.hash||currentCourse.defaultHash);}catch{}
+}
+function installCourseSelector(){
+ const select=$('#course-select');if(!select||!window.StudyCourses)return;
+ select.innerHTML=(!currentCourse?'<option value="">בחירת קורס</option>':'')+StudyCourses.all().map(course=>`<option value="${esc(course.id)}" ${currentCourse?.id===course.id?'selected':''}>${esc(course.title)}</option>`).join('');select.disabled=false;
+ const footer=document.querySelector('.workspace > footer');if(footer)footer.innerHTML=`<bdi lang="hu">erdős</bdi> · ${esc(currentCourse?.title||'הקורסים שלי')} · <a href="#library">חומרי הקורס</a>`;
+ if(!courseHasPlanner())document.querySelectorAll('.brand,.mobile-brand').forEach(link=>{link.href='#exam-map';});
+ select.addEventListener('change',async()=>{
+  const target=StudyCourses.all().find(course=>course.id===select.value);if(!target||target.id===currentCourse?.id)return;
+  select.disabled=true;
+  try{
+   await window.StudyLessons?.flush();await saveQueue;
+   if($('#save-status').textContent)throw new Error('יש שינוי שלא נשמר. יש להשלים את השמירה לפני מעבר קורס.');
+   rememberCourseLocation();let hash=target.defaultHash;
+   try{const saved=sessionStorage.getItem(courseLocationKey(target));if(saved&&/^#[a-z0-9/_-]+$/i.test(saved))hash=saved;}catch{}
+   location.assign(StudyCourses.href(target.id,hash,target.offeringId));
+  }catch(error){select.value=currentCourse?.id||'';notify(error.message);select.disabled=false;}
+ });
+}
 
 function heading(title,subtitle,tools=''){return `<div class="page-heading"><div><h1>${title}</h1><p class="subtitle">${subtitle}</p></div>${tools?`<div class="heading-tools">${tools}</div>`:''}</div>`;}
 function dependencyIssues(s){return arr(s.dependsOn).map(sessionOf).filter(Boolean).filter(x=>!isDone(x));}
@@ -212,7 +243,7 @@ function showProblemPrompt(id){
 
 function downloadBrief(id){const s=sessionOf(id),html=`<!doctype html><html lang="he" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${esc(s.title)}</title><style>body{background:#101813;color:#eaf0e9;font:17px/1.9 'Segoe UI',Arial;max-width:850px;margin:50px auto;padding:24px}h1,h2{color:#bce9a5}li{margin:12px 0}pre{white-space:pre-wrap;font:inherit;color:#b3c1b7;border:1px solid #344b39;padding:24px;border-radius:12px}small{color:#a2b09f}</style><h1>${esc(s.title)}</h1><small>${fmtDate(s.date)} · ${timeLabel(s.minutes)} · תוכנית הכנה לבחינה</small><h2>מטרה</h2><p>${esc(s.objective)}</p><h2>סדר עבודה</h2><ol>${arr(s.steps).map(x=>`<li>${esc(x)}</li>`).join('')}</ol><h2>תנאי סיום</h2><p>${arr(s.doneWhen).map(esc).join('<br>')}</p><h2>בקשה מוכנה להוראה</h2><pre>${esc(promptForSession(s))}</pre><small>תיק תכנון מקומי. אין כאן בדיקה אוטומטית או פתרון שנוצר על ידי מודל.</small></html>`;downloadFile(`study-unit-${id}.html`,html,'text/html;charset=utf-8');notify('הוראות המשימה הורדו');}
 function showFallback(){const c=(schedule.contingencies||[]).find(x=>x.id==='mock-unavailable')||(schedule.contingencies||[])[0],moves=c?.moves||[];openDialog('fallback',c?.id,'אם חלון הסימולציה לא מתפנה',`<p>28.9 הוא חלון עבודה מהבית, ולכן 150 דקות רצופות אינן מובטחות. סימולציה עם הפרעות תירשם כתרגול, ולא כמדידה אמינה של ביצוע בזמן בחינה.</p><div class="notice neutral">${esc(c?.description||'אפשר להעביר את הסימולציה ל־29.9 ולפנות עבורה זמן מתוך יחידות היום. יתרת יחידות מרקוב וגרפים תעבור ל־1.10 ולעתודה של 7.10. ההעברה חייבת לשמור על קיבולת הימים.')}</div>${moves.length?`<h3>השינוי המוצע</h3><div class="plan-b">${moves.map(m=>{const s=sessionOf(m.sessionId);return s?`<div class="radio-row"><strong>${esc(s.title)}</strong><p>${fmtDate(s.date)} ← ${fmtDate(m.date)}${m.start?' · '+esc(m.start):''} · ${timeLabel(m.minutes||s.minutes)}</p></div>`:'';}).join('')}</div><div class="notice">החלת החלופה משנה רק יחידות שטרם בוצעו. אם ערכת כבר את הקיבולת או העברת משימות, יש לבדוק מחדש את העומס שמוצג ביומן.</div><div class="notice neutral">${arr(c.effects).map(esc).join('<br>')}</div><div class="dialog-actions"><button class="button primary" data-action="apply-fallback" data-id="${esc(c.id)}">החלת החלופה ובדיקת העומס</button></div>`:'<div class="dialog-actions"><a class="button" href="#schedule" data-action="close">פתיחת היומן להזזה ידנית</a></div>'}`,'תוכנית חלופית · בלי להוסיף שעות');}
-function showSettings(){openDialog('settings','settings','הגדרות וגיבוי',`<p>${StudyStorage.mode==='static'?'ההתקדמות נשמרת בדפדפן ובמכשיר הזה. היא אינה נשלחת ל־GitHub. לפני מעבר מכשיר או ניקוי נתוני דפדפן, הורד גיבוי.':'התוכנית וההתקדמות נשמרות בקובץ מקומי. לפני כל שינוי נשמר גם עותק גיבוי.'}</p><div class="notice neutral">יצוא מוריד קובץ עם ההתקדמות שלך. יבוא טוען אותו במכשיר אחר או בגרסה המקוונת. אין סנכרון אוטומטי בין דפדפנים או עם היומן.</div><div class="dialog-actions"><button class="button primary" data-action="export">יצוא התקדמות וגיבוי</button><button class="button" data-action="import">יבוא גיבוי</button><button class="button" data-action="theme">${state.settings.theme==='light'?'מצב כהה':'מצב בהיר'}</button></div><input type="file" accept="application/json,.json" id="import-file" hidden><div class="divider"></div><h3>תאריך העבודה</h3><p class="small-text muted">המסך הראשי משתמש בתאריך העבודה שבחרת. אפשר לחזור לתאריך הנוכחי בשעון ישראל.</p><button class="button small" data-action="today" style="margin-top:12px">מעבר להיום</button><p class="hint">גרסת נתונים ${state.schemaVersion} · שמירה ${state.revision}. קובצי הקורס המקוריים נשארים במיקומם.</p>`,'המרחב האישי שלך');if(window.StudyPlanner?.relevant())$('#dialog-content').insertAdjacentHTML('beforeend','<div class="dialog-actions">'+StudyPlanner.entry()+'</div>');}
+function showSettings(){if(!courseHasPlanner())return StudyCourseSetup.settings();openDialog('settings','settings','הגדרות וגיבוי',`<p>${StudyStorage.mode==='static'?'ההתקדמות נשמרת בדפדפן ובמכשיר הזה. היא אינה נשלחת ל־GitHub. לפני מעבר מכשיר או ניקוי נתוני דפדפן, הורד גיבוי.':'התוכנית וההתקדמות נשמרות בקובץ מקומי. לפני כל שינוי נשמר גם עותק גיבוי.'}</p><div class="notice neutral">יצוא מוריד קובץ עם ההתקדמות שלך. יבוא טוען אותו במכשיר אחר או בגרסה המקוונת. אין סנכרון אוטומטי בין דפדפנים או עם היומן.</div><div class="dialog-actions"><button class="button primary" data-action="export">יצוא התקדמות וגיבוי</button><button class="button" data-action="import">יבוא גיבוי</button><button class="button" data-action="theme">${state.settings.theme==='light'?'מצב כהה':'מצב בהיר'}</button></div><input type="file" accept="application/json,.json" id="import-file" hidden><div class="divider"></div><h3>תאריך העבודה</h3><p class="small-text muted">המסך הראשי משתמש בתאריך העבודה שבחרת. אפשר לחזור לתאריך הנוכחי בשעון ישראל.</p><button class="button small" data-action="today" style="margin-top:12px">מעבר להיום</button><p class="hint">גרסת נתונים ${state.schemaVersion} · שמירה ${state.revision}. קובצי הקורס המקוריים נשארים במיקומם.</p>`,'המרחב האישי שלך');if(window.StudyPlanner?.relevant())$('#dialog-content').insertAdjacentHTML('beforeend','<div class="dialog-actions">'+StudyPlanner.entry()+'</div>');}
 function showJournal(){openDialog('journal','journal','רשומה ליומן ההכנה',`<form id="journal-form"><div class="form-field"><label for="journal-title">כותרת קצרה</label><input class="field-input" id="journal-title" name="title" placeholder="למשל: מה השתנה בזמינות השבוע" required maxlength="140"></div><div class="form-field" style="margin-top:14px"><label for="journal-text">מה כדאי לזכור להמשך</label><textarea class="field-input" id="journal-text" name="text" required placeholder="החלטה, חסם או מסקנה שמשפיעים על התוכנית."></textarea></div><div class="dialog-actions"><button class="button primary" type="submit">שמירת רשומה</button></div></form>`);}
 function closeDialog(options={}){const dialog=$('#detail-dialog');if(window.StudyDialogScroll)StudyDialogScroll.close(dialog,options);else dialog.close();activeDialog=null;}
 function updateMoveImpact(){if(!['session','task-edit'].includes(activeDialog?.type))return;const s=sessionOf(activeDialog.id),date=$('#session-date').value;if(!date)return;const start=$('#session-time').value,issues=planningIssues(s,date,start),load=sessionsOn(date).filter(x=>x.id!==s.id&&isCommitted(x)).reduce((n,x)=>n+x.minutes,0)+(isCommitted({...s,date})?s.minutes:0),cap=capacity(date);$('#move-impact').textContent=`אחרי ההעברה: ${load} דקות מתוך ${cap} זמינות ב־${fmtDate(date)}. ${issues.join(' · ')}`;$('#move-impact').className=issues.length?'notice danger':'notice neutral';}
@@ -248,7 +279,7 @@ document.addEventListener('change',async event=>{const el=event.target;try{
  if(el.id==='theme-select'){const choice=el.value,hadFocus=document.activeElement===el;el.disabled=true;try{await save(d=>StudyTheme.setChoice(d,choice));}finally{renderTheme();el.disabled=false;if(hadFocus)el.focus({preventScroll:true});}}
  if(el.id==='active-date'){if(!el.value)return;activeDate=el.value;selectedDate=el.value;await save(d=>{d.settings.activeDate=activeDate;});}
  if(el.id.startsWith('filter-')){questionFilters[el.id.slice(7)]=el.value;$('#question-results').innerHTML=questionResults();}
- if(el.id==='import-file'&&el.files[0]){const file=el.files[0];if(file.size>1000000)throw new Error('הגיבוי גדול מדי. יש לבחור קובץ יצוא של האתר.');const imported=JSON.parse(await file.text());openDialog('import-confirm','import-confirm','בדיקת גיבוי לפני יבוא',`<p>היבוא יחליף את ההתקדמות המקומית בעותק שבחרת. לפני ההחלפה יישמר גיבוי של המצב הנוכחי.</p><div class="notice neutral">קובץ: ${esc(file.name)}<br>יחידות מעודכנות: ${Object.keys(imported.sessionUpdates||{}).length}<br>שאלות מתועדות: ${Object.keys(imported.problemProgress||{}).length}<br>משפחות שסומנו כנלמדות במפה החדשה: ${Object.values(imported.examPreparation?.learned||{}).filter(p=>p.learned===true).length}<br>גם סימוני המפה החדשה יוחלפו; גיבוי ישן אינו כולל אותם.</div><div class="dialog-actions"><button class="button primary" id="confirm-import">יבוא הגיבוי הזה</button><button class="button" data-action="close">ביטול</button></div>`);$('#confirm-import').onclick=async()=>{try{await window.StudyLessons?.flush();await saveQueue.catch(()=>{});const data=await StudyStorage.importState(imported,state.revision);state=data;window.StudyLessons?.discardPending();applyPrivateAssessment();StudyCards.reset();activeDate=state.settings.activeDate||activeDate;selectedDate=activeDate;closeDialog();render();$('#save-status').textContent='';notify('הגיבוי יובא בהצלחה');}catch(e){notify(e.message);}};}
+ if(el.id==='import-file'&&el.files[0]){const file=el.files[0];if(file.size>1000000)throw new Error('הגיבוי גדול מדי. יש לבחור קובץ יצוא של האתר.');const imported=StudyStorage.validateState(JSON.parse(await file.text()));openDialog('import-confirm','import-confirm','בדיקת גיבוי לפני יבוא',`<p>היבוא יחליף את ההתקדמות של ${esc(currentCourse?.title||'הקורס הזה')} בעותק שבחרת. לפני ההחלפה יישמר גיבוי של המצב הנוכחי.</p><div class="notice neutral">קובץ: ${esc(file.name)}<br>יחידות מעודכנות: ${Object.keys(imported.sessionUpdates||{}).length}<br>שאלות מתועדות: ${Object.keys(imported.problemProgress||{}).length}<br>משפחות שסומנו כנלמדות במפה החדשה: ${Object.values(imported.examPreparation?.learned||{}).filter(p=>p.learned===true).length}<br>גם סימוני המפה החדשה יוחלפו; גיבוי ישן אינו כולל אותם.</div><div class="dialog-actions"><button class="button primary" id="confirm-import">יבוא הגיבוי הזה</button><button class="button" data-action="close">ביטול</button></div>`);$('#confirm-import').onclick=async()=>{try{await window.StudyLessons?.flush();await saveQueue.catch(()=>{});const data=await StudyStorage.importState(imported,state.revision);state=data;window.StudyLessons?.discardPending();applyPrivateAssessment();StudyCards.reset();activeDate=state.settings.activeDate||activeDate;selectedDate=activeDate;closeDialog();render();$('#save-status').textContent='';notify('הגיבוי יובא בהצלחה');}catch(e){notify(e.message);}};}
  }catch(err){notify(err.message);}});
 document.addEventListener('submit',async event=>{
  const form=event.target;if(!['session-form','problem-form','availability-form','journal-form','custom-task-form'].includes(form.id))return;event.preventDefault();const fields=Object.fromEntries(new FormData(form)),button=$('button[type=submit]',form);button.disabled=true;
@@ -264,6 +295,7 @@ $('#settings-button').addEventListener('click',()=>state&&showSettings());
 $('#detail-dialog').addEventListener('click',event=>{if(event.target===$('#detail-dialog')){const r=event.target.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeDialog();}});
 window.addEventListener('hashchange',()=>{closeDialog({restore:false});if(state){render();const target=page==='lesson'&&location.hash.split('/').length===3?$('#lesson-section-title'):null;if(target){target.focus({preventScroll:true});target.parentElement.scrollIntoView({block:'start'});}else{main.focus();window.scrollTo(0,0);}}});
 function applyPrivateAssessment(){
+ if(!courseHasPlanner())return;
  if(schedule?.planId==='november-2026')return;
  const baseline=state.settings?.baselineAssessment;
  if(baseline){Object.assign(curriculum.meta,baseline.meta||{});for(const topic of curriculum.topics){const saved=baseline.topics?.find(t=>t.id===topic.id);if(saved)Object.assign(topic,saved);}}
@@ -272,11 +304,27 @@ async function exportProgress(){
  await window.StudyLessons?.flush();
  await saveQueue.catch(()=>{});
  const exported=await StudyStorage.exportState();exported.settings||={};
- if(curriculum.meta.diagnosticCompleted){
+ if(courseHasPlanner()&&curriculum.meta.diagnosticCompleted){
    exported.settings.baselineAssessment={meta:Object.fromEntries(['assessment','diagnosticCompleted','diagnosticSeconds','diagnosticLimit'].map(k=>[k,curriculum.meta[k]])),topics:curriculum.topics.map(t=>Object.fromEntries(['id','status','readiness','strengths','gaps'].map(k=>[k,t[k]])))};
  }
- downloadFile('study-progress.json',JSON.stringify(exported,null,2),'application/json;charset=utf-8');
+ downloadFile(courseHasPlanner()?'study-progress.json':`${currentCourse.id}-${currentCourse.offeringId}-progress.json`,JSON.stringify(exported,null,2),'application/json;charset=utf-8');
  notify('הגיבוי הורד. אפשר לייבא אותו באתר המקוון או בדפדפן אחר.');
 }
-async function init(){try{({curriculum,schedule,state,flashcards}=await StudyStorage.bootstrap());flashcards||={cards:[]};SourceLibrary.init(curriculum);applyPrivateAssessment();state.sessionUpdates||={};state.problemProgress||={};state.dayOverrides||={};state.journal||=[];state.settings||={};activeDate=state.settings.activeDate||safeDate(dateNow());activeDate=safeDate(activeDate);selectedDate=activeDate;try{const response=await fetch('./data/predictions.json');if(!response.ok)throw new Error('בנק השאלות לא נטען');predictions=await response.json();}catch(error){if(schedule.planId==='november-2026')throw error;}try{const response=await fetch('./data/history/september-2026-schedule.json');if(response.ok)previousSchedule=await response.json();}catch{}render();$('#save-status').textContent='';if(window.StudyMeetings?.enabled())StudyMeetings.onReady();}catch(err){main.innerHTML=`<div class="panel"><h1>לא הצלחנו לפתוח את התוכנית</h1><p class="subtitle">${esc(err.message)}. ${StudyStorage.mode==='static'?'נסה לרענן ובדוק שהקבצים פורסמו ב־GitHub Pages.':'ודא שהשרת המקומי פועל דרך Start-Study.cmd.'}</p><a class="button" href="./" style="margin-top:20px">ניסיון נוסף</a></div>`;}}
+async function init(){
+ installCourseSelector();
+ if(window.STUDY_CONFIG?.invalidCourse){
+  const examCard=$('.exam-card');if(examCard)examCard.hidden=true;
+  main.innerHTML=`<div class="panel"><h1>הקורס בכתובת הזו אינו זמין</h1><p>${esc(window.StudyCourses?.error()?.message||'בחרו קורס מהרשימה כדי להמשיך.')}</p><div class="dialog-actions">${StudyCourses.all().map(course=>`<a class="button" href="${esc(StudyCourses.href(course.id,course.defaultHash))}">${esc(course.title)}</a>`).join('')}</div></div>`;return;
+ }
+ try{
+  ({curriculum,schedule,state,flashcards}=await StudyStorage.bootstrap());flashcards||={cards:[]};SourceLibrary.init(curriculum);applyPrivateAssessment();
+  state.sessionUpdates||={};state.problemProgress||={};state.dayOverrides||={};state.journal||=[];state.settings||={};
+  activeDate=state.settings.activeDate||dateNow();if(courseHasPlanner())activeDate=safeDate(activeDate);selectedDate=activeDate;
+  if(courseHasPlanner()){
+   try{const response=await fetch(currentCourse?.data.predictions||'./data/predictions.json');if(!response.ok)throw new Error('בנק השאלות לא נטען');predictions=await response.json();}catch(error){if(schedule.planId==='november-2026')throw error;}
+   try{const response=await fetch(currentCourse?.data.previousSchedule||'./data/history/september-2026-schedule.json');if(response.ok)previousSchedule=await response.json();}catch{}
+  }else await StudyCourseSetup.load();
+  render();$('#save-status').textContent='';if(courseHasPlanner()&&window.StudyMeetings?.enabled())StudyMeetings.onReady();
+ }catch(err){main.innerHTML=`<div class="panel"><h1>לא הצלחנו לפתוח את הקורס</h1><p class="subtitle">${esc(err.message)}</p><a class="button" href="${esc(location.search||'./')}" style="margin-top:20px">ניסיון נוסף</a></div>`;}
+}
 init();

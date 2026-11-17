@@ -7,18 +7,20 @@ window.StudyExamDashboard = (() => {
   const defaults = {search:'',theme:'all',band:'all',status:'all',page:1,pageSize:12};
   let filters = {...defaults}, data = null, pending = null, error = '', searchTimer;
   const expanded = new Set();
-  try { const view = JSON.parse(sessionStorage.getItem('erdos:exam-map:view:v1') || 'null'); if (view && typeof view === 'object') filters = {...defaults,...view}; } catch {}
+  const activeCourse = window.StudyCourses?.current();
+  const viewStorageKey = !activeCourse || activeCourse.id==='random-algorithms' ? 'erdos:exam-map:view:v1' : `erdos:${activeCourse.id}:${activeCourse.offeringId}:exam-map:view:v1`;
+  try { const view = JSON.parse(sessionStorage.getItem(viewStorageKey) || 'null'); if (view && typeof view === 'object') filters = {...defaults,...view}; } catch {}
 
   const families = () => data?.families || [];
   const available = family => family?.contentStatus === 'ready' && Boolean(family.lessonUrl);
   const result = () => engine().filterPagination(families(), state, filters);
   const isHere = () => typeof currentPage === 'function' && currentPage() === 'exam-map';
-  function remember() { try { sessionStorage.setItem('erdos:exam-map:view:v1', JSON.stringify(filters)); } catch {} }
+  function remember() { try { sessionStorage.setItem(viewStorageKey, JSON.stringify(filters)); } catch {} }
   async function load() {
     if (pending) return pending;
     pending = (async () => {
       try {
-        const response = await fetch('./data/exam-dashboard.json?v=20261106-kwise-import1');
+        const response = await fetch((activeCourse?.data.examDashboard||'./data/exam-dashboard.json')+'?v=20261117-courses1');
         if (!response.ok) throw new Error('רשימת השאלות לא נטענה.');
         const next = await response.json();
         if (!Array.isArray(next.families) || !next.families.length) throw new Error('רשימת השאלות אינה זמינה.');

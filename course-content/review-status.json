@@ -11,9 +11,9 @@
     },
     {
       "path": "docs/app.js",
-      "sha256": "8b7ec8c89453fa068108731d5cdf0878f9a75c80c3e00ef5b3d5ea28ceaa563e",
+      "sha256": "6c048982b0486e399fcf9392c0e1b0e679962aaab9659f8ee621eb78aeade576",
       "status": "needs-review",
-      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
+      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/assets/brand/DARK_MODE_STUDIES.md",
@@ -143,9 +143,9 @@
     },
     {
       "path": "docs/config.js",
-      "sha256": "6f188dcfebf3b17ef2a9d87d47f9280dbcb5bc036af1f84e6e3b8889cfb9b770",
+      "sha256": "8eaa1da22197ba5973d556d9badc02464ee1bf1e064fefd3d6f7d4fade80612f",
       "status": "needs-review",
-      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
+      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/data/curriculum.json",
@@ -4987,9 +4987,9 @@
     },
     {
       "path": "docs/exam-dashboard-ui.js",
-      "sha256": "d47d3f36bd11edc97192a1fc06237a6208abc8a4decf41fb90f71e4653427415",
+      "sha256": "95602690a62016b0011ca1d3c98f4458477ba4f9d73b7ec22def7139f63b9bbd",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/exam-dashboard.css",
@@ -4999,9 +4999,9 @@
     },
     {
       "path": "docs/exam-problem-ui.js",
-      "sha256": "4f212f91d7c66b2546004e29cba7c075de9781c7fb70221d4cc30eea36479a84",
+      "sha256": "82583eba9aa97f6b70253eb59d05b30b0c2f5db5070b559755dae173b763e5e0",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/exam-problem.css",
@@ -5988,9 +5988,9 @@
     },
     {
       "path": "docs/index.html",
-      "sha256": "e7e039dbc97a2be2c8cf065f00515e3be90ce40462c0f0d29fbf4f8e14e67fc7",
+      "sha256": "7e230dd625725c0790c0133e8e3c08980da3c4702c9d4bb4f622f7e0beeead32",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/learning-engine.js",
@@ -6114,9 +6114,9 @@
     },
     {
       "path": "docs/reference-ui.js",
-      "sha256": "759429adbcc17f86ff069eda90022a7c11454bac00e91b9b3aa3f4f2eff5a084",
+      "sha256": "4103584b8f6704c65965833b4715eebfc7d3bf8ba90cddbab9ef088d68b896ef",
       "status": "needs-review",
-      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
+      "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/reference.css",
@@ -6180,33 +6180,33 @@
     },
     {
       "path": "docs/site-shell.js",
-      "sha256": "da940d95762e4974f639a1f4cef46c84b1ec4c9a1ea7076db3bb3bf698c37246",
+      "sha256": "ddad6633ad52f8380ab5441aa288bc68050c6e886af296f0bf59cce3d2ceecfe",
       "status": "needs-review",
-      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
+      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/source-library.js",
-      "sha256": "59f3509d16f81128dddd91dae5504669485cc3ef6480472c15c8253d7a1581f7",
+      "sha256": "29802512430492c268a5246996148be4f341180a67f8f0d12121d0b340629a84",
       "status": "needs-review",
-      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
+      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/source-viewer.js",
-      "sha256": "cf97a57467236cf51ef29305e0e72cf5983a8479559921b9bbad7e8c52f965e9",
+      "sha256": "7a53c58af374674f2526cdfa5120dfb88e8150dfce5aeb02508555dbd6b22977",
       "status": "needs-review",
-      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
+      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/source.html",
-      "sha256": "7deab4064008a4c99c195e0434a6a4b2b9aac273ab7c4452e3ca2c19a6d8c76c",
+      "sha256": "b5d970613f17852ea5780b55cc5d6086dc6946626cad9fdfafce1060acbefdbf",
       "status": "needs-review",
-      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
+      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/storage.js",
-      "sha256": "73cf745ad30db4e4c7bf9e5ba49d0c996ff5dc24d46c0259f9ef214f28c6d579",
+      "sha256": "4a80417a4316938f0242c8fb798937de04e5fd4303e22d2f08687bdfb9103359",
       "status": "needs-review",
-      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
+      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/study-math.js",
@@ -6240,9 +6240,9 @@
     },
     {
       "path": "docs/theme.js",
-      "sha256": "3d8e640bcbb5c38b4cbf3fbc2390dd7a58adde1569122ec50d969079c5761c4a",
+      "sha256": "c837d069754f5a2e5a4efb30b87751df0cc5a78b2e187d1ec739674a494c9a53",
       "status": "needs-review",
-      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews."
+      "reason": "No review under course-only policy 2026-10-24.1 has been completed. Do not infer approval from older tests or reviews. 17 November 2026: Technical integration of shared course selection and isolated course setup, progress or sources. This focused release preserves the ten published Random Algorithms problem pages and excludes the unrelated local coin-long-runs import. No source, terminology or mathematical review was performed for this integration; needs-review status remains unchanged."
     },
     {
       "path": "docs/week-one-evaluation-standard.html",
@@ -6345,6 +6345,42 @@
       "sha256": "a13a55f9ffebc54adcf7c0c282b095ced6f86cb12a90ae3492bfe664fdf24ed7",
       "status": "needs-review",
       "reason": "Local faithful technical integration of user-supplied Gemini kwise-support-lower-bound lesson and three definitions. Supplied educational wording, TeX and citations retained; no source or mathematical review performed, as directed by the user. Technical copy review, glossary links, navigation and browser behavior checked. Evidence: work/kwise-gemini-import. This is not academic approval or publication authorization."
+    },
+    {
+      "path": "docs/course-context.js",
+      "sha256": "6b0452ea6708744fb74c8c1b0af707036ba3e134b75456268945b423bb05e0dd",
+      "status": "needs-review",
+      "reason": "Local course/offering resolution and capability helpers. Technical integration only; no academic or course-alignment review performed. Registration is not publication authorization."
+    },
+    {
+      "path": "docs/course-manifests.js",
+      "sha256": "9bf1d01a352c33bb721216d4c9e729c30ee613f434efe9c34e3df8af8676c507",
+      "status": "needs-review",
+      "reason": "Shared course setup metadata, existing Random Algorithms configuration and a provisional Advanced Algorithms exam-preparation namespace. This does not establish cohort identity, exam scope, academic approval or publication authorization."
+    },
+    {
+      "path": "docs/course-setup-ui.js",
+      "sha256": "ae31be3e5bcdcb0b035ffbf1d577f6e4aa3c75fb764bff051ece3793341d47ac",
+      "status": "needs-review",
+      "reason": "Local interface for the Advanced Algorithms archived research backlog, source setup and explicit learner reports. Technical integration only; archived labels and material still require course-source review. No academic approval or publication authorization."
+    },
+    {
+      "path": "docs/courses.css",
+      "sha256": "f4ae36b22c90bbca0166feba5b777eec0bd87ea31ae52dbd140c7bf41787a23d",
+      "status": "needs-review",
+      "reason": "Shared course controls and preparation setup styling. Recorded as needs-review rather than assuming non-instructional classification from its file extension. No academic approval or publication authorization."
+    },
+    {
+      "path": "docs/courses/advanced-algorithms/curriculum.json",
+      "sha256": "37e29946df03af4581d7e9812d92c48c5533de5c573de581c0c192d223cf4570",
+      "status": "needs-review",
+      "reason": "Advanced Algorithms setup and source-file inventory with archived topic metadata. File identity and inventory do not establish source authority, current syllabus coverage or academic approval. Course scope remains unconfirmed; no publication authorization."
+    },
+    {
+      "path": "docs/courses/advanced-algorithms/exam-prep.json",
+      "sha256": "568032eaf69fc82de0b2409e81b1bd5f2cf9e2413071f8c7760b4be23d085e09",
+      "status": "needs-review",
+      "reason": "Archived Advanced Algorithms candidate labels and research inventory imported for reconciliation. This is a needs-review backlog, not approved lessons, current exam predictions or a verified syllabus. No academic review or publication authorization."
     }
   ]
 }

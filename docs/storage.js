@@ -301,9 +301,47 @@
   }
   function createStorage(environment, configuration = {}) {
     const mode = configuration.mode === 'static' ? 'static' : 'local';
-    const key = configuration.storageKey || 'matzpen:22902:2026-s3:progress:v1';
+    const course = configuration.course || {};
+    const courseId = course.id || configuration.courseId || 'random-algorithms';
+    const offeringId = course.offeringId || configuration.offeringId || '2026-s3';
+    const scoped = courseId !== 'random-algorithms' || offeringId !== '2026-s3';
+    const plannerFree = configuration.plannerEnabled === false;
+    const key = configuration.storageKey || course.storageKey || 'matzpen:22902:2026-s3:progress:v1';
+    if (scoped && key === 'matzpen:22902:2026-s3:progress:v1') throw failure('לקורס נדרש אחסון התקדמות נפרד.', 400, 'invalid_course_storage');
+    function requireSelectedCourse() {
+      if (configuration.invalidCourse) throw failure('הקורס שבקישור אינו מוכר. יש לבחור קורס כדי להמשיך.', 400, 'invalid_course');
+    }
+    function initialState() {
+      return scoped ? {...defaultState(), courseId, offeringId} : defaultState();
+    }
+    function validateSelectedState(value) {
+      requireSelectedCourse();
+      record(value, 'קובץ התקדמות');
+      if ((scoped || own(value, 'courseId') || own(value, 'offeringId')) && (value.courseId !== courseId || value.offeringId !== offeringId)) {
+        throw failure('הגיבוי שייך לקורס או למחזור אחר. ההתקדמות לא הוחלפה.', 400, 'wrong_course');
+      }
+      if (!plannerFree) return validateState(value);
+      const allowed = new Set([...Object.keys(defaultState()), 'courseId', 'offeringId', 'examPreparation']);
+      if (Object.keys(value).some(field => !allowed.has(field))) invalid('הגיבוי מכיל סוגי התקדמות שאינם נתמכים בקורס הזה.');
+      for (const field of ['sessionUpdates', 'dayOverrides']) {
+        record(value[field], field);
+        if (Object.keys(value[field]).length) invalid('הקורס הזה אינו כולל תוכנית יומית. נתוני התוכנית לא יובאו.');
+      }
+      record(value.settings, 'הגדרות');
+      if (Object.keys(value.settings).some(field => !['theme', 'themePalette', 'activeDate'].includes(field))) invalid('הגיבוי מכיל הגדרות שאינן נתמכות בקורס הזה.');
+      // Reuse the existing record validators without the old preparation-calendar bound.
+      const prepared = {...value, settings: {...value.settings}};
+      if (own(prepared.settings, 'activeDate')) {
+        date(prepared.settings.activeDate, 'תאריך העבודה');
+        delete prepared.settings.activeDate;
+      }
+      const validated = validateState(prepared);
+      if (own(value.settings, 'activeDate')) validated.settings.activeDate = value.settings.activeDate;
+      return validated;
+    }
     let serial = Promise.resolve();
     async function request(url, options = {}) {
+      requireSelectedCourse();
       let response;
       try {response = await environment.fetch(url, options);} catch (error) {
         throw failure(mode === 'local' ? 'לא ניתן להגיע לשרת המקומי. ההתקדמות לא הוחלפה.' : 'לא ניתן לטעון את הקובץ. בדוק את החיבור ונסה שוב.', 503, 'network_error');
@@ -320,25 +358,26 @@
       } catch (error) {throw failure('הדפדפן אינו מאפשר שמירה מקומית. יש לאפשר אחסון לאתר לפני תיעוד התקדמות.', 503, 'storage_unavailable');}
     }
     function readEnvelope() {
+      requireSelectedCourse();
       let raw;
       try {raw = localStorage().getItem(key);} catch (error) {
         if (typeof error.code === 'string') throw error;
         throw failure('לא ניתן לקרוא את ההתקדמות השמורה בדפדפן.', 503, 'storage_unavailable');
       }
-      if (raw === null) return {formatVersion: 1, state: defaultState(), backups: []};
+      if (raw === null) return {formatVersion: 1, state: initialState(), backups: []};
       try {
         const envelope = JSON.parse(raw);
         if (!envelope || envelope.formatVersion !== 1 || !Array.isArray(envelope.backups) || envelope.backups.length > 10) throw new Error('envelope');
-        envelope.state = validateState(envelope.state);
+        envelope.state = validateSelectedState(envelope.state);
         // Retain historical copies exactly; never silently discard a recovery copy.
-        for (const backup of envelope.backups) validateState(backup);
+        for (const backup of envelope.backups) validateSelectedState(backup);
         return envelope;
       } catch (error) {
         throw failure('ההתקדמות השמורה אינה ניתנת לקריאה. הנתונים לא נמחקו ולא הוחלפו; אפשר לשחזר מקובץ גיבוי.', 500, 'stored_state_unreadable');
       }
     }
     function staticSave(value, expectedRevision) {
-      const state = validateState(value);
+      const state = validateSelectedState(value);
       if (!integer(expectedRevision)) throw failure('מספר גרסת השמירה אינו תקין.', 400, 'invalid_revision');
       const envelope = readEnvelope();
       if (envelope.state.revision !== expectedRevision) throw failure('ההתקדמות השתנתה בלשונית אחרת. רענן את הדף לפני השמירה כדי לשמור גם את השינויים שלה.', 409, 'revision_conflict');
@@ -351,14 +390,15 @@
       return clone(state);
     }
     async function mutate(value, expectedRevision, endpoint) {
+      // Validate and snapshot before either transport queues a mutation.
+      const snapshot = validateSelectedState(value);
       if (mode === 'local') {
-        const body = JSON.stringify({state: value, expectedRevision});
+        const body = JSON.stringify({state: snapshot, expectedRevision});
         const result = serial.catch(() => {}).then(() => request(endpoint, {method: 'POST', headers: {'Content-Type': 'application/json'}, body}));
         serial = result;
         return result;
       }
       // Snapshot before waiting: later UI edits cannot leak into this save operation.
-      const snapshot = validateState(value);
       const action = () => staticSave(snapshot, expectedRevision);
       const work = () => environment.navigator && environment.navigator.locks && typeof environment.navigator.locks.request === 'function'
         ? environment.navigator.locks.request(key + ':write', {mode: 'exclusive'}, action) : action();
@@ -368,10 +408,11 @@
     }
     async function bootstrap() {
       if (mode === 'local') return request('/api/bootstrap', {cache: 'no-store'});
+      const data = course.data || {};
       const [curriculum, schedule, flashcards] = await Promise.all([
-        request('./data/curriculum.json', {cache: 'no-store'}),
-        request('./data/schedule.json', {cache: 'no-store'}),
-        request('./data/flashcards.json', {cache: 'no-store'}).catch(error => {if (error.status === 404) return {cards: []}; throw error;})
+        request(data.curriculum || './data/curriculum.json', {cache: 'no-store'}),
+        plannerFree && !data.schedule ? Promise.resolve({sessions: []}) : request(data.schedule || './data/schedule.json', {cache: 'no-store'}),
+        plannerFree && !data.flashcards ? Promise.resolve({cards: []}) : request(data.flashcards || './data/flashcards.json', {cache: 'no-store'}).catch(error => {if (error.status === 404) return {cards: []}; throw error;})
       ]);
       return {curriculum, schedule, flashcards, state: readEnvelope().state};
     }
@@ -384,24 +425,33 @@
       const blob = new environment.Blob([JSON.stringify(state, null, 2) + '\n'], {type: 'application/json;charset=utf-8'});
       const url = environment.URL.createObjectURL(blob);
       const anchor = environment.document.createElement('a');
-      anchor.href = url; anchor.download = 'study-progress.json';
+      anchor.href = url; anchor.download = scoped ? `study-progress-${courseId}-${offeringId}.json` : 'study-progress.json';
       environment.document.body.append(anchor); anchor.click(); anchor.remove();
       environment.setTimeout(() => environment.URL.revokeObjectURL(url), 1000);
       return state;
     }
     function sourceUrl(source, page = 1) {
+      requireSelectedCourse();
       const path = (typeof source === 'string' ? source : source && source.path || '').replace(/\\/g, '/');
       if (!path || path.startsWith('/') || path.includes(':') || path.split('/').some(part => part === '..' || part.startsWith('.'))) throw failure('נתיב המקור אינו תקין.', 400, 'invalid_source');
       const parsedPage = Math.floor(Number(page));
       const pageNumber = Number.isFinite(parsedPage) ? Math.max(1, parsedPage || 1) : 1;
-      return mode === 'static' ? `./source.html?file=${encodeURIComponent(path)}#page=${pageNumber}` : '/sources/' + path.split('/').map(encodeURIComponent).join('/') + '#page=' + pageNumber;
+      const context = scoped ? `course=${encodeURIComponent(courseId)}&offering=${encodeURIComponent(offeringId)}&` : '';
+      return mode === 'static' ? `./source.html?${context}file=${encodeURIComponent(path)}#page=${pageNumber}` : '/sources/' + path.split('/').map(encodeURIComponent).join('/') + '#page=' + pageNumber;
     }
     return Object.freeze({
-      mode, storageKey: key, bootstrap, exportState, downloadExport, sourceUrl, validateState,
+      mode, storageKey: key, bootstrap, exportState, downloadExport, sourceUrl, validateState: validateSelectedState,
       save: (value, expectedRevision) => mutate(value, expectedRevision, '/api/state'),
       importState: (value, expectedRevision) => mutate(value, expectedRevision, '/api/import'),
       backups: async () => mode === 'static' ? clone(readEnvelope().backups) : []
     });
   }
-  return Object.freeze({createStorage, validateState, defaultState});
+  function validateLegacyState(value) {
+    record(value, 'קובץ התקדמות');
+    if ((own(value, 'courseId') || own(value, 'offeringId')) && (value.courseId !== 'random-algorithms' || value.offeringId !== '2026-s3')) {
+      throw failure('הגיבוי שייך לקורס או למחזור אחר. ההתקדמות לא הוחלפה.', 400, 'wrong_course');
+    }
+    return validateState(value);
+  }
+  return Object.freeze({createStorage, validateState: validateLegacyState, defaultState});
 });

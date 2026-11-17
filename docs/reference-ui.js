@@ -1,8 +1,8 @@
 /* Reading support only: no progress, scheduling, or assistance records change. */
 'use strict';
 window.StudyReference=(()=>{
-  const version='20261106-kwise-import1';
-  const files=['reference-sat','reference-walk','reference-probability','reference-walk-imported','reference-isolated-imported','reference-fingerprinting-imported','reference-gni-imported','reference-balls-bins-imported','reference-cover-time-imported','reference-coin-imported','reference-vandermonde-imported','reference-kwise-imported','reference-links'];
+  const version='20261117-courses1';
+  const files=window.StudyCourses?.current()?.glossaryFiles||['reference-sat','reference-walk','reference-probability','reference-walk-imported','reference-isolated-imported','reference-fingerprinting-imported','reference-gni-imported','reference-balls-bins-imported','reference-cover-time-imported','reference-coin-imported','reference-vandermonde-imported','reference-kwise-imported','reference-links'].map(file=>`./data/${file}.json`);
   let entries=[],links=[],byId=new Map(),pending=null,error='',ready=false,search='',kind='all';
   let tooltip=null,active=null,hoverTimer,closeTimer,dismissed=null;
   const h=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -16,7 +16,7 @@ window.StudyReference=(()=>{
     if(ready)return true;if(pending)return pending;
     pending=(async()=>{
       try{
-        const results=await Promise.all(files.map(async file=>{const response=await fetch(`./data/${file}.json?v=${version}`);if(!response.ok)throw new Error('מאגר המושגים לא נטען.');return response.json();}));
+        const results=await Promise.all(files.map(async file=>{const response=await fetch(`${file}?v=${version}`);if(!response.ok)throw new Error('מאגר המושגים לא נטען.');return response.json();}));
         const next=results.slice(0,-1).flat();
         if(!next.length||next.some(e=>!e.id||!e.title||!e.summary||!e.body)||new Set(next.map(e=>e.id)).size!==next.length)throw new Error('לא ניתן לקרוא את מאגר המושגים.');
         entries=next;links=results.at(-1);byId=new Map(entries.map(e=>[e.id,e]));

@@ -5,7 +5,7 @@
   if(root&&root.document){
     root.StudyTheme=api;
     const key=root.STUDY_CONFIG?.storageKey||'matzpen:22902:2026-s3:progress:v1';
-    const restore=()=>{try{api.apply(root.document,JSON.parse(root.localStorage.getItem(key)||'{}').settings||{});}catch{api.apply(root.document,{});}};
+    const restore=()=>{try{if(root.STUDY_CONFIG?.invalidCourse){api.apply(root.document,{});return;}const saved=JSON.parse(root.localStorage.getItem(key)||'{}');api.apply(root.document,saved.state?.settings||saved.settings||{});}catch{api.apply(root.document,{});}};
     restore();
     root.addEventListener('storage',event=>{if(event.key===key)restore();});
   }

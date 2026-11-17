@@ -11,8 +11,11 @@
   <link rel="stylesheet" href="./lessons.css?v=20261017-pedagogy1">
   <link rel="stylesheet" href="./brand.css?v=20261017-portrait-eyes3">
   <link rel="stylesheet" href="./sidebar.css?v=20261104-collapse">
-  <script src="./config.js?v=20261016-themes4" defer></script>
-  <script src="./theme.js?v=20261016-themes4" defer></script>
+  <link rel="stylesheet" href="./courses.css?v=20261117-courses1">
+  <script src="./course-manifests.js?v=20261117-courses1" defer></script>
+  <script src="./course-context.js?v=20261117-courses1" defer></script>
+  <script src="./config.js?v=20261117-courses1" defer></script>
+  <script src="./theme.js?v=20261117-courses1" defer></script>
   <script src="./plan-calendar.js?v=20261016-themes4" defer></script>
   <script src="./teaching-policy.js?v=20261016-themes4" defer></script>
   <script src="./teaching-ui.js?v=20261017-mode-groups1" defer></script>
@@ -30,8 +33,8 @@
   <script src="./recommendation-engine.js?v=20261016-themes4" defer></script>
   <script src="./recommendation-demos.js?v=20261016-themes4" defer></script>
   <script src="./exam-dashboard-engine.js?v=20261023" defer></script>
-  <script src="./storage.js?v=20261023-exam-map" defer></script>
-  <script src="./source-library.js?v=20261016-themes4" defer></script>
+  <script src="./storage.js?v=20261117-courses1" defer></script>
+  <script src="./source-library.js?v=20261117-courses1" defer></script>
   <script src="./flashcards-engine.js?v=20261016-themes4" defer></script>
   <script src="./flashcards-ui.js?v=20261016-themes4" defer></script>
   <script src="./report-engine.js?v=20261016-themes4" defer></script>
@@ -47,18 +50,19 @@
   <script src="./catch-up-engine.js?v=20261016-themes4" defer></script>
   <script src="./planning-ui.js?v=20261016-themes4" defer></script>
   <script src="./predictions-ui.js?v=20261016-themes4" defer></script>
-  <script src="./site-shell.js?v=20261104-collapse" defer></script>
+  <script src="./site-shell.js?v=20261117-courses1" defer></script>
   <link rel="stylesheet" href="./vendor/katex/katex.min.css">
   <link rel="stylesheet" href="./exam-problem.css?v=20261106-vandermonde-import1">
   <script src="./vendor/katex/katex.min.js" defer></script>
   <script src="./study-math.js?v=20261106-kwise-import1" defer></script>
   <link rel="stylesheet" href="./exam-dashboard.css?v=20261023">
-  <script src="./exam-dashboard-ui.js?v=20261106-kwise-import1" defer></script>
+  <script src="./exam-dashboard-ui.js?v=20261117-courses1" defer></script>
   <link rel="stylesheet" href="./reference.css?v=20261024-walk-import1">
   <script src="./reference-engine.js?v=20261024-reference1" defer></script>
-  <script src="./reference-ui.js?v=20261106-kwise-import1" defer></script>
-  <script src="./exam-problem-ui.js?v=20261106-kwise-import1" defer></script>
-  <script src="./app.js?v=20261024-reference1" defer></script>
+  <script src="./reference-ui.js?v=20261117-courses1" defer></script>
+  <script src="./exam-problem-ui.js?v=20261117-courses1" defer></script>
+  <script src="./course-setup-ui.js?v=20261117-courses1" defer></script>
+  <script src="./app.js?v=20261117-courses1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">דילוג לתוכן</a>
@@ -69,6 +73,7 @@
         <span class="erdos-name" lang="hu">erdős</span>
       </a>
     </div>
+    <div id="desktop-course-slot"><label class="course-control" for="course-select"><span>הקורס שלי</span><select id="course-select" aria-label="בחירת קורס" disabled><option>טוענים את הקורסים…</option></select></label></div>
     <div id="desktop-nav-slot"><nav id="nav" aria-label="עמודי האתר"></nav></div>
     <div class="exam-card"><span class="eyebrow">נקודת היעד</span><strong>23 בנובמבר</strong><span>יום שני · 150 דקות</span><div class="exam-line"></div><p>3 שאלות חובה<br>משקל התשובות: <bdi>40 / 40 / 20</bdi></p><a href="#library">הנחיות ודף נוסחאות <span aria-hidden="true">↗</span></a></div>
   </aside>
